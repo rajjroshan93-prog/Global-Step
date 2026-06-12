@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Reading Academic Quiz - Global Step</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { 
+            --primary: #001f3f; 
+            --accent: #00D4FF; 
+            --bg-dark: #00152b;
+            --card-bg: #ffffff; 
+            --text-main: #334155; 
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Lato', sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        
+        .quiz-card { width: 100%; max-width: 900px; background: var(--card-bg); border-radius: 20px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid rgba(0, 212, 255, 0.1); }
+        .header-quiz { text-align: center; margin-bottom: 30px; }
+        .header-quiz h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; }
+        .schedule-badge { display: inline-block; background: #e0faff; color: #0369a1; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-bottom: 15px; text-transform: uppercase; }
+        
+        /* PASSAGE TEXT BOX */
+        .passage-box { background: #f8fafc; padding: 30px; border-radius: 12px; border-left: 6px solid var(--primary); margin-bottom: 35px; font-size: 16px; line-height: 1.8; text-align: justify; max-height: 400px; overflow-y: auto; box-shadow: inset 0 2px 8px rgba(0,0,0,0.05); }
+        .passage-box h3 { font-family: 'Poppins', sans-serif; margin-bottom: 15px; color: var(--primary); font-size: 20px; }
+        
+        .question-box { margin-bottom: 30px; background: #fff; padding: 25px; border: 1px solid #e2e8f0; border-radius: 12px; }
+        .question-title { font-size: 17px; font-weight: 700; color: var(--primary); margin-bottom: 15px; line-height: 1.5; }
+        .options-list { display: flex; flex-direction: column; gap: 12px; }
+        .option-item { display: flex; align-items: center; padding: 15px 20px; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: 600; background: #fff; transition: 0.2s; }
+        .option-item:hover { border-color: var(--accent); background: #f0fdff; }
+        .option-item input[type="radio"] { display: none; }
+        .option-item.selected { background: #e0faff; border-color: var(--accent); color: var(--primary); }
+        
+        .btn-submit { width: 100%; background: var(--primary); color: white; border: 2px solid var(--primary); padding: 16px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .btn-submit:hover { background: var(--accent); color: var(--primary); border-color: var(--accent); }
+        
+        #result-area { margin-top: 30px; padding: 30px; border-radius: 12px; display: none; }
+        .success-score { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+        .review-box { background: rgba(255,255,255,0.8); padding: 20px; border-radius: 8px; margin-top: 20px; color: #1e293b; font-size: 15px; line-height: 1.6; }
+        
+        .back-home { display: inline-block; margin-top: 30px; text-decoration: none; color: #94a3b8; font-weight: 700; font-size: 14px; transition: 0.2s; text-transform: uppercase; }
+        .back-home:hover { color: var(--accent); }
+
+        .footer-credit { font-size: 11px; color: #64748b; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 700; text-align: center; margin-top: 25px; }
+        .footer-credit a { color: var(--accent); text-decoration: none; margin-left: 4px; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-card">
+    <div class="header-quiz">
+        <div class="schedule-badge" id="schedule-info"><i class="fa-solid fa-sync fa-spin"></i> Memuat Berkas Teks...</div>
+        <h2>IELTS Reading: Elite Academic Practice</h2>
+        <p style="color: #64748b; font-size: 15px; margin-top: 5px;">Gunakan metode analisis kata kunci untuk membedakan fakta orisinal dari teks penguji.</p>
+    </div>
+
+    <div class="passage-box" id="passage-container"></div>
+
+    <form id="dynamicQuizForm" onsubmit="evaluateQuiz(event)">
+        <div id="questions-container"></div>
+        <button type="submit" class="btn-submit">SUBMIT & ANALISIS BAND SCORE</button>
+    </form>
+
+    <div id="result-area" class="success-score">
+        <h3 id="scoreTitle" style="font-size: 22px; margin-bottom: 5px; font-family: 'Poppins', sans-serif;"></h3>
+        <p id="bandEstimate" style="font-size: 16px; font-weight: 700;"></p>
+        <div class="review-box" id="explanationBox"></div>
+    </div>
+
+    <center><a href="dashboard.html" class="back-home"><i class="fa-solid fa-arrow-left"></i> Kembali ke Dashboard</a></center>
+</div>
+
+<div class="footer-credit">
+    Created by San | <a href="https://www.instagram.com/sann_n228?igsh=MWo3M3g0NWcwZ2h0Yg==" target="_blank"><i class="fa-brands fa-instagram"></i> @sann_n228</a>
+</div>
+
+<script>
+    const readingDatabase = {
+        // PAKET SOAL PERTAMA: THE EVOLUTION OF MEGACITIES
+        paketUtama: {
+            name: "Academic Passage: The Evolution of Megacities",
+            passage: `<h3>The Evolution of Megacities</h3><p>In the contemporary era, the phenomenon of the 'megacity'—defined as an urban agglomeration supporting a population in excess of ten million inhabitants—has fundamentally altered the global demographic landscape. At the inception of the twentieth century, only a handful of urban centers, notably London and New York, possessed the economic infrastructure to draw such vast concentrations of humanity. However, the latter half of the century witnessed an unprecedented shift, primarily driven by rapid industrialization and agrarian displacement in developing nations. Consequently, the epicenter of megacity growth transitioned dramatically from Western economies to Asia and Latin America.</p><p>Urban planners argue that while these colossal hubs function as engines of economic growth and technological innovation, they simultaneously pose severe logistical and environmental dilemmas. The sheer velocity of population influx frequently outpaces municipal infrastructure development, culminating in substandard housing, critical water scarcity, and highly congested transit systems. For instance, in several South Asian megacities, over forty percent of the populace resides in informal settlements lacking basic sanitation. Furthermore, the phenomenon of the 'urban heat island' effect—where built environments trap ambient heat—has exacerbated energy demands and raised local temperatures by up to five degrees Celsius.</p><p>Despite these acute challenges, some economists maintain a highly optimistic outlook. They assert that the dense concentration of human capital fosters a unique ecosystem of efficiency, where public services can theoretically be delivered at a lower per-capita cost than in sparsely populated rural regions. Moreover, proponents highlight that megacities are pioneering sustainable initiatives, such as vertical farming and zero-emission mass transit networks, out of absolute necessity. Ultimately, the future viability of these urban giants will depend not on arresting human migration, but on the sophistication of long-term administrative foresight and smart-city integration.</p>`,
+            questions: [
+                { id: "m1", q: "At the beginning of the twentieth century, New York and London were the only two cities in the world with over ten million residents.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "C", note: "NOT GIVEN: Teks hanya menyebutkan London dan New York sebagai contoh pusat kota yang menonjol (*notably*), tanpa membatasi bahwa tidak ada kota lain sama sekali di dunia." },
+                { id: "m2", q: "The primary driver of megacity growth in the latter half of the twentieth century was migration caused by changes in rural sectors and industrial growth.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "A", note: "TRUE: Sesuai dengan kalimat akhir paragraf pertama yang menyatakan bahwa pergeseran tersebut dipicu oleh 'rapid industrialization and agrarian displacement' (perpindahan sektor pertanian/pedesaan)." },
+                { id: "m3", q: "During the late twentieth century, megacity expansion accelerated faster in Western nations than in Asia.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Teks dengan tegas menyatakan 'the epicenter of megacity growth transitioned dramatically from Western economies to Asia', yang artinya pertumbuhan di Asia melesat jauh lebih cepat." },
+                { id: "m4", q: "Municipalities generally manage to upgrade their infrastructure before the majority of new residents arrive.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Kontradiktif dengan teks yang berbunyi 'population influx frequently outpaces municipal infrastructure development' (kedatangan penduduk melampaui kecepatan pembangunan infrastruktur pemerintah)." },
+                { id: "m5", q: "In South Asian megacities, governments have allocated substantial funds to clear out informal settlements.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "C", note: "NOT GIVEN: Teks memaparkan fakta bahwa 'over forty percent resides in informal settlements', namun sama sekali tidak membahas mengenai anggaran belanja atau kebijakan penggusuran oleh pemerintah setempat." },
+                { id: "m6", q: "According to the passage, what is a direct consequence of the 'urban heat island' effect?", options: ["A dramatic decrease in rural-urban migration rates", "An escalation in energy consumption demands within the city", "The rapid expansion of local vertical farming programs"], ans: "B", note: "An escalation in energy demands: Teks menyebutkan efek pulau panas ini 'exacerbated energy demands' akibat peningkatan temperatur lingkungan lokal." },
+                { id: "m7", q: "Which word used in Paragraph 2 has the closest meaning to 'worsened' or 'made more severe'?", options: ["Congested", "Exacerbated", "Culminating"], ans: "B", note: "Exacerbated: Merupakan kosakata tingkat tinggi dalam konteks akademis yang memiliki arti memperparah suatu keadaan buruk." },
+                { id: "m8", q: "What argument do optimistic economists present regarding high-density human capital?", options: ["It forces governments to stop expanding mass transit networks.", "It enables the provision of public services at a reduced cost per person.", "It guarantees that urban environments will naturally remain cooler."], ans: "B", note: "Reduced cost per person: Sesuai kutipan paragraf ketiga yang menyatakan bahwa 'public services can theoretically be delivered at a lower per-capita cost'." },
+                { id: "m9", q: "Based on the text, why are megacities currently developing innovations like vertical farming?", options: ["Because they are driven by sheer necessity.", "Due to massive financial subsidies from rural regions.", "To artificially reduce the local temperature by five degrees."], ans: "A", note: "Driven by sheer necessity: Teks menyatakan bahwa megakota mempelopori inisiatif hijau tersebut murni karena tuntutan keadaan darurat perkotaan (*out of absolute necessity*)." },
+                { id: "m10", q: "According to the final sentence, the future success of megacities relies primarily on:", options: ["Halting the movement of people from rural areas entirely.", "The implementation of advanced planning and smart-city integration.", "Restoring the economic monopoly back to Western urban centers."], ans: "B", note: "Advanced planning & smart-city: Penulis menutup teks dengan menegaskan bahwa kelangsungan masa depan kota bergantung pada tingkat kecanggihan pandangan administrasi jangka panjang (*long-term administrative foresight*)." }
+            ]
+        }
+    };
+
+    let activeQuestions = [];
+
+    function setupQuiz() {
+        const selectedBlock = readingDatabase.paketUtama;
+        document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-book-open"></i> Sesi Aktif: ${selectedBlock.name}`;
+        document.getElementById('passage-container').innerHTML = selectedBlock.passage;
+        activeQuestions = selectedBlock.questions;
+        renderQuestions();
+    }
+
+    function renderQuestions() {
+        const container = document.getElementById('questions-container');
+        container.innerHTML = "";
+        activeQuestions.forEach((item, index) => {
+            let optionsHTML = '';
+            const labels = ['A', 'B', 'C'];
+            item.options.forEach((opt, oIdx) => {
+                optionsHTML += `
+                    <label class="option-item" onclick="highlightOption(this, '${item.id}')">
+                        <input type="radio" name="${item.id}" value="${labels[oIdx]}" required> 
+                        ${labels[oIdx]}. ${opt}
+                    </label>
+                `;
+            });
+            container.innerHTML += `
+                <div class="question-box">
+                    <div class="question-title">${index + 1}. ${item.q}</div>
+                    <div class="options-list">${optionsHTML}</div>
+                </div>
+            `;
+        });
+    }
+
+    function highlightOption(element, groupName) {
+        const options = element.parentElement.querySelectorAll('.option-item');
+        options.forEach(opt => opt.classList.remove('selected'));
+        element.classList.add('selected');
+    }
+
+    function evaluateQuiz(event) {
+        event.preventDefault();
+        const form = document.getElementById('dynamicQuizForm');
+        let correct = 0;
+        let reviewHTML = '<strong>Analisis Jawaban & Bedah Distractor Penguji:</strong><br><br>';
+
+        activeQuestions.forEach((item, index) => {
+            const userAns = form.elements[item.id].value;
+            if (userAns === item.ans) correct++;
+            reviewHTML += `<b>Soal ${index + 1}:</b> ${item.note}<br><br>`;
+        });
+
+        const resultArea = document.getElementById('result-area');
+        document.getElementById('scoreTitle').innerText = `Skor Akhir Anda: Benar ${correct} dari 10 Pertanyaan`;
+        
+        let band = "";
+        if (correct >= 9) band = "Band 8.5 - 9.0 (Elite Academic Scholar - Analisis Sangat Tajam)";
+        else if (correct >= 7) band = "Band 7.0 - 8.0 (Target Skor Universitas Dunia Tercapai)";
+        else if (correct >= 5) band = "Band 6.0 - 6.5 (Competent User - Waspadai Jebakan Paraphrase)";
+        else band = "Band < 5.5 (Butuh Tambahan Fokus Teknik Scanning Detail)";
+
+        document.getElementById('bandEstimate').innerText = `Estimasi Kompetensi: ${band}`;
+        document.getElementById('explanationBox').innerHTML = reviewHTML;
+        resultArea.style.display = 'block';
+        resultArea.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    window.onload = setupQuiz;
+</script>
+</body>
+</html>
