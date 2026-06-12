@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Interactive Listening Quiz - Global Step</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #001f3f;
+            --accent: #00D4FF;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Lato', sans-serif; background-color: var(--primary); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+        .quiz-card {
+            width: 100%; max-width: 750px;
+            background: var(--card-bg); border-radius: 16px;
+            padding: 40px; box-shadow: 0 20px 4px -10px rgba(0,0,0,0.3);
+            border: 1px solid #e2e8f0; position: relative;
+        }
+
+        .header-quiz { text-align: center; margin-bottom: 30px; }
+        .header-quiz h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; margin-bottom: 10px; }
+        .header-quiz p { font-size: 16px; color: #64748b; }
+
+        /* AUDIO UTAMA */
+        .audio-container { background: #f1f5f9; padding: 20px; border-radius: 12px; margin-bottom: 30px; border-left: 5px solid var(--accent); text-align: center; }
+        .audio-container p { font-weight: 700; margin-bottom: 10px; color: var(--primary); }
+        audio { width: 100%; }
+
+        /* BLOK PERTANYAAN */
+        .question-box { margin-bottom: 35px; background: #fff; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; }
+        .question-title { font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 15px; display: flex; gap: 10px; }
+        
+        /* PILIHAN JAWABAN */
+        .options-list { display: flex; flex-direction: column; gap: 12px; }
+        .option-item {
+            display: flex; align-items: center; padding: 15px 20px;
+            border: 2px solid #e2e8f0; border-radius: 8px;
+            cursor: pointer; font-size: 16px; font-weight: 600;
+            transition: all 0.2s ease; background: #fff;
+        }
+        .option-item:hover { border-color: var(--accent); background: #f0fdff; }
+        
+        /* SISTEM CHECKED JAWABAN */
+        .option-item input[type="radio"] { display: none; }
+        .option-item.selected { background: #e0faff; border-color: var(--accent); color: var(--primary); }
+
+        /* ACTION BUTTONS */
+        .btn-submit {
+            width: 100%; background: var(--primary); color: white;
+            border: 2px solid var(--accent); padding: 16px; border-radius: 50px;
+            font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700;
+            cursor: pointer; transition: 0.3s; margin-top: 10px;
+        }
+        .btn-submit:hover { background: var(--accent); color: var(--primary); }
+
+        /* HASIL SKOR */
+        #result-area {
+            margin-top: 30px; padding: 25px; border-radius: 12px;
+            text-align: center; display: none; font-family: 'Poppins', sans-serif;
+        }
+        .success-score { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+        .review-text { font-family: 'Lato', sans-serif; font-size: 16px; margin-top: 10px; text-align: left; line-height: 1.6; }
+
+        .back-home { display: inline-block; margin-top: 30px; text-decoration: none; color: #94a3b8; font-weight: 700; transition: 0.3s; }
+        .back-home:hover { color: var(--accent); }
+    </style>
+</head>
+<body>
+
+<div class="quiz-card">
+    <div class="header-quiz">
+        <h2><i class="fa-solid fa-graduation-cap"></i> Listening Practice: Test 1</h2>
+        <p>Simak audio simulasi aksen penutur asli di bawah, lalu jawab pertanyaan dengan akurat.</p>
+    </div>
+
+    <div class="audio-container">
+        <p><i class="fa-solid fa-volume-high"></i> Sesi Rekaman Percakapan:</p>
+        <audio controls id="listeningAudio">
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+            Browser kamu tidak mendukung pemutar audio.
+        </audio>
+    </div>
+
+    <form id="ieltsQuizForm" onsubmit="evaluateQuiz(event)">
+        
+        <div class="question-box">
+            <div class="question-title">
+                <span>1.</span>
+                <span>The speaker initially planned to meet the consultant on Wednesday, but what was the final agreed day?</span>
+            </div>
+            <div class="options-list">
+                <label class="option-item" onclick="highlightOption(this, 'q1')">
+                    <input type="radio" name="q1" value="A" required> A. Wednesday
+                </label>
+                <label class="option-item" onclick="highlightOption(this, 'q1')">
+                    <input type="radio" name="q1" value="B"> B. Thursday
+                </label>
+                <label class="option-item" onclick="highlightOption(this, 'q1')">
+                    <input type="radio" name="q1" value="C"> C. Friday
+                </label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <div class="question-title">
+                <span>2.</span>
+                <span>According to the audio guidelines, what is the strict restriction for Task 1 answers?</span>
+            </div>
+            <div class="options-list">
+                <label class="option-item" onclick="highlightOption(this, 'q2')">
+                    <input type="radio" name="q2" value="A" required> A. Must be exactly 150 words.
+                </label>
+                <label class="option-item" onclick="highlightOption(this, 'q2')">
+                    <input type="radio" name="q2" value="B"> B. Minimum of 150 words required.
+                </label>
+                <label class="option-item" onclick="highlightOption(this, 'q2')">
+                    <input type="radio" name="q2" value="C"> C. Maximum limit is 250 words.
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit">SUBMIT & ANALISIS SKOR</button>
+    </form>
+
+    <div id="result-area" class="success-score">
+        <h3 id="scoreTitle" style="font-size: 24px; margin-bottom: 5px;"></h3>
+        <p id="bandEstimate" style="font-size: 18px; font-weight: 700; color: #15803d;"></p>
+        <div class="review-text">
+            <strong>Analisis Kunci Jawaban (Mencegah Distractors):</strong><br>
+            • <strong>Nomor 1: (B) Thursday.</strong> Pembicara sempat menyebut hari Rabu (*Wednesday*), namun langsung meralatnya di akhir kalimat karena ada jadwal rapat mendadak. Ini adalah tipe jebakan *distractor* klasik di IELTS.<br>
+            • <strong>Nomor 2: (B) Minimum of 150 words required.</strong> Aturan baku penulisan Task 1 mewajibkan tulisan minimal berisi 150 kata, jika kurang nilai kriteria *Task Achievement* akan turun drastis.
+        </div>
+    </div>
+
+    <center><a href="index.html" class="back-home"><i class="fa-solid fa-arrow-left"></i> Kembali ke Dashboard Utama</a></center>
+</div>
+
+<script>
+    // Fungsi kosmetik agar pilihan yang diklik berubah warna di HP
+    function highlightOption(element, groupName) {
+        const options = element.parentElement.querySelectorAll('.option-item');
+        options.forEach(opt => opt.classList.remove('selected'));
+        element.classList.add('selected');
+    }
+
+    // Engine JavaScript untuk menghitung skor & simulasi konversi Band Score IELTS
+    function evaluateQuiz(event) {
+        event.preventDefault();
+        
+        const form = document.getElementById('ieltsQuizForm');
+        const q1 = form.elements['q1'].value;
+        const q2 = form.elements['q2'].value;
+        
+        let correctCount = 0;
+        if (q1 === 'B') correctCount++;
+        if (q2 === 'B') correctCount++;
+
+        const resultArea = document.getElementById('result-area');
+        const scoreTitle = document.getElementById('scoreTitle');
+        const bandEstimate = document.getElementById('bandEstimate');
+
+        // Kalkulasi Skor
+        scoreTitle.innerText = "Hasil Latihan: Jawab Benar " + correctCount + " dari 2 Soal";
+        
+        if (correctCount === 2) {
+            bandEstimate.innerText = "Estimasi Akurasi Sesi Ini: Band 8.5 - 9.0 (Excellent Proficiency)";
+        } else if (correctCount === 1) {
+            bandEstimate.innerText = "Estimasi Akurasi Sesi Ini: Band 6.5 - 7.0 (Good Progress)";
+        } else {
+            bandEstimate.innerText = "Estimasi Akurasi Sesi Ini: Band < 5.5 (Butuh Evaluasi Ulang)";
+        }
+
+        resultArea.style.display = 'block';
+        
+        // Menggulung otomatis ke bawah layar HP agar hasil langsung kelihatan
+        resultArea.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
