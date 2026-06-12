@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Elite - Global Step</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #001f3f;
+            --accent: #00D4FF;
+            --bg-dark: #00152b;
+            --text-light: #f8fafc;
+            --card-bg: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Lato', sans-serif; background-color: var(--bg-dark); color: #334155; min-height: 100vh; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+        .dashboard-container {
+            width: 100%; max-width: 950px; background: var(--card-bg);
+            border-radius: 20px; padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            margin-bottom: 25px; position: relative;
+        }
+
+        .header-dash { text-align: center; margin-bottom: 40px; }
+        .header-dash h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 30px; margin-bottom: 5px; }
+        .header-dash p { color: #64748b; font-size: 16px; font-weight: 600; }
+
+        /* GRID MENU UTAMA */
+        .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 35px; }
+        
+        .menu-card { background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 16px; padding: 25px; transition: 0.3s ease; display: flex; flex-direction: column; align-items: flex-start; }
+        .menu-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 15px 30px rgba(0,212,255,0.1); }
+        
+        .card-icon { width: 50px; height: 50px; background: rgba(0, 31, 63, 0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--primary); margin-bottom: 15px; }
+        .menu-card:hover .card-icon { background: var(--primary); color: var(--accent); }
+        
+        .menu-card h3 { font-family: 'Poppins', sans-serif; font-size: 20px; color: var(--primary); margin-bottom: 8px; }
+        .menu-card p { font-size: 14px; color: #64748b; margin-bottom: 20px; line-height: 1.5; }
+        
+        .btn-group { display: flex; gap: 10px; width: 100%; margin-top: auto; }
+        .btn-action { flex: 1; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; transition: 0.2s; }
+        
+        .btn-materi { background: #e2e8f0; color: var(--primary); }
+        .btn-materi:hover { background: var(--primary); color: #fff; }
+        
+        .btn-kuis { background: var(--primary); color: #fff; border: 1px solid var(--primary); }
+        .btn-kuis:hover { background: var(--accent); color: var(--primary); border-color: var(--accent); }
+        
+        .btn-disabled { background: #f1f5f9; color: #94a3b8; cursor: not-allowed; border: 1px dashed #cbd5e1; }
+
+        /* FOOTER KREDIT */
+        .footer-credit { font-size: 12px; color: #64748b; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 700; text-align: center; }
+        .footer-credit a { color: var(--accent); text-decoration: none; transition: 0.2s; margin-left: 4px; }
+        .footer-credit a:hover { color: #ffffff; text-shadow: 0 0 8px var(--accent); }
+
+        /* RESPONSIVE UNTUK HP VIVO V40 */
+        @media (max-width: 650px) {
+            .menu-grid { grid-template-columns: 1fr; }
+            .dashboard-container { padding: 25px 20px; }
+            .header-dash h2 { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+    <div class="header-dash">
+        <h2>GLOBAL STEP ELITE HUB</h2>
+        <p>Silakan pilih modul kompetensi untuk memulai latihan mandiri</p>
+    </div>
+
+    <div class="menu-grid">
+        <div class="menu-card">
+            <div class="card-icon"><i class="fa-solid fa-headphones"></i></div>
+            <h3>Listening Module</h3>
+            <p>Pertajam pendengaran terhadap aksen global (British/Aussie) dan taklukkan jebakan informasi tertulis.</p>
+            <div class="btn-group">
+                <a href="listening-tips.html" class="btn-action btn-materi">MATERI</a>
+                <a href="quiz-listening.html" class="btn-action btn-kuis">MULAI KUIS</a>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+            <h3>Reading Module</h3>
+            <p>Kuasai teknik Skimming & Scanning teks jurnal akademik serta analisis jebakan True/False/Not Given.</p>
+            <div class="btn-group">
+                <a href="reading-tips.html" class="btn-action btn-materi">MATERI</a>
+                <a href="quiz-reading.html" class="btn-action btn-kuis">MULAI KUIS</a>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div>
+            <h3>Writing Module</h3>
+            <p>Pelajari struktur esai standar penguji untuk Task 1 (Grafik/Data) dan Task 2 (Argumen Akademis).</p>
+            <div class="btn-group">
+                <a href="writing-tips.html" class="btn-action btn-materi">MATERI</a>
+                <a href="#" class="btn-action btn-disabled">KUIS (LOCK)</a>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <div class="card-icon"><i class="fa-solid fa-comments"></i></div>
+            <h3>Speaking Module</h3>
+            <p>Simulasi wawancara interaktif tatap muka untuk melatih kefasihan, struktur logika, dan kosakata elite.</p>
+            <div class="btn-group">
+                <a href="speaking-tips.html" class="btn-action btn-materi">MATERI</a>
+                <a href="#" class="btn-action btn-disabled">KUIS (LOCK)</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer-credit">
+    Created by San | <a href="https://www.instagram.com/sann_n228?igsh=MWo3M3g0NWcwZ2h0Yg==" target="_blank"><i class="fa-brands fa-instagram"></i> @sann_n228</a>
+</div>
+
+</body>
+</html>
