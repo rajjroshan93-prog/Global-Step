@@ -3,87 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Elite Listening Quiz - Global Step</title>
+    <title>Elite Weekly Routine Quiz - Global Step</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root {
-            --primary: #001f3f;
-            --accent: #00D4FF;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #334155;
-        }
-
+        :root { --primary: #001f3f; --accent: #00D4FF; --card-bg: #ffffff; --text-main: #334155; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Lato', sans-serif; background-color: var(--primary); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-
-        .quiz-card {
-            width: 100%; max-width: 800px;
-            background: var(--card-bg); border-radius: 16px;
-            padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            border: 1px solid #e2e8f0; position: relative;
-        }
-
+        .quiz-card { width: 100%; max-width: 850px; background: var(--card-bg); border-radius: 16px; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 1px solid #e2e8f0; }
         .header-quiz { text-align: center; margin-bottom: 30px; }
-        .header-quiz h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; margin-bottom: 10px; }
+        .header-quiz h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; }
         .schedule-badge { display: inline-block; background: #e0faff; color: #0369a1; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 14px; margin-bottom: 15px; }
-
         .audio-container { background: #f1f5f9; padding: 20px; border-radius: 12px; margin-bottom: 30px; border-left: 5px solid var(--accent); text-align: center; }
-        .audio-container p { font-weight: 700; margin-bottom: 10px; color: var(--primary); }
         audio { width: 100%; }
-
-        .question-box { margin-bottom: 35px; background: #fff; padding: 25px; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .question-title { font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 15px; line-height: 1.5; }
-        
+        .question-box { margin-bottom: 30px; background: #fff; padding: 25px; border: 1px solid #e2e8f0; border-radius: 12px; }
+        .question-title { font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 15px; }
         .options-list { display: flex; flex-direction: column; gap: 12px; }
-        .option-item {
-            display: flex; align-items: center; padding: 15px 20px;
-            border: 2px solid #e2e8f0; border-radius: 8px;
-            cursor: pointer; font-size: 16px; font-weight: 600;
-            transition: all 0.2s ease; background: #fff;
-        }
+        .option-item { display: flex; align-items: center; padding: 15px 20px; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; background: #fff; transition: 0.2s; }
         .option-item:hover { border-color: var(--accent); background: #f0fdff; }
         .option-item input[type="radio"] { display: none; }
         .option-item.selected { background: #e0faff; border-color: var(--accent); color: var(--primary); }
-
-        .btn-submit {
-            width: 100%; background: var(--primary); color: white;
-            border: 2px solid var(--accent); padding: 16px; border-radius: 50px;
-            font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700;
-            cursor: pointer; transition: 0.3s;
-        }
+        .btn-submit { width: 100%; background: var(--primary); color: white; border: 2px solid var(--accent); padding: 16px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; cursor: pointer; }
         .btn-submit:hover { background: var(--accent); color: var(--primary); }
-
         #result-area { margin-top: 30px; padding: 30px; border-radius: 12px; display: none; }
         .success-score { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
-        .review-box { background: rgba(255,255,255,0.7); padding: 20px; border-radius: 8px; margin-top: 20px; text-align: left; color: #1e293b; }
-
-        .back-home { display: inline-block; margin-top: 30px; text-decoration: none; color: #94a3b8; font-weight: 700; transition: 0.3s; }
-        .back-home:hover { color: var(--accent); }
+        .review-box { background: rgba(255,255,255,0.7); padding: 20px; border-radius: 8px; margin-top: 20px; color: #1e293b; }
+        .back-home { display: inline-block; margin-top: 30px; text-decoration: none; color: #94a3b8; font-weight: 700; }
     </style>
 </head>
 <body>
 
 <div class="quiz-card">
     <div class="header-quiz">
-        <div class="schedule-badge" id="schedule-info"><i class="fa-solid fa-calendar-days"></i> Memuat Jadwal Soal...</div>
-        <h2>IELTS Listening: Elite Daily Practice</h2>
-        <p>Sistem otomatis memperbarui variasi soal secara berkala untuk menjaga ketajaman analisa insting kamu.</p>
+        <div class="schedule-badge" id="schedule-info"><i class="fa-solid fa-calendar-week"></i> Menganalisis Hari Tes...</div>
+        <h2>IELTS Listening: 10-Question Master Routine</h2>
+        <p>Sistem mendeteksi hari secara real-time dan menyajikan 10 soal standar ujian Cambridge.</p>
     </div>
 
     <div class="audio-container">
         <p><i class="fa-solid fa-volume-high"></i> Sesi Rekaman Suara Pendukung Ujian:</p>
-        <audio controls>
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-        </audio>
+        <audio controls><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg"></audio>
     </div>
 
     <form id="dynamicQuizForm" onsubmit="evaluateQuiz(event)">
         <div id="questions-container"></div>
-        <button type="submit" class="btn-submit">SUBMIT & ANALISIS BAND SCORE</button>
+        <button type="submit" class="btn-submit">SUBMIT & HITUNG BAND SCORE</button>
     </form>
 
     <div id="result-area" class="success-score">
@@ -96,54 +62,62 @@
 </div>
 
 <script>
-    // BANK DATA SOAL ELITE (Bisa berganti otomatis)
-    const quizDatabase = {
-        // PAKET A: Muncul setiap tanggal Ganjil
-        paketA: {
-            name: "Paket Strategi Ganjil (Form Completion Core)",
+    const weeklyDatabase = {
+        // BLOK 1: SENIN, SELASA, RABU (10 Soal Standar Cambridge)
+        awalMinggu: {
+            name: "Jadwal Awal Minggu (Form Completion Focus)",
             questions: [
-                { id: "q1", q: "[Part 1] Complete the notes. Write ONE WORD AND/OR A NUMBER.\nCustomer Last Name: Richard ...", options: ["Clark", "Clarke", "Clarkson"], ans: "B", note: "Clarke: Ejaan huruf akhir 'e' disebutkan dengan jelas oleh narator." },
-                { id: "q2", q: "[Part 1] Date of the planned moving schedule: ... September.", options: ["17th", "19th", "27th"], ans: "B", note: "19th: Narator sempat menyebut tanggal 17 namun dibatalkan karena kendala armada." },
-                { id: "q3", q: "[Part 1] Target Delivery Destination: 42 ... Avenue.", options: ["Oak Ridge", "Oakridge", "Oakbridge"], ans: "B", note: "Oakridge: Nama geografi jalan digabung menjadi satu kata utuh." },
-                { id: "q4", q: "[Part 1] Direct Phone Number: 07912 ...", options: ["445891", "455891", "445819"], ans: "A", note: "445891: Deteksi angka kembar 'double four' memerlukan fokus tinggi." },
-                { id: "q5", q: "[Part 1] System Booking Code: ...", options: ["MB782V", "MV782B", "MV7828"], ans: "B", note: "MV782B: Kombinasi abjad kapital dan angka sering menjadi jebakan fonetik." }
+                { id: "m1", q: "[Part 1] Complete the form. Customer Last Name: Richard ...", options: ["Clark", "Clarke", "Clarkson"], ans: "B", note: "Clarke: Huruf 'e' terakhir dieja jelas." },
+                { id: "m2", q: "[Part 1] Planned date of the move: ... September.", options: ["17th", "19th", "27th"], ans: "B", note: "19th: Angka 17 dianulir karena kendala internal." },
+                { id: "m3", q: "[Part 1] Delivery Address: 42 ... Avenue.", options: ["Oak Ridge", "Oakridge", "Oakbridge"], ans: "B", note: "Oakridge: Nama jalan digabung menjadi satu kata." },
+                { id: "m4", q: "[Part 1] Contact Number: 07912 ...", options: ["445891", "455891", "445819"], ans: "A", note: "445891: Deteksi akurat frasa 'double four'." },
+                { id: "m5", q: "[Part 1] Quote Reference Code: ...", options: ["MB782V", "MV782B", "MV7828"], ans: "B", note: "MV782B: Jebakan konsonan fonetik huruf B dan V." },
+                { id: "m6", q: "[Part 2] What was the main reason for updating the building?", options: ["Unsafe structure", "To fit more students", "Digital expansion"], ans: "B", note: "To fit more students: Akibat lonjakan pendaftaran mahasiswa." },
+                { id: "m7", q: "[Part 2] What features the new ground floor layout?", options: ["A social café learning zone", "A silent research lab", "IT support desks"], ans: "A", note: "Social café: Area interaksi kasual mahasiswa." },
+                { id: "m8", q: "[Part 2] Location of the new Multimedia Lab:", options: ["Behind reception desk", "Opposite emergency door", "Near the elevators"], ans: "A", note: "Behind reception desk: Jalur navigasi dari koridor utama." },
+                { id: "m9", q: "[Part 2] Student opinion on the new booking interface:", options: ["Flawless design", "Efficient but complex layout", "Waste of time"], ans: "B", note: "Efficient but complex: Kecepatan diakui namun navigasi dikritik." },
+                { id: "m10", q: "[Part 2] The upgraded facility opens officially in:", options: ["Spring semester", "Autumn ceremony", "Summer break"], ans: "A", note: "Spring semester: Jadwal pembukaan resmi setelah libur dingin." }
             ]
         },
-        // PAKET B: Muncul setiap tanggal Genap
-        paketB: {
-            name: "Paket Analisis Genap (Multiple Choice & Map Focus)",
+        // BLOK 2: KAMIS, JUMAT, SABTU, MINGGU (10 Soal Alternatif Menguji Kritis)
+        akhirMinggu: {
+            name: "Jadwal Akhir Minggu (Academic Discussion Focus)",
             questions: [
-                { id: "q1", q: "[Part 2] Why did the library committee upgrade the building?", options: ["Structurally unsafe", "To fit more students", "To remove all physical books"], ans: "B", note: "To fit more students: Lonjakan jumlah pendaftaran mahasiswa baru menjadi faktor pendorong utama." },
-                { id: "q2", q: "[Part 2] What is the unique feature of the new ground floor?", options: ["A social café learning zone", "A silent area for researchers", "The main IT infrastructure room"], ans: "A", note: "Social café: Lantai dasar didesain semi-formal agar mahasiswa bebas berdiskusi santai." },
-                { id: "q3", q: "[Part 2] Where is the high-tech Multimedia Room situated?", options: ["Behind the reception desk", "Opposite the emergency door", "On the upper levels near elevators"], ans: "A", note: "Behind the reception desk: Penunjuk arah dimulai langsung dari pintu gerbang masuk utama." },
-                { id: "q4", q: "[Part 2] What is the student's reaction to the digital booking interface?", options: ["Flawless and innovative", "Efficient but complex layout", "Complete waste of assets"], ans: "B", note: "Efficient but complex: Kecepatan sistem dipuji, namun susunan menunya dikritik membingungkan." },
-                { id: "q5", q: "[Part 2] When is the official launch date for the global faculties?", options: ["Start of spring semester", "During autumn ceremony", "End of summer break"], ans: "A", note: "Start of spring semester: Seluruh proses finalisasi dipastikan selesai menjelang libur musim dingin berakhir." }
+                { id: "k1", q: "[Part 3] What is the primary focus of the students' joint research project?", options: ["Marine pollution", "Renewable energy usage", "Urban traffic solutions"], ans: "B", note: "Renewable energy: Mereka fokus mengevaluasi panel surya di daerah urban." },
+                { id: "k2", q: "[Part 3] Which major problem did Dr. Green point out in their first draft?", options: ["Lack of data references", "Weak conclusion logic", "Inconsistent formatting"], ans: "A", note: "Lack of data: Grafik pendukung argumen bab 2 dinilai masih terlalu sedikit." },
+                { id: "k3", q: "[Part 3] The students will conduct their field survey in which month?", options: ["April", "May", "June"], ans: "B", note: "May: Rencana April ditunda karena menunggu izin resmi fakultas." },
+                { id: "k4", q: "[Part 3] What funding source did they secure for the project?", options: ["Government grant", "University internal budget", "Private company sponsor"], ans: "C", note: "Private company: Pendanaan penuh disetujui oleh firma teknologi lokal." },
+                { id: "k5", q: "[Part 3] Professor Smith expects the final submission by:", options: ["Friday noon", "Monday midnight", "Next Thursday"], ans: "B", note: "Monday midnight: Ada perpanjangan waktu akhir pekan dari tenggat awal." },
+                { id: "k6", q: "[Part 4] The lecture states that early human migration was triggered by:", options: ["Climate shifts", "Tribal warfare", "Search for metal tools"], ans: "A", note: "Climate shifts: Perubahan pola cuaca ekstrem memaksa perpindahan kelompok." },
+                { id: "k7", q: "[Part 4] What evidence was found near the ancient river valley?", options: ["Clay pottery fragments", "Preserved wooden boats", "Iron weapon molds"], ans: "A", note: "Clay pottery: Fragmen tembikar mengonfirmasi adanya pemukiman permanen." },
+                { id: "k8", q: "[Part 4] The speaker notes that agriculture began earlier than expected in:", options: ["Eastern Europe", "Western Asia", "Northern Africa"], ans: "B", note: "Western Asia: Penemuan biji gandum purba mematahkan teori lama." },
+                { id: "k9", q: "[Part 4] Why did the ancient settlement collapse eventually?", options: ["Sudden volcanic eruption", "Soil degradation", "Foreign invasion"], ans: "B", note: "Soil degradation: Kegagalan panen berulang akibat hilangnya nutrisi tanah." },
+                { id: "k10", q: "[Part 4] Modern researchers are currently utilizing what technology at the site?", options: ["Satellite imaging", "Deep-ground drilling", "AI carbon dating"], ans: "A", note: "Satellite imaging: Memetakan sisa pondasi kota dari luar angkasa tanpa merusak situs." }
             ]
         }
     };
 
     let activeQuestions = [];
 
-    // FUNGSI UTAMA: Memilih soal otomatis berdasarkan Hari/Tanggal di HP
-    function loadDynamicQuestions() {
-        const today = new Date();
-        const dateNumber = today.getDate(); // Mengambil angka tanggal hari ini (1-31)
-        
-        let selectedPaket;
-        // Aturan: Jika tanggal ganjil pakai Paket A, jika genap pakai Paket B (Berganti tiap 1 hari sekali secara presisi!)
-        if (dateNumber % 2 !== 0) {
-            selectedPaket = quizDatabase.paketA;
-            document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-bolt"></i> Mode: ${selectedPaket.name}`;
+    function checkSchedule() {
+        const currentDay = new Date().getDay(); // 0 = Minggu, 1 = Senin, ... 6 = Sabtu
+        let selectedBlock;
+
+        // Jadwal Ganti: Senin(1), Selasa(2), Rabu(3) vs Kamis(4), Jumat(5), Sabtu(6), Minggu(0)
+        if (currentDay >= 1 && currentDay <= 3) {
+            selectedBlock = weeklyDatabase.awalMinggu;
         } else {
-            selectedPaket = quizDatabase.paketB;
-            document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-fire"></i> Mode: ${selectedPaket.name}`;
+            selectedBlock = weeklyDatabase.akhirMinggu;
         }
 
-        activeQuestions = selectedPaket.questions;
+        document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-shuffle"></i> Sesi Aktif: ${selectedBlock.name}`;
+        activeQuestions = selectedBlock.questions;
+        renderQuestions();
+    }
+
+    function renderQuestions() {
         const container = document.getElementById('questions-container');
         container.innerHTML = "";
-
-        // Tampilkan soal ke HTML
         activeQuestions.forEach((item, index) => {
             let optionsHTML = '';
             const labels = ['A', 'B', 'C'];
@@ -155,7 +129,6 @@
                     </label>
                 `;
             });
-
             container.innerHTML += `
                 <div class="question-box">
                     <div class="question-title">${index + 1}. ${item.q.replace(/\n/g, '<br>')}</div>
@@ -171,40 +144,35 @@
         element.classList.add('selected');
     }
 
-    // Evaluasi Skor & Konversi Band Score
     function evaluateQuiz(event) {
         event.preventDefault();
         const form = document.getElementById('dynamicQuizForm');
-        let score = 0;
-        let reviewHTML = '<strong>Analisis & Strategi Kunci Jawaban:</strong><br><br>';
+        let correct = 0;
+        let reviewHTML = '<strong>Analisis Bedah Distractor Ujian:</strong><br><br>';
 
         activeQuestions.forEach((item, index) => {
-            const userAnswer = form.elements[item.id].value;
-            if (userAnswer === item.ans) {
-                score++;
-            }
+            const userAns = form.elements[item.id].value;
+            if (userAns === item.ans) correct++;
             reviewHTML += `• <b>Soal ${index + 1}:</b> ${item.note}<br>`;
         });
 
         const resultArea = document.getElementById('result-area');
-        document.getElementById('scoreTitle').innerText = `Skor Akhir: Benar ${score} dari 5 Soal`;
+        document.getElementById('scoreTitle').innerText = `Skor Kamu: ${correct} Benar dari 10 Soal`;
         
+        // Standar IELTS Listening Band Conversion untuk 10 Soal Akurasi
         let band = "";
-        if(score === 5) band = "Band 8.5 - 9.0 (Expert User)";
-        else if(score === 4) band = "Band 7.5 - 8.0 (Very Good User Target reached!)";
-        else if(score === 3) band = "Band 6.5 - 7.0 (Good User - Need minor review)";
-        else band = "Band < 5.5 (Butuh pendalaman materi dasar)";
+        if (correct >= 9) band = "Band 8.5 - 9.0 (Elite Level)";
+        else if (correct >= 7) band = "Band 7.0 - 8.0 (Target Kampus Dunia Terpenuhi!)";
+        else if (correct >= 5) band = "Band 6.0 - 6.5 (Good Progress - Rapatkan barisan)";
+        else band = "Band < 5.5 (Evaluasi fokus transkrip audio)";
 
         document.getElementById('bandEstimate').innerText = `Estimasi Performa: ${band}`;
         document.getElementById('explanationBox').innerHTML = reviewHTML;
-        
         resultArea.style.display = 'block';
         resultArea.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Jalankan pencarian soal otomatis saat web dibuka
-    window.onload = loadDynamicQuestions;
+    window.onload = checkSchedule;
 </script>
-
 </body>
 </html>
