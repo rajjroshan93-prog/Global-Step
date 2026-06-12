@@ -3,354 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IELTS Master Hub - Pembelajaran Lengkap</title>
+    <title>Global Step - IELTS Master Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root {
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            --card-bg: #ffffff;
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --nav-bg: rgba(15, 23, 42, 0.9);
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-            --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+        /* CSS MASTER CONFIGURATION */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #001f3f; display: grid; gap: 40px; grid-template-columns: 1fr; place-items: center; padding: 40px 0; font-family: 'Lato', sans-serif; overflow-x: hidden; }
+        
+        .slide-container {
+            width: 1280px; height: 720px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex; flex-direction: column;
+            padding: 60px; position: relative; overflow: hidden;
         }
 
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-            -webkit-font-smoothing: antialiased;
+        /* BACKGROUND ELEMENTS */
+        .slide-container::before {
+            content: ''; position: absolute; top: 0; right: 0;
+            width: 300px; height: 300px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), transparent);
+            border-radius: 0 0 0 100%; z-index: 0;
         }
 
-        body { 
-            background-color: #f8fafc; 
-            color: var(--text-main); 
-            line-height: 1.6; 
-        }
+        /* TYPOGRAPHY */
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; color: #001f3f; z-index: 1; }
+        h1 { font-size: 72px; line-height: 1.1; margin-bottom: 20px; }
+        .slide-title { font-size: 42px; font-weight: 700; margin-bottom: 40px; border-left: 8px solid #00D4FF; padding-left: 20px; width: 100%; }
+        p, li { font-size: 20px; line-height: 1.6; color: #334155; }
+        .accent { color: #00D4FF; font-weight: 700; }
 
-        /* HEADER PREMIUM DECORATION */
-        header { 
-            background: var(--bg-gradient); 
-            color: white; 
-            text-align: center; 
-            padding: 60px 20px; 
-            position: relative;
-            overflow: hidden;
-        }
-        header::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 60%);
-            pointer-events: none;
-        }
-        header h1 { 
-            font-size: 2.8rem; 
-            font-weight: 800;
-            letter-spacing: -0.05em;
-            margin-bottom: 12px; 
-            background: linear-gradient(to right, #ffffff, #93c5fd);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        header p {
-            font-size: 1.1rem;
-            color: #94a3b8;
-            max-width: 600px;
-            margin: 0 auto;
-            font-weight: 400;
-        }
+        /* LAYOUT COMPONENTS */
+        .content-area { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; width: 100%; z-index: 1; }
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; }
+        
+        .image-wrapper { border-radius: 16px; overflow: hidden; height: 400px; border: 1px solid #e2e8f0; }
+        .image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* STICKY NAV DENGAN EFEK BLUR */
-        nav { 
-            display: flex; 
-            justify-content: center; 
-            background: var(--nav-bg); 
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            overflow-x: auto; 
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            scrollbar-width: none;
-        }
-        nav::-webkit-scrollbar { display: none; }
-        nav a { 
-            color: #94a3b8; 
-            padding: 16px 24px; 
-            text-decoration: none; 
-            font-weight: 600; 
-            font-size: 0.95rem;
-            white-space: nowrap; 
-            transition: all 0.3s ease;
-        }
-        nav a:hover { 
-            color: #ffffff; 
-            background: rgba(255,255,255,0.05);
-        }
+        .tile-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%; }
+        .tile { background: #f8fafc; padding: 30px; border-radius: 16px; border: 1px solid #e2e8f0; text-align: center; transition: 0.3s; }
+        .tile:hover { transform: translateY(-10px); border-color: #00D4FF; }
+        .tile i { font-size: 48px; color: #00D4FF; margin-bottom: 20px; }
 
-        /* LAYOUT UTAMA */
-        .main-container { 
-            max-width: 1200px; 
-            margin: 40px auto; 
-            padding: 0 24px; 
-        }
+        /* DATA VISUALIZATION */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { background: #001f3f; color: white; padding: 20px; text-align: left; font-family: 'Poppins'; }
+        td { padding: 18px; border-bottom: 1px solid #e2e8f0; font-size: 18px; }
+        tr:hover { background: #f1f5f9; }
 
-        .section-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            margin-bottom: 24px;
-            color: #1e293b;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .bar-chart { display: flex; flex-direction: column; gap: 15px; width: 100%; }
+        .bar-row { display: flex; align-items: center; gap: 20px; }
+        .bar-label { width: 200px; font-weight: 700; text-align: right; }
+        .bar-track { flex-grow: 1; height: 40px; background: #e2e8f0; border-radius: 20px; overflow: hidden; }
+        .bar-fill { height: 100%; background: linear-gradient(90deg, #001f3f, #00D4FF); display: flex; align-items: center; padding-left: 20px; color: white; font-weight: 700; }
 
-        .section-block {
-            margin-bottom: 60px;
-        }
+        /* TIMELINE */
+        .timeline { display: flex; justify-content: space-between; position: relative; margin-top: 50px; }
+        .timeline::after { content: ''; position: absolute; top: 25px; left: 0; width: 100%; height: 4px; background: #e2e8f0; z-index: 0; }
+        .time-node { text-align: center; width: 22%; z-index: 1; }
+        .dot { width: 50px; height: 50px; background: #001f3f; border: 4px solid #00D4FF; border-radius: 50%; margin: 0 auto 15px; }
 
-        /* GRID & KARTU MODERN */
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 24px; 
+        /* BUTTONS */
+        .cta-btn { 
+            display: inline-block; background: #001f3f; color: white; padding: 15px 35px; 
+            text-decoration: none; border-radius: 50px; font-weight: 700; transition: 0.3s; 
+            border: 2px solid #00D4FF; margin-top: 20px;
         }
-        .card { 
-            background: var(--card-bg); 
-            padding: 32px; 
-            border-radius: 16px; 
-            box-shadow: var(--shadow-sm);
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-            border-color: #cbd5e1;
-        }
-        .card h3 { 
-            margin-bottom: 16px; 
-            color: #1e3a8a; 
-            font-size: 1.3rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-        .card ul { 
-            list-style: none; 
-            margin-bottom: 24px; 
-        }
-        .card ul li { 
-            margin-bottom: 12px; 
-            font-size: 0.95rem; 
-            color: var(--text-muted);
-            position: relative;
-            padding-left: 24px;
-        }
-        .card ul li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
-        }
+        .cta-btn:hover { background: #00D4FF; color: #001f3f; }
 
-        /* TOMBOL ELEGAN */
-        .btn { 
-            display: block; 
-            background: #f1f5f9; 
-            color: #334155; 
-            padding: 12px 24px; 
-            text-decoration: none; 
-            border-radius: 10px; 
-            font-weight: 600;
-            font-size: 0.95rem; 
-            text-align: center; 
-            transition: all 0.2s ease;
-            border: 1px solid #e2e8f0;
-        }
-        .btn:hover { 
-            background: var(--primary); 
-            color: white;
-            border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(37,99,235,0.2);
-        }
-
-        /* SPESIFIK UNTUK TOMBOL AKTIF */
-        .btn-active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        .btn-active:hover {
-            background: var(--primary-hover);
-        }
-
-        /* FOOTER */
-        footer { 
-            text-align: center; 
-            padding: 40px 20px; 
-            background: #0f172a; 
-            color: #64748b; 
-            margin-top: 80px; 
-            font-size: 0.9rem;
-            border-top: 1px solid #1e293b;
-        }
-
-        /* RESPONSIVITAS LAYAR HP VIVO V40 */
-        @media (max-width: 768px) { 
-            header { padding: 45px 20px; }
-            header h1 { font-size: 2.1rem; }
-            .main-container { margin: 24px auto; padding: 0 16px; }
-            .card { padding: 24px; }
-            .section-block { margin-bottom: 40px; }
+        @media (max-width: 1300px) {
+            .slide-container { width: 95vw; height: auto; min-height: 720px; padding: 40px; }
+            h1 { font-size: 48px; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>IELTS Master Hub</h1>
-    <p>Platform interaktif belajar mendalam komponen IELTS untuk target Band 7.5+</p>
-</header>
-
-<nav>
-    <a href="#listening">Listening</a>
-    <a href="#reading">Reading</a>
-    <a href="#writing">Writing</a>
-    <a href="#speaking">Speaking</a>
-</nav>
-
-<div class="main-container">
-    
-    <div id="listening" class="section-block">
-        <h2 class="section-title">🎧 1. Listening Section</h2>
-        <div class="grid">
-            <div class="card">
-                <div>
-                    <h3>Strategi Inti</h3>
-                    <ul>
-                        <li>Teknik prediksi tipe kata sebelum audio berputar.</li>
-                        <li>Identifikasi perubahan respon langsung (*distractors*).</li>
-                        <li>Standarisasi akurasi *spelling* & format singular/plural.</li>
-                    </ul>
-                </div>
-                <a href="listening-tips.html" class="btn btn-active">Buka Materi</a>
-            </div>
-            <div class="card">
-                <div>
-                    <h3>Tipe Soal & Latihan</h3>
-                    <ul>
-                        <li>Form Completion & Peta Alur Diagram.</li>
-                        <li>Multiple Choice & Klasifikasi Informasi Campuran.</li>
-                        <li>Latihan Pemahaman Aksen Global.</li>
-                    </ul>
-                </div>
-                <a href="#" class="btn">Mulai Quiz</a>
-            </div>
-        </div>
+<div class="slide-container" style="background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('http://googleusercontent.com/image_collection/image_retrieval/15026306879096687541'); background-size: cover;">
+    <div class="content-area" style="text-align: center;">
+        <h1 style="color: #001f3f;">GLOBAL <span class="accent">STEP</span></h1>
+        <h2 style="font-size: 32px; font-weight: 400; letter-spacing: 4px;">IELTS ELITE MASTER HUB</h2>
+        <p style="max-width: 800px; margin: 30px auto;">Platform strategi performa tinggi yang dirancang khusus untuk mencapai <span class="accent">Band 8.0</span>. Navigasi berbasis riset berkala untuk target studi luar negeri.</p>
+        <a href="#pillars" class="cta-btn">MASUK KE PORTAL</a>
     </div>
-
-    <div id="reading" class="section-block">
-        <h2 class="section-title">📖 2. Reading Section</h2>
-        <div class="grid">
-            <div class="card">
-                <div>
-                    <h3>Teknik Membaca</h3>
-                    <ul>
-                        <li>**Skimming:** Ekstraksi gagasan utama paragraf makro.</li>
-                        <li>**Scanning:** Lokalisasi presisi kata kunci dalam teks.</li>
-                        <li>Strategi alokasi waktu ideal: 20 menit per segmen.</li>
-                    </ul>
-                </div>
-                <a href="#" class="btn">Buka Materi</a>
-            </div>
-            <div class="card">
-                <div>
-                    <h3>Analisis Pola Soal</h3>
-                    <ul>
-                        <li>Metodologi True / False / Not Given.</li>
-                        <li>Pencocokan Paragraf (*Matching Headings*).</li>
-                        <li>Penyelesaian Kalimat Rumpang.</li>
-                    </ul>
-                </div>
-                <a href="#" class="btn">Mulai Latihan</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="writing" class="section-block">
-        <h2 class="section-title">✍️ 3. Writing Section</h2>
-        <div class="grid">
-            <div class="card">
-                <div>
-                    <h3>Task 1 (Academic/General)</h3>
-                    <ul>
-                        <li>Sintesis Grafik, Diagram Batang, Data Tabel & Proses.</li>
-                        <li>Metode deskripsi tren signifikan (*Overview*).</li>
-                        <li>Batasan struktur minimal 150 kata.</li>
-                    </ul>
-                </div>
-                <a href="#" class="btn">Contoh Band 8+</a>
-            </div>
-            <div class="card">
-                <div>
-                    <h3>Task 2 (Essay)</h3>
-                    <ul>
-                        <li>Struktur Argumentasi Esai Opini & Solusi Masalah.</li>
-                        <li>Koherensi paragraf & transisi kalimat (*Cohesion*).</li>
-                        <li>Batasan struktur minimal 250 kata.</li>
-                    </ul>
-                </div>
-                <a href="#" class="btn">Template Esai</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="speaking" class="section-block">
-        <h2 class="section-title">🗣️ 4. Speaking Section</h2>
-        <div class="grid">
-            <div class="card">
-                <div>
-                    <h3>Struktur Wawancara</h3>
-                    <ul>
-                        <li>**Part 1:** Eksplorasi topik keseharian & perkenalan.</li>
-                        <li>**Part 2:** Monolog interaktif berbasis *Cue Card* (2 Menit).</li>
-                        <li>**Part 3:** Diskusi analitis teoretis tingkat lanjut.</li>
-                    </ul>
-                </div>
-                <a href="#" class="btn">Simulasi Tes</a>
-            </div>
-            <div class="card">
-                <div>
-                    <h3>Metrik Evaluasi Band</h3>
-                    <ul>
-                        <li>Kelancaran verbal & logika sambung (*Fluency*).</li>
-                        <li>Variasi leksikal kaya akademis (*Vocabulary*).</li>
-                        <li>Akurasi gramatikal & kejelasan intonasi.</li>
-                    </ul>
-                </div>
-                <a href="#" class="btn">Kosakata Formal</a>
-            </div>
-        </div>
-    </div>
-
 </div>
 
-<footer>
-    <p>&copy; 2026 IELTS Master Hub. Optimized for Mobile Learning.</p>
-</footer>
+<div class="slide-container" id="pillars">
+    <h2 class="slide-title">Empat Pilar Utama</h2>
+    <div class="content-area">
+        <div class="tile-grid">
+            <div class="tile">
+                <i class="fa-solid fa-headphones"></i>
+                <h3>Listening</h3>
+                <p>Analisis aksen global & identifikasi jebakan distractors.</p>
+                <a href="listening-tips.html" class="cta-btn" style="padding: 10px 20px; font-size: 14px;">STUDI</a>
+            </div>
+            <div class="tile">
+                <i class="fa-solid fa-book-open"></i>
+                <h3>Reading</h3>
+                <p>Mastering Skimming & Scanning untuk teks akademik.</p>
+                <a href="reading-tips.html" class="cta-btn" style="padding: 10px 20px; font-size: 14px;">STUDI</a>
+            </div>
+            <div class="tile">
+                <i class="fa-solid fa-pen-nib"></i>
+                <h3>Writing</h3>
+                <p>Framework Task 1 & 2 untuk Koherensi Band 8+.</p>
+                <a href="writing-tips.html" class="cta-btn" style="padding: 10px 20px; font-size: 14px;">STUDI</a>
+            </div>
+            <div class="tile">
+                <i class="fa-solid fa-comments"></i>
+                <h3>Speaking</h3>
+                <p>Simulasi Part 1-3 dengan fokus pada Lexical Range.</p>
+                <a href="speaking-tips.html" class="cta-btn" style="padding: 10px 20px; font-size: 14px;">STUDI</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container">
+    <h2 class="slide-title">Target Skor Universitas Dunia (Update Periode 2027)</h2>
+    <div class="content-area">
+        <table>
+            <thead>
+                <tr>
+                    <th>Institusi</th>
+                    <th>Overall Minimum</th>
+                    <th>Minimum Per Skill</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>University of Cambridge</strong></td>
+                    <td class="accent">7.5</td>
+                    <td>7.0 (No band below)</td>
+                </tr>
+                <tr>
+                    <td><strong>University of Oxford</strong></td>
+                    <td class="accent">7.0 - 7.5</td>
+                    <td>6.5 - 7.0</td>
+                </tr>
+                <tr>
+                    <td><strong>Harvard University (GSAS)</strong></td>
+                    <td class="accent">6.5 - 7.5</td>
+                    <td>Varies by Dept.</td>
+                </tr>
+                <tr>
+                    <td><strong>MIT</strong></td>
+                    <td class="accent">7.0</td>
+                    <td>No stated sub-score</td>
+                </tr>
+                <tr>
+                    <td><strong>NUS Singapore</strong></td>
+                    <td class="accent">6.5 - 7.0</td>
+                    <td>6.0 each skill</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="slide-container">
+    <h2 class="slide-title">Statistik Kesulitan Modul</h2>
+    <div class="content-area">
+        <p style="margin-bottom: 30px;">Data riset tahunan menunjukkan perbedaan tren capaian skor antara kategori Academic dan General Training.</p>
+        <div class="bar-chart">
+            <div class="bar-row">
+                <div class="bar-label">IELTS General</div>
+                <div class="bar-track"><div class="bar-fill" style="width: 69%;">6.2 Band Avg.</div></div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-label">IELTS Academic</div>
+                <div class="bar-track"><div class="bar-fill" style="width: 65%;">5.9 Band Avg.</div></div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-label">Target Global Step</div>
+                <div class="bar-track"><div class="bar-fill" style="width: 88%; background: #FFD700; color: #000;">8.0 Elite Target</div></div>
+            </div>
+        </div>
+        <p style="margin-top: 30px; font-style: italic;">*Academic Writing Task 1 secara konsisten tercatat sebagai bagian dengan tantangan analitis tertinggi.</p>
+    </div>
+</div>
+
+<div class="slide-container">
+    <h2 class="slide-title">Elite 30-Day Roadmap</h2>
+    <div class="content-area">
+        <div class="timeline">
+            <div class="time-node">
+                <div class="dot"></div>
+                <h3>Minggu 1</h3>
+                <p>Diagnostic Test & Grammar Foundation.</p>
+            </div>
+            <div class="time-node">
+                <div class="dot"></div>
+                <h3>Minggu 2</h3>
+                <p>Skill Isolation: Listening & Reading Focus.</p>
+            </div>
+            <div class="time-node">
+                <div class="dot"></div>
+                <h3>Minggu 3</h3>
+                <p>Writing Framework & Speaking Simulation.</p>
+            </div>
+            <div class="time-node">
+                <div class="dot"></div>
+                <h3>Minggu 4</h3>
+                <p>Full Simulations & Error Analysis.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" style="background-color: #f1f5f9;">
+    <div class="content-area" style="text-align: center;">
+        <h2 style="font-size: 48px; margin-bottom: 20px;">Siap Menaklukkan <span class="accent">IELTS?</span></h2>
+        <p style="margin-bottom: 40px;">Gunakan semua modul interaktif yang telah kita buat untuk latihan mandiri setiap hari.</p>
+        <div style="display: flex; gap: 20px; justify-content: center;">
+            <a href="quiz-listening.html" class="cta-btn" style="background: #00D4FF; border-color: #00D4FF; color: #001f3f;">MULAI KUIS INTERAKTIF</a>
+            <a href="writing-tips.html" class="cta-btn">LIHAT TEMPLATE WRITING</a>
+        </div>
+        <p style="margin-top: 60px; font-size: 14px; color: #94a3b8;">Sistem kurikulum dikalibrasi secara berkala. Global Step Hub &copy; 2026.</p>
+    </div>
+</div>
 
 </body>
 </html>
