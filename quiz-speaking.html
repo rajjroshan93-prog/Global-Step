@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speaking Academic Simulator - San Aethelgard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { 
+            --primary: #001f3f; 
+            --accent: #00D4FF; 
+            --bg-dark: #00152b;
+            --card-bg: #ffffff; 
+            --text-main: #334155; 
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Lato', sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        
+        .quiz-card { width: 100%; max-width: 900px; background: var(--card-bg); border-radius: 20px; padding: 45px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+        .header-quiz { text-align: center; margin-bottom: 30px; }
+        .header-quiz h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; }
+        .schedule-badge { display: inline-block; background: #f0fdf4; color: #166534; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-bottom: 15px; text-transform: uppercase; border: 1px solid #bbf7d0; }
+        
+        .prompt-box { background: #f8fafc; padding: 30px; border-radius: 12px; border-left: 6px solid #166534; margin-bottom: 30px; }
+        .prompt-box h3 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+        .prompt-text { font-size: 17px; font-weight: 700; line-height: 1.6; color: #0f172a; }
+
+        .control-panel { text-align: center; margin-bottom: 30px; }
+        .btn-mic { background: #ef4444; color: white; border: none; width: 80px; height: 80px; border-radius: 50px; font-size: 28px; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3); }
+        .btn-mic.recording { background: #22c55e; animation: pulse 1.5s infinite; box-shadow: 0 10px 20px rgba(34, 197, 94, 0.4); }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+
+        .status-text { font-size: 14px; font-weight: 700; color: #64748b; margin-top: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .transcript-box { width: 100%; min-height: 120px; background: #fafafa; border: 2px dashed #cbd5e1; border-radius: 12px; padding: 20px; font-size: 16px; line-height: 1.6; color: #1e293b; margin-bottom: 30px; font-style: italic; }
+
+        #result-area { padding: 35px; border-radius: 14px; display: none; background: #f8fafc; border: 1px solid #e2e8f0; margin-top: 20px; }
+        .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
+        .metric-card { background: white; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid #e2e8f0; }
+        .metric-card div:first-child { font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; }
+        .metric-card div:last-child { font-size: 22px; font-weight: 700; color: var(--primary); margin-top: 5px; }
+
+        .checklist-box { background: white; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-top: 20px; }
+        .checklist-box h4 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 15px; margin-bottom: 12px; border-bottom: 2px solid #f1f5f9; padding-bottom: 6px; }
+        .checklist-box ul { margin-left: 20px; font-size: 14px; color: #475569; line-height: 1.7; }
+
+        .back-home { display: inline-block; margin-top: 35px; text-decoration: none; color: #64748b; font-weight: 700; font-size: 13px; text-transform: uppercase; transition: 0.2s; }
+        .back-home:hover { color: var(--accent); }
+        .footer-credit { font-size: 11px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px; text-transform: uppercase; font-weight: 700; text-align: center; margin-top: 40px; }
+        .footer-credit a { color: var(--accent); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-card">
+    <div class="header-quiz">
+        <div class="schedule-badge" id="schedule-info">Mempersiapkan Topik Ujian...</div>
+        <h2>San Aethelgard Speaking Audio Lab</h2>
+        <p style="color: #64748b; font-size: 14.5px; margin-top: 5px;">Klik tombol mikrofon di bawah, lalu bicaralah dalam bahasa Inggris untuk menganalisis parameter ucapan Anda.</p>
+    </div>
+
+    <div class="prompt-box">
+        <h3>IELTS Speaking Part 1 / Part 2 Topic:</h3>
+        <p class="prompt-text" id="target-prompt">Loading speaking prompt...</p>
+    </div>
+
+    <div class="control-panel">
+        <button id="micBtn" class="btn-mic" onclick="toggleRecognition()">
+            <i class="fa-solid fa-microphone"></i>
+        </button>
+        <div id="statusLabel" class="status-text">Status: Mikrofon Siap</div>
+    </div>
+
+    <h3 style="font-family: 'Poppins', sans-serif; font-size: 14px; color: var(--primary); margin-bottom: 8px; text-transform: uppercase;">Live Speech-to-Text Transcription:</h3>
+    <div id="transcriptOutput" class="transcript-box">Hasil transkrip suaramu akan muncul di sini secara otomatis saat kamu mulai berbicara...</div>
+
+    <div id="result-area">
+        <h3 style="font-family: 'Poppins', sans-serif; color: #166534; font-size: 18px;"><i class="fa-solid fa-chart-line"></i> Fluency & Coherence Metrics</h3>
+        
+        <div class="metric-grid">
+            <div class="metric-card">
+                <div>Total Kata</div>
+                <div id="m-words">0</div>
+            </div>
+            <div class="metric-card">
+                <div>Durasi Bicara</div>
+                <div id="m-time">0s</div>
+            </div>
+            <div class="metric-card">
+                <div>Speech Rate (WPM)</div>
+                <div id="m-wpm">0</div>
+            </div>
+        </div>
+
+        <div class="checklist-box">
+            <h4><i class="fa-solid fa-signature"></i> Band 7.5+ Lexical Self-Correction Checklist:</h4>
+            <p style="font-size: 13.5px; color: #64748b; margin-bottom: 10px;">Periksa transkrip tulisan di atas. Apakah Anda sudah berhasil menyelipkan elemen-elemen premium ini ke dalam jawaban Anda?</p>
+            <ul id="eval-checklist">
+                </ul>
+        </div>
+    </div>
+
+    <center><a href="dashboard.html" class="back-home"><i class="fa-solid fa-arrow-left"></i> Kembali ke Dashboard</a></center>
+</div>
+
+<div class="footer-credit">
+    Created by San | <a href="https://www.instagram.com/sanaethelgard?igsh=N29hZWphOTdmbzZy" target="_blank"><i class="fa-brands fa-instagram"></i> @sanaethelgard</a>
+</div>
+
+<script>
+    const speakingDatabase = {
+        seninSelasa: {
+            name: "Cambridge Assessment Standard (Senin - Selasa)",
+            prompt: "Describe an environmental problem that your country is currently facing. You should state what the problem is, how it affects citizens, and explain what measures can be executed to mitigate it.",
+            checklist: [
+                "Menggunakan Kata Hubung Transisi: <i>'Moving on to the issue of...', 'Consequently', 'In terms of solution...'</i>",
+                "Menggunakan Kosakata Level Tinggi: <i>'Environmental degradation', 'Air pollution', 'Systemic measures', 'Inhabitants'</i>"
+            ]
+        },
+        rabuKamis: {
+            name: "Oxford International Standard (Rabu - Kamis)",
+            prompt: "Some people believe that artificial intelligence will completely replace human workers in the future. To what extent do you agree or disagree with this perspective? Focus on the economic implications.",
+            checklist: [
+                "Menggunakan Penanda Opini Kuat: <i>'I strongly contend that...', 'From my standpoint...', 'It is highly probable that...'</i>",
+                "Menggunakan Kosakata Level Tinggi: <i>'Automation integration', 'Technological redundancy', 'Labor market', 'Invaluable human touch'</i>"
+            ]
+        },
+        jumatSabtuMinggu: {
+            name: "IELTS British Council Standard (Jumat - Minggu)",
+            prompt: "Talk about a technological device you use frequently. You should specify what device it is, how often you utilize it, and discuss whether it has had a positive or negative impact on your daily productivity.",
+            checklist: [
+                "Menggunakan Struktur Pembeli Waktu: <i>'To be perfectly candid...', 'That is an intriguing question...'</i>",
+                "Menggunakan Kosakata Level Tinggi: <i>'Indispensable asset', 'Multi-functional gadget', 'Substantial boost to my efficiency', 'Distraction'</i>"
+            ]
+        }
+    };
+
+    let activeTopic = {};
+    let recognition;
+    let isRecording = false;
+    let startTime, endTime;
+    let accumulatedText = "";
+
+    function setupSpeakingQuiz() {
+        const currentDay = new Date().getDay();
+        if (currentDay === 1 || currentDay === 2) {
+            activeTopic = speakingDatabase.seninSelasa;
+        } else if (currentDay === 3 || currentDay === 4) {
+            activeTopic = speakingDatabase.rabuKamis;
+        } else {
+            activeTopic = speakingDatabase.jumatSabtuMinggu;
+        }
+
+        document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-calendar-check"></i> ${activeTopic.name}`;
+        document.getElementById('target-prompt').innerText = activeTopic.prompt;
+
+        // Inisialisasi Web Speech API bawaan browser
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (SpeechRecognition) {
+            recognition = new SpeechRecognition();
+            recognition.continuous = true;
+            recognition.lang = 'en-US'; // Deteksi ucapan dalam bahasa Inggris
+            recognition.interimResults = false;
+
+            recognition.onresult = (event) => {
+                let currentResult = "";
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        currentResult += event.results[i][0].transcript + " ";
+                    }
+                }
+                accumulatedText += currentResult;
+                document.getElementById('transcriptOutput').innerText = accumulatedText;
+            };
+
+            recognition.onerror = (event) => {
+                console.error("Speech recognition error", event.error);
+                if(event.error === 'not-allowed') {
+                    document.getElementById('statusLabel').innerText = "Akses Mic Ditolak!";
+                }
+            };
+        } else {
+            document.getElementById('transcriptOutput').innerText = "Maaf, browser Anda belum mendukung fitur deteksi suara Web Speech API. Disarankan menggunakan Google Chrome di Android atau Laptop.";
+            document.getElementById('micBtn').disabled = true;
+            document.getElementById('micBtn').style.background = "#cbd5e1";
+        }
+    }
+
+    function toggleRecognition() {
+        const micBtn = document.getElementById('micBtn');
+        const statusLabel = document.getElementById('statusLabel');
+
+        if (!isRecording) {
+            // Mulai Merekam
+            accumulatedText = "";
+            document.getElementById('transcriptOutput').innerText = "Mendengarkan... Bicaralah sekarang dalam bahasa Inggris.";
+            document.getElementById('result-area').style.display = 'none';
+            
+            startTime = new Date();
+            recognition.start();
+            
+            isRecording = true;
+            micBtn.className = "btn-mic recording";
+            statusLabel.innerText = "Status: Sedang Merekam Suara...";
+        } else {
+            // Berhenti Merekam
+            endTime = new Date();
+            recognition.stop();
+            
+            isRecording = false;
+            micBtn.className = "btn-mic";
+            statusLabel.innerText = "Status: Rekaman Selesai";
+            
+            setTimeout(calculateMetrics, 800); // Beri jeda sedikit agar transkrip teks selesai diproses
+        }
+    }
+
+    function calculateMetrics() {
+        const text = accumulatedText.trim();
+        const totalWords = text === "" ? 0 : text.split(/\s+/).length;
+        
+        // Hitung Durasi Detik
+        const durationSeconds = Math.max(1, Math.round((endTime - startTime) / 1000));
+        
+        // Hitung Words Per Minute (WPM)
+        const durationMinutes = durationSeconds / 60;
+        const wpm = Math.round(totalWords / durationMinutes);
+
+        // Update ke papan skor UI
+        document.getElementById('m-words').innerText = totalWords;
+        document.getElementById('m-time').innerText = durationSeconds + "s";
+        document.getElementById('m-wpm').innerText = wpm;
+
+        // Tampilkan checklist koreksi mandiri
+        const checklistUl = document.getElementById('eval-checklist');
+        checklistUl.innerHTML = "";
+        
+        // Tambahkan feedback tentang kelancaran (WPM)
+        let fluencyFeedback = "";
+        if (wpm < 100) {
+            fluencyFeedback = "<li style='color:#ef4444; margin-bottom:12px;'><b>Fluency Alert:</b> Kecepatan bicaramu ("+wpm+" WPM) terdeteksi terlalu lambat/banyak jeda. Usahakan untuk mengurangi berpikir di tengah kalimat.</li>";
+        } else if (wpm >= 100 && wpm <= 160) {
+            fluencyFeedback = "<li style='color:#22c55e; margin-bottom:12px;'><b>Fluency Pass:</b> Kecepatan bicaramu ("+wpm+" WPM) sangat ideal dan natural setara penutur asli dalam ujian IELTS resmi.</li>";
+        } else {
+            fluencyFeedback = "<li style='color:#f59e0b; margin-bottom:12px;'><b>Fluency Note:</b> Kamu berbicara terlalu cepat ("+wpm+" WPM). Perlambat sedikit tempo bicaramu agar pengucapan kata terdengar jelas oleh penguji.</li>";
+        }
+        checklistUl.innerHTML += fluencyFeedback;
+
+        // Masukkan kriteria kata kunci dari database
+        activeTopic.checklist.forEach(item => {
+            checklistUl.innerHTML += `<li>${item}</li>`;
+        });
+
+        // Tampilkan area report ke user
+        const resultArea = document.getElementById('result-area');
+        resultArea.style.display = 'block';
+        resultArea.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    window.onload = setupSpeakingQuiz;
+</script>
+</body>
+</html>
