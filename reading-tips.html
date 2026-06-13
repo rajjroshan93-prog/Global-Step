@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Reading Masterclass - San Aethelgard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #001f3f;
+            --accent: #00D4FF;
+            --bg-dark: #00152b;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --slate-gray: #64748b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Lato', sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+        .materi-container { width: 100%; max-width: 850px; background: var(--card-bg); border-radius: 20px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+        
+        .header-materi { text-align: center; margin-bottom: 35px; border-bottom: 2px solid #f1f5f9; padding-bottom: 25px; }
+        .header-materi h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; }
+        .badge-elite { display: inline-block; background: #e0faff; color: #0369a1; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+
+        h3 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 20px; margin-top: 30px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        h3 i { color: var(--accent); background: var(--primary); width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+
+        p { font-size: 15px; line-height: 1.7; color: #475569; margin-bottom: 15px; text-align: justify; }
+        b { color: var(--primary); }
+
+        /* STRATEGY CARD */
+        .strategy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 25px 0; }
+        .strategy-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-align: center; }
+        .strategy-card i { font-size: 24px; color: var(--primary); margin-bottom: 10px; }
+        .strategy-card h4 { font-family: 'Poppins', sans-serif; font-size: 15px; color: var(--primary); margin-bottom: 8px; }
+        .strategy-card p { font-size: 13px; margin-bottom: 0; text-align: center; line-height: 1.5; }
+
+        /* CRACKING THE T/F/NG TABLE */
+        .table-style { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+        .table-style th { background: var(--primary); color: #fff; text-align: left; padding: 12px; font-family: 'Poppins', sans-serif; font-weight: 600; }
+        .table-style td { padding: 12px; border-bottom: 1px solid #e2e8f0; line-height: 1.6; }
+        .table-style tr:nth-child(even) { background-color: #f8fafc; }
+
+        /* METODE PRO TIP BOX */
+        .pro-tip { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px; border-radius: 8px; margin: 25px 0; }
+        .pro-tip h5 { font-family: 'Poppins', sans-serif; color: #b45309; font-size: 16px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+
+        .back-btn { display: inline-block; margin-top: 35px; width: 100%; text-align: center; background: var(--primary); color: white; padding: 14px; border-radius: 50px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; transition: 0.3s; border: 2px solid var(--primary); }
+        .back-btn:hover { background: var(--accent); color: var(--primary); border-color: var(--accent); }
+
+        @media (max-width: 650px) {
+            .strategy-grid { grid-template-columns: 1fr; }
+            .materi-container { padding: 25px 20px; }
+            .header-materi h2 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="materi-container">
+    <div class="header-materi">
+        <div class="badge-elite">San Aethelgard Academy</div>
+        <h2>Academic Reading Masterclass</h2>
+        <p style="margin-top: 5px; font-size: 14px; color: var(--slate-gray);">Panduan komprehensif taklukkan struktur teks jurnal ilmiah standar Cambridge.</p>
+    </div>
+
+    <h3><i class="fa-solid fa-bolt"></i> 3 Fondasi Kecepatan Membaca</h3>
+    <p>Ujian membaca akademis tidak meminta Anda memahami setiap kata tunggal, melainkan menguji efisiensi pencarian informasi di bawah tekanan waktu (60 menit untuk 3 artikel panjang).</p>
+    
+    <div class="strategy-grid">
+        <div class="strategy-card">
+            <i class="fa-solid fa-eye"></i>
+            <h4>Skimming</h4>
+            <p>Membaca cepat paragraf pertama, kalimat utama, dan kesimpulan untuk menangkap ide besar teks dalam 2 menit.</p>
+        </div>
+        <div class="strategy-card">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <h4>Scanning</h4>
+            <p>Menggerakkan mata secara vertikal melompati teks untuk berburu kata kunci spesifik seperti angka, nama, atau istilah teknis.</p>
+        </div>
+        <div class="strategy-card">
+            <i class="fa-solid fa-bullseye"></i>
+            <h4>Detailed Reading</h4>
+            <p>Membaca baris kalimat secara mendalam hanya ketika lokasi kata kunci pertanyaan sudah berhasil ditemukan.</p>
+        </div>
+    </div>
+
+    <h3><i class="fa-solid fa-shuffle"></i> Menguak Rahasia Paraphrase (Parafrasa)</h3>
+    <p>Penguji tidak pernah menggunakan kata yang sama persis antara lembar soal dan teks artikel. Mereka menggunakan trik <b>Paraphrase</b> untuk menguji luasnya kosakata Anda.</p>
+    
+    <table class="table-style">
+        <thead>
+            <tr>
+                <th style="width: 50%;">Kata di Lembar Soal</th>
+                <th style="width: 50%;">Parafrasa di Teks Asli (Passage)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>At the beginning of the 20th century</b></td>
+                <td>At the inception of the twentieth century</td>
+            </tr>
+            <tr>
+                <td><b>Worsened the situation</b></td>
+                <td>Exacerbated the conditions / dilemmas</td>
+            </tr>
+            <tr>
+                <td><b>Reduced cost per person</b></td>
+                <td>Lower per-capita cost</td>
+            </tr>
+            <tr>
+                <td><b>Driven by sheer necessity</b></td>
+                <td>Out of absolute necessity</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3><i class="fa-solid fa-shield-halved"></i> Strategi Mutlak True, False, Not Given</h3>
+    <p>Ini adalah jenis soal paling menjebak. Untuk menaklukkannya dengan akurat, gunakan rumus logika ketat ini:</p>
+    
+    <table class="table-style">
+        <thead>
+            <tr>
+                <th style="width: 25%;">Pilihan</th>
+                <th style="width: 35%;">Aturan Logika</th>
+                <th style="width: 40%;">Contoh Kasus</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>TRUE</b></td>
+                <td>Fakta soal <b>100% cocok</b> dan didukung oleh makna di teks asli.</td>
+                <td>Teks berkata ia lahir tahun 1990. Soal berkata ia lahir akhir abad ke-20.</td>
+            </tr>
+            <tr>
+                <td><b>FALSE</b></td>
+                <td>Fakta soal <b>berlawanan/kontradiksi</b> dengan teks asli (bisa dibuktikan salahnya).</td>
+                <td>Teks berkata populasi naik tajam. Soal berkata jumlah masyarakat stabil.</td>
+            </tr>
+            <tr>
+                <td><b>NOT GIVEN</b></td>
+                <td>Informasi tersebut <b>tidak dibahas</b> atau tidak bisa dipastikan kebenarannya dari teks.</td>
+                <td>Teks berkata buah apel itu merah. Soal berkata buah apel merah rasanya sangat manis. (Manis tidak dibahas).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="pro-tip">
+        <h5><i class="fa-solid fa-lightbulb"></i> San's Elite Execution Formula:</h5>
+        <p style="margin-bottom: 0; font-size: 14px; color: #92400e;">Jangan pernah membaca teks utuh dari awal sampai akhir sebelum melihat soal! Jalur pengerjaan yang benar: <b>Baca Soal -> Cari Kata Kunci Unik -> Lakukan Scanning ke Teks -> Garis Bawahi Kalimat Kunci -> Analisis Maknanya -> Jawab.</b> Simpan waktu Anda untuk analisis, bukan sekadar membaca buta.</p>
+    </div>
+
+    <a href="dashboard.html" class="back-btn"><i class="fa-solid fa-chevron-left" style="margin-right: 8px; font-size: 13px;"></i> Kembali ke Dashboard</a>
+</div>
+
+</body>
+</html>
