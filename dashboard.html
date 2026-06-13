@@ -34,7 +34,7 @@
 
         .dashboard-container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 1400px; /* Diperluas maksimal agar muat 4 kartu berjajar */
             margin: 0 auto;
         }
 
@@ -63,17 +63,17 @@
             margin-top: 4px;
         }
 
-        /* Grid Menu Utama */
+        /* Grid Menu Utama - Berubah Menjadi 4 Kolom */
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
         }
 
         .module-card {
             background: var(--card-bg);
             border-radius: 20px;
-            padding: 35px;
+            padding: 30px 22px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             border: 1px solid rgba(0, 212, 255, 0.05);
             display: flex;
@@ -87,15 +87,15 @@
         }
 
         .module-icon {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             background: #f0fdff;
             color: var(--primary);
-            border-radius: 16px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 22px;
             margin-bottom: 20px;
             border: 1px solid rgba(0, 212, 255, 0.2);
         }
@@ -106,15 +106,27 @@
             border-color: rgba(221, 75, 57, 0.2);
         }
 
+        .module-card.writing .module-icon {
+            background: #fffdf0;
+            color: #d4af37;
+            border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        .module-card.speaking .module-icon {
+            background: #f0fdf4;
+            color: #16a34a;
+            border-color: rgba(22, 163, 74, 0.2);
+        }
+
         .module-card h2 {
             font-family: 'Poppins', sans-serif;
             color: var(--primary);
-            font-size: 22px;
+            font-size: 20px;
             margin-bottom: 10px;
         }
 
         .module-card p {
-            font-size: 14.5px;
+            font-size: 13.5px;
             color: var(--slate-gray);
             line-height: 1.6;
             margin-bottom: 25px;
@@ -123,18 +135,18 @@
 
         .action-links {
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
         .action-links a {
             flex: 1;
             text-align: center;
-            padding: 12px;
+            padding: 11px;
             border-radius: 50px;
             text-decoration: none;
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             transition: 0.2s;
         }
 
@@ -169,30 +181,27 @@
             text-transform: uppercase;
             font-weight: 700;
             text-align: center;
-            margin-top: 40px;
+            margin-top: 50px;
         }
 
         .footer-credit a {
             color: var(--accent);
             text-decoration: none;
-            transition: 0.2s;
-        }
-
-        .footer-credit a:hover {
-            text-decoration: underline;
         }
 
         /* Responsive Layout */
+        @media (max-width: 1200px) {
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr); /* Layar tablet membagi jadi 2x2 */
+            }
+        }
         @media (max-width: 768px) {
+            .menu-grid {
+                grid-template-columns: 1fr; /* Layar HP vertikal 1 baris */
+            }
             .dashboard-header {
                 text-align: center;
-                padding: 30px;
-            }
-            .menu-grid {
-                grid-template-columns: 1fr;
-            }
-            .action-links {
-                flex-direction: column;
+                padding: 25px;
             }
         }
     </style>
@@ -231,6 +240,29 @@
             <div class="action-links">
                 <a href="listening-tips.html" class="btn-materi"><i class="fa-solid fa-graduation-cap"></i> Materi</a>
                 <a href="quiz-listening.html" class="btn-kuis"><i class="fa-solid fa-pen-to-square"></i> Mulai Kuis</a>
+            </div>
+        </div>
+
+        <div class="module-card writing">
+            <div class="module-icon">
+                <i class="fa-solid fa-pen-fancy"></i>
+            </div>
+            <h2>Writing Core</h2>
+            <p>Evaluasi penulisan esai akademik terstruktur dengan standar rotasi soal Cambridge, Oxford, & IELTS British. Analisis limitasi target minimal 250 kata.</p>
+            <div class="action-links">
+                <a href="writing-tips.html" class="btn-materi"><i class="fa-solid fa-graduation-cap"></i> Materi</a>
+                <a href="quiz-writing.html" class="btn-kuis"><i class="fa-solid fa-pen-to-square"></i> Mulai Kuis</a>
+            </div>
+        </div>
+
+        <div class="module-card speaking">
+            <div class="module-icon">
+                <i class="fa-solid fa-comment-dots"></i>
+            </div>
+            <h2>Speaking Core</h2>
+            <p>Pelatihan artikulasi lisan, kosa kata idiomatis tingkat tinggi, dan penguasaan kelancaran (*fluency*) respons spontan wawancara interaktif.</p>
+            <div class="action-links">
+                <a href="speaking-tips.html" class="btn-materi" style="flex: unset; width: 100%;"><i class="fa-solid fa-graduation-cap"></i> Materi Tips</a>
             </div>
         </div>
 
