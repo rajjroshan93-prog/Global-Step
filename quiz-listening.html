@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listening International Quiz - San Aethelgard</title>
+    <title>Listening Academic Lab - San Aethelgard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&display=swap" rel="stylesheet">
@@ -15,209 +15,242 @@
             --bg-dark: #00152b;
             --card-bg: #ffffff; 
             --text-main: #334155; 
+            --listening-color: #dd4b39;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Lato', sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
-        .quiz-card { width: 100%; max-width: 850px; background: var(--card-bg); border-radius: 20px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid rgba(0, 212, 255, 0.1); }
+        .quiz-card { width: 100%; max-width: 850px; background: var(--card-bg); border-radius: 20px; padding: 45px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
         .header-quiz { text-align: center; margin-bottom: 30px; }
         .header-quiz h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; }
-        .instruction-badge { display: inline-block; background: #fff1f2; color: #9f1239; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .schedule-badge { display: inline-block; background: #fff8f6; color: var(--listening-color); padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-bottom: 15px; text-transform: uppercase; border: 1px solid rgba(221, 75, 57, 0.2); }
         
-        .audio-transcript-box { background: #f8fafc; padding: 25px; border-radius: 12px; border-left: 6px solid var(--accent); margin-bottom: 30px; font-size: 15px; line-height: 1.7; }
-        .audio-transcript-box h3 { font-family: 'Poppins', sans-serif; margin-bottom: 10px; color: var(--primary); font-size: 18px; display: flex; align-items: center; gap: 8px; }
+        /* Audio Player Box */
+        .audio-box { background: #f8fafc; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 35px; text-align: center; }
+        .btn-audio { background: var(--listening-color); color: white; border: none; padding: 14px 28px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 10px 20px rgba(221, 75, 57, 0.2); }
+        .btn-audio:hover { background: #b93524; transform: translateY(-2px); }
+        .btn-audio:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; }
+        .audio-status { font-size: 13px; color: #64748b; font-weight: 700; margin-top: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        .form-section { background: #fff; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 20px; }
-        .section-title { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 15px; text-transform: uppercase; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px; }
-
-        .input-wrapper { margin-bottom: 18px; font-size: 15px; font-weight: 600; color: #475569; }
-        .input-wrapper label { display: block; margin-bottom: 6px; color: var(--primary); }
-        .input-gap { width: 100%; max-width: 300px; padding: 10px 15px; border: 2px solid #cbd5e1; border-radius: 6px; font-family: 'Lato', sans-serif; font-size: 15px; font-weight: 700; color: var(--primary); outline: none; transition: 0.2s; }
-        .input-gap:focus { border-color: var(--accent); background: #f0fdff; }
-
-        .btn-submit { width: 100%; background: var(--primary); color: white; border: 2px solid var(--primary); padding: 16px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 10px; }
-        .btn-submit:hover { background: var(--accent); color: var(--primary); border-color: var(--accent); }
+        /* Form Soal */
+        .question-section { margin-bottom: 30px; }
+        .question-block { background: #ffffff; border: 1px solid #e2e8f0; padding: 20px; border-radius: 10px; margin-bottom: 15px; }
+        .question-block p { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 12px; }
         
-        #result-area { margin-top: 30px; padding: 30px; border-radius: 12px; display: none; }
-        .success-score { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
-        .review-box { background: rgba(255,255,255,0.9); padding: 20px; border-radius: 8px; margin-top: 20px; color: #1e293b; font-size: 14px; line-height: 1.6; }
-        
-        .back-home { display: inline-block; margin-top: 30px; text-decoration: none; color: #94a3b8; font-weight: 700; font-size: 14px; transition: 0.2s; text-transform: uppercase; }
+        .input-gap { width: 100%; max-width: 300px; padding: 10px 15px; border: 2px solid #cbd5e1; border-radius: 6px; font-size: 14px; font-family: 'Lato', sans-serif; transition: 0.2s; color: #0f172a; font-weight: 700; }
+        .input-gap:focus { border-color: var(--accent); outline: none; }
+
+        .btn-submit { width: 100%; background: var(--primary); color: white; border: none; padding: 16px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .btn-submit:hover { background: var(--accent); color: var(--primary); }
+
+        /* Score & Feedback Panel */
+        #result-area { padding: 30px; border-radius: 12px; display: none; background: #f0fdf4; border: 1px solid #bbf7d0; margin-top: 25px; text-align: center; }
+        #score-text { font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 700; color: #166534; }
+        .transcript-review { background: white; padding: 20px; border-radius: 10px; border: 1px solid #e2e8f0; margin-top: 20px; text-align: left; }
+        .transcript-review h4 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 15px; margin-bottom: 10px; }
+        .transcript-text { font-size: 14.5px; color: #475569; line-height: 1.6; font-style: italic; white-space: pre-line; }
+
+        .back-home { display: inline-block; margin-top: 35px; text-decoration: none; color: #64748b; font-weight: 700; font-size: 13px; text-transform: uppercase; transition: 0.2s; }
         .back-home:hover { color: var(--accent); }
-        .footer-credit { font-size: 11px; color: #64748b; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 700; text-align: center; margin-top: 25px; }
-        .footer-credit a { color: var(--accent); text-decoration: none; margin-left: 4px; }
+        .footer-credit { font-size: 11px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px; text-transform: uppercase; font-weight: 700; text-align: center; margin-top: 40px; }
+        .footer-credit a { color: var(--accent); text-decoration: none; }
     </style>
 </head>
 <body>
 
 <div class="quiz-card">
     <div class="header-quiz">
-        <div class="instruction-badge" id="limit-badge"><i class="fa-solid fa-triangle-exclamation"></i> Loading Instruction...</div>
-        <h2 id="platform-title">San Aethelgard Listening</h2>
-        <p style="color: #64748b; font-size: 15px; margin-top: 5px;" id="standard-info">Sistem Rotasi Otomatis Ujian Internasional</p>
+        <div class="schedule-badge" id="schedule-info">Memuat Jadwal...</div>
+        <h2>San Aethelgard Listening Audio Lab</h2>
+        <p style="color: #64748b; font-size: 14.5px; margin-top: 5px;">Dengarkan percakapan penutur asli bahasa Inggris dengan cermat, kemudian isi bagian yang rumpang.</p>
     </div>
 
-    <div class="audio-transcript-box">
-        <h3><i class="fa-solid fa-file-audio"></i> Transkrip Audio Resmi (Dengarkan Seksama Secara Visual)</h3>
-        <p style="font-style: italic; color: #475569;" id="transcript-container">Loading transkrip...</p>
+    <div class="audio-box">
+        <button id="audioBtn" class="btn-audio" onclick="playDialogue()">
+            <i class="fa-solid fa-play"></i> Putar Percakapan Audio
+        </button>
+        <div id="audioStatus" class="audio-status">Status: Audio Siap Diputar</div>
     </div>
 
-    <form id="globalListeningForm" onsubmit="evaluateInternationalListening(event)">
-        <div id="dynamic-fields-container"></div>
-        <button type="submit" class="btn-submit">SUBMIT & EVALUASI AKURASI JAWABAN</button>
-    </form>
+    <div class="question-section">
+        <h3 style="font-family: 'Poppins', sans-serif; font-size: 15px; color: var(--primary); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px;">Questions (Fill in the Blanks):</h3>
+        <div id="quiz-form">
+            </div>
+        <button class="btn-submit" onclick="checkAnswers()">Periksa Jawaban</button>
+    </div>
 
-    <div id="result-area" class="success-score">
-        <h3 id="scoreTitle" style="font-size: 22px; margin-bottom: 5px; font-family: 'Poppins', sans-serif;"></h3>
-        <p id="bandEstimate" style="font-size: 15px; font-weight: 700; color: #15803d;"></p>
-        <div class="review-box" id="explanationBox"></div>
+    <div id="result-area">
+        <div id="score-text">Skor Anda: 0 / 0</div>
+        <div class="transcript-review">
+            <h4><i class="fa-solid fa-file-lines"></i> Official Audio Transcript:</h4>
+            <div id="transcript-content" class="transcript-text"></div>
+        </div>
     </div>
 
     <center><a href="dashboard.html" class="back-home"><i class="fa-solid fa-arrow-left"></i> Kembali ke Dashboard</a></center>
 </div>
 
 <div class="footer-credit">
-    Created by San | <a href="https://www.instagram.com/sann_n228?igsh=MWo3M3g0NWcwZ2h0Yg==" target="_blank"><i class="fa-brands fa-instagram"></i> @sann_n228</a>
+    Created by San | <a href="https://www.instagram.com/sanaethelgard?igsh=N29hZWphOTdmbzZy" target="_blank"><i class="fa-brands fa-instagram"></i> @sanaethelgard</a>
 </div>
 
 <script>
+    // Database dialog interaktif berstandar internasional yang terotasi otomatis
     const listeningDatabase = {
-        paketSeninSelasa: {
-            title: "Cambridge Assessment Standard (Note Completion)",
-            instruction: "NO MORE THAN TWO WORDS AND/OR A NUMBER",
-            transcript: `"Good morning. Welcome to the International Student Support Desk. For the standard elite dormitory, the monthly rental fee is fixed at 450 dollars, which includes water bills. The payment must be processed before the 5th of every single month. To secure your room, you are required to submit a copy of your university passport. Please note that the storage room is located directly in the basement. Moving on to academic rules, student laptops can automatically connect to the campus network using the high-speed Wi-Fi access code. Lastly, all research reports must be submitted directly to the faculty office."`,
-            fields: [
-                { id: "q1", label: "1. Rental Fee per month: $ ______________", keys: ["450", "450 dollars"] },
-                { id: "q2", label: "2. Monthly payment deadline is before the: ______________ of each month", keys: ["5th", "fifth"] },
-                { id: "q3", label: "3. Document required for identity verification: ______________", keys: ["passport"] },
-                { id: "q4", label: "4. The facility for extra storage is in the: ______________", keys: ["basement"] },
-                { id: "q5", label: "5. Students can access the network code via: ______________", keys: ["wi-fi", "wifi"] },
-                { id: "q6", label: "6. Research reports must be handed over directly to the: ______________ office", keys: ["faculty"] }
+        seninSelasa: {
+            name: "Cambridge Assessment Standard",
+            dialogue: [
+                { speaker: "Speaker A", text: "Hello, San Aethelgard Academy. How can I assist you today?" },
+                { speaker: "Speaker B", text: "Hi, I would like to book an international academic consulting session for next Tuesday." },
+                { speaker: "Speaker A", text: "Certainly. The total registration fee will be forty-five dollars." },
+                { speaker: "Speaker B", text: "Great, I will transfer the amount right away. Thank you." }
             ],
-            explanations: {
-                q1: "450 / 450 dollars (Sesuai nominal angka audio)",
-                q2: "5th / fifth (Batas tanggal pembayaran)",
-                q3: "passport (Dokumen identitas legal wajib)",
-                q4: "basement (Lokasi gudang penyimpanan barang)",
-                q5: "wi-fi / wifi (Nama jaringan internet kampus)",
-                q6: "faculty (Kantor tujuan pengumpulan laporan)"
-            }
+            questions: [
+                { label: "1. The user wants to book a session for next _________.", answer: "tuesday" },
+                { label: "2. The total registration fee is _________ dollars.", answer: "45" }
+            ]
         },
-        paketRabuKamis: {
-            title: "Oxford International Examination Standard (Academic Analysis)",
-            instruction: "ONE WORD ONLY",
-            transcript: `"Hello everyone, let's analyze our laboratory guidelines. Before initiating any organic chemistry procedure, students must wear protective glassware to avoid contact with acid. The primary experiment will focus on measuring the core density of liquid structures. Ensure you record the exact temperature inside your digital notebook. If an accidental spill occurs, notify the laboratory assistant immediately. Do not attempt to clean it with water, as it reacts violently. Finally, return all clean glass pipettes to the wooden cabinet near the exit."`,
-            fields: [
-                { id: "q1", label: "1. Essential gear required before starting the experiment: ______________", keys: ["glassware"] },
-                { id: "q2", label: "2. The main goal of the procedure is to evaluate liquid ______________", keys: ["density"] },
-                { id: "q3", label: "3. Students must document changes in ______________ continuously.", keys: ["temperature"] },
-                { id: "q4", label: "4. Any hazardous accident or spill must be reported to the ______________", keys: ["assistant"] },
-                { id: "q5", label: "5. Cleaning chemical elements with ______________ is strictly prohibited.", keys: ["water"] },
-                { id: "q6", label: "6. Equipment should be stored back inside the designated ______________", keys: ["cabinet"] }
+        rabuKamis: {
+            name: "Oxford International Standard",
+            dialogue: [
+                { speaker: "Speaker A", text: "Excuse me, where is the main research laboratory located?" },
+                { speaker: "Speaker B", text: "It is located on the third floor, right next to the grand library." },
+                { speaker: "Speaker A", text: "Thank you. Does it open at eight in the morning?" },
+                { speaker: "Speaker B", text: "No, it officially opens at nine tomorrow." }
             ],
-            explanations: {
-                q1: "glassware (Kacamata/alat pelindung laboratorium)",
-                q2: "density (Massa jenis/kepadatan cairan)",
-                q3: "temperature (Suhu yang wajib dicatat di notebook)",
-                q4: "assistant (Asisten lab tempat melaporkan insiden)",
-                q5: "water (Air, dilarang karena memicu reaksi berbahaya)",
-                q6: "cabinet (Lemari kayu tempat mengembalikan alat)"
-            }
+            questions: [
+                { label: "1. The laboratory is next to the grand _________.", answer: "library" },
+                { label: "2. The laboratory officially opens at _________ tomorrow.", answer: "9" }
+            ]
         },
-        paketJumatSabtuMinggu: {
-            title: "ETS TOEFL & Elite International Hybrid Standard",
-            instruction: "NO MORE THAN THREE WORDS",
-            transcript: `"Welcome to the Environmental Science lecture. Today, we look at renewable energy. Statistics show that global solar investments reached a record high of 210 million euros last year. The major growth occurred due to massive financial subsidies offered by the local government. However, engineering teams face significant challenges regarding power storage facilities during winter. A viable alternative currently being heavily researched is tidal wave technology. Experts suggest that implementation costs will drop by thirty percent by the year 2030."`,
-            fields: [
-                { id: "q1", label: "1. Last year, clean solar investments successfully reached ______________", keys: ["210 million euros", "210 million"] },
-                { id: "q2", label: "2. The market acceleration was driven directly by municipal ______________", keys: ["financial subsidies", "subsidies"] },
-                { id: "q3", label: "3. Main structural engineering problems are related to ______________", keys: ["power storage", "power storage facilities"] },
-                { id: "q4", label: "4. An innovative energy source under evaluation is ______________", keys: ["tidal wave", "tidal wave technology"] },
-                { id: "q5", label: "5. Implementation and installation values will reduce by ______________", keys: ["thirty percent", "30%"] },
-                { id: "q6", label: "6. The deadline for this energy cost reduction is the year ______________", keys: ["2030"] }
+        jumatSabtuMinggu: {
+            name: "IELTS British Council Standard",
+            dialogue: [
+                { speaker: "Speaker A", text: "Good morning. Can you confirm the flight destination for the international conference?" },
+                { speaker: "Speaker B", text: "Yes, the airplane is departing directly for London." },
+                { speaker: "Speaker A", text: "Excellent. And what is the departure gate number?" },
+                { speaker: "Speaker B", text: "You should proceed immediately to gate fourteen." }
             ],
-            explanations: {
-                q1: "210 million euros (Jumlah total investasi solar global)",
-                q2: "financial subsidies (Subsidi dana dari pemerintah daerah)",
-                q3: "power storage / power storage facilities (Masalah utama penampungan daya)",
-                q4: "tidal wave / tidal wave technology (Pemanfaatan arus gelombang laut)",
-                q5: "thirty percent / 30% (Persentase penurunan biaya produksi)",
-                q6: "2030 (Target tahun penurunan biaya)"
-            }
+            questions: [
+                { label: "1. The airplane is departing directly for _________.", answer: "london" },
+                { label: "2. The departure gate number is _________.", answer: "14" }
+            ]
         }
     };
 
-    let activePack = {};
+    let activeSet = {};
+    let synth = window.speechSynthesis;
 
-    function initInternationalQuiz() {
-        const currentDay = new Date().getDay(); // 0 = Minggu, 1 = Senin, dst
+    function setupListeningQuiz() {
+        const currentDay = new Date().getDay();
         
         if (currentDay === 1 || currentDay === 2) {
-            activePack = listeningDatabase.paketSeninSelasa;
+            activeSet = listeningDatabase.seninSelasa;
         } else if (currentDay === 3 || currentDay === 4) {
-            activePack = listeningDatabase.paketRabuKamis;
+            activeSet = listeningDatabase.rabuKamis;
         } else {
-            activePack = listeningDatabase.paketJumatSabtuMinggu;
+            activeSet = listeningDatabase.jumatSabtuMinggu;
         }
 
-        // Tampilkan teks info standardisasi
-        document.getElementById('limit-badge').innerHTML = `<i class="fa-solid fa-circle-info"></i> Rules: ${activePack.instruction}`;
-        document.getElementById('standard-info').innerText = activePack.title;
-        document.getElementById('transcript-container').innerText = activePack.transcript;
+        document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-headphones"></i> Active: ${activeSet.name}`;
 
-        // Render input field dinamis
-        const fieldsContainer = document.getElementById('dynamic-fields-container');
-        fieldsContainer.innerHTML = "";
-        
-        activePack.fields.forEach(field => {
-            fieldsContainer.innerHTML += `
-                <div class="form-section">
-                    <div class="input-wrapper">
-                        <label>${field.label}</label>
-                        <input type="text" class="input-gap" id="${field.id}" placeholder="Ketik jawaban Anda disini..." autocomplete="off" required>
-                    </div>
+        // Render input pertanyaan secara otomatis ke HTML
+        const formContainer = document.getElementById('quiz-form');
+        formContainer.innerHTML = "";
+        activeSet.questions.forEach((q, index) => {
+            formContainer.innerHTML += `
+                <div class="question-block">
+                    <p>${q.label}</p>
+                    <input type="text" id="q-${index}" class="input-gap" placeholder="Ketik jawaban Anda di sini...">
                 </div>
             `;
         });
     }
 
-    function evaluateInternationalListening(event) {
-        event.preventDefault();
-        let totalScore = 0;
-        let reviewLog = "<strong>Evaluasi Speling & Analisis Kunci Jawaban Resmi:</strong><br><br>";
+    // Fungsi utama untuk memutar suara percakapan robot penutur asli secara bergantian
+    function playDialogue() {
+        if (!synth) {
+            alert("Browser Anda tidak mendukung Text-to-Speech.");
+            return;
+        }
 
-        activePack.fields.forEach(field => {
-            const userInput = document.getElementById(field.id).value.trim().toLowerCase();
+        if (synth.speaking) {
+            return; // Cegah double klik saat suara masih berjalan
+        }
+
+        const audioBtn = document.getElementById('audioBtn');
+        const audioStatus = document.getElementById('audioStatus');
+        
+        audioBtn.disabled = true;
+        audioBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Playing Audio...`;
+        audioStatus.innerText = "Status: Percakapan Sedang Berlangsung...";
+
+        let currentLine = 0;
+
+        function speakLine() {
+            if (currentLine >= activeSet.dialogue.length) {
+                // Semua baris obrolan selesai dibacakan
+                audioBtn.disabled = false;
+                audioBtn.innerHTML = `<i class="fa-solid fa-play"></i> Putar Kembali Audio`;
+                audioStatus.innerText = "Status: Selesai. Silakan isi jawaban.";
+                return;
+            }
+
+            const lineData = activeSet.dialogue[currentLine];
+            // Format yang diucapkan: "Speaker A says: [text]"
+            const utterance = new SpeechSynthesisUtterance(`${lineData.speaker} says. ${lineData.text}`);
             
-            if (field.keys.includes(userInput)) {
-                totalScore++;
-                reviewLog += `<span style="color: #166534;"><b>Item ${field.id.toUpperCase()}: BENAR!</b></span> Anda menjawab: "${document.getElementById(field.id).value}"<br>`;
+            // Konfigurasi agar suara stabil berstandar English Internasional
+            utterance.lang = 'en-US';
+            utterance.rate = 0.85; // Sedikit diperlambat agar pas untuk latihan listening akademik
+            utterance.pitch = 1.0;
+
+            utterance.onend = () => {
+                currentLine++;
+                setTimeout(speakLine, 800); // Memberikan jeda 0.8 detik antar obrolan agar natural
+            };
+
+            synth.speak(utterance);
+        }
+
+        speakLine();
+    }
+
+    // Fungsi memeriksa jawaban user
+    function checkAnswers() {
+        let correctCount = 0;
+        const totalQuestions = activeSet.questions.length;
+
+        activeSet.questions.forEach((q, index) => {
+            const userInput = document.getElementById(`q-${index}`).value.trim().toLowerCase();
+            const inputField = document.getElementById(`q-${index}`);
+
+            if (userInput === q.answer.toLowerCase()) {
+                correctCount++;
+                inputField.style.borderColor = "#22c55e";
+                inputField.style.backgroundColor = "#f0fdf4";
             } else {
-                reviewLog += `<span style="color: #b91c1c;"><b>Item ${field.id.toUpperCase()}: SALAH.</b></span> Kunci valid: <b>${field.keys.join(" / ")}</b> (Jawaban Anda: "${document.getElementById(field.id).value}")<br>`;
+                inputField.style.borderColor = "#ef4444";
+                inputField.style.backgroundColor = "#fff5f5";
             }
         });
 
-        reviewLog += `<br><strong>Bedah Penjelasan Kasus:</strong><br>`;
-        for (const [key, desc] of Object.entries(activePack.explanations)) {
-            reviewLog += `• Soal ${key.toUpperCase()}: ${desc}<br>`;
-        }
+        // Tampilkan Papan Skor
+        document.getElementById('score-text').innerText = `Skor Anda: ${correctCount} / ${totalQuestions}`;
+        
+        // Render Teks Transkrip Asli sebagai bahan evaluasi belajar
+        let fullTranscriptHTML = "";
+        activeSet.dialogue.forEach(line => {
+            fullTranscriptHTML += `<b>${line.speaker}:</b> "${line.text}"\n`;
+        });
+        document.getElementById('transcript-content').innerHTML = fullTranscriptHTML;
 
         const resultArea = document.getElementById('result-area');
-        document.getElementById('scoreTitle').innerText = `Skor Akurasi Akhir: Benar ${totalScore} dari 6 Batas Soal`;
-        
-        let standardBand = "";
-        if (totalScore === 6) standardBand = "C1/C2 Level - Expert Operational Proficiency (Sempurna)";
-        else if (totalScore >= 4) standardBand = "B2/C1 Level - Vantage Academic Competence (Bagus, Rapikan Speling)";
-        else standardBand = "B1 Level - Threshold Focus Required (Waspadai Pengurangan Huruf Jamak)";
-
-        document.getElementById('bandEstimate').innerText = `Kualifikasi Sertifikasi: ${standardBand}`;
-        document.getElementById('explanationBox').innerHTML = reviewLog;
-        
         resultArea.style.display = 'block';
         resultArea.scrollIntoView({ behavior: 'smooth' });
     }
 
-    window.onload = initInternationalQuiz;
+    window.onload = setupListeningQuiz;
 </script>
 </body>
 </html>
