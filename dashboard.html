@@ -200,6 +200,8 @@
                 grid-template-columns: 1fr; /* Layar HP vertikal 1 baris */
             }
             .dashboard-header {
+                flex-direction: column;
+                gap: 15px;
                 text-align: center;
                 padding: 25px;
             }
@@ -214,6 +216,9 @@
         <div class="header-left">
             <h1>San Aethelgard Workspace</h1>
             <p>Selamat datang kembali. Pilih modul pembelajaran internasional Anda hari ini.</p>
+        </div>
+        <div>
+            <a href="analytics.html" class="btn-kuis" style="text-decoration: none; display: inline-block; padding: 12px 25px;"><i class="fa-solid fa-chart-line"></i> Analytics & Progress Center</a>
         </div>
     </div>
 
@@ -262,8 +267,7 @@
             <h2>Speaking Core</h2>
             <p>Pelatihan artikulasi lisan, kosa kata idiomatis tingkat tinggi, dan penguasaan kelancaran (*fluency*) respons spontan wawancara interaktif.</p>
             <div class="action-links">
-                <a href="speaking-tips.html" class="btn-materi"><i class="fa-solid fa-graduation-cap"></i> Materi Tips</a>
-                <a href="quiz-speaking.html" class="btn-kuis"><i class="fa-solid fa-microphone"></i> Mulai Kuis</a>
+                <a href="speaking-tips.html" class="btn-materi" style="flex: unset; width: 100%;"><i class="fa-solid fa-graduation-cap"></i> Materi Tips</a>
             </div>
         </div>
 
