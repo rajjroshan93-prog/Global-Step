@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Reading Masterclass - San Aethelgard</title>
+    <title>International Reading Masterclass - San Aethelgard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -21,43 +21,37 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Lato', sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
-        .materi-container { width: 100%; max-width: 850px; background: var(--card-bg); border-radius: 20px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+        .materi-container { width: 100%; max-width: 900px; background: var(--card-bg); border-radius: 20px; padding: 50px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
         
-        .header-materi { text-align: center; margin-bottom: 35px; border-bottom: 2px solid #f1f5f9; padding-bottom: 25px; }
-        .header-materi h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; }
-        .badge-elite { display: inline-block; background: #e0faff; color: #0369a1; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .header-materi { text-align: center; margin-bottom: 40px; border-bottom: 2px solid #f1f5f9; padding-bottom: 30px; }
+        .header-materi h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 32px; letter-spacing: -0.5px; }
+        .badge-elite { display: inline-block; background: #e0faff; color: #0369a1; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
 
-        h3 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 20px; margin-top: 30px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        h3 i { color: var(--accent); background: var(--primary); width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+        h3 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 22px; margin-top: 40px; margin-bottom: 18px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; }
+        h3 i { color: var(--accent); background: var(--primary); width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
 
-        p { font-size: 15px; line-height: 1.7; color: #475569; margin-bottom: 15px; text-align: justify; }
+        h4 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 17px; margin-top: 20px; margin-bottom: 8px; }
+
+        p { font-size: 15px; line-height: 1.8; color: #475569; margin-bottom: 18px; text-align: justify; }
+        p.lead { font-size: 16px; color: #1e293b; font-weight: 600; text-align: left; }
         b { color: var(--primary); }
+        ul, ol { margin-left: 25px; margin-bottom: 20px; color: #475569; font-size: 15px; line-height: 1.8; }
+        li { margin-bottom: 8px; }
 
-        /* STRATEGY CARD */
-        .strategy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 25px 0; }
-        .strategy-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-align: center; }
-        .strategy-card i { font-size: 24px; color: var(--primary); margin-bottom: 10px; }
-        .strategy-card h4 { font-family: 'Poppins', sans-serif; font-size: 15px; color: var(--primary); margin-bottom: 8px; }
-        .strategy-card p { font-size: 13px; margin-bottom: 0; text-align: center; line-height: 1.5; }
+        .section-box { background: #f8fafc; border-left: 5px solid var(--primary); padding: 25px; margin-bottom: 20px; border-radius: 0 12px 12px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .section-box h4 { margin-top: 0; font-size: 18px; margin-bottom: 10px; color: var(--primary); }
+        .section-box p { margin-bottom: 0; font-size: 14.5px; }
 
-        /* CRACKING THE T/F/NG TABLE */
-        .table-style { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
-        .table-style th { background: var(--primary); color: #fff; text-align: left; padding: 12px; font-family: 'Poppins', sans-serif; font-weight: 600; }
-        .table-style td { padding: 12px; border-bottom: 1px solid #e2e8f0; line-height: 1.6; }
+        .table-style { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 14.5px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border-radius: 8px; overflow: hidden; }
+        .table-style th { background: var(--primary); color: #fff; text-align: left; padding: 14px; font-family: 'Poppins', sans-serif; font-weight: 600; }
+        .table-style td { padding: 14px; border-bottom: 1px solid #e2e8f0; line-height: 1.6; vertical-align: top; }
         .table-style tr:nth-child(even) { background-color: #f8fafc; }
 
-        /* METODE PRO TIP BOX */
-        .pro-tip { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px; border-radius: 8px; margin: 25px 0; }
-        .pro-tip h5 { font-family: 'Poppins', sans-serif; color: #b45309; font-size: 16px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .pro-tip { background: #f0fdf4; border-left: 5px solid #22c55e; padding: 25px; border-radius: 8px; margin: 35px 0; }
+        .pro-tip h5 { font-family: 'Poppins', sans-serif; color: #166534; font-size: 17px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
 
-        .back-btn { display: inline-block; margin-top: 35px; width: 100%; text-align: center; background: var(--primary); color: white; padding: 14px; border-radius: 50px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; transition: 0.3s; border: 2px solid var(--primary); }
+        .back-btn { display: inline-block; margin-top: 40px; width: 100%; text-align: center; background: var(--primary); color: white; padding: 16px; border-radius: 50px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; transition: 0.3s; border: 2px solid var(--primary); }
         .back-btn:hover { background: var(--accent); color: var(--primary); border-color: var(--accent); }
-
-        @media (max-width: 650px) {
-            .strategy-grid { grid-template-columns: 1fr; }
-            .materi-container { padding: 25px 20px; }
-            .header-materi h2 { font-size: 22px; }
-        }
     </style>
 </head>
 <body>
@@ -65,97 +59,91 @@
 <div class="materi-container">
     <div class="header-materi">
         <div class="badge-elite">San Aethelgard Academy</div>
-        <h2>Academic Reading Masterclass</h2>
-        <p style="margin-top: 5px; font-size: 14px; color: var(--slate-gray);">Panduan komprehensif taklukkan struktur teks jurnal ilmiah standar Cambridge.</p>
+        <h2>Advanced Reading Framework & Analysis</h2>
+        <p style="margin-top: 8px; font-size: 15px; color: var(--slate-gray);">Panduan komprehensif penaklukan teks akademik berskala internasional.</p>
     </div>
 
-    <h3><i class="fa-solid fa-bolt"></i> 3 Fondasi Kecepatan Membaca</h3>
-    <p>Ujian membaca akademis tidak meminta Anda memahami setiap kata tunggal, melainkan menguji efisiensi pencarian informasi di bawah tekanan waktu (60 menit untuk 3 artikel panjang).</p>
+    <p class="lead">Selamat datang di sistem dekonstruksi teks San Aethelgard. Membaca dalam konteks ujian internasional (Cambridge, Oxford, dan ETS) bukanlah sekadar aktivitas pasif memahami cerita, melainkan sebuah proses investigasi logis yang menuntut efisiensi waktu, ketajaman analisis kosakata, dan ketahanan mental terhadap distractor (pengecoh).</p>
     
-    <div class="strategy-grid">
-        <div class="strategy-card">
-            <i class="fa-solid fa-eye"></i>
-            <h4>Skimming</h4>
-            <p>Membaca cepat paragraf pertama, kalimat utama, dan kesimpulan untuk menangkap ide besar teks dalam 2 menit.</p>
-        </div>
-        <div class="strategy-card">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <h4>Scanning</h4>
-            <p>Menggerakkan mata secara vertikal melompati teks untuk berburu kata kunci spesifik seperti angka, nama, atau istilah teknis.</p>
-        </div>
-        <div class="strategy-card">
-            <i class="fa-solid fa-bullseye"></i>
-            <h4>Detailed Reading</h4>
-            <p>Membaca baris kalimat secara mendalam hanya ketika lokasi kata kunci pertanyaan sudah berhasil ditemukan.</p>
-        </div>
+    <p>Artikel masterclass ini dirancang secara mendalam untuk membongkar pola pikir para pembuat soal internasional, memberikan Anda senjata taktis untuk menyaring informasi esensial dari ratusan kata dalam hitungan detik.</p>
+
+    <h3><i class="fa-solid fa-compass"></i> Bab I: Metodologi Standar 3 Institusi Dunia</h3>
+    <p>Untuk menembus skor tertinggi, Anda harus memahami karakteristik spesifik dari institusi yang menyusun naskah ujian Anda:</p>
+    
+    <div class="section-box">
+        <h4>1. Cambridge Assessment Standard (IELTS)</h4>
+        <p>Logika utama Cambridge berpusat pada validitas data mutlak melalui tipe soal <b>True, False, Not Given</b>. Penguji Cambridge sangat disiplin: mereka menilai berdasarkan apa yang tertulis secara eksplisit, bukan asumsi pembaca. Pengecoh terbesar mereka adalah mengubah kuantitas atau derajat kepastian kalimat (misalnya mengubah kata <i>"sometimes"</i> di teks menjadi <i>"always"</i> di lembar soal).</p>
     </div>
 
-    <h3><i class="fa-solid fa-shuffle"></i> Menguak Rahasia Paraphrase (Parafrasa)</h3>
-    <p>Penguji tidak pernah menggunakan kata yang sama persis antara lembar soal dan teks artikel. Mereka menggunakan trik <b>Paraphrase</b> untuk menguji luasnya kosakata Anda.</p>
+    <div class="section-box">
+        <h4>2. Oxford International Examination</h4>
+        <p>Standar Oxford menguji kemampuan pembaca dalam menghadapi <i>Lexical Density</i> (kepadatan istilah ilmiah). Teks-teks mereka diambil langsung dari modifikasi jurnal sains, sosiologi, dan filsafat modern. Pola soal Oxford menuntut Anda untuk memahami hubungan kausalitas (sebab-akibat) yang berlapis serta arah argumen penulis, apakah mereka mendukung, menolak, atau netral terhadap suatu teori.</p>
+    </div>
+
+    <div class="section-box">
+        <h4>3. ETS TOEFL & British Hybrid Standard</h4>
+        <p>Karakteristik utama standar ini adalah penerapan <i>Extreme Paraphrasing</i> (parafrasa radikal). Struktur kalimat dalam opsi jawaban sering kali dibalik secara total dengan menggunakan sinonim tingkat tinggi. Jika Anda mencari kata kunci yang bunyinya persis sama antara soal dan teks, Anda dipastikan akan terjebak dalam perangkap kesalahan mereka.</p>
+    </div>
+
+    <h3><i class="fa-solid fa-scale-balanced"></i> Bab II: Masterclass Logika "True, False, Not Given"</h3>
+    <p>Ini adalah area di mana banyak kandidat kehilangan poin berharga karena mencampuradukkan opini pribadi dengan fakta teks. Mari kita bedah definisinya secara matematis dan absolut:</p>
     
+    <ol>
+        <li><b>TRUE (Benar):</b> Jika informasi di dalam soal <u>selaras secara utuh</u> dengan fakta di dalam teks, meskipun struktur kalimatnya mengalami parafrasa total atau menggunakan sinonim.</li>
+        <li><b>FALSE (Salah):</b> Jika informasi di dalam soal <u>secara langsung menentang atau mengontradiksi</u> fakta di dalam teks. Ingat, harus ada bukti kontradiksi nyata untuk menyatakannya salah.</li>
+        <li><b>NOT GIVEN (Tidak Diketahui):</b> Jika informasi di dalam soal <u>tidak dapat divalidasi</u> oleh teks. Artinya, informasi tersebut bisa saja benar di dunia nyata, namun teks yang disediakan tidak mengonfirmasi atau tidak membahas hal mendetail tersebut.</li>
+    </ol>
+
+    <h3><i class="fa-solid fa-code-compare"></i> Bab III: Dekonstruksi Tekstual & Pemetaan Sinonim</h3>
+    <p>Mari kita pelajari bagaimana penguji kelas dunia mengubah kalimat di dalam teks menjadi jebakan di dalam soal melalui tabel analisis berikut:</p>
+
     <table class="table-style">
         <thead>
             <tr>
-                <th style="width: 50%;">Kata di Lembar Soal</th>
-                <th style="width: 50%;">Parafrasa di Teks Asli (Passage)</th>
+                <th style="width: 45%;">Teks Jurnal Asli (Teks Bacaan)</th>
+                <th style="width: 40%;">Parafrasa Resmi (Di Lembar Soal)</th>
+                <th style="width: 15%;">Logika Analisis</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><b>At the beginning of the 20th century</b></td>
-                <td>At the inception of the twentieth century</td>
+                <td>"The municipal council decided to <b>curtail financial backing</b> for the green initiative due to budgetary deficits."</td>
+                <td>"Funding for environmental projects was <b>reduced</b> by local authorities."</td>
+                <td><b>TRUE</b><br><small><i>Curtail financial backing</i> diparafrasa menjadi <i>reduced funding</i>.</small></td>
             </tr>
             <tr>
-                <td><b>Worsened the situation</b></td>
-                <td>Exacerbated the conditions / dilemmas</td>
+                <td>"Early Mesoamerican stone masons successfully erected towering structures <b>without the benefit of metallurgical tools</b>."</td>
+                <td>"The ancient civil engineering processes relied heavily on <b>iron technology</b>."</td>
+                <td><b>FALSE</b><br><small>Teks menyebutkan <i>without metallurgy</i> (tanpa logam/besi), sedangkan soal mengklaim sebaliknya.</small></td>
             </tr>
             <tr>
-                <td><b>Reduced cost per person</b></td>
-                <td>Lower per-capita cost</td>
+                <td>"Generative models and automation frameworks pose a significant threat to <b>displace cognitive occupations</b>."</td>
+                <td>"Artificial intelligence systems risk causing unemployment within <b>intellectual fields</b>."</td>
+                <td><b>TRUE</b><br><small><i>Cognitive occupations</i> memiliki keselarasan makna dengan <i>intellectual fields</i>.</small></td>
             </tr>
             <tr>
-                <td><b>Driven by sheer necessity</b></td>
-                <td>Out of absolute necessity</td>
+                <td>"The research team observed the compound's structural shift <b>only when subjected to temperatures below 0°C</b>."</td>
+                <td>"The compound alters its form in any severe climate condition."</td>
+                <td><b>FALSE</b><br><small>Teks membatasi kondisi hanya di bawah 0°C (spesifik), soal menggeneralisasi menjadi segala kondisi iklim.</small></td>
             </tr>
         </tbody>
     </table>
 
-    <h3><i class="fa-solid fa-shield-halved"></i> Strategi Mutlak True, False, Not Given</h3>
-    <p>Ini adalah jenis soal paling menjebak. Untuk menaklukkannya dengan akurat, gunakan rumus logika ketat ini:</p>
+    <h3><i class="fa-solid fa-bolt"></i> Bab IV: Protokol Kecepatan (Skimming & Scanning)</h3>
+    <p>Membaca seluruh teks kata demi kata secara linear adalah cara tercepat untuk kehabisan waktu. Anda harus menggunakan protokol dua arah ini:</p>
     
-    <table class="table-style">
-        <thead>
-            <tr>
-                <th style="width: 25%;">Pilihan</th>
-                <th style="width: 35%;">Aturan Logika</th>
-                <th style="width: 40%;">Contoh Kasus</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><b>TRUE</b></td>
-                <td>Fakta soal <b>100% cocok</b> dan didukung oleh makna di teks asli.</td>
-                <td>Teks berkata ia lahir tahun 1990. Soal berkata ia lahir akhir abad ke-20.</td>
-            </tr>
-            <tr>
-                <td><b>FALSE</b></td>
-                <td>Fakta soal <b>berlawanan/kontradiksi</b> dengan teks asli (bisa dibuktikan salahnya).</td>
-                <td>Teks berkata populasi naik tajam. Soal berkata jumlah masyarakat stabil.</td>
-            </tr>
-            <tr>
-                <td><b>NOT GIVEN</b></td>
-                <td>Informasi tersebut <b>tidak dibahas</b> atau tidak bisa dipastikan kebenarannya dari teks.</td>
-                <td>Teks berkata buah apel itu merah. Soal berkata buah apel merah rasanya sangat manis. (Manis tidak dibahas).</td>
-            </tr>
-        </tbody>
-    </table>
+    <h4>1. Skimming (Mencari Arsitektur Paragraf)</h4>
+    <p>Lakukan pembacaan kilat pada 1-2 kalimat pertama (kalimat topik) dan kalimat terakhir dari setiap paragraf. Tujuannya adalah untuk memahami peta pikiran penulis dan mengetahui di paragraf mana sebuah topik spesifik diletakkan. Jangan berhenti ketika menemukan kata sulit.</p>
+
+    <h4>2. Scanning (Mencari Target Data)</h4>
+    <p>Ketika Anda membaca soal dan menemukan kata kunci penanda yang kaku—seperti nama tokoh, angka tahun, persentase, atau istilah ilmiah berhuruf kapital—gerakkan mata Anda secara zig-zag melompati teks untuk melacak letak kata tersebut secara fisik. Setelah ketemu, lakukan pembacaan intensif di area radius dua kalimat di sekitar kata kunci tersebut.</p>
 
     <div class="pro-tip">
-        <h5><i class="fa-solid fa-lightbulb"></i> San's Elite Execution Formula:</h5>
-        <p style="margin-bottom: 0; font-size: 14px; color: #92400e;">Jangan pernah membaca teks utuh dari awal sampai akhir sebelum melihat soal! Jalur pengerjaan yang benar: <b>Baca Soal -> Cari Kata Kunci Unik -> Lakukan Scanning ke Teks -> Garis Bawahi Kalimat Kunci -> Analisis Maknanya -> Jawab.</b> Simpan waktu Anda untuk analisis, bukan sekadar membaca buta.</p>
+        <h5><i class="fa-solid fa-user-shield"></i> San's Fundamental Absolute Rule:</h5>
+        <p style="margin-bottom: 0; font-size: 14.5px; color: #166534;">Waspadai **Extreme Qualifiers**! Jika di dalam opsi soal ujian Anda menemukan kata-kata mutlak seperti <i>"All", "Every", "Never", "Always", "Only"</i>, atau <i>"Unique"</i>, lakukan verifikasi ulang secara super ketat. Sering kali teks asli hanya menyatakan <i>"Most"</i> (sebagian besar) atau <i>"Frequently"</i> (sering kali). Perbedaan tipis skala kuantitas ini adalah pembeda antara jawaban FALSE dan TRUE!</p>
     </div>
 
-    <a href="dashboard.html" class="back-btn"><i class="fa-solid fa-chevron-left" style="margin-right: 8px; font-size: 13px;"></i> Kembali ke Dashboard</a>
+    <a href="dashboard.html" class="back-btn"><i class="fa-solid fa-chevron-left" style="margin-right: 8px; font-size: 13px;"></i> Simpan & Kembali ke Dashboard</a>
 </div>
 
 </body>
