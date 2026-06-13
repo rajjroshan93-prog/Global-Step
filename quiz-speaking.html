@@ -20,6 +20,12 @@
         body { font-family: 'Lato', sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
         .quiz-card { width: 100%; max-width: 900px; background: var(--card-bg); border-radius: 20px; padding: 45px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+        
+        /* TIMER COMPONENT STYLE */
+        .timer-container { display: flex; align-items: center; justify-content: center; gap: 8px; background: #fff1f0; border: 1px solid #ffa39e; color: #cf1322; padding: 10px 20px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; margin: 0 auto 25px auto; width: fit-content; box-shadow: 0 4px 10px rgba(207, 19, 34, 0.1); }
+        .timer-container.warning { background: #ff4d4f; color: white; border-color: #ff4d4f; animation: blink 1s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+
         .header-quiz { text-align: center; margin-bottom: 30px; }
         .header-quiz h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; }
         .schedule-badge { display: inline-block; background: #e0fdf4; color: #166534; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-bottom: 15px; text-transform: uppercase; border: 1px solid #bbf7d0; }
@@ -32,12 +38,7 @@
         .btn-mic { background: #ef4444; color: white; border: none; width: 80px; height: 80px; border-radius: 50px; font-size: 28px; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3); }
         .btn-mic.recording { background: #22c55e; animation: pulse 1.5s infinite; box-shadow: 0 10px 20px rgba(34, 197, 94, 0.4); }
         
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.08); }
-            100% { transform: scale(1); }
-        }
-
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
         .status-text { font-size: 14px; font-weight: 700; color: #64748b; margin-top: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 
         .transcript-box { width: 100%; min-height: 120px; background: #fafafa; border: 2px dashed #cbd5e1; border-radius: 12px; padding: 20px; font-size: 16px; line-height: 1.6; color: #1e293b; margin-bottom: 30px; font-style: italic; }
@@ -61,10 +62,14 @@
 <body>
 
 <div class="quiz-card">
+    <div class="timer-container" id="countdown-wrapper">
+        <i class="fa-solid fa-microphone-lines"></i> <span id="timer-display">02:00</span>
+    </div>
+
     <div class="header-quiz">
         <div class="schedule-badge" id="schedule-info">Mempersiapkan Standar Ujian...</div>
         <h2>San Aethelgard Audio Lab</h2>
-        <p style="color: #64748b; font-size: 14.5px; margin-top: 5px;">Klik tombol mikrofon merah, bicaralah dalam bahasa Inggris, lalu klik tombol hijau untuk mengecek transkrip dan kelancaran Anda.</p>
+        <p style="color: #64748b; font-size: 14.5px; margin-top: 5px;">Klik tombol mikrofon merah untuk berbicara. Waktu maksimal berbicara Anda adalah 2 menit.</p>
     </div>
 
     <div class="prompt-box">
@@ -80,7 +85,7 @@
     </div>
 
     <h3 style="font-family: 'Poppins', sans-serif; font-size: 14px; color: var(--primary); margin-bottom: 8px; text-transform: uppercase;">Live Speech Transcription:</h3>
-    <div id="transcriptOutput" class="transcript-box">Hasil transkrip suara Anda akan muncul di sini secara otomatis...</div>
+    <div id="transcriptOutput" class="transcript-box">Hasil transkrip suara Anda akan muncul di sini...</div>
 
     <div id="result-area">
         <h3 style="font-family: 'Poppins', sans-serif; color: #166534; font-size: 18px;"><i class="fa-solid fa-chart-line"></i> Fluency Analytics</h3>
@@ -102,9 +107,7 @@
 
         <div class="checklist-box">
             <h4 id="checklist-title"><i class="fa-solid fa-signature"></i> Lexical Checklist</h4>
-            <p style="font-size: 13.5px; color: #64748b; margin-bottom: 10px;">Bandingkan hasil ucapan Anda di atas. Apakah Anda sudah berhasil menyelipkan penanda wacana dan kosakata wajib berikut?</p>
-            <ul id="eval-checklist">
-                </ul>
+            <ul id="eval-checklist"></ul>
         </div>
     </div>
 
@@ -116,7 +119,6 @@
 </div>
 
 <script>
-    // Database Terpusat: 5 Soal per Standar Internasional (Total 15 Soal Premium)
     const speakingDatabase = {
         seninSelasa: {
             name: "Cambridge Assessment Standard",
@@ -166,14 +168,15 @@
     let selectedPrompt = "";
     let recognition;
     let isRecording = false;
-    let startTime, endTime;
+    let timerInterval;
+    let timeLeft = 1200; // Untuk speaking kita hitung maju durasinya, tapi timer display sbg limit 2 menit (120 detik)
+    let speakSecs = 120;
     let accumulatedText = "";
 
     function setupSpeakingQuiz() {
-        const currentDay = new Date().getDay(); // 0 = Minggu, 1 = Senin, dst.
-        const currentDayOfMonth = new Date().getDate(); // Ambil tanggal (1-31) untuk rumus rotasi soal
+        const currentDay = new Date().getDay();
+        const currentDayOfMonth = new Date().getDate();
         
-        // 1. Memilih standar eksklusif berdasarkan hari berjalan
         if (currentDay === 1 || currentDay === 2) {
             activeTopic = speakingDatabase.seninSelasa;
         } else if (currentDay === 3 || currentDay === 4) {
@@ -182,11 +185,9 @@
             activeTopic = speakingDatabase.jumatSabtuMinggu;
         }
 
-        // 2. Memilih 1 dari 5 soal secara matematis (konsisten & berganti otomatis per tanggal)
         const promptIndex = currentDayOfMonth % 5;
         selectedPrompt = activeTopic.prompts[promptIndex];
 
-        // 3. Tampilkan hanya elemen milik standar aktif ke UI layar
         document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-calendar-check"></i> Active: ${activeTopic.name}`;
         document.getElementById('prompt-identity').innerText = `${activeTopic.name} - Task ${promptIndex + 1} of 5:`;
         document.getElementById('target-prompt').innerText = selectedPrompt;
@@ -209,39 +210,45 @@
                 accumulatedText += currentResult;
                 document.getElementById('transcriptOutput').innerText = accumulatedText;
             };
-
-            recognition.onerror = (event) => {
-                console.error("Speech recognition error", event.error);
-                if(event.error === 'not-allowed') {
-                    document.getElementById('statusLabel').innerText = "Akses Mic Ditolak!";
-                }
-            };
-        } else {
-            document.getElementById('transcriptOutput').innerText = "Browser Anda belum mendukung Speech Recognition. Disarankan menggunakan Google Chrome di Laptop atau Android.";
-            document.getElementById('micBtn').disabled = true;
-            document.getElementById('micBtn').style.background = "#cbd5e1";
         }
     }
 
     function toggleRecognition() {
+        if (!recognition) return;
         const micBtn = document.getElementById('micBtn');
         const statusLabel = document.getElementById('statusLabel');
 
         if (!isRecording) {
             accumulatedText = "";
-            document.getElementById('transcriptOutput').innerText = "Mendengarkan... Silakan mulai berbicara dalam bahasa Inggris sekarang.";
+            speakSecs = 120;
+            document.getElementById('transcriptOutput').innerText = "Mendengarkan...";
             document.getElementById('result-area').style.display = 'none';
+            document.getElementById('countdown-wrapper').className = "timer-container";
             
-            startTime = new Date();
             recognition.start();
-            
             isRecording = true;
             micBtn.className = "btn-mic recording";
             statusLabel.innerText = "Status: Sedang Merekam...";
+
+            timerInterval = setInterval(() => {
+                speakSecs--;
+                let mins = Math.floor(speakSecs / 60);
+                let secs = speakSecs % 60;
+                document.getElementById('timer-display').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                
+                if(speakSecs <= 10) {
+                    document.getElementById('countdown-wrapper').className = "timer-container warning";
+                }
+
+                if (speakSecs <= 0) {
+                    toggleRecognition(); // Force Stop jika lewat 2 menit
+                    alert("Batas maksimal waktu berbicara 2 menit untuk Long Turn telah tercapai.");
+                }
+            }, 1000);
+
         } else {
-            endTime = new Date();
+            clearInterval(timerInterval);
             recognition.stop();
-            
             isRecording = false;
             micBtn.className = "btn-mic";
             statusLabel.innerText = "Status: Selesai Merekam";
@@ -253,8 +260,8 @@
     function calculateMetrics() {
         const text = accumulatedText.trim();
         const totalWords = text === "" ? 0 : text.split(/\s+/).length;
-        const durationSeconds = Math.max(1, Math.round((endTime - startTime) / 1000));
-        const durationMinutes = durationSeconds / 60;
+        const durationSeconds = 120 - speakSecs;
+        const durationMinutes = Math.max(0.1, durationSeconds / 60);
         const wpm = Math.round(totalWords / durationMinutes);
 
         document.getElementById('m-words').innerText = totalWords;
@@ -266,22 +273,19 @@
         
         let fluencyFeedback = "";
         if (wpm < 100) {
-            fluencyFeedback = "<li style='color:#ef4444; margin-bottom:12px;'><b>Fluency Check:</b> Kecepatan bicaramu ("+wpm+" WPM) agak lambat. Kurangi jeda diam saat memikirkan ide di tengah kalimat.</li>";
+            fluencyFeedback = `<li style='color:#ef4444; margin-bottom:12px;'><b>Fluency Check:</b> Ritme bicara (${wpm} WPM) lambat. Kurangi jeda berpikir.</li>`;
         } else if (wpm >= 100 && wpm <= 160) {
-            fluencyFeedback = "<li style='color:#22c55e; margin-bottom:12px;'><b>Fluency Check:</b> Kecepatan bicara ("+wpm+" WPM) sangat ideal dan natural setara penutur asli tingkat mahir.</li>";
+            fluencyFeedback = `<li style='color:#22c55e; margin-bottom:12px;'><b>Fluency Check:</b> Ritme bicara (${wpm} WPM) sangat ideal setara native speaker.</li>`;
         } else {
-            fluencyFeedback = "<li style='color:#f59e0b; margin-bottom:12px;'><b>Fluency Check:</b> Kecepatan bicaramu ("+wpm+" WPM) terlalu terburu-buru. Kendalikan ritme agar kejelasan artikulasi (*pronunciation*) tetap terjaga.</li>";
+            fluencyFeedback = `<li style='color:#f59e0b; margin-bottom:12px;'><b>Fluency Check:</b> Anda berbicara terlalu cepat (${wpm} WPM). Kendalikan artikulasi Anda.</li>`;
         }
         checklistUl.innerHTML += fluencyFeedback;
 
-        // Menyisipkan target kriteria spesifik dari standar aktif harian
         activeTopic.checklist.forEach(item => {
             checklistUl.innerHTML += `<li>${item}</li>`;
         });
 
-        const resultArea = document.getElementById('result-area');
-        resultArea.style.display = 'block';
-        resultArea.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('result-area').style.display = 'block';
     }
 
     window.onload = setupSpeakingQuiz;
