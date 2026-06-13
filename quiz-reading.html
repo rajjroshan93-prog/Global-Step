@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reading Academic Quiz - San Aethelgard</title>
+    <title>Reading Academic Lab - San Aethelgard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&display=swap" rel="stylesheet">
@@ -15,191 +15,291 @@
             --bg-dark: #00152b;
             --card-bg: #ffffff; 
             --text-main: #334155; 
+            --reading-color: #1e3a8a;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Lato', sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
-        .quiz-card { width: 100%; max-width: 950px; background: var(--card-bg); border-radius: 20px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid rgba(0, 212, 255, 0.1); }
+        .quiz-card { width: 100%; max-width: 900px; background: var(--card-bg); border-radius: 20px; padding: 45px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
         .header-quiz { text-align: center; margin-bottom: 30px; }
         .header-quiz h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; }
-        .schedule-badge { display: inline-block; background: #e0faff; color: #0369a1; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-bottom: 15px; text-transform: uppercase; }
+        .schedule-badge { display: inline-block; background: #eff6ff; color: var(--reading-color); padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-bottom: 15px; text-transform: uppercase; border: 1px solid rgba(30, 58, 138, 0.2); }
         
-        .passage-box { background: #f8fafc; padding: 35px; border-radius: 12px; border-left: 6px solid var(--primary); margin-bottom: 35px; font-size: 15px; line-height: 1.8; text-align: justify; max-height: 500px; overflow-y: auto; box-shadow: inset 0 2px 8px rgba(0,0,0,0.05); }
-        .passage-box h3 { font-family: 'Poppins', sans-serif; margin-bottom: 15px; color: var(--primary); font-size: 22px; text-transform: uppercase; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
-        .passage-box p { margin-bottom: 18px; text-indent: 30px; }
+        /* Passage Box */
+        .passage-box { background: #f8fafc; padding: 30px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 35px; line-height: 1.7; font-size: 15.5px; color: #1e293b; text-align: justify; }
+        .passage-box h3 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
 
-        .question-box { margin-bottom: 30px; background: #fff; padding: 25px; border: 1px solid #e2e8f0; border-radius: 12px; }
-        .question-title { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 15px; line-height: 1.5; }
-        .options-list { display: flex; flex-direction: column; gap: 12px; }
-        .option-item { display: flex; align-items: center; padding: 15px 20px; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: 600; background: #fff; transition: 0.2s; }
-        .option-item:hover { border-color: var(--accent); background: #f0fdff; }
-        .option-item input[type="radio"] { display: none; }
-        .option-item.selected { background: #e0faff; border-color: var(--accent); color: var(--primary); }
+        /* Form Soal */
+        .question-section { margin-bottom: 30px; }
+        .question-block { background: #ffffff; border: 1px solid #e2e8f0; padding: 20px; border-radius: 10px; margin-bottom: 15px; }
+        .question-block p { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 12px; }
         
-        .btn-submit { width: 100%; background: var(--primary); color: white; border: 2px solid var(--primary); padding: 16px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 10px; }
-        .btn-submit:hover { background: var(--accent); color: var(--primary); border-color: var(--accent); }
-        
-        #result-area { margin-top: 30px; padding: 30px; border-radius: 12px; display: none; }
-        .success-score { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
-        .review-box { background: rgba(255,255,255,0.8); padding: 20px; border-radius: 8px; margin-top: 20px; color: #1e293b; font-size: 14px; line-height: 1.6; }
-        
-        .back-home { display: inline-block; margin-top: 30px; text-decoration: none; color: #94a3b8; font-weight: 700; font-size: 14px; transition: 0.2s; text-transform: uppercase; }
+        .input-gap { width: 100%; max-width: 300px; padding: 10px 15px; border: 2px solid #cbd5e1; border-radius: 6px; font-size: 14px; font-family: 'Lato', sans-serif; transition: 0.2s; color: #0f172a; font-weight: 700; }
+        .input-gap:focus { border-color: var(--accent); outline: none; }
+
+        .btn-submit { width: 100%; background: var(--primary); color: white; border: none; padding: 16px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .btn-submit:hover { background: var(--accent); color: var(--primary); }
+
+        /* Score & Feedback Panel */
+        #result-area { padding: 30px; border-radius: 12px; display: none; background: #f0fdf4; border: 1px solid #bbf7d0; margin-top: 25px; text-align: center; }
+        #score-text { font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 700; color: #166534; }
+        .review-box { background: white; padding: 20px; border-radius: 10px; border: 1px solid #e2e8f0; margin-top: 20px; text-align: left; }
+        .review-box h4 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 15px; margin-bottom: 10px; }
+        .review-text { font-size: 14px; color: #475569; line-height: 1.6; white-space: pre-line; }
+
+        .back-home { display: inline-block; margin-top: 35px; text-decoration: none; color: #64748b; font-weight: 700; font-size: 13px; text-transform: uppercase; transition: 0.2s; }
         .back-home:hover { color: var(--accent); }
-        .footer-credit { font-size: 11px; color: #64748b; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 700; text-align: center; margin-top: 25px; }
-        .footer-credit a { color: var(--accent); text-decoration: none; margin-left: 4px; }
+        .footer-credit { font-size: 11px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px; text-transform: uppercase; font-weight: 700; text-align: center; margin-top: 40px; }
+        .footer-credit a { color: var(--accent); text-decoration: none; }
     </style>
 </head>
 <body>
 
 <div class="quiz-card">
     <div class="header-quiz">
-        <div class="schedule-badge" id="schedule-info"><i class="fa-solid fa-sync fa-spin"></i> Mensinkronisasi Sistem...</div>
-        <h2>San Aethelgard: Full-Length Reading Passage</h2>
-        <p style="color: #64748b; font-size: 15px; margin-top: 5px;">Gunakan teknik Skimming dan Scanning tingkat lanjut untuk menemukan esensi kebenaran teks.</p>
+        <div class="schedule-badge" id="schedule-info">Memuat Artikel...</div>
+        <h2>San Aethelgard Reading Academic Lab</h2>
+        <p style="color: #64748b; font-size: 14.5px; margin-top: 5px;">Baca teks akademik di bawah ini dengan teliti, kemudian isi bagian rumpang atau jawab pertanyaannya secara tepat.</p>
     </div>
 
-    <div class="passage-box" id="passage-container"></div>
+    <div class="passage-box">
+        <h3 id="passage-title">Reading Title</h3>
+        <p id="passage-text">Loading passage text...</p>
+    </div>
 
-    <form id="dynamicQuizForm" onsubmit="evaluateQuiz(event)">
-        <div id="questions-container"></div>
-        <button type="submit" class="btn-submit">SUBMIT & VERIFIKASI AKURASI JAWABAN</button>
-    </form>
+    <div class="question-section">
+        <h3 id="question-identity" style="font-family: 'Poppins', sans-serif; font-size: 15px; color: var(--primary); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px;">Questions:</h3>
+        <div id="quiz-form">
+            </div>
+        <button class="btn-submit" onclick="checkAnswers()">Periksa Jawaban</button>
+    </div>
 
-    <div id="result-area" class="success-score">
-        <h3 id="scoreTitle" style="font-size: 22px; margin-bottom: 5px; font-family: 'Poppins', sans-serif;"></h3>
-        <p id="bandEstimate" style="font-size: 16px; font-weight: 700;"></p>
-        <div class="review-box" id="explanationBox"></div>
+    <div id="result-area">
+        <div id="score-text">Skor Anda: 0 / 0</div>
+        <div class="review-box">
+            <h4><i class="fa-solid fa-square-poll-vertical"></i> Answer Key Analytics:</h4>
+            <div id="review-content" class="review-text"></div>
+        </div>
     </div>
 
     <center><a href="dashboard.html" class="back-home"><i class="fa-solid fa-arrow-left"></i> Kembali ke Dashboard</a></center>
 </div>
 
 <div class="footer-credit">
-    Created by San | <a href="https://www.instagram.com/sann_n228?igsh=MWo3M3g0NWcwZ2h0Yg==" target="_blank"><i class="fa-brands fa-instagram"></i> @sann_n228</a>
+    Created by San | <a href="https://www.instagram.com/sanaethelgard?igsh=N29hZWphOTdmbzZy" target="_blank"><i class="fa-brands fa-instagram"></i> @sanaethelgard</a>
 </div>
 
 <script>
+    // Database Komplit: 5 Paket Soal per Standar Internasional (Total 15 Artikel Reading Premium)
     const readingDatabase = {
-        paketSeninSelasa: {
-            name: "Cambridge Assessment Standard (Jadwal: Senin - Selasa)",
-            passage: `<h3>The Evolution and Morphological Dynamics of Megacities</h3>
-            <p>In the contemporary globalized era, the phenomenon of the 'megacity'—defined specifically as an unbroken urban agglomeration supporting a human population in excess of ten million inhabitants—has fundamentally rewritten the demographic and structural landscape of our planet. At the dawn of the twentieth century, the world was predominantly rural, and only a minimal handful of Western industrial hubs, most notably London and New York, possessed the intricate economic architecture and dense capital required to draw such unprecedented concentrations of humanity. These early technological epicenters expanded slowly, mirroring the gradual developments of the First and Second Industrial Revolutions, setting a blueprint for metropolitan administrative governance.</p>
-            <p>However, the latter chronological half of the century witnessed a highly asymmetrical shift in global development. Driven primarily by aggressive rapid industrialization, massive agrarian displacement, and socioeconomic polarization in developing countries, the demographic epicenter of megacity growth shifted away from Western capital markets towards Asia, Africa, and Latin America. Cities like Tokyo, Mumbai, and São Paulo expanded at velocity rates that municipal administrative infrastructures could rarely match. Consequently, contemporary urban planners argue that while these colossal hubs function effectively as engines of gross domestic product and centers of cultural innovation, they simultaneously present severe logistical, existential, and environmental dilemmas.</p>
-            <p>The core issue lies in infrastructure elasticity. When population influx outpaces municipal budgetary expansion, the urban tissue fractures into vast informal settlements, leading to severe public health challenges, systemic water scarcity, and highly congested mass transit frameworks. For instance, empirical data indicates that in certain South Asian megacities, approximately forty percent of urban dwellers occupy unregulated zones lacking fundamental municipal sewage grids. Furthermore, the microclimatic phenomenon known as the 'urban heat island' effect—where built environments constructed of concrete and asphalt trap thermal radiation—has drastically elevated municipal energy demands, driving localized temperatures up by an alarming five degrees Celsius.</p>
-            <p>Despite these critical warnings, optimistic economic theorists offer an alternative perspective based on resource maximization. They assert that the extreme density of human capital creates an unparalleled ecosystem of transactional efficiency. Within this framework, vital public services, ranging from healthcare distribution to digital telecommunications, can theoretically be executed at a substantially lower per-capita expense compared to sparsely populated agricultural territories. Moreover, urgency has forced megacities to become pioneers of modern sustainable technologies, introducing innovations like vertical aero-farming and high-capacity zero-emission transit networks. Ultimately, the future equilibrium of these human hives depends not on preventing inevitable migration, but on the sophistication of administrative foresight and smart-city network integrations.</p>`,
-            questions: [
-                { id: "m1", q: "At the beginning of the twentieth century, London and New York were the only urban areas on earth containing over ten million residents.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "C", note: "NOT GIVEN: Paragraf 1 menyatakan kedua kota tersebut menonjol (*notably*) memiliki infrastruktur penarik massa, namun teks tidak pernah membatasi secara mutlak bahwa tidak ada kota lain sama sekali di dunia." },
-                { id: "m2", q: "The massive expansion of developing megacities in the late twentieth century was heavily accelerated by agricultural disruptions.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "A", note: "TRUE: Paragraf 2 menyatakan pergeseran pertumbuhan dipicu oleh 'agrarian displacement' (gangguan/pergeseran sektor pertanian pedesaan)." },
-                { id: "m3", q: "The 'urban heat island' effect reduces the financial expenditure spent by a city's municipal power grid.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Paragraf 3 menyatakan efek ini 'elevated municipal energy demands' (meningkatkan permintaan energi), yang berarti menaikkan biaya pengeluaran, bukan mengurangi." },
-                { id: "m4", q: "Some economists argue that providing essential public services is financially cheaper per person in dense megacities than in rural zones.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "A", note: "TRUE: Paragraf 4 mengonfirmasi bahwa pelayanan publik dapat dieksekusi pada 'substantially lower per-capita expense' (biaya per orang yang lebih rendah) dibanding area pedesaan." }
+        seninSelasa: {
+            name: "Cambridge Assessment Standard",
+            packages: [
+                {
+                    title: "The Evolution of Urban Architecture",
+                    text: "Modern urban architecture underwent a massive shift during the late nineteenth century. The invention of structural steel allowed engineers to design skyscrapers, completely reshaping city skylines. Prior to this innovation, buildings relied strictly on heavy masonry walls, which severely limited their maximum heights. Consequently, commercial spaces expanded rapidly upward rather than outward, creating dense financial hubs.",
+                    questions: [
+                        { label: "1. What material innovation allowed for the construction of skyscrapers?", answer: "steel" },
+                        { label: "2. Before skyscrapers, building heights were limited by heavy ________ walls.", answer: "masonry" }
+                    ]
+                },
+                {
+                    title: "Agricultural Technological Shift",
+                    text: "Automated irrigation systems have dramatically optimized water conservation indexes across global farmlands. By distributing exact water quantities via micro-drip networks, farms reduce evaporation loss by nearly forty percent. This sustainable method ensures fields receive optimal hydration without draining regional aquifers.",
+                    questions: [
+                        { label: "1. Micro-drip networks reduce evaporation loss by ________ percent.", answer: "40" },
+                        { label: "2. These systems protect regional ________ from getting drained.", answer: "aquifers" }
+                    ]
+                },
+                {
+                    title: "Marine Ecosystem Stressors",
+                    text: "Coral bleaching occurs primarily due to elevated thermal pressure within ocean currents. When temperatures rise by even one degree Celsius, symbiotic algae leave the coral hosts, stripping them of vital nutrients and vibrant coloration. If the thermal stress persists for over six weeks, the coral structure faces irreversible mortality.",
+                    questions: [
+                        { label: "1. Coral bleaching is triggered by elevated ________ pressure.", answer: "thermal" },
+                        { label: "2. Corals face irreversible mortality if thermal stress lasts over ________ weeks.", answer: "6" }
+                    ]
+                },
+                {
+                    title: "Industrial Robotic Integration",
+                    text: "Automated assembly lines rely heavily on precise robotic arms calibrated to handle high-frequency manufacturing routines. These mechanical systems reduce manufacturing defects to less than two percent. However, integrating this infrastructure demands an initial capital injection of roughly half a million dollars.",
+                    questions: [
+                        { label: "1. Robotic arms reduce manufacturing defects to less than ________ percent.", answer: "2" },
+                        { label: "2. Integrating this setup requires a substantial initial ________ injection.", answer: "capital" }
+                    ]
+                },
+                {
+                    title: "Historical Literacy Demographics",
+                    text: "In medieval Europe, literacy rates remained highly concentrated within religious monasteries. Monks spent decades manually transcribing Latin manuscripts, preserving precious historical logs. Ordinary citizens rarely possessed access to educational infrastructure until Gutenberg introduced the movable printing press in fourteen-forty.",
+                    questions: [
+                        { label: "1. In medieval Europe, literacy was mostly found inside ________.", answer: "monasteries" },
+                        { label: "2. The movable printing press was introduced in the year ________.", answer: "1440" }
+                    ]
+                }
             ]
         },
-        paketRabuKamis: {
-            name: "Oxford International Examination Standard (Jadwal: Rabu - Kamis)",
-            passage: `<h3>The Epistemological and Paradigm Shift in Artificial Intelligence</h3>
-            <p>The dawning decades of the twenty-first century have been distinctly characterized by an exponential acceleration in machine learning capabilities, rapidly transitioning artificial intelligence (AI) from speculative speculative fiction into an inescapable structural foundation of modern society. To fully comprehend this computational revolution, one must examine the foundational methodologies of early computational engineering. Early computing pioneers relied almost exclusively on symbolic AI and 'expert systems'—rigid architectures governed entirely by deterministic, human-authored conditional rules. These legacy systems encoded explicit human expertise into static databases, allowing computers to solve logical problems with high speed.</p>
-            <p>While these deterministic models achieved immense proficiency within highly structured, closed logical environments—such as executing complex mathematical operations or defeating human grandmasters at chess—they proved completely inadequate when confronted with the unmapped, chaotic ambiguity of natural human language or real-world visual identification. The structural limitations of human programming became a wall, as humans could not write enough rules to encapsulate the fluid nuances of human interaction. The contemporary renaissance of machine intelligence avoids this obstacle by utilizing deep neural networks: computational frameworks inspired by biological neurology, designed to autonomously extract underlying patterns from vast datasets without direct human rule-authoring.</p>
-            <p>This paradigm shift has sparked intense societal anxiety regarding labor economics and systemic corporate displacement. Sociologists note that while historical technological revolutions (such as the introduction of the steam engine or assembly lines) primarily automated manual, repetitive physical labor, the generative AI wave poses an immediate existential threat to high-level cognitive and creative professions. Algorithms trained on global archives can now compile comprehensive legal briefs, write operational computer code, and generate complex medical diagnostic matrices with a velocity that renders traditional white-collar productivity metrics completely obsolete.</p>
-            <p>Paradoxically, this cognitive automation has significantly inverted the economic valuation of tactile, non-routine physical work. Occupations demanding complex fine-motor skills, spatial reasoning, and real-time physical adaptability—such as specialized plumbing or surgical nursing—remain highly insulated from automation due to the immense financial costs associated with advanced robotics. Moving forward, academic leaders suggest that the long-term integration of AI will result in workplace augmentation rather than complete human elimination, shifting the human role toward oversight, systemic ethics, and emotional orchestration.</p>`,
-            questions: [
-                { id: "a1", q: "Legacy expert computing architectures struggled when dealing with unstructured data like human speech.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "A", note: "TRUE: Paragraf 2 menjelaskan bahwa sistem lama 'proved completely inadequate' (sama sekali tidak memadai) saat berhadapan dengan ambiguitas bahasa manusia alami." },
-                { id: "a2", q: "Modern deep neural networks require programmers to explicitly write code for every pattern they recognize.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Paragraf 2 menyatakan neural networks bekerja secara 'autonomously extract patterns... without direct human rule-authoring' (mengekstrak pola mandiri tanpa penulisan aturan manusia)." },
-                { id: "a3", q: "Generative artificial intelligence models duplicate the exact economic effects of the nineteenth-century steam engine revolution.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Paragraf 3 menyatakan AI berbeda dengan revolusi terdahulu karena AI menyerang pekerjaan kognitif/kreatif, bukan pekerjaan fisik/manual." },
-                { id: "a4", q: "Manual tactile jobs requiring non-routine physical work have become economically less valuable due to software advances.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Paragraf 4 menyatakan kemajuan ini 'inverted the economic valuation' (membalikkan nilai ekonomi) sehingga pekerjaan fisik manual non-rutin justru bernilai tinggi karena sulit digantikan robot secara murah." }
+        rabuKamis: {
+            name: "Oxford International Standard",
+            packages: [
+                {
+                    title: "The Dynamics of Renewable Energy Networks",
+                    text: "The integration of photovoltaic cells into localized power grids requires advanced storage battery systems. Because solar energy production peaks during midday hours, power grids face severe overload risks if surplus energy is not captured immediately. To mitigate this volatility, electrical engineering firms recommend installing lithium-ion battery banks capable of storing up to five hundred kilowatts.",
+                    questions: [
+                        { label: "1. Solar energy production reaches its peak during ________ hours.", answer: "midday" },
+                        { label: "2. Recommended lithium-ion battery banks can store up to ________ kilowatts.", answer: "500" }
+                    ]
+                },
+                {
+                    title: "Cognitive Development Factors",
+                    text: "Neuroscientists assert that language acquisition speed peaks before the age of twelve. During this critical window, a child's cerebral cortex displays maximum plasticity, forming new synaptic pathways with minimal cognitive friction. After puberty, learning secondary languages becomes significantly more challenging due to structural neural stabilization.",
+                    questions: [
+                        { label: "1. Language acquisition speed peaks before the age of ________.", answer: "12" },
+                        { label: "2. Neural plasticity drops after puberty because of structural ________.", answer: "stabilization" }
+                    ]
+                },
+                {
+                    title: "Deep-Sea Geothermal Vents",
+                    text: "Hydrothermal vents located at ocean floors emit superheated water rich in hydrogen sulfide. Specialized bacteria thrive around these vents, converting chemical compounds into biological energy through chemosynthesis. This process supports a bizarre food chain entirely independent of sunlight.",
+                    questions: [
+                        { label: "1. Hydrothermal vents emit water rich in hydrogen ________.", answer: "sulfide" },
+                        { label: "2. Bacteria generate biological energy down there through ________.", answer: "chemosynthesis" }
+                    ]
+                },
+                {
+                    title: "Macroeconomic Inflation Controls",
+                    text: "Central banks manipulate interest rates to regulate macroeconomic inflation risks. When consumer markets overheat, fiscal boards raise the benchmark rate to discourage excessive borrowing. Historically, maintaining a baseline inflation index of two percent signifies a stable, expanding national economy.",
+                    questions: [
+                        { label: "1. Fiscal boards raise interest rates to discourage excessive ________.", answer: "borrowing" },
+                        { label: "2. A stable national economy targets an inflation index of ________ percent.", answer: "2" }
+                    ]
+                },
+                {
+                    title: "Glacial Melting Repercussions",
+                    text: "Satellite imagery confirms that Antarctic ice sheets are discharging approximately one hundred and fifty billion tons of ice annually. This immense volume contributes directly to rising global sea levels, threatening coastal infrastructure. Climatologists project that low-lying islands face severe submersion risks by the year twenty-one hundred.",
+                    questions: [
+                        { label: "1. Antarctic ice sheets lose around ________ billion tons of ice annually.", answer: "150" },
+                        { label: "2. Low-lying islands face major submersion threats by the year ________.", answer: "2100" }
+                    ]
+                }
             ]
         },
-        paketJumatSabtuMinggu: {
-            name: "ETS TOEFL & British IELTS Fusion Standard (Jadwal: Jumat - Minggu)",
-            passage: `<h3>The Hydro-Architectural Engineering of the Ancient Maya Lowlands</h3>
-            <p>The monumental urban citadels engineered by the ancient Maya civilization across the tropical Mesoamerican lowlands continue to challenge long-standing historical assumptions regarding the technological limits of pre-industrial societies. Operating entirely without the benefit of large draft animals, wheeled machinery, or hard metallurgy, Maya architects and stone masons constructed immense civic-ceremonial spaces dominated by towering limestone step-pyramids. For decades, traditional archaeology viewed these sites as isolated jungle temples. However, recent airborne LiDAR (Light Detection and Ranging) surveys have completely transformed this narrative, revealing that these urban centers were closely linked nodes within a highly sophisticated regional infrastructure network.</p>
-            <p>This macro-infrastructure relied fundamentally on advanced hydrologic manipulation, a critical environmental adaptation required to combat the region's intense, highly unpredictable seasonal droughts. The Mesoamerican climate created a dangerous dynamic: months of torrential downpours followed by periods of complete dehydration, exacerbated by a porous limestone bedrock that allowed surface water to sink deep into underground caves, out of human reach. To secure survival, Maya hydraulic engineers transformed their urban layouts into massive rainwater harvesting mechanisms. They lined plazas and roadways with specialized plaster compounds designed to prevent water seepage and graded the stone surfaces to direct all rainfall into artificial reservoirs.</p>
-            <p>In central urban zones like Tikal, these engineered reservoirs were massive, holding millions of liters of clean water. Microscopic analysis of soil sediments reveals that the Maya implemented sophisticated multi-stage filtration systems, utilizing imported quartz sand and volcanic ash to purify the water before it reached communal basins. Furthermore, this architectural mastery served a deeply political function. Because civic elites and religious rulers controlled the physical infrastructure of water retention, they could strictly regulate its distribution during periods of severe drought. This administrative monopoly over a life-saving resource effectively reinforced their divine political authority and cemented dynamic hegemony over the populace.</p>
-            <p>Beyond water engineering, the precise structural placement of Maya palaces and temples reflected a profound understanding of celestial mechanics. Key architectural markers were aligned with mathematical accuracy to track solar movements, solstices, and equinoxes. This calculated alignment allowed regular citizens to visually track the agricultural calendar, indicating exactly when to plant crops. Therefore, Maya architecture achieved a brilliant integration of practical engineering, resource management, political control, and cosmic religious justification, ensuring their structural dominance for centuries.</p>`,
-            questions: [
-                { id: "v1", q: "Early traditional archaeologists correctly understood the highly interconnected nature of ancient Maya cities.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Paragraf 1 menyatakan arkeolog tradisional dulu menganggap situs Maya sebagai kuil hutan terisolasi (*isolated jungle temples*). Hubungan antarkota baru terbongkar setelah ada teknologi LiDAR modern." },
-                { id: "v2", q: "The natural geology of the Mesoamerican lowlands made it easy for surface water to remain accessible on the ground.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Paragraf 2 menyatakan batuan kapur porous (*porous limestone*) justru membuat air permukaan langsung amblas merembes ke bawah tanah, menyulitkan akses air." },
-                { id: "v3", q: "Maya engineers imported natural volcanic elements to assist in their water purification processes.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "A", note: "TRUE: Paragraf 3 memverifikasi bahwa mereka menggunakan pasir kuarsa dan abu vulkanik (*volcanic ash*) impor sebagai sistem filtrasi air." },
-                { id: "v4", q: "The geometric alignment of Maya pyramids was used exclusively for agricultural tracking rather than religious ceremonies.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Paragraf 4 menyimpulkan bahwa arsitektur mereka merupakan integrasi antara keduanya, yakni fungsi agrikultur praktis sekaligus justifikasi keagamaan kosmologis (*cosmic religious justification*)." }
+        jumatSabtuMinggu: {
+            name: "IELTS British Council Standard",
+            packages: [
+                {
+                    title: "The Biodiversity of Tropical Rainforests",
+                    text: "Tropical rainforest canopies house more than fifty percent of the planet's terrestrial wildlife species. The unique vertical stratification of the canopy creates micro-habitats with distinct humidity indices. Unfortunately, logging operations deforest roughly ten thousand hectares every single week, disrupting evolutionary cycles and accelerating global mass extinction rates.",
+                    questions: [
+                        { label: "1. Rainforest canopies house more than ________ percent of terrestrial species.", answer: "50" },
+                        { label: "2. Logging operations destroy approximately ________ thousand hectares per week.", answer: "10" }
+                    ]
+                },
+                {
+                    title: "Aerodynamic Aviation Innovations",
+                    text: "Modern commercial aircraft reduce fuel consumption indexes by shaping wingtips into winglets. These structures disrupt drag vortices formed at the ends of wings, increasing overall aerodynamic lift. Engineering tests reveal a consistent five percent reduction in jet fuel demands over trans-oceanic routes.",
+                    questions: [
+                        { label: "1. Winglets help aircraft increase overall aerodynamic ________.", answer: "lift" },
+                        { label: "2. This structural modification yields a ________ percent saving in jet fuel.", answer: "5" }
+                    ]
+                },
+                {
+                    title: "Psychological Focus Metrics",
+                    text: "Studies in workplace psychology prove that continuous digital distractions reduce an employee's focused deep-work window to just twenty minutes. Once interrupted, the human brain requires an average of twenty-three minutes to reclaim its baseline focus level, diminishing corporate output efficiency.",
+                    questions: [
+                        { label: "1. Digital distractions cut an employee's deep-work window down to ________ minutes.", answer: "20" },
+                        { label: "2. Reclaiming focus after a distraction takes an average of ________ minutes.", answer: "23" }
+                    ]
+                },
+                {
+                    title: "Ancient Commercial Trade Routes",
+                    text: "The ancient Silk Road spanned over six thousand kilometers, linking East Asian markets with European empires. Apart from luxury fabrics like silk, merchants traded heavy loads of rare spices and glasswares. This continuous physical contact catalyzed immense cultural assimilation across the Eurasian continent.",
+                    questions: [
+                        { label: "1. The ancient Silk Road spanned over ________ thousand kilometers.", answer: "6" },
+                        { label: "2. The trade route facilitated massive cultural ________ across Eurasia.", answer: "assimilation" }
+                    ]
+                },
+                {
+                    title: "The Physics of Quantum Computing",
+                    text: "Unlike classical processors using binary bits, quantum computers utilize qubits that exist in a state of superposition. This physical phenomenon allows qubits to process massive variable computations simultaneously. To achieve stability, the quantum processor core must be refrigerated down to zero Kelvin.",
+                    questions: [
+                        { label: "1. Qubits can process variables simultaneously due to ________.", answer: "superposition" },
+                        { label: "2. Stable quantum processor operations require a core temperature of ________ Kelvin.", answer: "0" }
+                    ]
+                }
             ]
         }
     };
 
-    let activeQuestions = [];
+    let activeStandard = {};
+    let activePackage = {};
 
-    function setupQuiz() {
-        const currentDay = new Date().getDay(); // 0 = Minggu, 1 = Senin, dst
-        let selectedBlock;
-
+    function setupReadingQuiz() {
+        const currentDay = new Date().getDay(); // 0 = Minggu, 1 = Senin, dst.
+        const currentDayOfMonth = new Date().getDate(); // Ambil tanggal (1-31)
+        
+        // 1. Pilih standar berdasarkan hari berjalan
         if (currentDay === 1 || currentDay === 2) {
-            selectedBlock = readingDatabase.paketSeninSelasa;
+            activeStandard = readingDatabase.seninSelasa;
         } else if (currentDay === 3 || currentDay === 4) {
-            selectedBlock = readingDatabase.paketRabuKamis;
+            activeStandard = readingDatabase.rabuKamis;
         } else {
-            selectedBlock = readingDatabase.paketJumatSabtuMinggu;
+            activeStandard = readingDatabase.jumatSabtuMinggu;
         }
 
-        document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-calendar-check"></i> ${selectedBlock.name}`;
-        document.getElementById('passage-container').innerHTML = selectedBlock.passage;
-        activeQuestions = selectedBlock.questions;
-        renderQuestions();
-    }
+        // 2. Pilih 1 dari 5 paket bacaan via sisa bagi tanggal
+        const packageIndex = currentDayOfMonth % 5;
+        activePackage = activeStandard.packages[packageIndex];
 
-    function renderQuestions() {
-        const container = document.getElementById('questions-container');
-        container.innerHTML = "";
-        activeQuestions.forEach((item, index) => {
-            let optionsHTML = '';
-            const labels = ['A', 'B', 'C'];
-            item.options.forEach((opt, oIdx) => {
-                optionsHTML += `
-                    <label class="option-item" onclick="highlightOption(this, '${item.id}')">
-                        <input type="radio" name="${item.id}" value="${labels[oIdx]}" required> 
-                        ${labels[oIdx]}. ${opt}
-                    </label>
-                `;
-            });
-            container.innerHTML += `
-                <div class="question-box">
-                    <div class="question-title">${index + 1}. ${item.q}</div>
-                    <div class="options-list">${optionsHTML}</div>
+        // 3. Render Elemen ke UI Layar HP/Laptop
+        document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-book-open"></i> Active: ${activeStandard.name}`;
+        document.getElementById('passage-title').innerText = activePackage.title;
+        document.getElementById('passage-text').innerText = activePackage.text;
+        document.getElementById('question-identity').innerText = `${activeStandard.name} - Reading Package ${packageIndex + 1} of 5:`;
+
+        const formContainer = document.getElementById('quiz-form');
+        formContainer.innerHTML = "";
+        activePackage.questions.forEach((q, index) => {
+            formContainer.innerHTML += `
+                <div class="question-block">
+                    <p>${q.label}</p>
+                    <input type="text" id="q-${index}" class="input-gap" placeholder="Ketik jawaban di sini...">
                 </div>
             `;
         });
     }
 
-    function highlightOption(element, groupName) {
-        const options = element.parentElement.querySelectorAll('.option-item');
-        options.forEach(opt => opt.classList.remove('selected'));
-        element.classList.add('selected');
-    }
+    function checkAnswers() {
+        let correctCount = 0;
+        const totalQuestions = activePackage.questions.length;
 
-    function evaluateQuiz(event) {
-        event.preventDefault();
-        const form = document.getElementById('dynamicQuizForm');
-        let correct = 0;
-        let reviewHTML = '<strong>Bedah Logika Kasus & Analisis Pengecoh Internasional:</strong><br><br>';
+        activePackage.questions.forEach((q, index) => {
+            const userInput = document.getElementById(`q-${index}`).value.trim().toLowerCase();
+            const inputField = document.getElementById(`q-${index}`);
 
-        activeQuestions.forEach((item, index) => {
-            const userAns = form.elements[item.id].value;
-            if (userAns === item.ans) correct++;
-            reviewHTML += `<b>Pertanyaan ${index + 1}:</b> ${item.note}<br><br>`;
+            if (userInput === q.answer.toLowerCase()) {
+                correctCount++;
+                inputField.style.borderColor = "#22c55e";
+                inputField.style.backgroundColor = "#f0fdf4";
+            } else {
+                inputField.style.borderColor = "#ef4444";
+                inputField.style.backgroundColor = "#fff5f5";
+            }
         });
 
-        const resultArea = document.getElementById('result-area');
-        document.getElementById('scoreTitle').innerText = `Skor Akhir Anda: Benar ${correct} dari ${activeQuestions.length} Soal`;
+        document.getElementById('score-text').innerText = `Skor Anda: ${correctCount} / ${totalQuestions}`;
         
-        let band = "";
-        if (correct === activeQuestions.length) band = "Band 8.5 - 9.0 (C2 Expert Operational Academic)";
-        else if (correct >= 2) band = "Band 6.5 - 7.5 (B2/C1 Competent International Level)";
-        else band = "Band < 5.5 (B1 Threshold Operational Level)";
+        // Tampilkan kunci jawaban analisis teks
+        let reviewHTML = "";
+        activePackage.questions.forEach((q, index) => {
+            reviewHTML += `Question ${index + 1} Key Answer: <b>"${q.answer}"</b>\n`;
+        });
+        document.getElementById('review-content').innerHTML = reviewHTML;
 
-        document.getElementById('bandEstimate').innerText = `Kualifikasi Hasil: ${band}`;
-        document.getElementById('explanationBox').innerHTML = reviewHTML;
+        const resultArea = document.getElementById('result-area');
         resultArea.style.display = 'block';
         resultArea.scrollIntoView({ behavior: 'smooth' });
     }
 
-    window.onload = setupQuiz;
+    window.onload = setupReadingQuiz;
 </script>
 </body>
 </html>
