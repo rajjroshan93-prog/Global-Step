@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speaking Academic Simulator - San Aethelgard</title>
+    <title>Writing Academic Simulator - San Aethelgard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&display=swap" rel="stylesheet">
@@ -15,6 +15,7 @@
             --bg-dark: #00152b;
             --card-bg: #ffffff; 
             --text-main: #334155; 
+            --writing-color: #d4af37;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Lato', sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
@@ -22,32 +23,23 @@
         .quiz-card { width: 100%; max-width: 900px; background: var(--card-bg); border-radius: 20px; padding: 45px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
         .header-quiz { text-align: center; margin-bottom: 30px; }
         .header-quiz h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; }
-        .schedule-badge { display: inline-block; background: #e0fdf4; color: #166534; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-bottom: 15px; text-transform: uppercase; border: 1px solid #bbf7d0; }
+        .schedule-badge { display: inline-block; background: #fffdf0; color: #b45309; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-bottom: 15px; text-transform: uppercase; border: 1px solid #fef08a; }
         
-        .prompt-box { background: #f8fafc; padding: 30px; border-radius: 12px; border-left: 6px solid #166534; margin-bottom: 30px; }
+        .prompt-box { background: #f8fafc; padding: 30px; border-radius: 12px; border-left: 6px solid var(--writing-color); margin-bottom: 30px; }
         .prompt-box h3 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
-        .prompt-text { font-size: 17px; font-weight: 700; line-height: 1.6; color: #0f172a; }
+        .prompt-text { font-size: 16.5px; font-weight: 700; line-height: 1.6; color: #0f172a; }
 
-        .control-panel { text-align: center; margin-bottom: 30px; }
-        .btn-mic { background: #ef4444; color: white; border: none; width: 80px; height: 80px; border-radius: 50px; font-size: 28px; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3); }
-        .btn-mic.recording { background: #22c55e; animation: pulse 1.5s infinite; box-shadow: 0 10px 20px rgba(34, 197, 94, 0.4); }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.08); }
-            100% { transform: scale(1); }
-        }
+        .textarea-box { width: 100%; min-height: 280px; padding: 20px; border: 2px solid #cbd5e1; border-radius: 12px; font-family: 'Lato', sans-serif; font-size: 15px; line-height: 1.6; color: #1e293b; resize: vertical; margin-bottom: 10px; transition: 0.3s; }
+        .textarea-box:focus { border-color: var(--accent); outline: none; }
 
-        .status-text { font-size: 14px; font-weight: 700; color: #64748b; margin-top: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .counter-panel { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; font-size: 13.5px; font-weight: 700; color: #64748b; text-transform: uppercase; }
+        .word-badge { background: #f1f5f9; padding: 6px 14px; border-radius: 20px; color: var(--primary); }
+        .word-badge.ready { background: #dcfce7; color: #15803d; }
 
-        .transcript-box { width: 100%; min-height: 120px; background: #fafafa; border: 2px dashed #cbd5e1; border-radius: 12px; padding: 20px; font-size: 16px; line-height: 1.6; color: #1e293b; margin-bottom: 30px; font-style: italic; }
+        .btn-submit { width: 100%; background: var(--primary); color: white; border: none; padding: 16px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.3s; }
+        .btn-submit:hover { background: var(--accent); color: var(--primary); }
 
-        #result-area { padding: 35px; border-radius: 14px; display: none; background: #f8fafc; border: 1px solid #e2e8f0; margin-top: 20px; }
-        .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
-        .metric-card { background: white; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid #e2e8f0; }
-        .metric-card div:first-child { font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; }
-        .metric-card div:last-child { font-size: 22px; font-weight: 700; color: var(--primary); margin-top: 5px; }
-
+        #result-area { padding: 35px; border-radius: 14px; display: none; background: #f8fafc; border: 1px solid #e2e8f0; margin-top: 30px; }
         .checklist-box { background: white; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-top: 20px; }
         .checklist-box h4 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 15px; margin-bottom: 12px; border-bottom: 2px solid #f1f5f9; padding-bottom: 6px; }
         .checklist-box ul { margin-left: 20px; font-size: 14px; color: #475569; line-height: 1.7; }
@@ -62,47 +54,31 @@
 
 <div class="quiz-card">
     <div class="header-quiz">
-        <div class="schedule-badge" id="schedule-info">Mempersiapkan Standar Ujian...</div>
-        <h2>San Aethelgard Audio Lab</h2>
-        <p style="color: #64748b; font-size: 14.5px; margin-top: 5px;">Klik tombol mikrofon merah, bicaralah dalam bahasa Inggris, lalu klik tombol hijau untuk mengecek transkrip dan kelancaran Anda.</p>
+        <div class="schedule-badge" id="schedule-info">Mempersiapkan Topik Esai...</div>
+        <h2>San Aethelgard Writing Academic Lab</h2>
+        <p style="color: #64748b; font-size: 14.5px; margin-top: 5px;">Tuliskan esai akademik Anda secara terstruktur berdasarkan murni argumen kritis analitis di bawah ini.</p>
     </div>
 
     <div class="prompt-box">
-        <h3>Active Exam Prompt:</h3>
-        <p class="prompt-text" id="target-prompt">Loading speaking prompt...</p>
+        <h3 id="prompt-identity">Active Essay Prompt:</h3>
+        <p class="prompt-text" id="target-prompt">Loading writing prompt...</p>
     </div>
 
-    <div class="control-panel">
-        <button id="micBtn" class="btn-mic" onclick="toggleRecognition()">
-            <i class="fa-solid fa-microphone"></i>
-        </button>
-        <div id="statusLabel" class="status-text">Status: Mikrofon Siap</div>
+    <textarea id="essayInput" class="textarea-box" placeholder="Mulai ketik esai akademik Anda di sini (Minimal 250 kata)..." oninput="countWords()"></textarea>
+    
+    <div class="counter-panel">
+        <div>Target: Min. 250 Kata</div>
+        <div id="wordCountBadge" class="word-badge">0 Kata</div>
     </div>
 
-    <h3 style="font-family: 'Poppins', sans-serif; font-size: 14px; color: var(--primary); margin-bottom: 8px; text-transform: uppercase;">Live Speech Transcription:</h3>
-    <div id="transcriptOutput" class="transcript-box">Hasil transkrip suara Anda akan muncul di sini secara otomatis...</div>
+    <button class="btn-submit" onclick="submitEssay()">Kunci & Evaluasi Esai</button>
 
     <div id="result-area">
-        <h3 style="font-family: 'Poppins', sans-serif; color: #166534; font-size: 18px;"><i class="fa-solid fa-chart-line"></i> Fluency Analytics</h3>
+        <h3 style="font-family: 'Poppins', sans-serif; color: #b45309; font-size: 18px;"><i class="fa-solid fa-gauge-high"></i> Essay Submission Analytics</h3>
         
-        <div class="metric-grid">
-            <div class="metric-card">
-                <div>Total Kata</div>
-                <div id="m-words">0</div>
-            </div>
-            <div class="metric-card">
-                <div>Durasi Bicara</div>
-                <div id="m-time">0s</div>
-            </div>
-            <div class="metric-card">
-                <div>Speech Rate (WPM)</div>
-                <div id="m-wpm">0</div>
-            </div>
-        </div>
-
         <div class="checklist-box">
-            <h4 id="checklist-title"><i class="fa-solid fa-signature"></i> Lexical Checklist</h4>
-            <p style="font-size: 13.5px; color: #64748b; margin-bottom: 10px;">Bandingkan hasil ucapan Anda di atas. Apakah Anda sudah berhasil menyelipkan penanda wacana dan kosakata wajib berikut?</p>
+            <h4 id="checklist-title"><i class="fa-solid fa-signature"></i> Lexical & Coherence Criteria</h4>
+            <p style="font-size: 13.5px; color: #64748b; margin-bottom: 12px;">Gunakan checklist berstandar internasional ini untuk mengecek ulang kualitas esai yang baru saja Anda ketik:</p>
             <ul id="eval-checklist">
                 </ul>
         </div>
@@ -116,150 +92,125 @@
 </div>
 
 <script>
-    // Database terpusat berstandar tinggi yang dirotasi otomatis tanpa menumpuk di UI
-    const speakingDatabase = {
+    // Database 5 Soal per Standar Internasional (Total 15 Soal Premium)
+    const writingDatabase = {
         seninSelasa: {
             name: "Cambridge Assessment Standard",
-            prompt: "Describe an environmental problem that your country is currently facing. You should state what the problem is, how it affects citizens, and explain what measures can be executed to mitigate it.",
+            prompts: [
+                "Some corporate organizations argue that full-time remote working layout decreases operational productivity. To what extent do you agree or disagree with this statement?",
+                "The rapid growth of mega-cities worldwide causes massive logistical and ecological challenges. Discuss the main causes and propose actionable solutions.",
+                "Universities should only admit students based on academic performance rather than gender equality quotas. To what extent do you agree or disagree?",
+                "As international trade expands, many local cultures and traditional products disappear. Is this a positive or negative development?",
+                "Some countries benefit heavily from high tourism rates, but it often degrades historical sites. Discuss both views and give your opinion."
+            ],
             checklist: [
-                "Transisi Alur: Apakah Anda menggunakan penanda seperti <i>'Moving on to the issue of...'</i> atau <i>'Consequently...'</i>?",
-                "Kosakata Akademik: Apakah Anda mengucapkan kata <i>'Environmental degradation'</i>, <i>'Systemic measures'</i>, atau <i>'Inhabitants'</i>?"
+                "<b>Task Achievement:</b> Apakah argumen Anda menjawab secara eksplisit posisi setuju/tidak setuju di seluruh paragraf?",
+                "<b>Coherence:</b> Apakah Anda menggunakan advanced cohesive devices (e.g., <i>'In alignment with this...', 'Concurrently', 'Evidently'</i>)?",
+                "<b>Lexical Resource:</b> Periksa penggunaan kosa kata kompleks seperti <i>'operational productivity', 'infrastructure bottlenecks', 'empirical evidence'</i>."
             ]
         },
         rabuKamis: {
             name: "Oxford International Standard",
-            prompt: "Some people believe that artificial intelligence will completely replace human workers in the future. To what extent do you agree or disagree with this perspective? Focus on the economic implications.",
+            prompts: [
+                "Advanced integration of automation technology inside the modern market will inevitably cause global economic redundancy. Discuss the implications.",
+                "Governments should fully subsidize medical care and tertiary education using increased high-income corporate tax. To what extent do you agree?",
+                "In the modern digital era, physical libraries are becoming obsolete resources. Do the advantages of digitalization outweigh its disadvantages?",
+                "Many international corporations relocate their manufacturing factories to developing countries. Discuss the economic advantages and disadvantages.",
+                "Criminal behavior is heavily influenced by socio-economic backgrounds rather than innate human nature. To what extent do you agree or disagree?"
+            ],
             checklist: [
-                "Pemberian Opini: Apakah Anda menggunakan frasa kuat seperti <i>'I strongly contend that...'</i> atau <i>'From my standpoint...'</i>?",
-                "Kosakata Akademik: Apakah Anda mengucapkan kata <i>'Automation integration'</i>, <i>'Technological redundancy'</i>, atau <i>'Labor market'</i>?"
+                "<b>Academic Structure:</b> Apakah esai memiliki Thesis Statement yang clear di bagian akhir paragraf Introduction?",
+                "<b>Cohesion:</b> Apakah perpindahan antara paragraf argumen menggunakan transisi yang mulus (e.g., <i>'From an economic standpoint...', 'On the flip side...'</i>)?",
+                "<b>Vocabulary Level:</b> Apakah Anda menggunakan padanan kata akademik tingkat tinggi seperti <i>'ubiquitous integration', 'fiscal distribution', 'obsolete'</i>?"
             ]
         },
         jumatSabtuMinggu: {
             name: "IELTS British Council Standard",
-            prompt: "Talk about a technological device you use frequently. You should specify what device it is, how often you utilize it, and discuss whether it has had a positive or negative impact on your daily productivity.",
+            prompts: [
+                "Fossil fuel usage is highly dangerous for climate stability, yet transitioning fully to renewable energy is financial suicide for low-income states. Discuss.",
+                "In many modern societies, the traditional family structure is being replaced by single-parent households. Is this a positive or negative trend?",
+                "Success in life is heavily determined by an individual's emotional intelligence (EQ) rather than high intellectual capacity (IQ). Discuss both sides.",
+                "Advertising has a profound negative impact on children's psychology and should be strictly regulated by government laws. To what extent do you agree?",
+                "The internet has made information accessible to everyone, but it has also diminished the value of professional journalism. Discuss the impacts."
+            ],
             checklist: [
-                "Taktik Penahan Waktu: Apakah Anda menggunakan filler natural seperti <i>'To be perfectly candid...'</i> atau <i>'That is an intriguing question...'</i>?",
-                "Kosakata Akademik: Apakah Anda mengucapkan frasa <i>'Indispensable asset'</i>, <i>'Substantial boost to my efficiency'</i>, atau <i>'Distraction'</i>?"
+                "<b>Word Count Validation:</b> Apakah jumlah kata Anda sudah melampaui batas minimal esai akademik (250 kata)?",
+                "<b>Grammatical Range:</b> Apakah esai Anda mengombinasikan Complex Sentence, Compound-Complex, dan Passive Voice secara seimbang?",
+                "<b>Advanced Expressions:</b> Evaluasi penggunaan phrase elite seperti <i>'profound implications', 'highly contentious issue', 'mitigate the repercussions'</i>."
             ]
         }
     };
 
-    let activeTopic = {};
-    let recognition;
-    let isRecording = false;
-    let startTime, endTime;
-    let accumulatedText = "";
+    let activeStandard = {};
+    let selectedPrompt = "";
 
-    function setupSpeakingQuiz() {
+    function setupWritingQuiz() {
         const currentDay = new Date().getDay(); // 0 = Minggu, 1 = Senin, dst.
+        const currentDayOfMonth = new Date().getDate(); // Ambil tanggal hari ini (1-31) untuk rotasi soal
         
-        // Memilih hanya SATU yang terbaik berdasarkan hari tanpa memunculkan sisanya
+        // 1. Memilih standar berdasarkan hari
         if (currentDay === 1 || currentDay === 2) {
-            activeTopic = speakingDatabase.seninSelasa;
+            activeStandard = writingDatabase.seninSelasa;
         } else if (currentDay === 3 || currentDay === 4) {
-            activeTopic = speakingDatabase.rabuKamis;
+            activeStandard = writingDatabase.rabuKamis;
         } else {
-            activeTopic = speakingDatabase.jumatSabtuMinggu;
+            activeStandard = writingDatabase.jumatSabtuMinggu;
         }
 
-        // Tampilkan hanya elemen milik standar aktif
-        document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-calendar-check"></i> Active: ${activeTopic.name}`;
-        document.getElementById('target-prompt').innerText = activeTopic.prompt;
-        document.getElementById('checklist-title').innerHTML = `<i class="fa-solid fa-signature"></i> ${activeTopic.name} Target Criteria:`;
+        // 2. Memilih 1 dari 5 soal secara matematis menggunakan sisa bagi tanggal
+        // Rumus: (Tanggal % 5) -> Menghasilkan indeks 0 sampai 4 secara acak tapi konsisten per tanggal
+        const promptIndex = currentDayOfMonth % 5;
+        selectedPrompt = activeStandard.prompts[promptIndex];
 
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (SpeechRecognition) {
-            recognition = new SpeechRecognition();
-            recognition.continuous = true;
-            recognition.lang = 'en-US';
-            recognition.interimResults = false;
+        // 3. Update Tampilan UI secara eksklusif
+        document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-calendar-check"></i> ${activeStandard.name}`;
+        document.getElementById('prompt-identity').innerText = `${activeStandard.name} - Question ${promptIndex + 1} of 5:`;
+        document.getElementById('target-prompt').innerText = selectedPrompt;
+        document.getElementById('checklist-title').innerHTML = `<i class="fa-solid fa-signature"></i> ${activeStandard.name} Evaluation Checklist:`;
+    }
 
-            recognition.onresult = (event) => {
-                let currentResult = "";
-                for (let i = event.resultIndex; i < event.results.length; ++i) {
-                    if (event.results[i].isFinal) {
-                        currentResult += event.results[i][0].transcript + " ";
-                    }
-                }
-                accumulatedText += currentResult;
-                document.getElementById('transcriptOutput').innerText = accumulatedText;
-            };
-
-            recognition.onerror = (event) => {
-                console.error("Speech recognition error", event.error);
-                if(event.error === 'not-allowed') {
-                    document.getElementById('statusLabel').innerText = "Akses Mic Ditolak!";
-                }
-            };
+    function countWords() {
+        const text = document.getElementById('essayInput').value.trim();
+        const wordCount = text === "" ? 0 : text.split(/\s+/).length;
+        const badge = document.getElementById('wordCountBadge');
+        
+        badge.innerText = `${wordCount} Kata`;
+        
+        if (wordCount >= 250) {
+            badge.className = "word-badge ready";
         } else {
-            document.getElementById('transcriptOutput').innerText = "Browser Anda belum mendukung Speech Recognition. Disarankan menggunakan Google Chrome di Laptop atau Android.";
-            document.getElementById('micBtn').disabled = true;
-            document.getElementById('micBtn').style.background = "#cbd5e1";
+            badge.className = "word-badge";
         }
     }
 
-    function toggleRecognition() {
-        const micBtn = document.getElementById('micBtn');
-        const statusLabel = document.getElementById('statusLabel');
-
-        if (!isRecording) {
-            accumulatedText = "";
-            document.getElementById('transcriptOutput').innerText = "Mendengarkan... Silakan mulai berbicara dalam bahasa Inggris sekarang.";
-            document.getElementById('result-area').style.display = 'none';
-            
-            startTime = new Date();
-            recognition.start();
-            
-            isRecording = true;
-            micBtn.className = "btn-mic recording";
-            statusLabel.innerText = "Status: Sedang Merekam...";
-        } else {
-            endTime = new Date();
-            recognition.stop();
-            
-            isRecording = false;
-            micBtn.className = "btn-mic";
-            statusLabel.innerText = "Status: Selesai Merekam";
-            
-            setTimeout(calculateMetrics, 600);
-        }
-    }
-
-    function calculateMetrics() {
-        const text = accumulatedText.trim();
-        const totalWords = text === "" ? 0 : text.split(/\s+/).length;
-        const durationSeconds = Math.max(1, Math.round((endTime - startTime) / 1000));
-        const durationMinutes = durationSeconds / 60;
-        const wpm = Math.round(totalWords / durationMinutes);
-
-        document.getElementById('m-words').innerText = totalWords;
-        document.getElementById('m-time').innerText = durationSeconds + "s";
-        document.getElementById('m-wpm').innerText = wpm;
-
+    function submitEssay() {
+        const text = document.getElementById('essayInput').value.trim();
+        const wordCount = text === "" ? 0 : text.split(/\s+/).length;
+        
         const checklistUl = document.getElementById('eval-checklist');
         checklistUl.innerHTML = "";
-        
-        let fluencyFeedback = "";
-        if (wpm < 100) {
-            fluencyFeedback = "<li style='color:#ef4444; margin-bottom:12px;'><b>Fluency Check:</b> Kecepatan bicaramu ("+wpm+" WPM) agak lambat. Kurangi jeda diam saat memikirkan ide di tengah kalimat.</li>";
-        } else if (wpm >= 100 && wpm <= 160) {
-            fluencyFeedback = "<li style='color:#22c55e; margin-bottom:12px;'><b>Fluency Check:</b> Kecepatan bicara ("+wpm+" WPM) sangat ideal dan natural setara penutur asli tingkat mahir.</li>";
-        } else {
-            fluencyFeedback = "<li style='color:#f59e0b; margin-bottom:12px;'><b>Fluency Check:</b> Kecepatan bicaramu ("+wpm+" WPM) terlalu terburu-buru. Kendalikan ritme agar kejelasan artikulasi (*pronunciation*) tetap terjaga.</li>";
-        }
-        checklistUl.innerHTML += fluencyFeedback;
 
-        // Hanya menyisipkan target kriteria spesifik dari standar yang sedang aktif
-        activeTopic.checklist.forEach(item => {
+        // Validasi kelayakan jumlah kata
+        let wordFeedback = "";
+        if (wordCount < 250) {
+            wordFeedback = `<li style='color:#ef4444; margin-bottom:12px;'><i class="fa-solid fa-triangle-exclamation"></i> <b>Word Count Alert:</b> Esai Anda baru mencapai ${wordCount} kata. Kurang dari batas minimal 250 kata berisiko mengurangi skor band Anda secara drastis akibat kurangnya pengembangan argumen.</li>`;
+        } else {
+            wordFeedback = `<li style='color:#22c55e; margin-bottom:12px;'><i class="fa-solid fa-circle-check"></i> <b>Word Count Met:</b> Luar biasa! Esai Anda telah mencapai ${wordCount} kata. Target minimal terpenuhi dengan baik.</li>`;
+        }
+        checklistUl.innerHTML += wordFeedback;
+
+        // Masukkan kriteria standar yang aktif
+        activeStandard.checklist.forEach(item => {
             checklistUl.innerHTML += `<li>${item}</li>`;
         });
 
+        // Tampilkan papan hasil analisis
         const resultArea = document.getElementById('result-area');
         resultArea.style.display = 'block';
         resultArea.scrollIntoView({ behavior: 'smooth' });
     }
 
-    window.onload = setupSpeakingQuiz;
+    window.onload = setupWritingQuiz;
 </script>
 </body>
 </html>
