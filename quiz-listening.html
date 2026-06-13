@@ -25,14 +25,12 @@
         .header-quiz h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; }
         .schedule-badge { display: inline-block; background: #fff8f6; color: var(--listening-color); padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-bottom: 15px; text-transform: uppercase; border: 1px solid rgba(221, 75, 57, 0.2); }
         
-        /* Audio Player Box */
         .audio-box { background: #f8fafc; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 35px; text-align: center; }
         .btn-audio { background: var(--listening-color); color: white; border: none; padding: 14px 28px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 10px 20px rgba(221, 75, 57, 0.2); }
         .btn-audio:hover { background: #b93524; transform: translateY(-2px); }
         .btn-audio:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; }
         .audio-status { font-size: 13px; color: #64748b; font-weight: 700; margin-top: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* Form Soal */
         .question-section { margin-bottom: 30px; }
         .question-block { background: #ffffff; border: 1px solid #e2e8f0; padding: 20px; border-radius: 10px; margin-bottom: 15px; }
         .question-block p { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 12px; }
@@ -43,7 +41,6 @@
         .btn-submit { width: 100%; background: var(--primary); color: white; border: none; padding: 16px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
         .btn-submit:hover { background: var(--accent); color: var(--primary); }
 
-        /* Score & Feedback Panel */
         #result-area { padding: 30px; border-radius: 12px; display: none; background: #f0fdf4; border: 1px solid #bbf7d0; margin-top: 25px; text-align: center; }
         #score-text { font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 700; color: #166534; }
         .transcript-review { background: white; padding: 20px; border-radius: 10px; border: 1px solid #e2e8f0; margin-top: 20px; text-align: left; }
@@ -73,7 +70,7 @@
     </div>
 
     <div class="question-section">
-        <h3 style="font-family: 'Poppins', sans-serif; font-size: 15px; color: var(--primary); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px;">Questions (Fill in the Blanks):</h3>
+        <h3 id="question-identity" style="font-family: 'Poppins', sans-serif; font-size: 15px; color: var(--primary); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px;">Questions:</h3>
         <div id="quiz-form">
             </div>
         <button class="btn-submit" onclick="checkAnswers()">Periksa Jawaban</button>
@@ -95,69 +92,234 @@
 </div>
 
 <script>
-    // Database dialog interaktif berstandar internasional yang terotasi otomatis
+    // Database Komplit: 5 Paket Soal per Standar Internasional (Total 15 Dialog Obrolan Premium)
     const listeningDatabase = {
         seninSelasa: {
             name: "Cambridge Assessment Standard",
-            dialogue: [
-                { speaker: "Speaker A", text: "Hello, San Aethelgard Academy. How can I assist you today?" },
-                { speaker: "Speaker B", text: "Hi, I would like to book an international academic consulting session for next Tuesday." },
-                { speaker: "Speaker A", text: "Certainly. The total registration fee will be forty-five dollars." },
-                { speaker: "Speaker B", text: "Great, I will transfer the amount right away. Thank you." }
-            ],
-            questions: [
-                { label: "1. The user wants to book a session for next _________.", answer: "tuesday" },
-                { label: "2. The total registration fee is _________ dollars.", answer: "45" }
+            packages: [
+                {
+                    dialogue: [
+                        { speaker: "Speaker A", text: "Hello, San Aethelgard Academy. How can I assist you today?" },
+                        { speaker: "Speaker B", text: "Hi, I would like to book an international academic consulting session for next Tuesday." },
+                        { speaker: "Speaker A", text: "Certainly. The total registration fee will be forty-five dollars." },
+                        { speaker: "Speaker B", text: "Great, I will transfer the amount right away. Thank you." }
+                    ],
+                    questions: [
+                        { label: "1. The user wants to book a session for next _________.", answer: "tuesday" },
+                        { label: "2. The total registration fee is _________ dollars.", answer: "45" }
+                    ]
+                },
+                {
+                    dialogue: [
+                        { speaker: "Speaker A", text: "Could you tell me where the engineering seminar is being held?" },
+                        { speaker: "Speaker B", text: "Yes, it is in Hall B, which is located just opposite the main cafeteria." },
+                        { speaker: "Speaker A", text: "Thank you. And what time does the registration start?" },
+                        { speaker: "Speaker B", text: "The registration table opens at exactly ten in the morning." }
+                    ],
+                    questions: [
+                        { label: "1. The seminar is held opposite the main _________.", answer: "cafeteria" },
+                        { label: "2. Registration opens at _________ in the morning.", answer: "10" }
+                    ]
+                },
+                {
+                    dialogue: [
+                        { speaker: "Speaker A", text: "Welcome to the central library. Are you looking for a specific textbook?" },
+                        { speaker: "Speaker B", text: "Yes, I need the macroeconomics journal written by Professor Henderson." },
+                        { speaker: "Speaker A", text: "Ah, that volume is kept on shelf number seven, in the back corner." },
+                        { speaker: "Speaker B", text: "Perfect. Thank you for your guidance." }
+                    ],
+                    questions: [
+                        { label: "1. The student is looking for a journal about _________.", answer: "macroeconomics" },
+                        { label: "2. The book is located on shelf number _________.", answer: "7" }
+                    ]
+                },
+                {
+                    dialogue: [
+                        { speaker: "Speaker A", text: "Hi, I need to renew my student ID card as soon as possible." },
+                        { speaker: "Speaker B", text: "No problem. Please fill out this form and provide two passport photographs." },
+                        { speaker: "Speaker A", text: "Understood. How many days will it take to process the new card?" },
+                        { speaker: "Speaker B", text: "It will take exactly three working days." }
+                    ],
+                    questions: [
+                        { label: "1. The student needs to provide two passport _________.", answer: "photographs" },
+                        { label: "2. The processing time for the new card is _________ days.", answer: "3" }
+                    ]
+                },
+                {
+                    dialogue: [
+                        { speaker: "Speaker A", text: "Good morning. I would like to order a monthly subscription for the research laboratory." },
+                        { speaker: "Speaker B", text: "Sure thing. The premium package costs eighty dollars per month." },
+                        { speaker: "Speaker A", text: "Does that include access to the online database?" },
+                        { speaker: "Speaker B", text: "Yes, it grants full access to all digital publications." }
+                    ],
+                    questions: [
+                        { label: "1. The premium package costs _________ dollars per month.", answer: "80" },
+                        { label: "2. The subscription grants full access to all digital _________.", answer: "publications" }
+                    ]
+                }
             ]
         },
         rabuKamis: {
             name: "Oxford International Standard",
-            dialogue: [
-                { speaker: "Speaker A", text: "Excuse me, where is the main research laboratory located?" },
-                { speaker: "Speaker B", text: "It is located on the third floor, right next to the grand library." },
-                { speaker: "Speaker A", text: "Thank you. Does it open at eight in the morning?" },
-                { speaker: "Speaker B", text: "No, it officially opens at nine tomorrow." }
-            ],
-            questions: [
-                { label: "1. The laboratory is next to the grand _________.", answer: "library" },
-                { label: "2. The laboratory officially opens at _________ tomorrow.", answer: "9" }
+            packages: [
+                {
+                    dialogue: [
+                        { speaker: "Speaker A", text: "Excuse me, where is the main research laboratory located?" },
+                        { speaker: "Speaker B", text: "It is located on the third floor, right next to the grand library." },
+                        { speaker: "Speaker A", text: "Thank you. Does it open at eight in the morning?" },
+                        { speaker: "Speaker B", text: "No, it officially opens at nine tomorrow." }
+                    ],
+                    questions: [
+                        { label: "1. The laboratory is next to the grand _________.", answer: "library" },
+                        { label: "2. The laboratory officially opens at _________ tomorrow.", answer: "9" }
+                    ]
+                },
+                {
+                    dialogue: [
+                        { speaker: "Speaker A", text: "Hello, I am calling to confirm the delivery address for the chemical equipment." },
+                        { speaker: "Speaker B", text: "Yes, it should be sent directly to Campus West, building number twelve." },
+                        { speaker: "Speaker A", text: "Got it. Should we deliver it before Friday?" },
+                        { speaker: "Speaker B", text: "Yes, please ensure it arrives by Thursday afternoon." }
+                    ],
+                    questions: [
+                        { label: "1. The equipment should be sent to building number _________.", answer: "12" },
+                        { label: "2. The delivery must arrive by _________ afternoon.", answer: "thursday" }
+                    ]
+                },
+                {
+                    dialogue: [
+                        { speaker: "Speaker A", text: "What is the primary topic of Professor Smith's lecture this afternoon?" },
+                        { speaker: "Speaker B", text: "He will be discussing the historical impacts of renewable energy investments." },
+                        { speaker: "Speaker A", text: "Fascinating. Is the lecture taking place in the main auditorium?" },
+                        { speaker: "Speaker B", text: "No, it has been moved to room four hundred." }
+                    ],
+                    questions: [
+                        { label: "1. The primary topic of the lecture is _________ energy.", answer: "renewable" },
+                        { label: "2. The lecture will take place in room _________.", answer: "400" }
+                    ]
+                },
+                {
+                    dialogue: [
+                        { speaker: "Speaker A", text: "Can I sign up for the advanced computer science workshop?" },
+                        { speaker: "Speaker B", text: "Yes, but you need to submit a coding portfolio before enrollment." },
+                        { speaker: "Speaker A", text: "Alright, I will email my portfolio. What is the deadline?" },
+                        { speaker: "Speaker B", text: "The submission window closes on August fifteenth." }
+                    ],
+                    questions: [
+                        { label: "1. Students must submit a coding _________ before enrollment.", answer: "portfolio" },
+                        { label: "2. The deadline for submission is August _________.", answer: "15" }
+                    ]
+                },
+                {
+                    dialogue: [
+                        { speaker: "Speaker A", text: "I need to purchase a student pass for the local museum exhibits." },
+                        { speaker: "Speaker B", text: "The price for a student pass is twelve pounds." },
+                        { speaker: "Speaker A", text: "Does it cover the historical art gallery as well?" },
+                        { speaker: "Speaker B", text: "Yes, it covers all permanent exhibitions inside the museum." }
+                    ],
+                    questions: [
+                        { label: "1. The student museum pass costs _________ pounds.", answer: "12" },
+                        { label: "2. The pass includes entry to the historical art _________.", answer: "gallery" }
+                    ]
+                }
             ]
         },
         jumatSabtuMinggu: {
             name: "IELTS British Council Standard",
-            dialogue: [
-                { speaker: "Speaker A", text: "Good morning. Can you confirm the flight destination for the international conference?" },
-                { speaker: "Speaker B", text: "Yes, the airplane is departing directly for London." },
-                { speaker: "Speaker A", text: "Excellent. And what is the departure gate number?" },
-                { speaker: "Speaker B", text: "You should proceed immediately to gate fourteen." }
-            ],
-            questions: [
-                { label: "1. The airplane is departing directly for _________.", answer: "london" },
-                { label: "2. The departure gate number is _________.", answer: "14" }
+            packages: [
+                {
+                    dialogue: [
+                        { speaker: "Speaker A", text: "Good morning. Can you confirm the flight destination for the international conference?" },
+                        { speaker: "Speaker B", text: "Yes, the airplane is departing directly for London." },
+                        { speaker: "Speaker A", text: "Excellent. And what is the departure gate number?" },
+                        { speaker: "Speaker B", text: "You should proceed immediately to gate fourteen." }
+                    ],
+                    questions: [
+                        { label: "1. The airplane is departing directly for _________.", answer: "london" },
+                        { label: "2. The departure gate number is _________.", answer: "14" }
+                    ]
+                },
+                {
+                    dialogue: [
+                        { speaker: "Speaker A", text: "Hi, I want to join the university sports club. Is there an annual fee?" },
+                        { speaker: "Speaker B", text: "Yes, the membership fee is fifty pounds per year." },
+                        { speaker: "Speaker A", text: "Does that cover the use of the swimming pool?" },
+                        { speaker: "Speaker B", text: "Yes, you have full access to the pool and gym facilities." }
+                    ],
+                    questions: [
+                        { label: "1. The annual sports club membership costs _________ pounds.", answer: "50" },
+                        { label: "2. Members get full access to the pool and _________ facilities.", answer: "gym" }
+                    ]
+                },
+                {
+                    dialogue: [
+                        { speaker: "Speaker A", text: "Excuse me, I am looking for the student accommodation office." },
+                        { speaker: "Speaker B", text: "It's on the ground floor of the administration block, next to the bank." },
+                        { speaker: "Speaker A", text: "Thank you. Is it open on Saturdays?" },
+                        { speaker: "Speaker B", text: "No, it only operates from Monday to Friday." }
+                    ],
+                    questions: [
+                        { label: "1. The accommodation office is next to the _________.", answer: "bank" },
+                        { label: "2. The office is open from Monday to _________.", answer: "friday" }
+                    ]
+                },
+                {
+                    dialogue: [
+                        { speaker: "Speaker A", text: "Hello, I would like to register for the environmental science field trip." },
+                        { speaker: "Speaker B", text: "Great. The bus departs from the university main gate at seven AM." },
+                        { speaker: "Speaker A", text: "And what date are we leaving?" },
+                        { speaker: "Speaker B", text: "We will be departing on October twenty-third." }
+                    ],
+                    questions: [
+                        { label: "1. The transport bus departs from the university main _________.", answer: "gate" },
+                        { label: "2. The field trip leaves on October _________.", answer: "23" }
+                    ]
+                },
+                {
+                    dialogue: [
+                        { speaker: "Speaker A", text: "Could you tell me the word count limit for the sociology essay?" },
+                        { speaker: "Speaker B", text: "Yes, the maximum length allowed is three thousand words." },
+                        { speaker: "Speaker A", text: "Alright, and do we need to attach a reference list?" },
+                        { speaker: "Speaker B", text: "Yes, a full bibliography must be attached to the final page." }
+                    ],
+                    questions: [
+                        { label: "1. The sociology essay has a maximum limit of _________ words.", answer: "3000" },
+                        { label: "2. Students must attach a full _________ to the final page.", answer: "bibliography" }
+                    ]
+                }
             ]
         }
     };
 
-    let activeSet = {};
+    let activeStandard = {};
+    let activePackage = {};
     let synth = window.speechSynthesis;
 
     function setupListeningQuiz() {
-        const currentDay = new Date().getDay();
+        const currentDay = new Date().getDay(); // 0 = Minggu, 1 = Senin, dst.
+        const currentDayOfMonth = new Date().getDate(); // Ambil tanggal (1-31)
         
+        // 1. Pilih standar utama berdasarkan hari berjalan
         if (currentDay === 1 || currentDay === 2) {
-            activeSet = listeningDatabase.seninSelasa;
+            activeStandard = listeningDatabase.seninSelasa;
         } else if (currentDay === 3 || currentDay === 4) {
-            activeSet = listeningDatabase.rabuKamis;
+            activeStandard = listeningDatabase.rabuKamis;
         } else {
-            activeSet = listeningDatabase.jumatSabtuMinggu;
+            activeStandard = listeningDatabase.jumatSabtuMinggu;
         }
 
-        document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-headphones"></i> Active: ${activeSet.name}`;
+        // 2. Pilih 1 dari 5 paket soal menggunakan sisa bagi tanggal
+        const packageIndex = currentDayOfMonth % 5;
+        activePackage = activeStandard.packages[packageIndex];
+
+        // 3. Update UI Tampilan Eksklusif
+        document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-headphones"></i> Active: ${activeStandard.name}`;
+        document.getElementById('question-identity').innerText = `${activeStandard.name} - Audio Package ${packageIndex + 1} of 5:`;
 
         // Render input pertanyaan secara otomatis ke HTML
         const formContainer = document.getElementById('quiz-form');
         formContainer.innerHTML = "";
-        activeSet.questions.forEach((q, index) => {
+        activePackage.questions.forEach((q, index) => {
             formContainer.innerHTML += `
                 <div class="question-block">
                     <p>${q.label}</p>
@@ -167,7 +329,7 @@
         });
     }
 
-    // Fungsi utama untuk memutar suara percakapan robot penutur asli secara bergantian
+    // Fungsi utama untuk memutar audio percakapan robot penutur asli secara bergantian
     function playDialogue() {
         if (!synth) {
             alert("Browser Anda tidak mendukung Text-to-Speech.");
@@ -175,7 +337,7 @@
         }
 
         if (synth.speaking) {
-            return; // Cegah double klik saat suara masih berjalan
+            return; 
         }
 
         const audioBtn = document.getElementById('audioBtn');
@@ -188,26 +350,23 @@
         let currentLine = 0;
 
         function speakLine() {
-            if (currentLine >= activeSet.dialogue.length) {
-                // Semua baris obrolan selesai dibacakan
+            if (currentLine >= activePackage.dialogue.length) {
                 audioBtn.disabled = false;
                 audioBtn.innerHTML = `<i class="fa-solid fa-play"></i> Putar Kembali Audio`;
                 audioStatus.innerText = "Status: Selesai. Silakan isi jawaban.";
                 return;
             }
 
-            const lineData = activeSet.dialogue[currentLine];
-            // Format yang diucapkan: "Speaker A says: [text]"
+            const lineData = activePackage.dialogue[currentLine];
             const utterance = new SpeechSynthesisUtterance(`${lineData.speaker} says. ${lineData.text}`);
             
-            // Konfigurasi agar suara stabil berstandar English Internasional
             utterance.lang = 'en-US';
-            utterance.rate = 0.85; // Sedikit diperlambat agar pas untuk latihan listening akademik
+            utterance.rate = 0.85; // Sedikit diperlambat demi kejelasan artikulasi tes akademik
             utterance.pitch = 1.0;
 
             utterance.onend = () => {
                 currentLine++;
-                setTimeout(speakLine, 800); // Memberikan jeda 0.8 detik antar obrolan agar natural
+                setTimeout(speakLine, 800); // Jeda natural 0.8 detik antar pembicara
             };
 
             synth.speak(utterance);
@@ -216,12 +375,12 @@
         speakLine();
     }
 
-    // Fungsi memeriksa jawaban user
+    // Fungsi memeriksa skor jawaban user
     function checkAnswers() {
         let correctCount = 0;
-        const totalQuestions = activeSet.questions.length;
+        const totalQuestions = activePackage.questions.length;
 
-        activeSet.questions.forEach((q, index) => {
+        activePackage.questions.forEach((q, index) => {
             const userInput = document.getElementById(`q-${index}`).value.trim().toLowerCase();
             const inputField = document.getElementById(`q-${index}`);
 
@@ -235,12 +394,11 @@
             }
         });
 
-        // Tampilkan Papan Skor
         document.getElementById('score-text').innerText = `Skor Anda: ${correctCount} / ${totalQuestions}`;
         
-        // Render Teks Transkrip Asli sebagai bahan evaluasi belajar
+        // Render Teks Transkrip Resmi di bawah sebagai bahan evaluasi belajar harian
         let fullTranscriptHTML = "";
-        activeSet.dialogue.forEach(line => {
+        activePackage.dialogue.forEach(line => {
             fullTranscriptHTML += `<b>${line.speaker}:</b> "${line.text}"\n`;
         });
         document.getElementById('transcript-content').innerHTML = fullTranscriptHTML;
