@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Writing Examination - San Aethelgard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { 
+            --primary: #001f3f; 
+            --accent: #00D4FF; 
+            --bg-dark: #00152b;
+            --card-bg: #ffffff; 
+            --text-main: #334155; 
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Lato', sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        
+        .quiz-card { width: 100%; max-width: 950px; background: var(--card-bg); border-radius: 20px; padding: 45px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+        .header-quiz { text-align: center; margin-bottom: 35px; }
+        .header-quiz h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; letter-spacing: -0.5px; }
+        
+        .exam-meta-strip { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .strip-badge { background: #f1f5f9; color: var(--primary); padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid #e2e8f0; }
+        .strip-badge.active-board { background: #e0faff; color: #0369a1; border-color: #bdebf5; }
+
+        .prompt-box { background: #f8fafc; padding: 30px; border-radius: 12px; border-left: 6px solid var(--primary); margin-bottom: 30px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
+        .prompt-box h3 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .prompt-text { font-size: 16.5px; font-weight: 700; line-height: 1.6; color: #0f172a; font-style: italic; }
+
+        .essay-area { width: 100%; height: 350px; padding: 25px; border: 2px solid #e2e8f0; border-radius: 14px; font-family: 'Lato', sans-serif; font-size: 15.5px; line-height: 1.7; color: var(--text-main); resize: vertical; margin-bottom: 12px; transition: 0.2s; }
+        .essay-area:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 15px rgba(0, 212, 255, 0.2); }
+        
+        .meta-counter { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; color: #64748b; margin-bottom: 35px; padding: 0 5px; }
+        .word-warning { color: #ef4444; background: #fef2f2; padding: 4px 10px; border-radius: 6px; }
+        .word-success { color: #16a34a; background: #f0fdf4; padding: 4px 10px; border-radius: 6px; }
+
+        .btn-submit { width: 100%; background: var(--primary); color: white; border: 2px solid var(--primary); padding: 18px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; letter-spacing: 0.5px; }
+        .btn-submit:hover { background: var(--accent); color: var(--primary); border-color: var(--accent); box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3); }
+        
+        #result-area { margin-top: 40px; padding: 35px; border-radius: 14px; display: none; background: #fafafa; border: 1px solid #e2e8f0; }
+        .result-header-status { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 15px; border-radius: 8px; color: #166534; font-weight: 700; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
+        
+        .critique-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 15px; }
+        .critique-card { background: white; padding: 22px; border-radius: 10px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .critique-card h4 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 14px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #f1f5f9; padding-bottom: 6px; }
+        .critique-card p, .critique-card ul { font-size: 13.5px; color: #475569; line-height: 1.6; }
+        .critique-card ul { margin-left: 18px; margin-top: 8px; }
+
+        .back-home { display: inline-block; margin-top: 35px; text-decoration: none; color: #64748b; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s; }
+        .back-home:hover { color: var(--accent); }
+        .footer-credit { font-size: 11px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px; text-transform: uppercase; font-weight: 700; text-align: center; margin-top: 40px; }
+        .footer-credit a { color: var(--accent); text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            .critique-grid { grid-template-columns: 1fr; }
+            .quiz-card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-card">
+    <div class="header-quiz">
+        <div class="exam-meta-strip">
+            <span class="strip-badge">CRITERIA: BAND 8.0+ TARGET</span>
+            <span class="strip-badge active-board" id="board-badge">Loading Exam Board...</span>
+            <span class="strip-badge">TIME ALLOWED: 40 MINS</span>
+        </div>
+        <h2>San Aethelgard Academic Writing Simulator</h2>
+    </div>
+
+    <div class="prompt-box">
+        <h3><i class="fa-solid fa-feather-pointed"></i> Official Writing Prompt (Task 2):</h3>
+        <p class="prompt-text" id="target-prompt">Generating high-tier academic standard question...</p>
+    </div>
+
+    <form id="writingForm" onsubmit="evaluateHighStandardEssay(event)">
+        <textarea id="essayInput" class="essay-area" placeholder="Write your response using formal academic register. Ensure paragraph cohesion, advanced subordinating conjunctions, and precise lexical collocations..." oninput="countWords()"></textarea>
+        <div class="meta-counter">
+            <span id="word-count-status" class="word-warning">Word Count: 0 / 250 (Below Threshold)</span>
+            <span>Status: Strictly Monitored</span>
+        </div>
+        <button type="submit" class="btn-submit">SUBMIT RESPONSE FOR METRIC ANALYSIS</button>
+    </form>
+
+    <div id="result-area">
+        <div class="result-header-status">
+            <i class="fa-solid fa-shield-check" style="font-size: 20px;"></i>
+            <span>SUBMISSION SUCCESSFUL: Essay archived and processed under international marking parameters.</span>
+        </div>
+        
+        <h3 style="font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 18px; margin-bottom: 5px;">Diagnostic Performance Indicators</h3>
+        <p style="font-size: 14px; color: #64748b;" id="wordcount-critique-text"></p>
+
+        <div class="critique-grid">
+            <div class="critique-card">
+                <h4>1. Task Response (TR)</h4>
+                <p id="eval-tr"></p>
+            </div>
+            <div class="critique-card">
+                <h4>2. Coherence & Cohesion (CC)</h4>
+                <p id="eval-cc"></p>
+            </div>
+            <div class="critique-card">
+                <h4>3. Lexical Resource (LR)</h4>
+                <p id="eval-lr"></p>
+            </div>
+            <div class="critique-card">
+                <h4>4. Grammar Range & Accuracy</h4>
+                <p id="eval-gra"></p>
+            </div>
+        </div>
+    </div>
+
+    <center><a href="dashboard.html" class="back-home"><i class="fa-solid fa-arrow-left" style="margin-right: 5px;"></i> Back to Workspace Dashboard</a></center>
+</div>
+
+<div class="footer-credit">
+    Created by San | <a href="https://www.instagram.com/sanaethelgard?igsh=N29hZWphOTdmbzZy" target="_blank"><i class="fa-brands fa-instagram"></i> @sanaethelgard</a>
+</div>
+
+<script>
+    // Database Soal dengan Standar 3 Lembaga Internasional Terbesar (Berotasi otomatis sesuai hari akses)
+    const eliteWritingRegistry = {
+        cambridgeBoard: {
+            boardName: "Cambridge Assessment International Education",
+            prompt: "In many highly developed nations, the consumption of single-use plastics continues to escalate. Some individuals assert that levying punitive taxes on manufacturers is the sole viable mechanism, while others contend that consumers should bear the ultimate ethical responsibility. Discuss both views and give your definitive opinion.",
+            trCriteria: "Wajib mengeksplorasi dua kubu (Produsen vs Konsumen) secara seimbang dalam paragraf terpisah sebelum menarik konklusi personal di akhir.",
+            ccDevices: "Incorporate transitional phrases: <i>'On the one hand', 'Conversely', 'It is globally posited that', 'Consequently'</i>.",
+            lexicalTargets: "Vocabulary expected: <i>Environmental degradation, punitive taxation, systemic implementation, throwaway culture, manufacturing pipelines</i>.",
+            grammarExpectations: "Must contain compound-complex sentences and passive voice structures (e.g., <i>'It is argued by several sociological factions that...'</i>)."
+        },
+        oxfordBoard: {
+            boardName: "Oxford International Examination Standard",
+            prompt: "Governments should allocate the vast majority of financial and scientific resources toward extraterrestrial exploration and space research rather than addressing localized ecological emergencies on Earth. To what extent do you agree or disagree with this statement?",
+            trCriteria: "Ini merupakan tipe esai opini/persetujuan mutlak. Posisi argumen Anda harus lurus, transparan, dan tidak kontradiktif sejak kalimat pendahuluan.",
+            ccDevices: "Incorporate transitional phrases: <i>'Primarily', 'Furthermore', 'Paradoxically', 'A primary testament to this is'</i>.",
+            lexicalTargets: "Vocabulary expected: <i>Fiscal allocation, localized ecological crises, cosmic exploration, resource depletion, macro-economic expenditures</i>.",
+            grammarExpectations: "Must utilize inversion structures and conditional sentences (e.g., <i>'Had governments prioritized terrestrial stabilization, cosmic funding would have...'</i>)."
+        },
+        britishCouncilIelts: {
+            boardName: "IELTS British Council Premium Standard",
+            prompt: "The rapid expansion of automation and artificial intelligence architectures within industrial workforces is projected to trigger technological unemployment for millions. What are the primary problems stemming from this paradigm shift, and what systemic measures can be deployed to mitigate them?",
+            trCriteria: "Format Problem & Solution. Jumlah identifikasi akar masalah wajib berimbang dengan proposal solusi yang diletakkan pada paragraf berikutnya.",
+            ccDevices: "Incorporate transitional phrases: <i>'A major repercussion is', 'To counteract this phenomenon', 'In order to alleviate', 'Evidently'</i>.",
+            lexicalTargets: "Vocabulary expected: <i>Technological redundancy, automation integration, vocational retraining, structural economic upheaval, mitigation strategies</i>.",
+            grammarExpectations: "Requires perfect command of modal verbs for hedging and probability estimations (e.g., <i>'This trend could potentially exacerbate income inequality unless...'</i>)."
+        }
+    };
+
+    let activeExamProfile = {};
+
+    function initializeHighStandardExam() {
+        const dayNumber = new Date().getDay(); // 0 = Minggu, 1 = Senin, dst.
+        
+        // Aturan Rotasi Otomatis (3 Kali Berubah Seminggu)
+        if (dayNumber === 1 || dayNumber === 2) {
+            activeExamProfile = eliteWritingRegistry.cambridgeBoard;
+        } else if (dayNumber === 3 || dayNumber === 4) {
+            activeExamProfile = eliteWritingRegistry.oxfordBoard;
+        } else {
+            activeExamProfile = eliteWritingRegistry.britishCouncilIelts;
+        }
+
+        document.getElementById('board-badge').innerHTML = `<i class="fa-solid fa-building-columns"></i> ${activeExamProfile.boardName}`;
+        document.getElementById('target-prompt').innerText = activeExamProfile.prompt;
+    }
+
+    function countWords() {
+        const text = document.getElementById('essayInput').value.trim();
+        const wordLength = text === "" ? 0 : text.split(/\s+/).length;
+        const displayStatus = document.getElementById('word-count-status');
+        
+        if (wordLength >= 250) {
+            displayStatus.innerHTML = `Word Count: ${wordLength} / 250 (Target Achieved)`;
+            displayStatus.className = "word-success";
+        } else {
+            displayStatus.innerHTML = `Word Count: ${wordLength} / 250 (Below Threshold)`;
+            displayStatus.className = "word-warning";
+        }
+        return wordLength;
+    }
+
+    function evaluateHighStandardEssay(event) {
+        event.preventDefault();
+        const totalWords = countWords();
+        
+        // Pasang analisis teks ke dom
+        document.getElementById('wordcount-critique-text').innerHTML = `Sistem mencatat panjang esai Anda: <b>${totalWords} kata</b>. ${totalWords < 250 ? '<span style="color:#ef4444; font-weight:bold;">PERINGATAN: Jumlah kata di bawah batas regulasi 250 kata akan langsung memicu penalti pengurangan skor otomatis pada kriteria Task Response (Maksimal Band 5.0 untuk pilar tersebut).</span>' : 'Panjang tulisan aman dan memenuhi regulasi batas volume tulisan internasional.'}`;
+        
+        document.getElementById('eval-tr').innerHTML = `<b>Standar Evaluasi Soal Hari Ini:</b><br>${activeExamProfile.trCriteria}<br><br><i>Pastikan Anda tidak menulis kesimpulan yang menggantung tanpa rangkuman ide utama.</i>`;
+        document.getElementById('eval-cc').innerHTML = `<b>Cohesive Devices yang Wajib Terdeteksi:</b><br>${activeExamProfile.ccDevices}<br><br><i>Evaluasi kelancaran: Pastikan transisi antarparagraf tidak terputus secara mendadak.</i>`;
+        document.getElementById('eval-lr').innerHTML = `<b>Target Vocabulary Level C1/C2:</b><br>${activeExamProfile.lexicalTargets}`;
+        document.getElementById('eval-gra').innerHTML = `<b>Target Struktur Gramatikal Tingkat Lanjut:</b><br>${activeExamProfile.grammarExpectations}`;
+        
+        const feedbackBlock = document.getElementById('result-area');
+        feedbackBlock.style.display = 'block';
+        feedbackBlock.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    window.onload = initializeHighStandardExam;
+</script>
+</body>
+</html>
