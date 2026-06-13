@@ -20,7 +20,13 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Lato', sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
-        .quiz-card { width: 100%; max-width: 850px; background: var(--card-bg); border-radius: 20px; padding: 45px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+        .quiz-card { width: 100%; max-width: 850px; background: var(--card-bg); border-radius: 20px; padding: 45px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); position: relative; }
+        
+        /* TIMER COMPONENT STYLE */
+        .timer-container { display: flex; align-items: center; justify-content: center; gap: 8px; background: #fff1f0; border: 1px solid #ffa39e; color: #cf1322; padding: 10px 20px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; margin: 0 auto 25px auto; width: fit-content; box-shadow: 0 4px 10px rgba(207, 19, 34, 0.1); }
+        .timer-container.warning { background: #ff4d4f; color: white; border-color: #ff4d4f; animation: blink 1s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+
         .header-quiz { text-align: center; margin-bottom: 30px; }
         .header-quiz h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; }
         .schedule-badge { display: inline-block; background: #fff8f6; color: var(--listening-color); padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-bottom: 15px; text-transform: uppercase; border: 1px solid rgba(221, 75, 57, 0.2); }
@@ -37,6 +43,7 @@
         
         .input-gap { width: 100%; max-width: 300px; padding: 10px 15px; border: 2px solid #cbd5e1; border-radius: 6px; font-size: 14px; font-family: 'Lato', sans-serif; transition: 0.2s; color: #0f172a; font-weight: 700; }
         .input-gap:focus { border-color: var(--accent); outline: none; }
+        .input-gap:disabled { background: #f1f5f9; cursor: not-allowed; }
 
         .btn-submit { width: 100%; background: var(--primary); color: white; border: none; padding: 16px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
         .btn-submit:hover { background: var(--accent); color: var(--primary); }
@@ -56,6 +63,10 @@
 <body>
 
 <div class="quiz-card">
+    <div class="timer-container" id="countdown-wrapper">
+        <i class="fa-solid fa-clock-rotate-left"></i> <span id="timer-display">05:00</span>
+    </div>
+
     <div class="header-quiz">
         <div class="schedule-badge" id="schedule-info">Memuat Jadwal...</div>
         <h2>San Aethelgard Listening Audio Lab</h2>
@@ -71,9 +82,8 @@
 
     <div class="question-section">
         <h3 id="question-identity" style="font-family: 'Poppins', sans-serif; font-size: 15px; color: var(--primary); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px;">Questions:</h3>
-        <div id="quiz-form">
-            </div>
-        <button class="btn-submit" onclick="checkAnswers()">Periksa Jawaban</button>
+        <div id="quiz-form"></div>
+        <button id="submitBtn" class="btn-submit" onclick="checkAnswers()">Periksa Jawaban</button>
     </div>
 
     <div id="result-area">
@@ -92,7 +102,6 @@
 </div>
 
 <script>
-    // Database Komplit: 5 Paket Soal per Standar Internasional (Total 15 Dialog Obrolan Premium)
     const listeningDatabase = {
         seninSelasa: {
             name: "Cambridge Assessment Standard",
@@ -294,12 +303,14 @@
     let activeStandard = {};
     let activePackage = {};
     let synth = window.speechSynthesis;
+    let timerInterval;
+    let timeLeft = 300; // 5 Menit = 300 detik
+    let quizSubmitted = false;
 
     function setupListeningQuiz() {
-        const currentDay = new Date().getDay(); // 0 = Minggu, 1 = Senin, dst.
-        const currentDayOfMonth = new Date().getDate(); // Ambil tanggal (1-31)
+        const currentDay = new Date().getDay();
+        const currentDayOfMonth = new Date().getDate();
         
-        // 1. Pilih standar utama berdasarkan hari berjalan
         if (currentDay === 1 || currentDay === 2) {
             activeStandard = listeningDatabase.seninSelasa;
         } else if (currentDay === 3 || currentDay === 4) {
@@ -308,15 +319,12 @@
             activeStandard = listeningDatabase.jumatSabtuMinggu;
         }
 
-        // 2. Pilih 1 dari 5 paket soal menggunakan sisa bagi tanggal
         const packageIndex = currentDayOfMonth % 5;
         activePackage = activeStandard.packages[packageIndex];
 
-        // 3. Update UI Tampilan Eksklusif
         document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-headphones"></i> Active: ${activeStandard.name}`;
         document.getElementById('question-identity').innerText = `${activeStandard.name} - Audio Package ${packageIndex + 1} of 5:`;
 
-        // Render input pertanyaan secara otomatis ke HTML
         const formContainer = document.getElementById('quiz-form');
         formContainer.innerHTML = "";
         activePackage.questions.forEach((q, index) => {
@@ -327,18 +335,48 @@
                 </div>
             `;
         });
+
+        startTimer();
     }
 
-    // Fungsi utama untuk memutar audio percakapan robot penutur asli secara bergantian
-    function playDialogue() {
-        if (!synth) {
-            alert("Browser Anda tidak mendukung Text-to-Speech.");
-            return;
-        }
+    function startTimer() {
+        timerInterval = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById('timer-display').innerText = "TIME OUT";
+                document.getElementById('countdown-wrapper').className = "timer-container warning";
+                autoLockAndSubmit();
+            } else {
+                timeLeft--;
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                document.getElementById('timer-display').innerText = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 30) {
+                    document.getElementById('countdown-wrapper').className = "timer-container warning";
+                }
+            }
+        }, 1000);
+    }
 
-        if (synth.speaking) {
-            return; 
-        }
+    function autoLockAndSubmit() {
+        if(quizSubmitted) return;
+        alert("Waktu ujian telah habis! Sistem otomatis mengunci dan memeriksa jawaban Anda.");
+        
+        activePackage.questions.forEach((q, index) => {
+            document.getElementById(`q-${index}`).disabled = true;
+        });
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('audioBtn').disabled = true;
+        if(synth) synth.cancel();
+
+        checkAnswers(true);
+    }
+
+    function playDialogue() {
+        if (!synth || timeLeft <= 0) return;
+        if (synth.speaking) return; 
 
         const audioBtn = document.getElementById('audioBtn');
         const audioStatus = document.getElementById('audioStatus');
@@ -350,7 +388,7 @@
         let currentLine = 0;
 
         function speakLine() {
-            if (currentLine >= activePackage.dialogue.length) {
+            if (currentLine >= activePackage.dialogue.length || timeLeft <= 0) {
                 audioBtn.disabled = false;
                 audioBtn.innerHTML = `<i class="fa-solid fa-play"></i> Putar Kembali Audio`;
                 audioStatus.innerText = "Status: Selesai. Silakan isi jawaban.";
@@ -361,12 +399,12 @@
             const utterance = new SpeechSynthesisUtterance(`${lineData.speaker} says. ${lineData.text}`);
             
             utterance.lang = 'en-US';
-            utterance.rate = 0.85; // Sedikit diperlambat demi kejelasan artikulasi tes akademik
+            utterance.rate = 0.85;
             utterance.pitch = 1.0;
 
             utterance.onend = () => {
                 currentLine++;
-                setTimeout(speakLine, 800); // Jeda natural 0.8 detik antar pembicara
+                setTimeout(speakLine, 800);
             };
 
             synth.speak(utterance);
@@ -375,14 +413,19 @@
         speakLine();
     }
 
-    // Fungsi memeriksa skor jawaban user
-    function checkAnswers() {
+    function checkAnswers(isAuto = false) {
+        if(!isAuto) {
+            clearInterval(timerInterval);
+            quizSubmitted = true;
+        }
+
         let correctCount = 0;
         const totalQuestions = activePackage.questions.length;
 
         activePackage.questions.forEach((q, index) => {
-            const userInput = document.getElementById(`q-${index}`).value.trim().toLowerCase();
             const inputField = document.getElementById(`q-${index}`);
+            const userInput = inputField.value.trim().toLowerCase();
+            inputField.disabled = true;
 
             if (userInput === q.answer.toLowerCase()) {
                 correctCount++;
@@ -396,7 +439,6 @@
 
         document.getElementById('score-text').innerText = `Skor Anda: ${correctCount} / ${totalQuestions}`;
         
-        // Render Teks Transkrip Resmi di bawah sebagai bahan evaluasi belajar harian
         let fullTranscriptHTML = "";
         activePackage.dialogue.forEach(line => {
             fullTranscriptHTML += `<b>${line.speaker}:</b> "${line.text}"\n`;
