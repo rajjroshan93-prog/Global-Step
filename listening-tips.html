@@ -3,220 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panduan & Tips IELTS Listening - IELTS Master Hub</title>
+    <title>Cambridge Listening Masterclass - San Aethelgard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --primary: #001f3f;
+            --accent: #00D4FF;
+            --bg-dark: #00152b;
             --card-bg: #ffffff;
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --accent: #e11d48;
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-            --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.1);
+            --text-main: #334155;
+            --slate-gray: #64748b;
         }
 
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-            -webkit-font-smoothing: antialiased;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Lato', sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
-        body { 
-            background-color: #f8fafc; 
-            color: var(--text-main); 
-            line-height: 1.7; 
-        }
-
-        header { 
-            background: var(--bg-gradient); 
-            color: white; 
-            padding: 50px 20px; 
-            text-align: center;
-            position: relative;
-        }
+        .materi-container { width: 100%; max-width: 850px; background: var(--card-bg); border-radius: 20px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
         
-        .back-btn { 
-            display: inline-block; 
-            color: #93c5fd; 
-            text-decoration: none; 
-            margin-bottom: 20px; 
-            font-weight: 600; 
-            font-size: 0.95rem;
-            background: rgba(255,255,255,0.05); 
-            padding: 8px 20px; 
-            border-radius: 20px; 
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
-        }
-        .back-btn:hover { 
-            color: white;
-            background: rgba(255,255,255,0.15); 
-            transform: translateX(-4px);
-        }
+        .header-materi { text-align: center; margin-bottom: 35px; border-bottom: 2px solid #f1f5f9; padding-bottom: 25px; }
+        .header-materi h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; }
+        .badge-elite { display: inline-block; background: #e0faff; color: #0369a1; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
 
-        header h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            margin-bottom: 10px;
-            background: linear-gradient(to right, #ffffff, #93c5fd);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        h3 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 20px; margin-top: 35px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        h3 i { color: var(--accent); background: var(--primary); width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
 
-        header p {
-            font-size: 1rem;
-            color: #94a3b8;
-        }
+        p { font-size: 15px; line-height: 1.7; color: #475569; margin-bottom: 15px; text-align: justify; }
+        b { color: var(--primary); }
 
-        .container { 
-            max-width: 850px; 
-            margin: 40px auto; 
-            padding: 0 20px; 
-        }
+        /* STRATEGY CARD */
+        .strategy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 25px 0; }
+        .strategy-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-align: center; }
+        .strategy-card i { font-size: 24px; color: var(--primary); margin-bottom: 10px; }
+        .strategy-card h4 { font-family: 'Poppins', sans-serif; font-size: 15px; color: var(--primary); margin-bottom: 8px; }
+        .strategy-card p { font-size: 13px; margin-bottom: 0; text-align: center; line-height: 1.5; }
 
-        .article-card {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid #e2e8f0;
-            margin-bottom: 30px;
-        }
+        /* LISTENING SECTIONS GRID */
+        .section-box { background: #f8fafc; border-left: 4px solid var(--primary); padding: 15px 20px; margin-bottom: 12px; border-radius: 0 8px 8px 0; }
+        .section-box h4 { font-family: 'Poppins', sans-serif; font-size: 16px; color: var(--primary); margin-bottom: 4px; }
+        .section-box p { font-size: 14px; margin-bottom: 0; }
 
-        h2 { 
-            color: #1e3a8a; 
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-top: 35px; 
-            margin-bottom: 15px; 
-            border-bottom: 2px solid #f1f5f9; 
-            padding-bottom: 10px; 
-            letter-spacing: -0.02em;
-        }
-        h2:first-of-type { margin-top: 0; }
-        
-        p {
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
+        /* TABLES */
+        .table-style { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+        .table-style th { background: var(--primary); color: #fff; text-align: left; padding: 12px; font-family: 'Poppins', sans-serif; font-weight: 600; }
+        .table-style td { padding: 12px; border-bottom: 1px solid #e2e8f0; line-height: 1.6; }
+        .table-style tr:nth-child(even) { background-color: #f8fafc; }
 
-        /* BOX AUDIO PREMIUM */
-        .audio-box { 
-            background: #f0fdf4; 
-            border: 1px solid #bbf7d0; 
-            padding: 24px; 
-            border-radius: 14px; 
-            margin: 25px 0; 
-        }
-        .audio-box h3 {
-            color: #166534;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-        .audio-box p { color: #166534; font-size: 0.95rem; margin-bottom: 15px; opacity: 0.8; }
-        .audio-box audio { 
-            width: 100%; 
-            margin-top: 5px; 
-        }
+        /* PRO TIP BOX */
+        .pro-tip { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 20px; border-radius: 8px; margin: 25px 0; }
+        .pro-tip h5 { font-family: 'Poppins', sans-serif; color: #166534; font-size: 16px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
 
-        /* LIST DENGAN ICON MODERN */
-        .tips-list { list-style: none; margin-bottom: 25px; }
-        .tips-list li { 
-            position: relative; 
-            padding-left: 32px; 
-            margin-bottom: 16px; 
-            color: var(--text-muted);
-        }
-        .tips-list li::before { 
-            content: "🎯"; 
-            position: absolute; 
-            left: 0; 
-            top: 2px; 
-        }
+        .back-btn { display: inline-block; margin-top: 35px; width: 100%; text-align: center; background: var(--primary); color: white; padding: 14px; border-radius: 50px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; transition: 0.3s; border: 2px solid var(--primary); }
+        .back-btn:hover { background: var(--accent); color: var(--primary); border-color: var(--accent); }
 
-        /* ALERT BOX */
-        .alert-box { 
-            background: #fff1f2; 
-            border-left: 4px solid var(--accent); 
-            padding: 20px; 
-            border-radius: 12px; 
-            margin: 30px 0; 
-            color: #9f1239; 
-            font-size: 0.95rem;
-        }
-        .alert-box strong { color: #e11d48; display: block; margin-bottom: 5px; }
-        
-        footer { 
-            text-align: center; 
-            padding: 30px 20px; 
-            background: #0f172a; 
-            color: #64748b; 
-            margin-top: 60px; 
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .container { margin: 20px auto; padding: 0 16px; }
-            .article-card { padding: 24px; border-radius: 16px; }
-            header h1 { font-size: 1.8rem; }
+        @media (max-width: 650px) {
+            .strategy-grid { grid-template-columns: 1fr; }
+            .materi-container { padding: 25px 20px; }
+            .header-materi h2 { font-size: 22px; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <a href="index.html" class="back-btn">← Kembali ke Beranda</a>
-    <h1>IELTS Listening: Strategi & Tips Sukses</h1>
-    <p>Kuasai format tes dan raih skor Band 7.0+ di sesi Mendengarkan</p>
-</header>
-
-<div class="container">
-    <div class="article-card">
-        
-        <h2>1. Mengenal Format Tes</h2>
-        <p>Tes IELTS Listening berlangsung selama kurang lebih <strong>30 menit</strong> (ditambah 10 menit waktu transfer jawaban jika kamu mengambil tes berbasis kertas). Kamu akan mendengarkan 4 rekaman audio yang hanya diputar <strong>satu kali saja</strong>.</p>
-
-        <div class="audio-box">
-            <h3>🎧 Contoh Audio Latihan (Simulasi)</h3>
-            <p>Coba putar audio di bawah ini untuk membiasakan telinga kamu dengan aksen British/Australian:</p>
-            <audio controls>
-                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-                Browser kamu tidak mendukung pemutar audio.
-            </audio>
-        </div>
-
-        <h2>2. Strategi Emas Menjawab Soal</h2>
-        <ul class="tips-list">
-            <li><strong>Gunakan Waktu Membaca Soal:</strong> Sebelum audio dimulai, selalu ada jeda waktu beberapa detik. Gunakan ini untuk menganalisis soal dan menebak jenis kata apa yang hilang.</li>
-            <li><strong>Fokus pada Kata Kunci (Keywords):</strong> Garis bawahi kata kunci di lembar soal yang tidak akan berubah, seperti nama tempat, tahun, atau istilah teknis.</li>
-            <li><strong>Multitasking adalah Kunci:</strong> Kamu harus membaca soal berikutnya sambil mendengarkan audio untuk soal yang sedang berjalan. Jangan terpaku pada satu soal yang terlewat!</li>
-        </ul>
-
-        <div class="alert-box">
-            <strong>⚠️ Hati-hati Jebakan (Distractors)!</strong>
-            Pembicara dalam audio sering kali mengubah jawaban mereka di detik-detik terakhir. <br>
-            <em>Contoh: "I'd like to book the room for Wednesday... oh, sorry, I forgot I have a meeting, let's make it Thursday."</em> Jangan terburu-buru menulis "Wednesday"!
-        </div>
-
-        <h2>3. Aturan Penulisan yang Ketat</h2>
-        <p>Banyak peserta tes kehilangan poin bukan karena tidak tahu jawabannya, tapi karena salah menulis formatnya:</p>
-        <ul class="tips-list">
-            <li><strong>Perhatikan Instruksi Jumlah Kata:</strong> Jika perintahnya <em>"NO MORE THAN TWO WORDS"</em>, menulis tiga kata otomatis disalahkan meskipun informasinya benar.</li>
-            <li><strong>Spelling (Ejaan):</strong> Salah satu huruf saja berarti salah (misal: menulis *accommodation* hanya dengan satu 'm').</li>
-            <li><strong>Singular vs Plural:</strong> Dengarkan baik-baik apakah ada akhiran huruf '-s' di akhir kata benda. Jika di audio disebutkan "books" dan kamu menulis "book", jawabanmu dianggap salah.</li>
-        </ul>
-
+<div class="materi-container">
+    <div class="header-materi">
+        <div class="badge-elite">San Aethelgard Academy</div>
+        <h2>Cambridge Listening Blueprint</h2>
+        <p style="margin-top: 5px; font-size: 14px; color: var(--slate-gray);">Sistem taktis pemetaan audio, sinkronisasi skrip, dan penulisan lembar jawaban resmi.</p>
     </div>
-</div>
 
-<footer>
-    <p>&copy; 2026 IELTS Master Hub. Optimized for Mobile Learning.</p>
-</footer>
+    <h3><i class="fa-solid fa-layer-group"></i> Anatomi 4 Bagian Tes Cambridge</h3>
+    <p>Ujian mendengarkan dibagi menjadi empat bagian dengan tingkat kompleksitas linguistik yang semakin meningkat secara eksponensial.</p>
+    
+    <div class="section-box">
+        <h4>Section 1: Social Dialogue (2 Pembicara)</h4>
+        <p>Percakapan kasual sehari-hari (misal: memesan kamar hotel atau mendaftar keanggotaan gym). Fokus utama: Pencatatan nama, nomor telepon, tanggal, dan alamat.</p>
+    </div>
+    <div class="section-box">
+        <h4>Section 2: Social Monologue (1 Pembicara)</h4>
+        <p>Satu orang menjelaskan fasilitas umum atau memberikan panduan tur (misal: penjelasan peta taman nasional atau siaran radio komunitas). Fokus utama: Menjawab soal pilihan ganda dan pencocokan peta.</p>
+    </div>
+    <div class="section-box">
+        <h4>Section 3: Educational Context (2 - 4 Pembicara)</h4>
+        <p>Diskusi akademik antara mahasiswa dengan dosen pembimbing mengenai proyek ilmiah. Fokus utama: Mengidentifikasi perubahan opini, persetujuan, dan ketidaksetujuan antar tokoh.</p>
+    </div>
+    <div class="section-box">
+        <h4>Section 4: Academic Lecture (1 Pembicara)</h4>
+        <p>Kuliah universitas murni tanpa jeda istirahat (misal: pembahasan penelitian antropologi atau sejarah arsitektur). Fokus utama: Menangkap kosakata tingkat tinggi (*Advanced Vocabulary*) dan melengkapi rangkuman.</p>
+    </div>
+
+    <h3><i class="fa-solid fa-clock"></i> 3 Pilar Teknik Sinkronisasi</h3>
+    <p>Ingat, rekaman audio **hanya diputar satu kali**. Kegagalan mengantisipasi teks sebelum audio berjalan akan berakibat fatal.</p>
+    
+    <div class="strategy-grid">
+        <div class="strategy-card">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <h4>Predicting Context</h4>
+            <p>Analisis jenis kata sebelum audio mulai. Apakah titik-titik membutuhkan satuan mata uang, nama hari, atau kata sifat (*adjective*)?</p>
+        </div>
+        <div class="strategy-card">
+            <i class="fa-solid fa-map-signs"></i>
+            <h4>Signpost Tracking</h4>
+            <p>Ikuti kata penanda transisi materi pembicara seperti <i>"On the other hand"</i> atau <i>"Now, let's turn to..."</i> agar posisi membaca tidak tersesat.</p>
+        </div>
+        <div class="strategy-card">
+            <i class="fa-solid fa-font"></i>
+            <h4>Capitalization Rules</h4>
+            <p>Nama orang, jalan, benua, dan institusi **wajib ditulis dengan huruf kapital di awal** (Contoh: <i>London</i>, bukan <i>london</i>). Jika salah, sistem menganggapnya tidak sah.</p>
+        </div>
+    </div>
+
+    <h3><i class="fa-solid fa-filter"></i> Bedah Jebakan Parafrasa & Koreksi Instan</h3>
+    <p>Cambridge selalu menguji ketelitian mendengarkan Anda dengan memberikan info palsu di awal sebelum meralatnya di akhir kalimat.</p>
+    
+    <table class="table-style">
+        <thead>
+            <tr>
+                <th style="width: 45%;">Transkrip Audio Asli</th>
+                <th style="width: 35%;">Taktik Pengecoh</th>
+                <th style="width: 20%;">Jawaban Mutlak</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>"We will depart at <b>8:30 AM</b>... actually, the bus company just informed us that it's delayed to <b>9:15 AM</b>."</td>
+                <td><i>Self-Correction Trap</i> (Koreksi langsung oleh pembicara).</td>
+                <td><b>9:15 AM</b></td>
+            </tr>
+            <tr>
+                <td>"I used to work as a <b>mechanic</b>, but now I earn my living as a <b>chef</b>."</td>
+                <td><i>Past vs Present Trap</i> (Membandingkan masa lalu dengan kondisi sekarang).</td>
+                <td><b>chef</b></td>
+            </tr>
+            <tr>
+                <td>"The laboratory is located <b>opposite</b> the library, not behind it."</td>
+                <td><i>Prepositional Trap</i> (Jebakan arah posisi lokasi benda pada peta).</td>
+                <td><b>opposite</b></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3><i class="fa-solid fa-ban"></i> Aturan Ketat Batasan Kata (Word Limit)</h3>
+    <p>Jika instruksi tertulis <b>"NO MORE THAN TWO WORDS"</b>, batas maksimal adalah dua kata. Menulis tiga kata otomatis dianggap salah total meskipun substansinya benar.</p>
+    <table class="table-style" style="margin-top: 5px;">
+        <tr>
+            <td style="width: 50%;"><b>Jawaban Sesuai Aturan (Benar):</b></td>
+            <td style="width: 50%; color: #166534;">"leather shoes" (2 kata)</td>
+        </tr>
+        <tr>
+            <td><b>Jawaban Melebihi Batas (Salah Total):</b></td>
+            <td style="color: #991b1b;">"shoes made of leather" (4 kata)</td>
+        </tr>
+    </table>
+
+    <div class="pro-tip">
+        <h5><i class="fa-solid fa-graduation-cap"></i> San's Cambridge Core Principle:</h5>
+        <p style="margin-bottom: 0; font-size: 14px; color: #166534;">Awas jebakan **Plural (-s/-es)**! Jika audio menyebutkan <i>"environmental factors"</i> dan Anda hanya menulis <i>"environmental factor"</i> (tanpa huruf S), jawaban langsung dicoret. Dengarkan baik-baik desisan di akhir kata benda!</p>
+    </div>
+
+    <a href="dashboard.html" class="back-btn"><i class="fa-solid fa-chevron-left" style="margin-right: 8px; font-size: 13px;"></i> Kembali ke Dashboard</a>
+</div>
 
 </body>
 </html>
