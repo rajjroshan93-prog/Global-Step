@@ -6,7 +6,7 @@
     <title>Reading Academic Quiz - San Aethelgard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root { 
@@ -19,16 +19,17 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Lato', sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
-        .quiz-card { width: 100%; max-width: 900px; background: var(--card-bg); border-radius: 20px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid rgba(0, 212, 255, 0.1); }
+        .quiz-card { width: 100%; max-width: 950px; background: var(--card-bg); border-radius: 20px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid rgba(0, 212, 255, 0.1); }
         .header-quiz { text-align: center; margin-bottom: 30px; }
         .header-quiz h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; }
         .schedule-badge { display: inline-block; background: #e0faff; color: #0369a1; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-bottom: 15px; text-transform: uppercase; }
         
-        .passage-box { background: #f8fafc; padding: 30px; border-radius: 12px; border-left: 6px solid var(--primary); margin-bottom: 35px; font-size: 16px; line-height: 1.8; text-align: justify; max-height: 400px; overflow-y: auto; box-shadow: inset 0 2px 8px rgba(0,0,0,0.05); }
-        .passage-box h3 { font-family: 'Poppins', sans-serif; margin-bottom: 15px; color: var(--primary); font-size: 20px; }
-        
+        .passage-box { background: #f8fafc; padding: 35px; border-radius: 12px; border-left: 6px solid var(--primary); margin-bottom: 35px; font-size: 15px; line-height: 1.8; text-align: justify; max-height: 500px; overflow-y: auto; box-shadow: inset 0 2px 8px rgba(0,0,0,0.05); }
+        .passage-box h3 { font-family: 'Poppins', sans-serif; margin-bottom: 15px; color: var(--primary); font-size: 22px; text-transform: uppercase; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+        .passage-box p { margin-bottom: 18px; text-indent: 30px; }
+
         .question-box { margin-bottom: 30px; background: #fff; padding: 25px; border: 1px solid #e2e8f0; border-radius: 12px; }
-        .question-title { font-size: 17px; font-weight: 700; color: var(--primary); margin-bottom: 15px; line-height: 1.5; }
+        .question-title { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 15px; line-height: 1.5; }
         .options-list { display: flex; flex-direction: column; gap: 12px; }
         .option-item { display: flex; align-items: center; padding: 15px 20px; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: 600; background: #fff; transition: 0.2s; }
         .option-item:hover { border-color: var(--accent); background: #f0fdff; }
@@ -40,11 +41,10 @@
         
         #result-area { margin-top: 30px; padding: 30px; border-radius: 12px; display: none; }
         .success-score { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
-        .review-box { background: rgba(255,255,255,0.8); padding: 20px; border-radius: 8px; margin-top: 20px; color: #1e293b; font-size: 15px; line-height: 1.6; }
+        .review-box { background: rgba(255,255,255,0.8); padding: 20px; border-radius: 8px; margin-top: 20px; color: #1e293b; font-size: 14px; line-height: 1.6; }
         
         .back-home { display: inline-block; margin-top: 30px; text-decoration: none; color: #94a3b8; font-weight: 700; font-size: 14px; transition: 0.2s; text-transform: uppercase; }
         .back-home:hover { color: var(--accent); }
-
         .footer-credit { font-size: 11px; color: #64748b; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 700; text-align: center; margin-top: 25px; }
         .footer-credit a { color: var(--accent); text-decoration: none; margin-left: 4px; }
     </style>
@@ -53,16 +53,16 @@
 
 <div class="quiz-card">
     <div class="header-quiz">
-        <div class="schedule-badge" id="schedule-info"><i class="fa-solid fa-sync fa-spin"></i> Mensinkronisasi Jadwal...</div>
-        <h2>San Aethelgard: Academic Practice</h2>
-        <p style="color: #64748b; font-size: 15px; margin-top: 5px;">Gunakan metode analisis kata kunci untuk membedakan fakta orisinal dari teks penguji.</p>
+        <div class="schedule-badge" id="schedule-info"><i class="fa-solid fa-sync fa-spin"></i> Mensinkronisasi Sistem...</div>
+        <h2>San Aethelgard: Full-Length Reading Passage</h2>
+        <p style="color: #64748b; font-size: 15px; margin-top: 5px;">Gunakan teknik Skimming dan Scanning tingkat lanjut untuk menemukan esensi kebenaran teks.</p>
     </div>
 
     <div class="passage-box" id="passage-container"></div>
 
     <form id="dynamicQuizForm" onsubmit="evaluateQuiz(event)">
         <div id="questions-container"></div>
-        <button type="submit" class="btn-submit">SUBMIT & ANALISIS BAND SCORE</button>
+        <button type="submit" class="btn-submit">SUBMIT & VERIFIKASI AKURASI JAWABAN</button>
     </form>
 
     <div id="result-area" class="success-score">
@@ -81,33 +81,45 @@
 <script>
     const readingDatabase = {
         paketSeninSelasa: {
-            name: "Academic Passage: The Evolution of Megacities (Jadwal: Senin - Selasa)",
-            passage: `<h3>The Evolution of Megacities</h3><p>In the contemporary era, the phenomenon of the 'megacity'—defined as an urban agglomeration supporting a population in excess of ten million inhabitants—has fundamentally altered the global demographic landscape. At the inception of the twentieth century, only a handful of urban centers, notably London and New York, possessed the economic infrastructure to draw such vast concentrations of humanity. However, the latter half of the century witnessed an unprecedented shift, primarily driven by rapid industrialization and agrarian displacement in developing nations. Consequently, the epicenter of megacity growth transitioned dramatically from Western economies to Asia and Latin America.</p><p>Urban planners argue that while these colossal hubs function as engines of economic growth and technological innovation, they simultaneously pose severe logistical and environmental dilemmas. The sheer velocity of population influx frequently outpaces municipal infrastructure development, culminating in substandard housing, critical water scarcity, and highly congested transit systems. For instance, in several South Asian megacities, over forty percent of the populace resides in informal settlements lacking basic sanitation. Furthermore, the phenomenon of the 'urban heat island' effect—where built environments trap ambient heat—has exacerbated energy demands and raised local temperatures by up to five degrees Celsius.</p><p>Despite these acute challenges, some economists maintain a highly optimistic outlook. They assert that the dense concentration of human capital fosters a unique ecosystem of efficiency, where public services can theoretically be delivered at a lower per-capita cost than in sparsely populated rural regions. Moreover, proponents highlight that megacities are pioneering sustainable initiatives, such as vertical farming and zero-emission mass transit networks, out of absolute necessity. Ultimately, the future viability of these urban giants will depend not on arresting human migration, but on the sophistication of long-term administrative foresight and smart-city integration.</p>`,
+            name: "Cambridge Assessment Standard (Jadwal: Senin - Selasa)",
+            passage: `<h3>The Evolution and Morphological Dynamics of Megacities</h3>
+            <p>In the contemporary globalized era, the phenomenon of the 'megacity'—defined specifically as an unbroken urban agglomeration supporting a human population in excess of ten million inhabitants—has fundamentally rewritten the demographic and structural landscape of our planet. At the dawn of the twentieth century, the world was predominantly rural, and only a minimal handful of Western industrial hubs, most notably London and New York, possessed the intricate economic architecture and dense capital required to draw such unprecedented concentrations of humanity. These early technological epicenters expanded slowly, mirroring the gradual developments of the First and Second Industrial Revolutions, setting a blueprint for metropolitan administrative governance.</p>
+            <p>However, the latter chronological half of the century witnessed a highly asymmetrical shift in global development. Driven primarily by aggressive rapid industrialization, massive agrarian displacement, and socioeconomic polarization in developing countries, the demographic epicenter of megacity growth shifted away from Western capital markets towards Asia, Africa, and Latin America. Cities like Tokyo, Mumbai, and São Paulo expanded at velocity rates that municipal administrative infrastructures could rarely match. Consequently, contemporary urban planners argue that while these colossal hubs function effectively as engines of gross domestic product and centers of cultural innovation, they simultaneously present severe logistical, existential, and environmental dilemmas.</p>
+            <p>The core issue lies in infrastructure elasticity. When population influx outpaces municipal budgetary expansion, the urban tissue fractures into vast informal settlements, leading to severe public health challenges, systemic water scarcity, and highly congested mass transit frameworks. For instance, empirical data indicates that in certain South Asian megacities, approximately forty percent of urban dwellers occupy unregulated zones lacking fundamental municipal sewage grids. Furthermore, the microclimatic phenomenon known as the 'urban heat island' effect—where built environments constructed of concrete and asphalt trap thermal radiation—has drastically elevated municipal energy demands, driving localized temperatures up by an alarming five degrees Celsius.</p>
+            <p>Despite these critical warnings, optimistic economic theorists offer an alternative perspective based on resource maximization. They assert that the extreme density of human capital creates an unparalleled ecosystem of transactional efficiency. Within this framework, vital public services, ranging from healthcare distribution to digital telecommunications, can theoretically be executed at a substantially lower per-capita expense compared to sparsely populated agricultural territories. Moreover, urgency has forced megacities to become pioneers of modern sustainable technologies, introducing innovations like vertical aero-farming and high-capacity zero-emission transit networks. Ultimately, the future equilibrium of these human hives depends not on preventing inevitable migration, but on the sophistication of administrative foresight and smart-city network integrations.</p>`,
             questions: [
-                { id: "m1", q: "At the beginning of the twentieth century, New York and London were the only two cities in the world with over ten million residents.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "C", note: "NOT GIVEN: Teks hanya menyebutkan London dan New York sebagai contoh pusat kota yang menonjol (*notably*), tanpa membatasi bahwa tidak ada kota lain." },
-                { id: "m2", q: "The primary driver of megacity growth in the latter half of the twentieth century was migration caused by changes in rural sectors and industrial growth.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "A", note: "TRUE: Sesuai dengan kalimat akhir paragraf pertama yang menyatakan dipicu oleh 'rapid industrialization and agrarian displacement' (perpindahan sektor pertanian/pedesaan)." },
-                { id: "m3", q: "During the late twentieth century, megacity expansion accelerated faster in Western nations than in Asia.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Teks dengan tegas menyatakan 'the epicenter of megacity growth transitioned dramatically from Western economies to Asia', pertumbuhan Asia jauh lebih cepat." },
-                { id: "m4", q: "Municipalities generally manage to upgrade their infrastructure before the majority of new residents arrive.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Kontradiktif dengan teks 'population influx frequently outpaces municipal infrastructure development'." }
+                { id: "m1", q: "At the beginning of the twentieth century, London and New York were the only urban areas on earth containing over ten million residents.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "C", note: "NOT GIVEN: Paragraf 1 menyatakan kedua kota tersebut menonjol (*notably*) memiliki infrastruktur penarik massa, namun teks tidak pernah membatasi secara mutlak bahwa tidak ada kota lain sama sekali di dunia." },
+                { id: "m2", q: "The massive expansion of developing megacities in the late twentieth century was heavily accelerated by agricultural disruptions.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "A", note: "TRUE: Paragraf 2 menyatakan pergeseran pertumbuhan dipicu oleh 'agrarian displacement' (gangguan/pergeseran sektor pertanian pedesaan)." },
+                { id: "m3", q: "The 'urban heat island' effect reduces the financial expenditure spent by a city's municipal power grid.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Paragraf 3 menyatakan efek ini 'elevated municipal energy demands' (meningkatkan permintaan energi), yang berarti menaikkan biaya pengeluaran, bukan mengurangi." },
+                { id: "m4", q: "Some economists argue that providing essential public services is financially cheaper per person in dense megacities than in rural zones.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "A", note: "TRUE: Paragraf 4 mengonfirmasi bahwa pelayanan publik dapat dieksekusi pada 'substantially lower per-capita expense' (biaya per orang yang lebih rendah) dibanding area pedesaan." }
             ]
         },
         paketRabuKamis: {
-            name: "Academic Passage: The Paradigm Shift in Artificial Intelligence (Jadwal: Rabu - Kamis)",
-            passage: `<h3>The Paradigm Shift in Artificial Intelligence</h3><p>The dawn of the twenty-first century has been characterized by an unprecedented acceleration in machine learning capabilities, shifting artificial intelligence (AI) from a speculative laboratory pursuit to an omnipresent societal foundation. Early computing pioneers predominantly relied on expert systems—rigid architectures governed by deterministic, human-authored rules. While these systems demonstrated proficiency in enclosed logical domains like chess, they proved utterly inadequate when confronted with the chaotic ambiguity of natural language or visual recognition. The contemporary renaissance of AI is fundamentally underpinned by deep neural networks, computational models designed to autonomously extract patterns from gargantuan datasets.</p><p>This systemic transition has ignited intense debates regarding economic disruption and the future of human labor. Sociologists caution that unlike previous industrial revolutions, which primarily automated manual tasks, generative AI models threaten to displace cognitive and creative occupations. Analysts note that algorithms can now synthesize legal briefs, generate programming scripts, and formulate medical diagnoses with a velocity that renders traditional white-collar frameworks obsolete. Paradoxically, this has augmented the economic valuation of tactile, non-routine manual professions, which remain remarkably difficult for robotic components to replicate cost-effectively.</p><p>Conversely, corporate leaders argue that AI does not foreshadow the eradication of employment, but rather an era of intellectual augmentation. By automating algorithmic, repetitive data processing, machines liberate human workers to concentrate on high-level strategic orchestration, ethics, and interpersonal communication. Proponents emphasize that in fields such as oncology, the symbiosis of human radiologists and deep learning algorithms yields diagnostic precision rates far superior to either entity working in isolation. The ultimate trajectory of this technology will likely be determined by institutional agility in implementing proactive retraining frameworks.</p>`,
+            name: "Oxford International Examination Standard (Jadwal: Rabu - Kamis)",
+            passage: `<h3>The Epistemological and Paradigm Shift in Artificial Intelligence</h3>
+            <p>The dawning decades of the twenty-first century have been distinctly characterized by an exponential acceleration in machine learning capabilities, rapidly transitioning artificial intelligence (AI) from speculative speculative fiction into an inescapable structural foundation of modern society. To fully comprehend this computational revolution, one must examine the foundational methodologies of early computational engineering. Early computing pioneers relied almost exclusively on symbolic AI and 'expert systems'—rigid architectures governed entirely by deterministic, human-authored conditional rules. These legacy systems encoded explicit human expertise into static databases, allowing computers to solve logical problems with high speed.</p>
+            <p>While these deterministic models achieved immense proficiency within highly structured, closed logical environments—such as executing complex mathematical operations or defeating human grandmasters at chess—they proved completely inadequate when confronted with the unmapped, chaotic ambiguity of natural human language or real-world visual identification. The structural limitations of human programming became a wall, as humans could not write enough rules to encapsulate the fluid nuances of human interaction. The contemporary renaissance of machine intelligence avoids this obstacle by utilizing deep neural networks: computational frameworks inspired by biological neurology, designed to autonomously extract underlying patterns from vast datasets without direct human rule-authoring.</p>
+            <p>This paradigm shift has sparked intense societal anxiety regarding labor economics and systemic corporate displacement. Sociologists note that while historical technological revolutions (such as the introduction of the steam engine or assembly lines) primarily automated manual, repetitive physical labor, the generative AI wave poses an immediate existential threat to high-level cognitive and creative professions. Algorithms trained on global archives can now compile comprehensive legal briefs, write operational computer code, and generate complex medical diagnostic matrices with a velocity that renders traditional white-collar productivity metrics completely obsolete.</p>
+            <p>Paradoxically, this cognitive automation has significantly inverted the economic valuation of tactile, non-routine physical work. Occupations demanding complex fine-motor skills, spatial reasoning, and real-time physical adaptability—such as specialized plumbing or surgical nursing—remain highly insulated from automation due to the immense financial costs associated with advanced robotics. Moving forward, academic leaders suggest that the long-term integration of AI will result in workplace augmentation rather than complete human elimination, shifting the human role toward oversight, systemic ethics, and emotional orchestration.</p>`,
             questions: [
-                { id: "a1", q: "Early computing systems were highly successful at handling tasks that involved unpredictable natural language processing.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Teks menyatakan sistem awal 'proved utterly inadequate' (sangat tidak memadai) menghadapi ambiguitas bahasa alami." },
-                { id: "a2", q: "Deep neural networks require humans to manually write every rule for pattern extraction.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Teks menjelaskan neural networks modern dirancang untuk 'autonomously extract patterns' (mengekstrak pola secara mandiri) dari dataset besar." },
-                { id: "a3", q: "The current AI revolution is unique because it directly impacts cognitive and analytical jobs rather than just physical labor.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "A", note: "TRUE: Paragraf kedua mencatat bahwa tidak seperti revolusi industri terdahulu, AI sekarang mengancam pekerjaan kognitif dan kreatif (cognitive and creative occupations)." },
-                { id: "a4", q: "Governments have already established mandatory financial subsidies for workers displaced by artificial intelligence.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "C", note: "NOT GIVEN: Teks hanya menyebutkan pentingnya pelatihan ulang (retraining frameworks), tidak membahas tentang subsidi keuangan dari pemerintah." }
+                { id: "a1", q: "Legacy expert computing architectures struggled when dealing with unstructured data like human speech.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "A", note: "TRUE: Paragraf 2 menjelaskan bahwa sistem lama 'proved completely inadequate' (sama sekali tidak memadai) saat berhadapan dengan ambiguitas bahasa manusia alami." },
+                { id: "a2", q: "Modern deep neural networks require programmers to explicitly write code for every pattern they recognize.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Paragraf 2 menyatakan neural networks bekerja secara 'autonomously extract patterns... without direct human rule-authoring' (mengekstrak pola mandiri tanpa penulisan aturan manusia)." },
+                { id: "a3", q: "Generative artificial intelligence models duplicate the exact economic effects of the nineteenth-century steam engine revolution.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Paragraf 3 menyatakan AI berbeda dengan revolusi terdahulu karena AI menyerang pekerjaan kognitif/kreatif, bukan pekerjaan fisik/manual." },
+                { id: "a4", q: "Manual tactile jobs requiring non-routine physical work have become economically less valuable due to software advances.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Paragraf 4 menyatakan kemajuan ini 'inverted the economic valuation' (membalikkan nilai ekonomi) sehingga pekerjaan fisik manual non-rutin justru bernilai tinggi karena sulit digantikan robot secara murah." }
             ]
         },
         paketJumatSabtuMinggu: {
-            name: "Academic Passage: Architectural Engineering of Maya Civilization (Jadwal: Jumat - Minggu)",
-            passage: `<h3>Architectural Engineering of Maya Civilization</h3><p>The monumental urban complexes engineered by the ancient Maya civilization across the Mesoamerican lowlands continue to challenge conventional historiography regarding pre-industrial societal capabilities. Operating without the benefit of draft animals, wheeled transportation, or metallurgy, Maya stone masons constructed sprawling civic-ceremonial centers dominated by towering limestone pyramids. Recent airborne LiDAR surveys have unveiled that these cities were not isolated enclaves, but interconnected components of a vast, highly sophisticated regional network. This infrastructure relied heavily on advanced hydrologic manipulation, a crucial adaptation given the region's severe seasonal droughts.</p><p>To sustain dense urban populations during the prolonged dry season, Maya engineers designed massive rainwater catchments and subterranean reservoirs called chultunes. These reservoirs were intricately lined with specialized plaster to impede water seepage, maintaining millions of liters of potable water. Furthermore, urban layouts were intentionally graded to funnel precipitation directly into these communal basins. In cities such as Tikal, the strategic placement of these reservoirs ensured that civic elites retained strict administrative control over water distribution, effectively cementing their political hegemony through structural resource management.</p><p>Beyond hydraulic prowess, the architectural orientation of Maya citadels demonstrated an astonishing comprehension of celestial mechanics. Prominent structures were aligned with mathematical precision to coincide with solar solstices and equinoxes. For example, during the spring equinox at Chichen Itza, the calculated interplay of sunlight and shadow creates the illusion of a serpentine deity descending the stone staircase of the main pyramid. This fusion of rigorous structural engineering and astronomical observation served a dual function: it validated the metaphysical authority of the ruling dynasty while providing an empirical agricultural calendar essential for agrarian survival.</p>`,
+            name: "ETS TOEFL & British IELTS Fusion Standard (Jadwal: Jumat - Minggu)",
+            passage: `<h3>The Hydro-Architectural Engineering of the Ancient Maya Lowlands</h3>
+            <p>The monumental urban citadels engineered by the ancient Maya civilization across the tropical Mesoamerican lowlands continue to challenge long-standing historical assumptions regarding the technological limits of pre-industrial societies. Operating entirely without the benefit of large draft animals, wheeled machinery, or hard metallurgy, Maya architects and stone masons constructed immense civic-ceremonial spaces dominated by towering limestone step-pyramids. For decades, traditional archaeology viewed these sites as isolated jungle temples. However, recent airborne LiDAR (Light Detection and Ranging) surveys have completely transformed this narrative, revealing that these urban centers were closely linked nodes within a highly sophisticated regional infrastructure network.</p>
+            <p>This macro-infrastructure relied fundamentally on advanced hydrologic manipulation, a critical environmental adaptation required to combat the region's intense, highly unpredictable seasonal droughts. The Mesoamerican climate created a dangerous dynamic: months of torrential downpours followed by periods of complete dehydration, exacerbated by a porous limestone bedrock that allowed surface water to sink deep into underground caves, out of human reach. To secure survival, Maya hydraulic engineers transformed their urban layouts into massive rainwater harvesting mechanisms. They lined plazas and roadways with specialized plaster compounds designed to prevent water seepage and graded the stone surfaces to direct all rainfall into artificial reservoirs.</p>
+            <p>In central urban zones like Tikal, these engineered reservoirs were massive, holding millions of liters of clean water. Microscopic analysis of soil sediments reveals that the Maya implemented sophisticated multi-stage filtration systems, utilizing imported quartz sand and volcanic ash to purify the water before it reached communal basins. Furthermore, this architectural mastery served a deeply political function. Because civic elites and religious rulers controlled the physical infrastructure of water retention, they could strictly regulate its distribution during periods of severe drought. This administrative monopoly over a life-saving resource effectively reinforced their divine political authority and cemented dynamic hegemony over the populace.</p>
+            <p>Beyond water engineering, the precise structural placement of Maya palaces and temples reflected a profound understanding of celestial mechanics. Key architectural markers were aligned with mathematical accuracy to track solar movements, solstices, and equinoxes. This calculated alignment allowed regular citizens to visually track the agricultural calendar, indicating exactly when to plant crops. Therefore, Maya architecture achieved a brilliant integration of practical engineering, resource management, political control, and cosmic religious justification, ensuring their structural dominance for centuries.</p>`,
             questions: [
-                { id: "v1", q: "The ancient Maya utilized wheeled vehicles and heavy iron tools to transport limestone blocks across long distances.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Teks secara eksplisit menyatakan mereka membangun 'without the benefit of draft animals, wheeled transportation, or metallurgy'." },
-                { id: "v2", q: "LiDAR technology proved that Maya urban centers were far more isolated from one another than previously assumed.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Kebalikannya, survei LiDAR membuktikan kota-kota tersebut 'not isolated enclaves, but interconnected components' (tidak terisolasi, melainkan terhubung)." },
-                { id: "v3", q: "The subterranean reservoirs known as chultunes were engineered to prevent water from leaking out into the soil.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "A", note: "TRUE: Sesuai informasi paragraf kedua, waduk dilapisi plester khusus 'to impede water seepage' (untuk menghalangi perembesan air)." },
-                { id: "v4", q: "Maya rulers lost their political power during years when seasonal droughts were exceptionally long.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "C", note: "NOT GIVEN: Teks menyebut kontrol air memperkuat kekuasaan mereka, tapi tidak membahas apakah mereka beneran kehilangan kekuasaan saat kekeringan panjang terjadi." }
+                { id: "v1", q: "Early traditional archaeologists correctly understood the highly interconnected nature of ancient Maya cities.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Paragraf 1 menyatakan arkeolog tradisional dulu menganggap situs Maya sebagai kuil hutan terisolasi (*isolated jungle temples*). Hubungan antarkota baru terbongkar setelah ada teknologi LiDAR modern." },
+                { id: "v2", q: "The natural geology of the Mesoamerican lowlands made it easy for surface water to remain accessible on the ground.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Paragraf 2 menyatakan batuan kapur porous (*porous limestone*) justru membuat air permukaan langsung amblas merembes ke bawah tanah, menyulitkan akses air." },
+                { id: "v3", q: "Maya engineers imported natural volcanic elements to assist in their water purification processes.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "A", note: "TRUE: Paragraf 3 memverifikasi bahwa mereka menggunakan pasir kuarsa dan abu vulkanik (*volcanic ash*) impor sebagai sistem filtrasi air." },
+                { id: "v4", q: "The geometric alignment of Maya pyramids was used exclusively for agricultural tracking rather than religious ceremonies.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Paragraf 4 menyimpulkan bahwa arsitektur mereka merupakan integrasi antara keduanya, yakni fungsi agrikultur praktis sekaligus justifikasi keagamaan kosmologis (*cosmic religious justification*)." }
             ]
         }
     };
@@ -115,8 +127,7 @@
     let activeQuestions = [];
 
     function setupQuiz() {
-        // Ambil urutan hari otomatis (0 = Minggu, 1 = Senin, dst)
-        const currentDay = new Date().getDay();
+        const currentDay = new Date().getDay(); // 0 = Minggu, 1 = Senin, dst
         let selectedBlock;
 
         if (currentDay === 1 || currentDay === 2) {
@@ -166,23 +177,23 @@
         event.preventDefault();
         const form = document.getElementById('dynamicQuizForm');
         let correct = 0;
-        let reviewHTML = '<strong>Analisis Jawaban & Bedah Distractor Penguji:</strong><br><br>';
+        let reviewHTML = '<strong>Bedah Logika Kasus & Analisis Pengecoh Internasional:</strong><br><br>';
 
         activeQuestions.forEach((item, index) => {
             const userAns = form.elements[item.id].value;
             if (userAns === item.ans) correct++;
-            reviewHTML += `<b>Soal ${index + 1}:</b> ${item.note}<br><br>`;
+            reviewHTML += `<b>Pertanyaan ${index + 1}:</b> ${item.note}<br><br>`;
         });
 
         const resultArea = document.getElementById('result-area');
-        document.getElementById('scoreTitle').innerText = `Skor Akhir Anda: Benar ${correct} dari ${activeQuestions.length} Pertanyaan`;
+        document.getElementById('scoreTitle').innerText = `Skor Akhir Anda: Benar ${correct} dari ${activeQuestions.length} Soal`;
         
         let band = "";
-        if (correct === activeQuestions.length) band = "Band 8.5 - 9.0 (Elite Academic Scholar - Analisis Sempurna)";
-        else if (correct >= 2) band = "Band 6.5 - 7.5 (Target Skor Universitas Dunia Aman)";
-        else band = "Band < 5.5 (Butuh Tambahan Fokus Teknik Scanning Detail)";
+        if (correct === activeQuestions.length) band = "Band 8.5 - 9.0 (C2 Expert Operational Academic)";
+        else if (correct >= 2) band = "Band 6.5 - 7.5 (B2/C1 Competent International Level)";
+        else band = "Band < 5.5 (B1 Threshold Operational Level)";
 
-        document.getElementById('bandEstimate').innerText = `Estimasi Kompetensi: ${band}`;
+        document.getElementById('bandEstimate').innerText = `Kualifikasi Hasil: ${band}`;
         document.getElementById('explanationBox').innerHTML = reviewHTML;
         resultArea.style.display = 'block';
         resultArea.scrollIntoView({ behavior: 'smooth' });
