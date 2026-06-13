@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Analytics & Progress Center - San Aethelgard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #001f3f;
+            --accent: #00D4FF;
+            --bg-dark: #00152b;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --slate-gray: #64748b;
+            --success: #16a34a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .analytics-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Navigation */
+        .analytics-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 25px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .header-left h1 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary);
+            font-size: 24px;
+        }
+
+        .header-left p {
+            color: var(--slate-gray);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .btn-back {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            transition: 0.2s;
+            border: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-back:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+        }
+
+        /* Main Grid Split */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 992px) {
+            .analytics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(0, 212, 255, 0.05);
+        }
+
+        .section-card h2 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary);
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 12px;
+        }
+
+        /* Form Controls */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        select, input[type="number"], input[type="date"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-family: 'Lato', sans-serif;
+            font-size: 15px;
+            color: var(--text-main);
+            outline: none;
+            transition: 0.2s;
+        }
+
+        select:focus, input:focus {
+            border-color: var(--accent);
+        }
+
+        /* Result Badges */
+        .result-display {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+            border: 1px dashed #cbd5e1;
+        }
+
+        .result-display p {
+            font-size: 14px;
+            color: var(--slate-gray);
+            font-weight: bold;
+        }
+
+        .band-badge {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 5px;
+        }
+
+        .band-badge span {
+            color: var(--accent);
+        }
+
+        /* Log Tracker Section */
+        .btn-submit-log {
+            width: 100%;
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-submit-log:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background: #f1f5f9;
+            color: var(--primary);
+            padding: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .btn-delete:hover {
+            background: #dc2626;
+        }
+
+        .empty-text {
+            text-align: center;
+            color: var(--slate-gray);
+            padding: 20px;
+            font-style: italic;
+        }
+
+        /* Footer Credit */
+        .footer-credit {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-credit a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="analytics-container">
+    
+    <div class="analytics-header">
+        <div class="header-left">
+            <h1>IELTS Analytics & Progress Center</h1>
+            <p>Sistem Pemantau Target & Standar Konversi Skor Internasional Berakurasi Tinggi.</p>
+        </div>
+        <a href="dashboard.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Kembali ke Dashboard</a>
+    </div>
+
+    <div class="analytics-grid">
+        
+        <div class="section-card">
+            <h2><i class="fa-solid fa-calculator" style="color: var(--accent);"></i> Band Score Converter</h2>
+            
+            <div class="form-group">
+                <label for="module-type">Pilih Modul Pembelajaran</label>
+                <select id="module-type" onchange="convertRawScore()">
+                    <option value="reading-academic">Reading (Academic)</option>
+                    <option value="reading-general">Reading (General Training)</option>
+                    <option value="listening">Listening (Academic / General)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="raw-score">Jumlah Jawaban Benar (Raw Score: 0 - 40)</label>
+                <input type="number" id="raw-score" min="0" max="40" placeholder="Contoh: 30" oninput="convertRawScore()">
+            </div>
+
+            <div class="result-display">
+                <p>ESTIMASI BAND SCORE</p>
+                <div class="band-badge" id="converted-band">0.0</div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2><i class="fa-solid fa-chart-pie" style="color: #ff9f43;"></i> Overall Band Calculator</h2>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="score-listening">Listening</label>
+                    <select id="score-listening" onchange="calculateOverall()"></select>
+                </div>
+                <div class="form-group">
+                    <label for="score-reading">Reading</label>
+                    <select id="score-reading" onchange="calculateOverall()"></select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="score-writing">Writing</label>
+                    <select id="score-writing" onchange="calculateOverall()"></select>
+                </div>
+                <div class="form-group">
+                    <label for="score-speaking">Speaking</label>
+                    <select id="score-speaking" onchange="calculateOverall()"></select>
+                </div>
+            </div>
+
+            <div class="result-display" style="background: #f0fdf4; border-color: #bbf7d0;">
+                <p style="color: var(--success);">ESTIMASI OVERALL BAND SCORE</p>
+                <div class="band-badge" id="overall-band" style="color: var(--success);">0.0</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="section-card">
+        <h2><i class="fa-solid fa-clock-history" style="color: var(--success);"></i> Daily Practice Progress Log</h2>
+        
+        <form id="log-form" onsubmit="saveLog(event)" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; align-items: flex-end;">
+            <div class="form-group" style="margin-bottom:0;">
+                <label for="log-date">Tanggal Latihan</label>
+                <input type="date" id="log-date" required>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+                <label for="log-skill">Skill Modul</label>
+                <select id="log-skill" required>
+                    <option value="Reading Core">Reading Core</option>
+                    <option value="Listening Core">Listening Core</option>
+                    <option value="Writing Core">Writing Core</option>
+                    <option value="Speaking Core">Speaking Core</option>
+                    <option value="Simulasi Full Test">Simulasi Full Test</option>
+                </select>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+                <label for="log-score">Skor Perolehan (Band Score)</label>
+                <select id="log-score" required></select>
+            </div>
+            <button type="submit" class="btn-submit-log"><i class="fa-solid fa-plus"></i> Tambah Log</button>
+        </form>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Modul Pembelajaran</th>
+                        <th>Perolehan Skor</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="log-table-body">
+                    </tbody>
+            </table>
+            <div id="empty-message" class="empty-text">Belum ada riwayat latihan yang tercatat.</div>
+        </div>
+    </div>
+
+    <div class="footer-credit">
+        Created by San | <a href="https://www.instagram.com/sanaethelgard?igsh=N29hZWphOTdmbzZy" target="_blank"><i class="fa-brands fa-instagram"></i> @sanaethelgard</a>
+    </div>
+
+</div>
+
+<script>
+    // Inisialisasi Pilihan Opsi Nilai Band (1.0 - 9.0 kelipatan 0.5)
+    function populateDropdowns() {
+        const dropdowns = ['score-listening', 'score-reading', 'score-writing', 'score-speaking', 'log-score'];
+        dropdowns.forEach(id => {
+            const select = document.getElementById(id);
+            select.innerHTML = '';
+            for (let i = 9.0; i >= 1.0; i -= 0.5) {
+                let option = document.createElement('option');
+                option.value = i.toFixed(1);
+                option.textContent = i.toFixed(1);
+                select.appendChild(option);
+            }
+        });
+        
+        // Atur default tanggal hari ini pada log form
+        document.getElementById('log-date').valueAsDate = new Date();
+    }
+
+    // 1. LOGIKA UTAMA: AKURASI KONVERSI RAW SCORE IELTS RESMI
+    function convertRawScore() {
+        const type = document.getElementById('module-type').value;
+        const raw = parseInt(document.getElementById('raw-score').value);
+        const display = document.getElementById('converted-band');
+
+        if (isNaN(raw) || raw < 0 || raw > 40) {
+            display.textContent = "0.0";
+            return;
+        }
+
+        let band = 0.0;
+
+        if (type === 'listening') {
+            if (raw >= 39) band = 9.0;
+            else if (raw >= 37) band = 8.5;
+            else if (raw >= 35) band = 8.0;
+            else if (raw >= 32) band = 7.5;
+            else if (raw >= 30) band = 7.0;
+            else if (raw >= 27) band = 6.5;
+            else if (raw >= 23) band = 6.0;
+            else if (raw >= 20) band = 5.5;
+            else if (raw >= 16) band = 5.0;
+            else if (raw >= 13) band = 4.5;
+            else if (raw >= 10) band = 4.0;
+            else if (raw >= 7) band = 3.5;
+            else if (raw >= 5) band = 3.0;
+            else band = 2.5;
+        } 
+        else if (type === 'reading-academic') {
+            if (raw >= 39) band = 9.0;
+            else if (raw >= 37) band = 8.5;
+            else if (raw >= 35) band = 8.0;
+            else if (raw >= 33) band = 7.5;
+            else if (raw >= 30) band = 7.0;
+            else if (raw >= 27) band = 6.5;
+            else if (raw >= 23) band = 6.0;
+            else if (raw >= 19) band = 5.5;
+            else if (raw >= 15) band = 5.0;
+            else if (raw >= 13) band = 4.5;
+            else if (raw >= 10) band = 4.0;
+            else if (raw >= 7) band = 3.5;
+            else if (raw >= 5) band = 3.0;
+            else band = 2.5;
+        } 
+        else if (type === 'reading-general') {
+            if (raw === 40) band = 9.0;
+            else if (raw >= 39) band = 8.5;
+            else if (raw >= 37) band = 8.0;
+            else if (raw >= 36) band = 7.5;
+            else if (raw >= 34) band = 7.0;
+            else if (raw >= 32) band = 6.5;
+            else if (raw >= 30) band = 6.0;
+            else if (raw >= 27) band = 5.5;
+            else if (raw >= 23) band = 5.0;
+            else if (raw >= 19) band = 4.5;
+            else if (raw >= 15) band = 4.0;
+            else if (raw >= 12) band = 3.5;
+            else if (raw >= 9) band = 3.0;
+            else band = 2.5;
+        }
+
+        display.innerHTML = band.toFixed(1);
+    }
+
+    // 2. LOGIKA UTAMA: ATURAN PEMBULATAN STANDAR OVERALL BAND IELTS (British Council / IDP)
+    function calculateOverall() {
+        const L = parseFloat(document.getElementById('score-listening').value);
+        const R = parseFloat(document.getElementById('score-reading').value);
+        const W = parseFloat(document.getElementById('score-writing').value);
+        const S = parseFloat(document.getElementById('score-speaking').value);
+
+        const average = (L + R + W + S) / 4;
+        const decimal = average - Math.floor(average);
+        
+        let rounded = Math.floor(average);
+
+        // Aturan Pembulatan Eksak IELTS (.25 & .75)
+        if (decimal < 0.25) {
+            rounded += 0.0;
+        } else if (decimal >= 0.25 && decimal < 0.75) {
+            rounded += 0.5;
+        } else {
+            rounded += 1.0;
+        }
+
+        document.getElementById('overall-band').textContent = rounded.toFixed(1);
+    }
+
+    // 3. FITUR LOG PROGRESS SAVER (LOCAL STORAGE MEMORY)
+    let practiceLogs = JSON.parse(localStorage.getItem('san_ielts_logs')) || [];
+
+    function renderLogs() {
+        const tbody = document.getElementById('log-table-body');
+        const emptyMsg = document.getElementById('empty-message');
+        tbody.innerHTML = '';
+
+        if (practiceLogs.length === 0) {
+            emptyMsg.style.display = 'block';
+            return;
+        } else {
+            emptyMsg.style.display = 'none';
+        }
+
+        // Urutkan berdasarkan tanggal terbaru
+        practiceLogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        practiceLogs.forEach((log, index) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><strong>${formatDate(log.date)}</strong></td>
+                <td><span style="color:var(--primary); font-weight:700;">${log.skill}</span></td>
+                <td><span style="background:var(--primary); color:white; padding:3px 10px; border-radius:50px; font-weight:700;">Band ${log.score}</span></td>
+                <td><button class="btn-delete" onclick="deleteLog(${index})"><i class="fa-solid fa-trash"></i></button></td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function saveLog(e) {
+        e.preventDefault();
+        const date = document.getElementById('log-date').value;
+        const skill = document.getElementById('log-skill').value;
+        const score = document.getElementById('log-score').value;
+
+        practiceLogs.push({ date, skill, score });
+        localStorage.setItem('san_ielts_logs', JSON.stringify(practiceLogs));
+        renderLogs();
+    }
+
+    function deleteLog(index) {
+        if(confirm("Hapus catatan latihan ini?")) {
+            practiceLogs.splice(index, 1);
+            localStorage.setItem('san_ielts_logs', JSON.stringify(practiceLogs));
+            renderLogs();
+        }
+    }
+
+    function formatDate(dateString) {
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString('id-ID', options);
+    }
+
+    // Jalankan seluruh fungsi saat halaman pertama kali dibuka
+    window.onload = function() {
+        populateDropdowns();
+        convertRawScore();
+        calculateOverall();
+        renderLogs();
+    };
+</script>
+
+</body>
+</html>
+
