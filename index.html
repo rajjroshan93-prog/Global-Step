@@ -3,209 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to San Aethelgard</title>
+    <title>Welcome to San Aethelgard Academy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #020617 0%, #0f172a 100%);
-            --panel-bg: rgba(30, 41, 59, 0.7);
-            --text-silver: #e2e8f0;
-            --text-muted: #94a3b8;
-            --royal-blue: #3b82f6;
-            --soft-sky: #38bdf8;
+            --primary: #001f3f;
+            --accent: #00D4FF;
+            --bg-dark: #00152b;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --slate-gray: #64748b;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            font-family: 'Lato', sans-serif; 
-            background: var(--bg-gradient); 
-            color: var(--text-silver); 
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            padding: 24px;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        .welcome-container {
-            width: 100%; 
-            max-width: 600px; 
-            background: var(--panel-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 24px; 
-            padding: 45px 35px; 
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            margin-bottom: 25px;
-        }
-
-        .logo-area { 
-            font-size: 48px; 
-            background: linear-gradient(to right, var(--soft-sky), var(--royal-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px; 
-        }
-
-        h1 { 
-            font-family: 'Poppins', sans-serif; 
-            font-size: 32px; 
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            color: #ffffff; 
-            margin-bottom: 6px; 
-        }
-
-        .subtitle { 
-            color: var(--soft-sky); 
-            font-size: 13px; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            letter-spacing: 4px; 
-            margin-bottom: 35px; 
-        }
-
-        .info-card { 
-            text-align: left; 
-            margin-bottom: 25px; 
-            padding: 20px;
-            background: rgba(15, 23, 42, 0.4);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .info-card h3 { 
-            font-family: 'Poppins', sans-serif; 
-            font-size: 15px; 
-            margin-bottom: 10px; 
-            color: #ffffff;
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 10px;
-            letter-spacing: 0.5px;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
         }
 
-        .info-card h3 i {
-            color: var(--soft-sky);
+        /* Animasi Latar Belakang */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0,212,255,0.15) 0%, rgba(0,0,0,0) 70%);
+            top: -50px;
+            right: -50px;
+            z-index: 1;
         }
 
-        .info-card p { 
-            font-size: 14px; 
-            color: var(--text-muted); 
-            line-height: 1.6; 
+        body::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0,212,255,0.1) 0%, rgba(0,0,0,0) 70%);
+            bottom: -100px;
+            left: -100px;
+            z-index: 1;
         }
 
-        .grid-modules { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 10px; 
-            margin-top: 15px; 
+        .welcome-card {
+            width: 100%;
+            max-width: 550px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            z-index: 10;
+            transform: translateY(0);
+            animation: floating 4s ease-in-out infinite;
         }
 
-        .module-box { 
-            background: rgba(30, 41, 59, 0.6); 
-            padding: 12px; 
-            border-radius: 10px; 
-            font-weight: 700; 
-            font-size: 13px; 
-            color: var(--text-silver);
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .academy-logo {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            color: var(--accent);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.02);
-        }
-        
-        .module-box i {
-            color: var(--soft-sky);
+            font-size: 36px;
+            margin: 0 auto 25px auto;
+            border: 2px solid var(--accent);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
         }
 
-        .btn-start {
-            display: inline-block; 
-            width: 100%; 
-            background: linear-gradient(to right, var(--royal-blue), #1d4ed8); 
-            color: #ffffff;
-            padding: 16px; 
-            border-radius: 14px; 
+        .welcome-card h1 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary);
+            font-size: 30px;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .welcome-card p {
+            font-size: 15px;
+            color: var(--slate-gray);
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .main-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--primary);
+            color: white;
+            padding: 16px;
+            border-radius: 50px;
             text-decoration: none;
-            font-family: 'Poppins', sans-serif; 
-            font-size: 16px; 
+            font-family: 'Poppins', sans-serif;
             font-weight: 700;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            font-size: 16px;
+            transition: 0.3s;
+            border: 2px solid var(--primary);
+            box-shadow: 0 4px 12px rgba(0, 31, 63, 0.2);
         }
 
-        .btn-start:hover { 
-            background: linear-gradient(to right, var(--soft-sky), var(--royal-blue));
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+        .main-btn:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+            box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #ffffff;
+            color: #e1306c;
+            padding: 14px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.3s;
+            border: 2px solid #e2e8f0;
+        }
+
+        .social-btn:hover {
+            background: #fff5f7;
+            border-color: #e1306c;
+            box-shadow: 0 4px 12px rgba(225, 48, 108, 0.15);
         }
 
         .footer-credit {
             font-size: 11px;
-            color: var(--text-muted);
-            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.5px;
             text-transform: uppercase;
             font-weight: 700;
+            text-align: center;
+            margin-top: 40px;
+            z-index: 10;
         }
 
         .footer-credit a {
-            color: var(--soft-sky);
+            color: var(--accent);
             text-decoration: none;
             transition: 0.2s;
-            margin-left: 3px;
         }
 
         .footer-credit a:hover {
-            color: #ffffff;
-            text-shadow: 0 0 8px var(--soft-sky);
+            text-decoration: underline;
         }
 
         @media (max-width: 480px) {
-            .welcome-container { padding: 35px 20px; }
-            h1 { font-size: 28px; }
-            .grid-modules { grid-template-columns: 1fr; }
+            .welcome-card {
+                padding: 40px 25px;
+            }
+            .welcome-card h1 {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="welcome-container">
-    <div class="logo-area">
+<div class="welcome-card">
+    <div class="academy-logo">
         <i class="fa-solid fa-graduation-cap"></i>
     </div>
-    <h1>SAN AETHELGARD</h1>
-    <div class="subtitle">Elite Academic Master Hub</div>
+    <h1>San Aethelgard<br>Academy</h1>
+    <p>Sistem Simulasi dan Akselerasi Persiapan Ujian Bahasa Inggris Internasional Berstandar Tinggi.</p>
 
-    <div class="info-card">
-        <h3><i class="fa-solid fa-compass"></i> PLATFORM STRATEGI</h3>
-        <p>Akses ekosistem belajar performa tinggi yang dirancang secara presisi untuk membantu Anda menembus target kelulusan bahasa internasional di universitas top dunia.</p>
+    <div class="btn-group">
+        <a href="dashboard.html" class="main-btn">
+            <i class="fa-solid fa-right-to-bracket"></i> ENTER DASHBOARD
+        </a>
+        
+        <a href="https://www.instagram.com/sanaethelgard?igsh=N29hZWphOTdmbzZy" target="_blank" class="social-btn">
+            <i class="fa-brands fa-instagram"></i> Official Instagram
+        </a>
     </div>
-
-    <div class="info-card">
-        <h3><i class="fa-solid fa-cubes"></i> 4 KOMPETENSI INTI</h3>
-        <div class="grid-modules">
-            <div class="module-box"><i class="fa-solid fa-headphones"></i> Listening</div>
-            <div class="module-box"><i class="fa-solid fa-book-open"></i> Reading</div>
-            <div class="module-box"><i class="fa-solid fa-pen-nib"></i> Writing</div>
-            <div class="module-box"><i class="fa-solid fa-comments"></i> Speaking</div>
-        </div>
-    </div>
-
-    <a href="dashboard.html" class="btn-start">MASUK KE PORTAL ELITE <i class="fa-solid fa-arrow-right" style="margin-left: 8px; font-size: 13px;"></i></a>
 </div>
 
 <div class="footer-credit">
-    Created by San | <a href="https://www.instagram.com/sann_n228?igsh=MWo3M3g0NWcwZ2h0Yg==" target="_blank"><i class="fa-brands fa-instagram"></i> @sann_n228</a>
+    Created by San | <a href="https://www.instagram.com/sanaethelgard?igsh=N29hZWphOTdmbzZy" target="_blank"><i class="fa-brands fa-instagram"></i> @sanaethelgard</a>
 </div>
 
 </body>
