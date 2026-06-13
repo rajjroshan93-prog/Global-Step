@@ -53,7 +53,7 @@
 
 <div class="quiz-card">
     <div class="header-quiz">
-        <div class="schedule-badge" id="schedule-info"><i class="fa-solid fa-sync fa-spin"></i> Memuat Berkas Teks...</div>
+        <div class="schedule-badge" id="schedule-info"><i class="fa-solid fa-sync fa-spin"></i> Mensinkronisasi Jadwal...</div>
         <h2>San Aethelgard: Academic Practice</h2>
         <p style="color: #64748b; font-size: 15px; margin-top: 5px;">Gunakan metode analisis kata kunci untuk membedakan fakta orisinal dari teks penguji.</p>
     </div>
@@ -80,20 +80,34 @@
 
 <script>
     const readingDatabase = {
-        paketUtama: {
-            name: "Academic Passage: The Evolution of Megacities",
+        paketSeninSelasa: {
+            name: "Academic Passage: The Evolution of Megacities (Jadwal: Senin - Selasa)",
             passage: `<h3>The Evolution of Megacities</h3><p>In the contemporary era, the phenomenon of the 'megacity'—defined as an urban agglomeration supporting a population in excess of ten million inhabitants—has fundamentally altered the global demographic landscape. At the inception of the twentieth century, only a handful of urban centers, notably London and New York, possessed the economic infrastructure to draw such vast concentrations of humanity. However, the latter half of the century witnessed an unprecedented shift, primarily driven by rapid industrialization and agrarian displacement in developing nations. Consequently, the epicenter of megacity growth transitioned dramatically from Western economies to Asia and Latin America.</p><p>Urban planners argue that while these colossal hubs function as engines of economic growth and technological innovation, they simultaneously pose severe logistical and environmental dilemmas. The sheer velocity of population influx frequently outpaces municipal infrastructure development, culminating in substandard housing, critical water scarcity, and highly congested transit systems. For instance, in several South Asian megacities, over forty percent of the populace resides in informal settlements lacking basic sanitation. Furthermore, the phenomenon of the 'urban heat island' effect—where built environments trap ambient heat—has exacerbated energy demands and raised local temperatures by up to five degrees Celsius.</p><p>Despite these acute challenges, some economists maintain a highly optimistic outlook. They assert that the dense concentration of human capital fosters a unique ecosystem of efficiency, where public services can theoretically be delivered at a lower per-capita cost than in sparsely populated rural regions. Moreover, proponents highlight that megacities are pioneering sustainable initiatives, such as vertical farming and zero-emission mass transit networks, out of absolute necessity. Ultimately, the future viability of these urban giants will depend not on arresting human migration, but on the sophistication of long-term administrative foresight and smart-city integration.</p>`,
             questions: [
-                { id: "m1", q: "At the beginning of the twentieth century, New York and London were the only two cities in the world with over ten million residents.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "C", note: "NOT GIVEN: Teks hanya menyebutkan London dan New York sebagai contoh pusat kota yang menonjol (*notably*), tanpa membatasi bahwa tidak ada kota lain sama sekali di dunia." },
-                { id: "m2", q: "The primary driver of megacity growth in the latter half of the twentieth century was migration caused by changes in rural sectors and industrial growth.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "A", note: "TRUE: Sesuai dengan kalimat akhir paragraf pertama yang menyatakan bahwa pergeseran tersebut dipicu oleh 'rapid industrialization and agrarian displacement' (perpindahan sektor pertanian/pedesaan)." },
-                { id: "m3", q: "During the late twentieth century, megacity expansion accelerated faster in Western nations than in Asia.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Teks dengan tegas menyatakan 'the epicenter of megacity growth transitioned dramatically from Western economies to Asia', yang artinya pertumbuhan di Asia melesat jauh lebih cepat." },
-                { id: "m4", q: "Municipalities generally manage to upgrade their infrastructure before the majority of new residents arrive.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Kontradiktif dengan teks yang berbunyi 'population influx frequently outpaces municipal infrastructure development' (kedatangan penduduk melampaui kecepatan pembangunan infrastruktur pemerintah)." },
-                { id: "m5", q: "In South Asian megacities, governments have allocated substantial funds to clear out informal settlements.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "C", note: "NOT GIVEN: Teks memaparkan fakta bahwa 'over forty percent resides in informal settlements', namun sama sekali tidak membahas mengenai anggaran belanja atau kebijakan penggusuran oleh pemerintah setempat." },
-                { id: "m6", q: "According to the passage, what is a direct consequence of the 'urban heat island' effect?", options: ["A dramatic decrease in rural-urban migration rates", "An escalation in energy consumption demands within the city", "The rapid expansion of local vertical farming programs"], ans: "B", note: "An escalation in energy demands: Teks menyebutkan efek pulau panas ini 'exacerbated energy demands' akibat peningkatan temperatur lingkungan lokal." },
-                { id: "m7", q: "Which word used in Paragraph 2 has the closest meaning to 'worsened' or 'made more severe'?", options: ["Congested", "Exacerbated", "Culminating"], ans: "B", note: "Exacerbated: Merupakan kosakata tingkat tinggi dalam konteks akademis yang memiliki arti memperparah suatu keadaan buruk." },
-                { id: "m8", q: "What argument do optimistic economists present regarding high-density human capital?", options: ["It forces governments to stop expanding mass transit networks.", "It enables the provision of public services at a reduced cost per person.", "It guarantees that urban environments will naturally remain cooler."], ans: "B", note: "Reduced cost per person: Sesuai kutipan paragraf ketiga yang menyatakan bahwa 'public services can theoretically be delivered at a lower per-capita cost'." },
-                { id: "m9", q: "Based on the text, why are megacities currently developing innovations like vertical farming?", options: ["Because they are driven by sheer necessity.", "Due to massive financial subsidies from rural regions.", "To artificially reduce the local temperature by five degrees."], ans: "A", note: "Driven by sheer necessity: Teks menyatakan bahwa megakota mempelopori inisiatif hijau tersebut murni karena tuntutan keadaan darurat perkotaan (*out of absolute necessity*)." },
-                { id: "m10", q: "According to the final sentence, the future success of megacities relies primarily on:", options: ["Halting the movement of people from rural areas entirely.", "The implementation of advanced planning and smart-city integration.", "Restoring the economic monopoly back to Western urban centers."], ans: "B", note: "Advanced planning & smart-city: Penulis menutup teks dengan menegaskan bahwa kelangsungan masa depan kota bergantung pada tingkat kecanggihan pandangan administrasi jangka panjang (*long-term administrative foresight*)." }
+                { id: "m1", q: "At the beginning of the twentieth century, New York and London were the only two cities in the world with over ten million residents.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "C", note: "NOT GIVEN: Teks hanya menyebutkan London dan New York sebagai contoh pusat kota yang menonjol (*notably*), tanpa membatasi bahwa tidak ada kota lain." },
+                { id: "m2", q: "The primary driver of megacity growth in the latter half of the twentieth century was migration caused by changes in rural sectors and industrial growth.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "A", note: "TRUE: Sesuai dengan kalimat akhir paragraf pertama yang menyatakan dipicu oleh 'rapid industrialization and agrarian displacement' (perpindahan sektor pertanian/pedesaan)." },
+                { id: "m3", q: "During the late twentieth century, megacity expansion accelerated faster in Western nations than in Asia.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Teks dengan tegas menyatakan 'the epicenter of megacity growth transitioned dramatically from Western economies to Asia', pertumbuhan Asia jauh lebih cepat." },
+                { id: "m4", q: "Municipalities generally manage to upgrade their infrastructure before the majority of new residents arrive.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Kontradiktif dengan teks 'population influx frequently outpaces municipal infrastructure development'." }
+            ]
+        },
+        paketRabuKamis: {
+            name: "Academic Passage: The Paradigm Shift in Artificial Intelligence (Jadwal: Rabu - Kamis)",
+            passage: `<h3>The Paradigm Shift in Artificial Intelligence</h3><p>The dawn of the twenty-first century has been characterized by an unprecedented acceleration in machine learning capabilities, shifting artificial intelligence (AI) from a speculative laboratory pursuit to an omnipresent societal foundation. Early computing pioneers predominantly relied on expert systems—rigid architectures governed by deterministic, human-authored rules. While these systems demonstrated proficiency in enclosed logical domains like chess, they proved utterly inadequate when confronted with the chaotic ambiguity of natural language or visual recognition. The contemporary renaissance of AI is fundamentally underpinned by deep neural networks, computational models designed to autonomously extract patterns from gargantuan datasets.</p><p>This systemic transition has ignited intense debates regarding economic disruption and the future of human labor. Sociologists caution that unlike previous industrial revolutions, which primarily automated manual tasks, generative AI models threaten to displace cognitive and creative occupations. Analysts note that algorithms can now synthesize legal briefs, generate programming scripts, and formulate medical diagnoses with a velocity that renders traditional white-collar frameworks obsolete. Paradoxically, this has augmented the economic valuation of tactile, non-routine manual professions, which remain remarkably difficult for robotic components to replicate cost-effectively.</p><p>Conversely, corporate leaders argue that AI does not foreshadow the eradication of employment, but rather an era of intellectual augmentation. By automating algorithmic, repetitive data processing, machines liberate human workers to concentrate on high-level strategic orchestration, ethics, and interpersonal communication. Proponents emphasize that in fields such as oncology, the symbiosis of human radiologists and deep learning algorithms yields diagnostic precision rates far superior to either entity working in isolation. The ultimate trajectory of this technology will likely be determined by institutional agility in implementing proactive retraining frameworks.</p>`,
+            questions: [
+                { id: "a1", q: "Early computing systems were highly successful at handling tasks that involved unpredictable natural language processing.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Teks menyatakan sistem awal 'proved utterly inadequate' (sangat tidak memadai) menghadapi ambiguitas bahasa alami." },
+                { id: "a2", q: "Deep neural networks require humans to manually write every rule for pattern extraction.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Teks menjelaskan neural networks modern dirancang untuk 'autonomously extract patterns' (mengekstrak pola secara mandiri) dari dataset besar." },
+                { id: "a3", q: "The current AI revolution is unique because it directly impacts cognitive and analytical jobs rather than just physical labor.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "A", note: "TRUE: Paragraf kedua mencatat bahwa tidak seperti revolusi industri terdahulu, AI sekarang mengancam pekerjaan kognitif dan kreatif (cognitive and creative occupations)." },
+                { id: "a4", q: "Governments have already established mandatory financial subsidies for workers displaced by artificial intelligence.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "C", note: "NOT GIVEN: Teks hanya menyebutkan pentingnya pelatihan ulang (retraining frameworks), tidak membahas tentang subsidi keuangan dari pemerintah." }
+            ]
+        },
+        paketJumatSabtuMinggu: {
+            name: "Academic Passage: Architectural Engineering of Maya Civilization (Jadwal: Jumat - Minggu)",
+            passage: `<h3>Architectural Engineering of Maya Civilization</h3><p>The monumental urban complexes engineered by the ancient Maya civilization across the Mesoamerican lowlands continue to challenge conventional historiography regarding pre-industrial societal capabilities. Operating without the benefit of draft animals, wheeled transportation, or metallurgy, Maya stone masons constructed sprawling civic-ceremonial centers dominated by towering limestone pyramids. Recent airborne LiDAR surveys have unveiled that these cities were not isolated enclaves, but interconnected components of a vast, highly sophisticated regional network. This infrastructure relied heavily on advanced hydrologic manipulation, a crucial adaptation given the region's severe seasonal droughts.</p><p>To sustain dense urban populations during the prolonged dry season, Maya engineers designed massive rainwater catchments and subterranean reservoirs called chultunes. These reservoirs were intricately lined with specialized plaster to impede water seepage, maintaining millions of liters of potable water. Furthermore, urban layouts were intentionally graded to funnel precipitation directly into these communal basins. In cities such as Tikal, the strategic placement of these reservoirs ensured that civic elites retained strict administrative control over water distribution, effectively cementing their political hegemony through structural resource management.</p><p>Beyond hydraulic prowess, the architectural orientation of Maya citadels demonstrated an astonishing comprehension of celestial mechanics. Prominent structures were aligned with mathematical precision to coincide with solar solstices and equinoxes. For example, during the spring equinox at Chichen Itza, the calculated interplay of sunlight and shadow creates the illusion of a serpentine deity descending the stone staircase of the main pyramid. This fusion of rigorous structural engineering and astronomical observation served a dual function: it validated the metaphysical authority of the ruling dynasty while providing an empirical agricultural calendar essential for agrarian survival.</p>`,
+            questions: [
+                { id: "v1", q: "The ancient Maya utilized wheeled vehicles and heavy iron tools to transport limestone blocks across long distances.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Teks secara eksplisit menyatakan mereka membangun 'without the benefit of draft animals, wheeled transportation, or metallurgy'." },
+                { id: "v2", q: "LiDAR technology proved that Maya urban centers were far more isolated from one another than previously assumed.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "B", note: "FALSE: Kebalikannya, survei LiDAR membuktikan kota-kota tersebut 'not isolated enclaves, but interconnected components' (tidak terisolasi, melainkan terhubung)." },
+                { id: "v3", q: "The subterranean reservoirs known as chultunes were engineered to prevent water from leaking out into the soil.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "A", note: "TRUE: Sesuai informasi paragraf kedua, waduk dilapisi plester khusus 'to impede water seepage' (untuk menghalangi perembesan air)." },
+                { id: "v4", q: "Maya rulers lost their political power during years when seasonal droughts were exceptionally long.", options: ["TRUE", "FALSE", "NOT GIVEN"], ans: "C", note: "NOT GIVEN: Teks menyebut kontrol air memperkuat kekuasaan mereka, tapi tidak membahas apakah mereka beneran kehilangan kekuasaan saat kekeringan panjang terjadi." }
             ]
         }
     };
@@ -101,8 +115,19 @@
     let activeQuestions = [];
 
     function setupQuiz() {
-        const selectedBlock = readingDatabase.paketUtama;
-        document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-book-open"></i> Sesi Aktif: ${selectedBlock.name}`;
+        // Ambil urutan hari otomatis (0 = Minggu, 1 = Senin, dst)
+        const currentDay = new Date().getDay();
+        let selectedBlock;
+
+        if (currentDay === 1 || currentDay === 2) {
+            selectedBlock = readingDatabase.paketSeninSelasa;
+        } else if (currentDay === 3 || currentDay === 4) {
+            selectedBlock = readingDatabase.paketRabuKamis;
+        } else {
+            selectedBlock = readingDatabase.paketJumatSabtuMinggu;
+        }
+
+        document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-calendar-check"></i> ${selectedBlock.name}`;
         document.getElementById('passage-container').innerHTML = selectedBlock.passage;
         activeQuestions = selectedBlock.questions;
         renderQuestions();
@@ -150,12 +175,11 @@
         });
 
         const resultArea = document.getElementById('result-area');
-        document.getElementById('scoreTitle').innerText = `Skor Akhir Anda: Benar ${correct} dari 10 Pertanyaan`;
+        document.getElementById('scoreTitle').innerText = `Skor Akhir Anda: Benar ${correct} dari ${activeQuestions.length} Pertanyaan`;
         
         let band = "";
-        if (correct >= 9) band = "Band 8.5 - 9.0 (Elite Academic Scholar - Analisis Sangat Tajam)";
-        else if (correct >= 7) band = "Band 7.0 - 8.0 (Target Skor Universitas Dunia Tercapai)";
-        else if (correct >= 5) band = "Band 6.0 - 6.5 (Competent User - Waspadai Jebakan Paraphrase)";
+        if (correct === activeQuestions.length) band = "Band 8.5 - 9.0 (Elite Academic Scholar - Analisis Sempurna)";
+        else if (correct >= 2) band = "Band 6.5 - 7.5 (Target Skor Universitas Dunia Aman)";
         else band = "Band < 5.5 (Butuh Tambahan Fokus Teknik Scanning Detail)";
 
         document.getElementById('bandEstimate').innerText = `Estimasi Kompetensi: ${band}`;
