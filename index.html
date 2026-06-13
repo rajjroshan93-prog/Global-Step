@@ -6,162 +6,173 @@
     <title>Welcome to Global Step - Elite IELTS Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* ACADEMIC MINIMALIST PALETTE */
         :root {
-            --primary-dark: #0f172a; /* Slate Dark */
-            --secondary-slate: #475569; /* Muted Slate */
-            --accent-blue: #2563eb; /* Professional Blue */
-            --bg-soft: #f8fafc; /* Near White */
-            --white: #ffffff;
+            --bg-gradient: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            --panel-bg: rgba(30, 41, 59, 0.7);
+            --text-silver: #e2e8f0;
+            --text-muted: #94a3b8;
+            --royal-blue: #3b82f6;
+            --soft-sky: #38bdf8;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body { 
             font-family: 'Lato', sans-serif; 
-            background-color: var(--bg-soft); 
-            color: var(--primary-dark); 
+            background: var(--bg-gradient); 
+            color: var(--text-silver); 
             min-height: 100vh; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             justify-content: center; 
-            padding: 20px;
-            /* Subtle Background Pattern */
-            background-image: radial-gradient(#cbd5e1 0.5px, transparent 0.5px);
-            background-size: 24px 24px;
+            padding: 24px;
         }
 
         .welcome-container {
             width: 100%; 
-            max-width: 650px; 
-            background: var(--white);
-            border-radius: 16px; 
-            padding: 50px 40px; 
+            max-width: 600px; 
+            background: var(--panel-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px; 
+            padding: 45px 35px; 
             text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            border: 1px solid #e2e8f0;
-            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 25px;
         }
 
         .logo-area { 
-            font-size: 45px; 
-            color: var(--primary-dark); 
-            margin-bottom: 20px; 
+            font-size: 48px; 
+            background: linear-gradient(to right, var(--soft-sky), var(--royal-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px; 
         }
 
         h1 { 
             font-family: 'Poppins', sans-serif; 
-            font-size: 30px; 
+            font-size: 32px; 
+            font-weight: 700;
             letter-spacing: -0.5px;
-            color: var(--primary-dark); 
-            margin-bottom: 8px; 
+            color: #ffffff; 
+            margin-bottom: 6px; 
         }
 
         .subtitle { 
-            color: var(--secondary-slate); 
-            font-size: 14px; 
+            color: var(--soft-sky); 
+            font-size: 13px; 
             font-weight: 700; 
             text-transform: uppercase; 
-            letter-spacing: 3px; 
-            margin-bottom: 40px; 
+            letter-spacing: 4px; 
+            margin-bottom: 35px; 
         }
 
         .info-card { 
             text-align: left; 
-            margin-bottom: 30px; 
-            padding-bottom: 20px;
-            border-bottom: 1px solid #f1f5f9;
+            margin-bottom: 25px; 
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         .info-card h3 { 
             font-family: 'Poppins', sans-serif; 
-            font-size: 16px; 
+            font-size: 15px; 
             margin-bottom: 10px; 
-            color: var(--primary-dark);
+            color: #ffffff;
             display: flex;
             align-items: center;
             gap: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .info-card h3 i {
+            color: var(--soft-sky);
         }
 
         .info-card p { 
-            font-size: 15px; 
-            color: var(--secondary-slate); 
-            line-height: 1.7; 
+            font-size: 14px; 
+            color: var(--text-muted); 
+            line-height: 1.6; 
         }
 
-        /* GRID MODULES - CLEAN LOOK */
         .grid-modules { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
             gap: 10px; 
-            margin-top: 20px; 
+            margin-top: 15px; 
         }
 
         .module-box { 
-            background: #f1f5f9; 
+            background: rgba(30, 41, 59, 0.6); 
             padding: 12px; 
-            border-radius: 6px; 
+            border-radius: 10px; 
             font-weight: 700; 
             font-size: 13px; 
-            color: var(--primary-dark);
+            color: var(--text-silver);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+        
+        .module-box i {
+            color: var(--soft-sky);
         }
 
         .btn-start {
             display: inline-block; 
             width: 100%; 
-            background: var(--primary-dark); 
-            color: var(--white);
-            padding: 18px; 
-            border-radius: 8px; 
+            background: linear-gradient(to right, var(--royal-blue), #1d4ed8); 
+            color: #ffffff;
+            padding: 16px; 
+            border-radius: 14px; 
             text-decoration: none;
             font-family: 'Poppins', sans-serif; 
             font-size: 16px; 
             font-weight: 700;
             transition: all 0.3s ease;
             margin-top: 10px;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
         }
 
         .btn-start:hover { 
-            background: var(--accent-blue);
+            background: linear-gradient(to right, var(--soft-sky), var(--royal-blue));
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
         }
 
-        /* FOOTER KREDIT - MINIMALIST SLATE */
         .footer-credit {
             font-size: 11px;
-            color: var(--secondary-slate);
+            color: var(--text-muted);
             letter-spacing: 1px;
             text-transform: uppercase;
             font-weight: 700;
         }
 
         .footer-credit a {
-            color: var(--primary-dark);
+            color: var(--soft-sky);
             text-decoration: none;
-            border-bottom: 1px solid transparent;
             transition: 0.2s;
-            margin-left: 5px;
+            margin-left: 3px;
         }
 
         .footer-credit a:hover {
-            color: var(--accent-blue);
-            border-bottom: 1px solid var(--accent-blue);
+            color: #ffffff;
+            text-shadow: 0 0 8px var(--soft-sky);
         }
 
-        /* MOBILE FIX FOR VIVO V40 */
-        @media (max-width: 500px) {
-            .welcome-container { padding: 40px 25px; }
-            h1 { font-size: 26px; }
+        @media (max-width: 480px) {
+            .welcome-container { padding: 35px 20px; }
+            h1 { font-size: 28px; }
             .grid-modules { grid-template-columns: 1fr; }
         }
     </style>
@@ -173,15 +184,15 @@
         <i class="fa-solid fa-graduation-cap"></i>
     </div>
     <h1>GLOBAL STEP</h1>
-    <div class="subtitle">IELTS Master Hub</div>
+    <div class="subtitle">Elite IELTS Master Hub</div>
 
     <div class="info-card">
-        <h3><i class="fa-solid fa-info-circle"></i> PENGENALAN SISTEM</h3>
-        <p>IELTS adalah standar global untuk mengukur kemahiran bahasa Inggris akademik. Platform ini dirancang untuk membantu Anda meraih <b>Band 7.5+</b> melalui simulasi yang presisi.</p>
+        <h3><i class="fa-solid fa-compass"></i> PLATFORM STRATEGI</h3>
+        <p>Akses ekosistem belajar performa tinggi yang dirancang secara presisi untuk membantu Anda menembus target <b>Band 7.5 ke atas</b> di universitas top dunia.</p>
     </div>
 
-    <div class="info-card" style="border-bottom: none;">
-        <h3><i class="fa-solid fa-th-large"></i> KURIKULUM INTI</h3>
+    <div class="info-card">
+        <h3><i class="fa-solid fa-cubes"></i> 4 KOMPETENSI INTI</h3>
         <div class="grid-modules">
             <div class="module-box"><i class="fa-solid fa-headphones"></i> Listening</div>
             <div class="module-box"><i class="fa-solid fa-book-open"></i> Reading</div>
@@ -190,7 +201,7 @@
         </div>
     </div>
 
-    <a href="dashboard.html" class="btn-start">MULAI BELAJAR SEKARANG <i class="fa-solid fa-chevron-right" style="margin-left: 10px; font-size: 12px;"></i></a>
+    <a href="dashboard.html" class="btn-start">MASUK KE PORTAL ELITE <i class="fa-solid fa-arrow-right" style="margin-left: 8px; font-size: 13px;"></i></a>
 </div>
 
 <div class="footer-credit">
