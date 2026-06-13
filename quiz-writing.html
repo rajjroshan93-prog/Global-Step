@@ -21,6 +21,12 @@
         body { font-family: 'Lato', sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
         .quiz-card { width: 100%; max-width: 900px; background: var(--card-bg); border-radius: 20px; padding: 45px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+        
+        /* TIMER COMPONENT STYLE */
+        .timer-container { display: flex; align-items: center; justify-content: center; gap: 8px; background: #fff1f0; border: 1px solid #ffa39e; color: #cf1322; padding: 10px 20px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; margin: 0 auto 25px auto; width: fit-content; box-shadow: 0 4px 10px rgba(207, 19, 34, 0.1); }
+        .timer-container.warning { background: #ff4d4f; color: white; border-color: #ff4d4f; animation: blink 1s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+
         .header-quiz { text-align: center; margin-bottom: 30px; }
         .header-quiz h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; }
         .schedule-badge { display: inline-block; background: #fffdf0; color: #b45309; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-bottom: 15px; text-transform: uppercase; border: 1px solid #fef08a; }
@@ -31,6 +37,7 @@
 
         .textarea-box { width: 100%; min-height: 280px; padding: 20px; border: 2px solid #cbd5e1; border-radius: 12px; font-family: 'Lato', sans-serif; font-size: 15px; line-height: 1.6; color: #1e293b; resize: vertical; margin-bottom: 10px; transition: 0.3s; }
         .textarea-box:focus { border-color: var(--accent); outline: none; }
+        .textarea-box:disabled { background: #f1f5f9; cursor: not-allowed; }
 
         .counter-panel { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; font-size: 13.5px; font-weight: 700; color: #64748b; text-transform: uppercase; }
         .word-badge { background: #f1f5f9; padding: 6px 14px; border-radius: 20px; color: var(--primary); }
@@ -38,6 +45,7 @@
 
         .btn-submit { width: 100%; background: var(--primary); color: white; border: none; padding: 16px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.3s; }
         .btn-submit:hover { background: var(--accent); color: var(--primary); }
+        .btn-submit:disabled { background: #cbd5e1; cursor: not-allowed; }
 
         #result-area { padding: 35px; border-radius: 14px; display: none; background: #f8fafc; border: 1px solid #e2e8f0; margin-top: 30px; }
         .checklist-box { background: white; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-top: 20px; }
@@ -53,6 +61,10 @@
 <body>
 
 <div class="quiz-card">
+    <div class="timer-container" id="countdown-wrapper">
+        <i class="fa-solid fa-stopwatch"></i> <span id="timer-display">40:00</span>
+    </div>
+
     <div class="header-quiz">
         <div class="schedule-badge" id="schedule-info">Mempersiapkan Topik Esai...</div>
         <h2>San Aethelgard Writing Academic Lab</h2>
@@ -71,7 +83,7 @@
         <div id="wordCountBadge" class="word-badge">0 Kata</div>
     </div>
 
-    <button class="btn-submit" onclick="submitEssay()">Kunci & Evaluasi Esai</button>
+    <button id="submitBtn" class="btn-submit" onclick="submitEssay()">Kunci & Evaluasi Esai</button>
 
     <div id="result-area">
         <h3 style="font-family: 'Poppins', sans-serif; color: #b45309; font-size: 18px;"><i class="fa-solid fa-gauge-high"></i> Essay Submission Analytics</h3>
@@ -79,8 +91,7 @@
         <div class="checklist-box">
             <h4 id="checklist-title"><i class="fa-solid fa-signature"></i> Lexical & Coherence Criteria</h4>
             <p style="font-size: 13.5px; color: #64748b; margin-bottom: 12px;">Gunakan checklist berstandar internasional ini untuk mengecek ulang kualitas esai yang baru saja Anda ketik:</p>
-            <ul id="eval-checklist">
-                </ul>
+            <ul id="eval-checklist"></ul>
         </div>
     </div>
 
@@ -92,7 +103,6 @@
 </div>
 
 <script>
-    // Database 5 Soal per Standar Internasional (Total 15 Soal Premium)
     const writingDatabase = {
         seninSelasa: {
             name: "Cambridge Assessment Standard",
@@ -143,12 +153,14 @@
 
     let activeStandard = {};
     let selectedPrompt = "";
+    let timerInterval;
+    let timeLeft = 2400; // 40 Menit = 2400 detik
+    let quizSubmitted = false;
 
     function setupWritingQuiz() {
-        const currentDay = new Date().getDay(); // 0 = Minggu, 1 = Senin, dst.
-        const currentDayOfMonth = new Date().getDate(); // Ambil tanggal hari ini (1-31) untuk rotasi soal
+        const currentDay = new Date().getDay();
+        const currentDayOfMonth = new Date().getDate();
         
-        // 1. Memilih standar berdasarkan hari
         if (currentDay === 1 || currentDay === 2) {
             activeStandard = writingDatabase.seninSelasa;
         } else if (currentDay === 3 || currentDay === 4) {
@@ -157,25 +169,55 @@
             activeStandard = writingDatabase.jumatSabtuMinggu;
         }
 
-        // 2. Memilih 1 dari 5 soal secara matematis menggunakan sisa bagi tanggal
-        // Rumus: (Tanggal % 5) -> Menghasilkan indeks 0 sampai 4 secara acak tapi konsisten per tanggal
         const promptIndex = currentDayOfMonth % 5;
         selectedPrompt = activeStandard.prompts[promptIndex];
 
-        // 3. Update Tampilan UI secara eksklusif
         document.getElementById('schedule-info').innerHTML = `<i class="fa-solid fa-calendar-check"></i> ${activeStandard.name}`;
         document.getElementById('prompt-identity').innerText = `${activeStandard.name} - Question ${promptIndex + 1} of 5:`;
         document.getElementById('target-prompt').innerText = selectedPrompt;
         document.getElementById('checklist-title').innerHTML = `<i class="fa-solid fa-signature"></i> ${activeStandard.name} Evaluation Checklist:`;
+
+        startTimer();
+    }
+
+    function startTimer() {
+        timerInterval = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById('timer-display').innerText = "TIME OUT";
+                document.getElementById('countdown-wrapper').className = "timer-container warning";
+                autoLockAndSubmit();
+            } else {
+                timeLeft--;
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                document.getElementById('timer-display').innerText = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 300) { // Warning pada 5 menit terakhir
+                    document.getElementById('countdown-wrapper').className = "timer-container warning";
+                }
+            }
+        }, 1000);
+    }
+
+    function autoLockAndSubmit() {
+        if(quizSubmitted) return;
+        alert("Waktu menulis esai Anda telah habis! Sistem mengunci teks Anda otomatis.");
+        
+        document.getElementById('essayInput').disabled = true;
+        document.getElementById('submitBtn').disabled = true;
+
+        submitEssay(true);
     }
 
     function countWords() {
+        if (timeLeft <= 0) return;
         const text = document.getElementById('essayInput').value.trim();
         const wordCount = text === "" ? 0 : text.split(/\s+/).length;
         const badge = document.getElementById('wordCountBadge');
         
         badge.innerText = `${wordCount} Kata`;
-        
         if (wordCount >= 250) {
             badge.className = "word-badge ready";
         } else {
@@ -183,28 +225,31 @@
         }
     }
 
-    function submitEssay() {
+    function submitEssay(isAuto = false) {
+        if(!isAuto) {
+            clearInterval(timerInterval);
+            quizSubmitted = true;
+        }
+        
+        document.getElementById('essayInput').disabled = true;
+
         const text = document.getElementById('essayInput').value.trim();
         const wordCount = text === "" ? 0 : text.split(/\s+/).length;
-        
         const checklistUl = document.getElementById('eval-checklist');
         checklistUl.innerHTML = "";
 
-        // Validasi kelayakan jumlah kata
         let wordFeedback = "";
         if (wordCount < 250) {
-            wordFeedback = `<li style='color:#ef4444; margin-bottom:12px;'><i class="fa-solid fa-triangle-exclamation"></i> <b>Word Count Alert:</b> Esai Anda baru mencapai ${wordCount} kata. Kurang dari batas minimal 250 kata berisiko mengurangi skor band Anda secara drastis akibat kurangnya pengembangan argumen.</li>`;
+            wordFeedback = `<li style='color:#ef4444; margin-bottom:12px;'><i class="fa-solid fa-triangle-exclamation"></i> <b>Word Count Alert:</b> Esai Anda baru mencapai ${wordCount} kata (Kurang dari minimal 250 kata).</li>`;
         } else {
-            wordFeedback = `<li style='color:#22c55e; margin-bottom:12px;'><i class="fa-solid fa-circle-check"></i> <b>Word Count Met:</b> Luar biasa! Esai Anda telah mencapai ${wordCount} kata. Target minimal terpenuhi dengan baik.</li>`;
+            wordFeedback = `<li style='color:#22c55e; margin-bottom:12px;'><i class="fa-solid fa-circle-check"></i> <b>Word Count Met:</b> Luar biasa! Esai Anda mencapai ${wordCount} kata.</li>`;
         }
         checklistUl.innerHTML += wordFeedback;
 
-        // Masukkan kriteria standar yang aktif
         activeStandard.checklist.forEach(item => {
             checklistUl.innerHTML += `<li>${item}</li>`;
         });
 
-        // Tampilkan papan hasil analisis
         const resultArea = document.getElementById('result-area');
         resultArea.style.display = 'block';
         resultArea.scrollIntoView({ behavior: 'smooth' });
