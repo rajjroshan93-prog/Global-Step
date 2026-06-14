@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Sana Aethelgard Academy</title>
+    <title>Dashboard - San Aethelgard Academy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&display=swap" rel="stylesheet">
@@ -217,7 +217,6 @@
             transition: 0.2s;
             box-shadow: 0 10px 20px rgba(255, 177, 0, 0.2);
             border: 2px solid var(--exam-gold);
-            cursor: pointer;
         }
 
         .btn-exam-start:hover {
@@ -270,7 +269,7 @@
     
     <div class="dashboard-header">
         <div class="header-left">
-            <h1>Sana Aethelgard Workspace</h1>
+            <h1>San Aethelgard Workspace</h1>
             <p>Selamat datang kembali. Pilih modul pembelajaran internasional Anda hari ini.</p>
         </div>
         <div>
@@ -335,14 +334,18 @@
             <h2><i class="fa-solid fa-shield-halved"></i> The Grand Simulation Arena (Official CBT Test)</h2>
             <p>Masuki ruang simulasi ujian berstandar tinggi yang disesuaikan secara ketat dengan format waktu, tingkat kesulitan, dan kriteria penilaian resmi Cambridge & Oxford Academic. Hasil ujian ini akan dikonversi menjadi Band Score dan terintegrasi otomatis ke sistem analitik.</p>
         </div>
-        <a href="ielts-exam.html?start=true" id="startExamBtn" class="btn-exam-start"><i class="fa-solid fa-play"></i> Ambil Ujian Resmi</a>
+        <a href="ielts-exam.html" class="btn-exam-start"><i class="fa-solid fa-play"></i> Ambil Ujian Resmi</a>
     </div>
 
     <div class="footer-credit">
-        Created by Sana Aethelgard | <a href="https://www.instagram.com/sana_aethelgard?igsh=N29hZWphOTdmbzZy" target="_blank"><i class="fa-brands fa-instagram"></i> @sana_aethelgard</a>
+        Created by San | <a href="https://www.instagram.com/sanaethelgard?igsh=N29hZWphOTdmbzZy" target="_blank"><i class="fa-brands fa-instagram"></i> @sanaethelgard</a>
     </div>
 
 </div>
 
+<script>
+    // OTOMATIS MENDAFTARKAN IDENTITAS SANA BEGITU DASHBOARD DIBUKA
+    localStorage.setItem('username', 'Sana');
+</script>
 </body>
 </html>
