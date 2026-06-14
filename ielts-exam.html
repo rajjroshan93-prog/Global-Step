@@ -17,6 +17,8 @@
             --text-main: #1e293b;
             --border-color: #cbd5e1;
             --exam-gold: #d4af37;
+            --alert-red: #ef4444;
+            --soft-green: #10b981;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,560 +33,658 @@
             overflow: hidden;
         }
 
-        .exam-top-bar {
+        /* Fixed Top Exam Header */
+        .exam-header {
             background: var(--primary);
             color: white;
             padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 3px solid var(--exam-gold);
-            z-index: 10;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            z-index: 100;
         }
 
-        .exam-title h1 { font-family: 'Poppins', sans-serif; font-size: 18px; color: #ffffff; }
-        .exam-title p { font-size: 12px; color: var(--accent); font-weight: bold; }
+        .exam-meta h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+        }
 
-        .exam-timer {
+        .exam-meta p {
+            font-size: 12px;
+            color: #cbd5e1;
+        }
+
+        .timer-box {
             background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--accent);
             padding: 8px 20px;
             border-radius: 6px;
-            border: 1px solid var(--accent);
             font-family: 'Courier Prime', monospace;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
-            color: var(--accent);
+            color: white;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .module-nav {
-            background: #e2e8f0;
+        /* Main Split Workspace */
+        .workspace {
             display: flex;
-            border-bottom: 1px solid var(--border-color);
-            overflow-x: auto;
+            flex: 1;
+            overflow: hidden;
         }
 
-        .nav-tab {
-            padding: 15px 25px;
+        /* Left Control Navigation (Vertical Tabs) */
+        .sidebar-nav {
+            width: 260px;
+            background: #0f172a;
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            overflow-y: auto;
+        }
+
+        .nav-tab-btn {
+            background: transparent;
+            color: #94a3b8;
+            border: none;
+            padding: 14px 15px;
+            text-align: left;
             font-family: 'Poppins', sans-serif;
             font-size: 13px;
-            font-weight: 700;
-            color: #475569;
-            background: #e2e8f0;
-            border: none;
+            font-weight: bold;
+            border-radius: 8px;
             cursor: pointer;
-            border-right: 1px solid var(--border-color);
             transition: 0.2s;
-            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .nav-tab.active {
-            background: var(--card-bg);
+        .nav-tab-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: white;
+        }
+
+        .nav-tab-btn.active-tab {
+            background: var(--accent);
             color: var(--primary);
-            border-bottom: 3px solid var(--primary);
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
         }
 
-        .exam-workspace { flex: 1; display: flex; overflow: hidden; }
+        /* Right Content Panel */
+        .content-panel {
+            flex: 1;
+            padding: 35px;
+            overflow-y: auto;
+            background: var(--bg-exam);
+        }
 
-        .panel { flex: 1; overflow-y: auto; padding: 35px; }
-        .panel-left { background: var(--card-bg); border-right: 2px solid var(--border-color); }
-        .panel-right { background: #f1f5f9; }
+        .skill-section {
+            display: none;
+        }
 
-        .exam-section { display: none; }
-        .exam-section.active-section { display: block; }
+        .skill-section.active-section {
+            display: block;
+        }
 
-        .audio-player-container {
-            background: #f8fafc;
-            border: 2px dashed var(--primary);
-            padding: 20px;
-            border-radius: 12px;
+        /* Standardized Academic Layout */
+        .instruction-box {
+            background: #f1f5f9;
+            border-left: 4px solid var(--primary);
+            padding: 15px 20px;
+            border-radius: 6px;
             margin-bottom: 25px;
-            text-align: center;
+            font-size: 13.5px;
+            line-height: 1.5;
         }
 
-        .btn-play-audio {
+        .reading-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .passage-text {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            height: 65vh;
+            overflow-y: auto;
+            font-size: 15px;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        .passage-text h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .questions-wrapper {
+            height: 65vh;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        /* Question Formats */
+        .question-block {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13.5px;
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option-label:hover {
+            background: #f8fafc;
+        }
+
+        .option-label input {
+            accent-color: var(--primary);
+        }
+
+        /* Audio & Voice Recording Blocks */
+        .audio-player-box {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .speaking-workspace {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .cue-card {
+            border: 2px dashed var(--exam-gold);
+            padding: 20px;
+            border-radius: 6px;
+            background: #fffbeb;
+            margin-bottom: 20px;
+        }
+
+        .btn-record {
             background: var(--primary);
             color: white;
-            border: 2px solid var(--accent);
+            border: none;
             padding: 12px 25px;
             font-family: 'Poppins', sans-serif;
             font-weight: bold;
             font-size: 13px;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            transition: 0.2s;
         }
 
-        .instruction-box {
-            background: #fffbeb;
-            border-left: 4px solid #f59e0b;
-            padding: 15px;
-            font-size: 13px;
-            color: #b45309;
-            margin: 20px 0;
-            font-style: italic;
-        }
-
-        .passage-title { font-family: 'Poppins', sans-serif; font-size: 22px; color: var(--primary); margin-bottom: 15px; }
-        .passage-text { font-size: 15px; line-height: 1.8; color: #334155; text-align: justify; }
-        .passage-text p { margin-bottom: 15px; }
-
-        .question-group {
-            margin-bottom: 30px;
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-        }
-
-        .group-header {
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-            color: var(--primary);
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .question-item { margin-bottom: 20px; font-size: 14.5px; }
-        .question-label { font-weight: bold; margin-bottom: 6px; display: block; }
-
-        .input-text {
-            width: 100%;
-            max-width: 280px;
-            padding: 8px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 14px;
-            margin-top: 4px;
-        }
-
-        .options-list { list-style: none; margin-top: 6px; }
-        .options-list li { margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
-
-        .textarea-writing {
-            width: 100%;
-            height: 200px;
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 14.5px;
-            line-height: 1.6;
-            resize: vertical;
-            margin-top: 10px;
-        }
-
-        .word-count-badge {
-            display: inline-block;
-            margin-top: 6px;
-            padding: 4px 10px;
-            background: #e2e8f0;
-            color: var(--primary);
-            font-weight: bold;
-            border-radius: 4px;
-            font-size: 11px;
-        }
-
-        .recorder-container {
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            padding: 15px;
-            border-radius: 12px;
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        .btn-record {
+        .btn-record.recording {
             background: #ef4444;
-            color: white;
-            border: none;
-            padding: 8px 18px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: bold;
-            font-size: 12px;
-            border-radius: 50px;
-            cursor: pointer;
+            animation: pulse 1.5s infinite;
         }
 
-        .btn-record.recording { background: #22c55e; }
-
-        .exam-footer-bar {
-            background: white;
-            padding: 15px 40px;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
         }
 
+        /* Writing Inputs */
+        .writing-area {
+            width: 100%;
+            height: 250px;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            outline: none;
+            margin-bottom: 10px;
+        }
+
+        .writing-area:focus {
+            border-color: var(--primary);
+        }
+
+        /* Submit Button Sidebar */
         .btn-submit-exam {
             background: #ef4444;
             color: white;
             border: none;
-            padding: 12px 35px;
-            border-radius: 6px;
+            padding: 14px;
             font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            font-size: 14px;
+            font-weight: bold;
+            font-size: 13px;
+            border-radius: 8px;
             cursor: pointer;
+            margin-top: auto;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
-        .result-overlay {
-            display: none;
+        .btn-submit-exam:hover {
+            background: #dc2626;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+        }
+
+        /* Overlay Pop-Up Layar Hasil Penuh */
+        .overlay-result-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 21, 43, 0.95);
-            z-index: 100;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: none;
             justify-content: center;
             align-items: center;
-            color: white;
         }
-
-        .result-card {
-            background: white;
-            color: var(--text-main);
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 550px;
-            width: 95%;
-            text-align: center;
-        }
-
-        .score-big { font-family: 'Poppins', sans-serif; font-size: 54px; color: var(--primary); margin: 15px 0; font-weight: 700; }
-        .btn-back { background: var(--primary); color: white; padding: 12px 30px; text-decoration: none; border-radius: 50px; font-family: 'Poppins', sans-serif; font-weight: bold; display: inline-block; margin-top: 15px; }
     </style>
 </head>
 <body>
 
-    <div class="exam-top-bar">
-        <div class="exam-title">
-            <h1>SANA AETHELGARD SIMULATION ARENA</h1>
-            <p>Official 82 Questions Cambridge Standardized CBT Engine</p>
+    <div class="exam-header">
+        <div class="exam-meta">
+            <h1>THE GRAND SIMULATION ARENA</h1>
+            <p>Cambridge & Oxford Standardized Academic Testing Core</p>
         </div>
-        <div class="exam-timer" id="timerBox">
-            <i class="fa-solid fa-clock"></i> <span id="timeDisplay">165:00</span>
+        <div class="timer-box">
+            <i class="fa-solid fa-clock"></i> <span id="countdown">02:40:00</span>
         </div>
     </div>
 
-    <div class="module-nav">
-        <button class="nav-tab active" id="tabLISTENING" onclick="switchModule('LISTENING')"><i class="fa-solid fa-headphones"></i> Listening (40 Soal)</button>
-        <button class="nav-tab" id="tabREADING" onclick="switchModule('READING')"><i class="fa-solid fa-book-open"></i> Reading (40 Soal)</button>
-        <button class="nav-tab" id="tabWRITING" onclick="switchModule('WRITING')"><i class="fa-solid fa-pen-fancy"></i> Writing (2 Tasks)</button>
-        <button class="nav-tab" id="tabSPEAKING" onclick="switchModule('SPEAKING')"><i class="fa-solid fa-comment-dots"></i> Speaking (3 Parts)</button>
-    </div>
-
-    <div class="exam-workspace">
+    <div class="workspace">
         
-        <div class="panel panel-left">
+        <div class="sidebar-nav">
+            <button class="nav-tab-btn active-tab" onclick="switchSkill(event, 'readingSec')">
+                <i class="fa-solid fa-book-open"></i> 1. Reading Module
+            </button>
+            <button class="nav-tab-btn" onclick="switchSkill(event, 'listeningSec')">
+                <i class="fa-solid fa-headphones"></i> 2. Listening Module
+            </button>
+            <button class="nav-tab-btn" onclick="switchSkill(event, 'writingSec')">
+                <i class="fa-solid fa-pen-fancy"></i> 3. Writing Module
+            </button>
+            <button class="nav-tab-btn" onclick="switchSkill(event, 'speakingSec')">
+                <i class="fa-solid fa-comment-dots"></i> 4. Speaking Module
+            </button>
+
+            <button class="btn-submit-exam" onclick="showResults()">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Submit Test Arena
+            </button>
+        </div>
+
+        <div class="content-panel">
             
-            <div id="leftLISTENING" class="exam-section active-section">
-                <h2 class="passage-title">Cambridge Lecture: Technological Disruption in Renewable Energy</h2>
-                <div class="audio-player-container">
-                    <p><i class="fa-solid fa-robot"></i> EMULATOR AUDIO TEXT-TO-SPEECH (ANTI BISU & ANTI ERROR)</p>
-                    <button class="btn-play-audio" id="audioAiBtn" onclick="speakListeningLecture()">
-                        <i class="fa-solid fa-volume-high"></i> Click to Play Simulation Audio
-                    </button>
+            <div id="readingSec" class="skill-section active-section">
+                <div class="instruction-box">
+                    <strong>READING INSTRUCTION:</strong> Read the following academic passage carefully. Answer questions 1 to 40 by selecting the most appropriate single option based entirely on the explicit or implicit arguments provided.
                 </div>
-                <div class="passage-text">
-                    <p><strong>Contextual Guideline:</strong> Audio simulasi berdurasi penuh ini akan membacakan sebuah naskah akademik mengenai integrasi kecerdasan buatan dalam tata kelola panel surya global.</p>
-                    <p>Tekan tombol di atas untuk memulai. Isilah kolom kosong di panel sebelah kanan berdasarkan kata kunci numerik atau konseptual eksak yang Anda dengar.</p>
-                </div>
-            </div>
-
-            <div id="leftREADING" class="exam-section">
-                <h2 class="passage-title">The Socio-Economic Impact of Quantum Computing</h2>
-                <div class="passage-text">
-                    <p><strong>[Paragraph A]</strong> Quantum computing represents a monumental paradigm shift away from classical binary computation architectures. By utilizing qubits that exist simultaneously in states of superposition and entanglement, these systems execute computational calculations exponentially faster than silicon-based supercomputers.</p>
-                    <p><strong>[Paragraph B]</strong> The immediate fiscal ramifications will be felt heavily across cryptographic industries. Contemporary financial institutions rely implicitly on RSA encryption algorithms. Quantum systems possess the distinct algorithmic capacity to dismantle these mathematical defenses within mere minutes, forcing a systemic global migration toward post-quantum encryption protocols.</p>
-                    <p><strong>[Paragraph C]</strong> Despite these vulnerabilities, logistical sectors stand to benefit immensely. Optimization problems, ranging from transcontinental supply chain mapping to intricate thermodynamic simulations for molecular drug discovery, can be resolved efficiently, potentially reducing pharmaceutical research expenditures by approximately thirty-five percent globally.</p>
-                </div>
-            </div>
-
-            <div id="leftWRITING" class="exam-section">
-                <h2 class="passage-title">IELTS Academic Writing Module</h2>
-                <div class="passage-text">
-                    <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--primary);">
-                        <p style="font-weight: bold;">TASK 1 (Minimum 150 words):</p>
-                        <p><em>"The system chart illustrates the global distribution of internet infrastructure development between urban hubs and rural zones from 2015 to 2025. Summarize the information by selecting and reporting the main features."</em></p>
+                
+                <div class="reading-split">
+                    <div class="passage-text">
+                        <h2>The Paradigm of Quantum Telemetry and Neural Architecture</h2>
+                        <p>In the contemporary landscape of computational neuroscience, the integration of quantum telemetry represents a monumental paradigm shift. Historically, mapping synaptic transmission velocities required intrusive biomechanical probes that frequently disrupted natural cognitive cellular pathways. However, with the advent of sub-atomic telemetry matrices, researchers can now observe neurotransmitter distribution dynamics in real-time without causing bio-molecular interference.</p>
+                        <br>
+                        <p>Dr. Vance’s seminal 2024 study at the Zurich Institute of Technology demonstrated that neural synapses do not merely fire linearly; rather, they exhibit structural super-positioning during complex memory retrieval events. This discovery immediately invalidated the classical binary propagation theory that dominated cognitive sciences for nearly half a century. Despite initial skepticism from orthodox academic boards, subsequent trials confirmed an accuracy coefficient exceeding 98.4% across diverse mammal test cohorts.</p>
+                        <br>
+                        <p>Furthermore, the long-term ecological implications of deploying non-invasive telemetry arrays extending to mass psychological treatments remain intensely debated. Critics argue that unchecked cognitive tracking infrastructure risks compromising deep-seated neural data privacy rights. Conversely, proponents emphasize the unprecedented advantages in early-stage diagnosis of neuro-degenerative ailments, asserting that biological preservation parameters heavily outweigh speculative socio-ethical anxieties.</p>
                     </div>
-                    <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; border-left: 4px solid var(--exam-gold);">
-                        <p style="font-weight: bold;">TASK 2 (Minimum 250 words):</p>
-                        <p><em>"Some global organizations argue that space exploration investments yield minimal immediate humanitarian benefits and funds should instead be directed toward poverty eradication. To what extent do you agree or disagree?"</em></p>
+
+                    <div class="questions-wrapper">
+                        <script>
+                            for (let i = 1; i <= 40; i++) {
+                                let isCorrectA = (i % 3 === 1) ? "correct" : "wrong";
+                                let isCorrectB = (i % 3 === 2) ? "correct" : "wrong";
+                                let isCorrectC = (i % 3 === 0) ? "correct" : "wrong";
+                                
+                                document.write(`
+                                    <div class="question-block">
+                                        <div class="question-text">Question ${i}: Which statement best aligns with the research parameters discussed in paragraph ${i % 3 === 0 ? 3 : (i % 3)}?</div>
+                                        <div class="options-group">
+                                            <label class="option-label"><input type="radio" name="q${i}" value="${isCorrectA}"> Quantum telemetry necessitates intrusive physical implementation models.</label>
+                                            <label class="option-label"><input type="radio" name="q${i}" value="${isCorrectB}"> Dr. Vance's empirical framework effectively disproved traditional linear propagation theories.</label>
+                                            <label class="option-label"><input type="radio" name="q${i}" value="${isCorrectC}"> Socio-ethical considerations have completely halted further research developments.</label>
+                                        </div>
+                                    </div>
+                                `);
+                            }
+                        </script>
                     </div>
                 </div>
             </div>
 
-            <div id="leftSPEAKING" class="exam-section">
-                <h2 class="passage-title">Speaking Interview Framework</h2>
-                <div class="passage-text">
-                    <p>Sesi wawancara terbagi menjadi 3 bagian standar Cambridge dan Oxford:</p>
-                    <p><strong>Part 1:</strong> Introduction and familiar topics (4-5 menit).<br>
-                    <strong>Part 2:</strong> Individual long turn berdasarkan Cue Card (3-4 menit).<br>
-                    <strong>Part 3:</strong> Two-way analytical discussion mengenai topik abstrak terkait Part 2 (4-5 menit).</p>
+            <div id="listeningSec" class="skill-section">
+                <div class="instruction-box">
+                    <strong>LISTENING INSTRUCTION:</strong> Activate the audio stream node below. Listen attentively to the comprehensive academic panel discussion. Answer questions 41 to 80 by matching data criteria accurately.
+                </div>
+
+                <div class="audio-player-box">
+                    <div>
+                        <span style="font-family:'Poppins'; font-weight:bold; font-size:14px;"><i class="fa-solid fa-volume-high"></i> Academic Panel Audio Node</span><br>
+                        <span style="font-size:12px; color:#cbd5e1;">Click player to listen to the standardized audio material.</span>
+                    </div>
+                    <audio controls src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" style="outline:none;"></audio>
+                </div>
+
+                <div class="questions-wrapper" style="height:55vh;">
+                    <script>
+                        for (let i = 41; i <= 80; i++) {
+                            let isCorrectA = (i % 3 === 1) ? "correct" : "wrong";
+                            let isCorrectB = (i % 3 === 2) ? "correct" : "wrong";
+                            let isCorrectC = (i % 3 === 0) ? "correct" : "wrong";
+
+                            document.write(`
+                                <div class="question-block">
+                                    <div class="question-text">Question ${i}: What key point or numerical correlation is highlighted by the main speaker during the discussion?</div>
+                                    <div class="options-group">
+                                        <label class="option-label"><input type="radio" name="q${i}" value="${isCorrectA}"> The initial statistical calculation was retracted due to external data corruptions.</label>
+                                        <label class="option-label"><input type="radio" name="q${i}" value="${isCorrectB}"> The accuracy threshold maintained a stable alignment above the 95% target projection.</label>
+                                        <label class="option-label"><input type="radio" name="q${i}" value="${isCorrectC}"> Financial budget cuts limited the geographical reach of the research team.</label>
+                                    </div>
+                                </div>
+                            `);
+                        }
+                    </script>
+                </div>
+            </div>
+
+            <div id="writingSec" class="skill-section">
+                <div class="instruction-box">
+                    <strong>WRITING INSTRUCTION:</strong> You are strictly required to complete both Task 1 and Task 2. Write an analytical essay structure detailing data trends and logical socio-scientific positions.
+                </div>
+
+                <div class="speaking-workspace">
+                    <h3 style="font-family:'Poppins'; font-size:15px; margin-bottom:10px; color:var(--primary);">WRITING TASK 1 (Academic Chart Interpretation)</h3>
+                    <p style="font-size:13.5px; color:#475569; margin-bottom:12px; line-height:1.5;">The global index graph demonstrates a sharp structural inflation in green technology investment profiles across G20 nations from 2018 to 2025. Summarize the overall data parameters by selecting and reporting main features.</p>
+                    <textarea class="writing-area" placeholder="Write your Task 1 response here... (Minimum 150 words)"></textarea>
+                    <div style="font-size:12px; color:#64748b; text-align:right;">Word Count Counter: <span style="font-weight:bold;">0 words</span></div>
+                </div>
+
+                <div class="speaking-workspace">
+                    <h3 style="font-family:'Poppins'; font-size:15px; margin-bottom:10px; color:var(--primary);">WRITING TASK 2 (Socio-Scientific Discursive Essay)</h3>
+                    <p style="font-size:13.5px; color:#475569; margin-bottom:12px; line-height:1.5;">Some academicians believe that human-driven automation frameworks will completely replace traditional structural employment models within the next few decades. To what extent do you agree or disagree with this prospective statement?</p>
+                    <textarea class="writing-area" placeholder="Write your Task 2 response here... (Minimum 250 words)"></textarea>
+                    <div style="font-size:12px; color:#64748b; text-align:right;">Word Count Counter: <span style="font-weight:bold;">0 words</span></div>
+                </div>
+            </div>
+
+            <div id="speakingSec" class="skill-section">
+                <div class="instruction-box">
+                    <strong>SPEAKING INSTRUCTION:</strong> Grant microphone permission requested by the engine. Read the evaluation cue card topic prompts, prepare your argumentative notes, and execute high-fidelity audio responses.
+                </div>
+
+                <div class="speaking-workspace">
+                    <div class="cue-card">
+                        <h3 style="font-family:'Poppins'; color:#b45309; font-size:15px; margin-bottom:8px;"><i class="fa-solid fa-address-card"></i> IELTS Speaking Cue Card Prompt (Part 2)</h3>
+                        <p style="font-weight:bold; font-size:14px; margin-bottom:10px; color:var(--primary);">Describe a significant historical milestone achieved by global scientific alliances.</p>
+                        <ul style="font-size:13.5px; margin-left:20px; line-height:1.7; color:#475569;">
+                            <li>What the precise scientific milestone was</li>
+                            <li>Which international nations or academic entities cooperated</li>
+                            <li>How long the entire exploration phase lasted</li>
+                            <li>And explain why this achievement left an indelible footprint on human history.</li>
+                        </ul>
+                    </div>
+
+                    <div style="display:flex; align-items:center; gap:15px;">
+                        <button class="btn-record" id="recBtn1" onclick="toggleRecord('recBtn1', 'audioPlayback1')">
+                            <i class="fa-solid fa-microphone"></i> Start Record Response
+                        </button>
+                        <audio id="audioPlayback1" controls style="display:none; outline:none;"></audio>
+                    </div>
                 </div>
             </div>
 
         </div>
-
-        <div class="panel panel-right">
-            
-            <div id="rightLISTENING" class="exam-section active-section">
-                <div class="instruction-box"><strong>QUESTIONS 1 - 20:</strong> Fill in the blanks with <strong>NO MORE THAN TWO WORDS AND/OR A NUMBER</strong>.</div>
-                <div class="question-group">
-                    <div class="group-header">Section 1 & 2: Data & Notes Completion</div>
-                    <div id="listeningInputsContainer"></div>
-                </div>
-
-                <div class="instruction-box"><strong>QUESTIONS 21 - 40:</strong> Select the correct option <strong>A, B, or C</strong>.</div>
-                <div class="question-group">
-                    <div class="group-header">Section 3 & 4: Multiple Choice Academic Analysis</div>
-                    <div id="listeningRadioContainer"></div>
-                </div>
-            </div>
-
-            <div id="rightREADING" class="exam-section">
-                <div class="instruction-box"><strong>QUESTIONS 41 - 60:</strong> Choose <strong>TRUE</strong>, <strong>FALSE</strong>, or <strong>NOT GIVEN</strong> based on the passage text.</div>
-                <div class="question-group">
-                    <div class="group-header">Section 1: Identification of Information</div>
-                    <div id="readingRadioContainer"></div>
-                </div>
-
-                <div class="instruction-box"><strong>QUESTIONS 61 - 80:</strong> Fill in the blanks with <strong>ONE WORD ONLY</strong> extracted directly from the passage text.</div>
-                <div class="question-group">
-                    <div class="group-header">Section 2 & 3: Summary Completion</div>
-                    <div id="readingInputsContainer"></div>
-                </div>
-            </div>
-
-            <div id="rightWRITING" class="exam-section">
-                <div class="question-group">
-                    <div class="group-header">Question 81: Writing Task 1 Workspace</div>
-                    <textarea class="textarea-writing" id="w1Input" oninput="countWords('w1Input', 'w1Counter')" placeholder="Start drafting Task 1 response..."></textarea>
-                    <div><span class="word-count-badge" id="w1Counter">Word Count: 0 words</span></div>
-                </div>
-                <div class="question-group">
-                    <div class="group-header">Question 82: Writing Task 2 Workspace</div>
-                    <textarea class="textarea-writing" id="w2Input" oninput="countWords('w2Input', 'w2Counter')" placeholder="Start drafting Task 2 response..."></textarea>
-                    <div><span class="word-count-badge" id="w2Counter">Word Count: 0 words</span></div>
-                </div>
-            </div>
-
-            <div id="rightSPEAKING" class="exam-section">
-                <div class="question-group">
-                    <div class="group-header">Part 1: General Interview Question</div>
-                    <p style="margin-bottom:10px; font-weight:bold;">"How has modern communication infrastructure changed educational habits in your hometown?"</p>
-                    <div class="recorder-container">
-                        <button class="btn-record" id="s1Btn" onclick="toggleRecord('s1Btn', 's1Audio')"><i class="fa-solid fa-microphone"></i> Start Record Part 1</button>
-                        <div style="margin-top:10px;"><audio id="s1Audio" controls style="display:none; height:30px; margin:0 auto;"></audio></div>
-                    </div>
-                </div>
-                <div class="question-group">
-                    <div class="group-header">Part 2: Long Turn Cue Card Response</div>
-                    <p style="margin-bottom:10px; font-weight:bold;">"Describe an instance where technological implementation significantly expedited public workflows."</p>
-                    <div class="recorder-container">
-                        <button class="btn-record" id="s2Btn" onclick="toggleRecord('s2Btn', 's2Audio')"><i class="fa-solid fa-microphone"></i> Start Record Part 2</button>
-                        <div style="margin-top:10px;"><audio id="s2Audio" controls style="display:none; height:30px; margin:0 auto;"></audio></div>
-                    </div>
-                </div>
-                <div class="question-group">
-                    <div class="group-header">Part 3: Abstract Multi-Dimension Analysis</div>
-                    <p style="margin-bottom:10px; font-weight:bold;">"To what extent should governments regulate corporate monopolization over advanced artificial intelligence frameworks?"</p>
-                    <div class="recorder-container">
-                        <button class="btn-record" id="s3Btn" onclick="toggleRecord('s3Btn', 's3Audio')"><i class="fa-solid fa-microphone"></i> Start Record Part 3</button>
-                        <div style="margin-top:10px;"><audio id="s3Audio" controls style="display:none; height:30px; margin:0 auto;"></audio></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
     </div>
 
-    <div class="exam-footer-bar">
-        <div style="color: #64748b; font-size: 13px;"><i class="fa-solid fa-circle-info"></i> Data isian objektif (80 Soal) akan langsung dievaluasi instan oleh sistem CBT.</div>
-        <button class="btn-submit-exam" onclick="evaluateCbtEngine()"><i class="fa-solid fa-paper-plane"></i> Submit Complete Exam</button>
-    </div>
-
-    <div class="result-overlay" id="resultOverlay">
-        <div class="result-card">
-            <h2>Simulasi 82 Soal Selesai!</h2>
-            <p style="color:#64748b; margin-top:5px;">Hasil evaluasi objektif komputasi Cambridge CBT:</p>
-            <div class="score-big" id="scoreDisplay">0 / 80</div>
-            <p id="bandDisplay" style="font-weight:bold; color:var(--primary); font-size:18px; margin-bottom:15px;"></p>
-            <p style="font-size:12px; color:#64748b; line-height:1.5;">Berkas jawaban esai Writing dan rekaman audio Speaking Anda telah diamankan untuk disinkronisasikan ke Analytics Dashboard.</p>
-            <a href="dashboard.html" class="btn-back"><i class="fa-solid fa-house"></i> Kembali ke Dashboard</a>
-        </div>
-    </div>
+    <div class="overlay-result-screen" id="resultOverlay"></div>
 
     <script>
-        // GENERATE ELEMEN INPUT LISTENING SECARA AMAN VIA DOM (ANTI-LAG)
-        const placeholders = [
-            "Target reduction percentage", "Structural element modified", "Main financial backer", "Type of infrastructure lacking", "Major consequence to avoid",
-            "Initial implementation year", "Primary geographic region", "Minimum operating temperature", "Material used for turbine blades", "Secondary power source",
-            "Name of lead researcher", "Data collection tool", "Frequency of calibration", "Statistical margin of error", "Main environmental barrier",
-            "Proposed legislative solution", "Expected public adoption rate", "Capital investment amount", "Key stakeholder group", "Final project deadline year"
-        ];
-        
-        let listeningInputsHtml = "";
-        for(let i = 1; i <= 20; i++) {
-            listeningInputsHtml += `
-                <div class="question-item">
-                    <label class="question-label">${i}. [Question ${i}] Insert keyword matching the lecture (${placeholders[i-1]}):</label>
-                    <input type="text" class="input-text" id="l${i}" placeholder="Type answer here...">
-                </div>`;
-        }
-        document.getElementById('listeningInputsContainer').innerHTML = listeningInputsHtml;
-
-        let listeningRadioHtml = "";
-        for(let i = 21; i <= 40; i++) {
-            listeningRadioHtml += `
-                <div class="question-item">
-                    <label class="question-label">${i}. Critical argument regarding academic point ${i} discussed by speakers?</label>
-                    <ul class="options-list">
-                        <li><input type="radio" name="l${i}" value="A"> A. It overestimates the structural cost projection</li>
-                        <li><input type="radio" name="l${i}" value="B"> B. It demonstrates a high correlation with global climate shifts</li>
-                        <li><input type="radio" name="l${i}" value="C"> C. It demands a direct policy intervention</li>
-                    </ul>
-                </div>`;
-        }
-        document.getElementById('listeningRadioContainer').innerHTML = listeningRadioHtml;
-
-        // GENERATE ELEMEN READING SECARA AMAN VIA DOM
-        let readingRadioHtml = "";
-        for(let i = 41; i <= 60; i++) {
-            readingRadioHtml += `
-                <div class="question-item">
-                    <label class="question-label">${i}. The analytical statement number ${i} corresponds exactly to paragraph claims?</label>
-                    <ul class="options-list">
-                        <li><input type="radio" name="r${i}" value="TRUE"> TRUE</li>
-                        <li><input type="radio" name="r${i}" value="FALSE"> FALSE</li>
-                        <li><input type="radio" name="r${i}" value="NOT GIVEN"> NOT GIVEN</li>
-                    </ul>
-                </div>`;
-        }
-        document.getElementById('readingRadioContainer').innerHTML = readingRadioHtml;
-
-        let readingInputsHtml = "";
-        for(let i = 61; i <= 80; i++) {
-            readingInputsHtml += `
-                <div class="question-item">
-                    <label class="question-label">${i}. Enter exact lexical unit for slot ${i}:</label>
-                    <input type="text" class="input-text" id="r${i}" placeholder="Type one word...">
-                </div>`;
-        }
-        document.getElementById('readingInputsContainer').innerHTML = readingInputsHtml;
-
-
-        // TEXT TO SPEECH PLAYER AUDIO EMULATOR LISTENING (TIDAK BERUBAH)
-        function speakListeningLecture() {
-            if (window.speechSynthesis.speaking) {
-                window.speechSynthesis.cancel();
-                document.getElementById('audioAiBtn').innerHTML = `<i class="fa-solid fa-volume-high"></i> Click to Play Simulation Audio`;
-                return;
-            }
-
-            const masterScript = "Welcome to the official Cambridge Academic Listening Examination. " +
-                                 "Today we discuss energy disruption. Our main test parameters show that the city aims to reduce emissions by forty-five percent. " +
-                                 "The major architectural alteration was implemented directly onto the structural temperature nodes. " +
-                                 "Local municipalities completely funded the development phase. " +
-                                 "However, historical zones suffer extensively from flawed installations. " +
-                                 "To prevent massive traffic congestion, new transit networks must be finalized. " +
-                                 "The baseline year for this study is recorded as twenty-fifteen, focusing primarily on the European metropolitan zones. " +
-                                 "The system maintains stable operations down to a minimum operating temperature of minus ten degrees. " +
-                                 "Engineers deployed advanced composite polymers for turbine blades, utilizing geothermal blocks as the secondary power source. " +
-                                 "Lead investigator Doctor Alistair Vance used specialized satellite imagery as the primary collection tool. " +
-                                 "Calibrations occur on a bi-weekly basis, keeping the total margin of error under zero-point-five percent. " +
-                                 "The primary environmental barrier identified is atmospheric salinity. " +
-                                 "Legislative frameworks suggest a carbon tariff solution, aiming for a ninety percent public adoption rate. " +
-                                 "Initial capital investments reached twelve million dollars, backed by corporate technology entities as key stakeholders. " +
-                                 "The final construction blueprint deadline is scheduled for twenty-thirty. This completes the academic transcript statement.";
-
-            const utterance = new SpeechSynthesisUtterance(masterScript);
-            utterance.lang = 'en-GB'; 
-            utterance.rate = 0.85;    
-
-            utterance.onstart = () => { document.getElementById('audioAiBtn').innerHTML = `<i class="fa-solid fa-stop"></i> Stop Simulation Audio`; };
-            utterance.onend = () => { document.getElementById('audioAiBtn').innerHTML = `<i class="fa-solid fa-volume-high"></i> Click to Play Simulation Audio`; };
-            window.speechSynthesis.speak(utterance);
-        }
-
-        // TABS NAVIGATION SWITCHER
-        function switchModule(mod) {
-            document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.exam-section').forEach(s => s.classList.remove('active-section'));
+        // Tab Section Navigation Core Engine
+        function switchSkill(evt, sectionId) {
+            document.querySelectorAll('.skill-section').forEach(sec => sec.classList.remove('active-section'));
+            document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active-tab'));
             
-            document.getElementById('tab' + mod).classList.add('active');
-            document.getElementById('left' + mod).classList.add('active-section');
-            document.getElementById('right' + mod).classList.add('active-section');
+            document.getElementById(sectionId).classList.add('active-section');
+            evt.currentTarget.classList.add('active-tab');
         }
 
-        // LIVE WORD COUNT
-        function countWords(id, target) {
-            const txt = document.getElementById(id).value.trim();
-            const words = txt === "" ? 0 : txt.split(/\s+/).length;
-            document.getElementById(target).textContent = `Word Count: ${words} words`;
-        }
+        // Official Academic Countdown Clock Engine (2 Hours 40 Minutes)
+        let totalSeconds = 2 * 3600 + 40 * 60;
+        const timerElement = document.getElementById('countdown');
+        
+        const countdownInterval = setInterval(() => {
+            let hours = Math.floor(totalSeconds / 3600);
+            let minutes = Math.floor((totalSeconds % 3600) / 60);
+            let seconds = totalSeconds % 60;
 
-        // TIMER COUNTDOWN
-        let timeRemaining = 165 * 60; 
-        const countdown = setInterval(() => {
-            let m = Math.floor(timeRemaining / 60);
-            let s = timeRemaining % 60;
-            document.getElementById('timeDisplay').textContent = `${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
-            if(timeRemaining <= 0) { clearInterval(countdown); evaluateCbtEngine(); }
-            timeRemaining--;
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            timerElement.textContent = `${hours}:${minutes}:${seconds}`;
+            
+            if (totalSeconds <= 0) {
+                clearInterval(countdownInterval);
+                alert("Official testing duration elapsed! Auto-submitting current inputs.");
+                showResults();
+            }
+            totalSeconds--;
         }, 1000);
 
-        // KUNCI JAWABAN MATRIKS (80 NOMOR OBJEKTIF)
-        const keys = {};
-        for(let i=1; i<=20; i++) keys['l'+i] = ["45", "temperature", "municipalities", "flawed", "congestion", "2015", "european", "-10", "polymers", "geothermal", "vance", "satellite", "bi-weekly", "0.5%", "salinity", "tariff", "90%", "12 million", "corporations", "2030"][i-1];
-        for(let i=21; i<=40; i++) keys['l'+i] = (i % 3 === 0) ? "A" : (i % 3 === 1 ? "B" : "C");
-        for(let i=41; i<=60; i++) keys['r'+i] = (i % 3 === 1) ? "TRUE" : (i % 3 === 2 ? "FALSE" : "NOT GIVEN");
-        for(let i=61; i<=80; i++) keys['r'+i] = "quantum";
+        // ==========================================================
+        // 1. INTEGRASI SISTEM ANTI-CHEAT & KUNCI 24 JAM (3X TOLERANSI)
+        // ==========================================================
+        let violationCount = 0;
+        const MAX_VIOLATIONS = 3;
 
-        // EVALUATION CALCULATOR
-        function evaluateCbtEngine() {
-            clearInterval(countdown);
-            window.speechSynthesis.cancel();
-            let score = 0;
+        // Cek saat halaman dimuat: Apakah user sedang diblokir hingga besok?
+        window.addEventListener('DOMContentLoaded', () => {
+            const blockTimestamp = localStorage.getItem('cbt_blocked_until');
+            if (blockTimestamp) {
+                const now = new Date().getTime();
+                if (now < parseInt(blockTimestamp)) {
+                    const remainingTime = Math.ceil((parseInt(blockTimestamp) - now) / (1000 * 60 * 60));
+                    lockExamScreen(`
+                        <h2 style="color:var(--alert-red); font-family:'Poppins'; margin-bottom:15px;"><i class="fa-solid fa-user-slash"></i> AKSES UJIAN DIBLOKIR</h2>
+                        <p style="font-size:14px; color:#cbd5e1; line-height:1.6;">
+                            Anda telah melebihi batas toleransi keluar dari sistem CBT sebanyak 3 kali pada sesi ujian sebelumnya.<br>
+                            Sesuai regulasi ketat San Aethelgard Academy, Anda **tidak dapat mengikuti ujian kembali hingga besok**.
+                        </p>
+                        <div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:8px; margin:20px 0; font-family:'Courier Prime'; color:var(--exam-gold);">
+                            Sisa Waktu Pemblokiran: ~${remainingTime} Jam Lagi
+                        </div>
+                        <button onclick="window.location.href='dashboard.html'" style="background:var(--exam-gold); color:var(--primary); border:none; padding:10px 25px; border-radius:50px; font-weight:bold; cursor:pointer;">
+                            Kembali ke Dashboard
+                        </button>
+                    `);
+                } else {
+                    localStorage.removeItem('cbt_blocked_until');
+                }
+            }
+        });
 
-            for(let i=1; i<=20; i++) {
-                if(document.getElementById('l'+i).value.trim().toLowerCase() === keys['l'+i]) score++;
-            }
-            for(let i=21; i<=40; i++) {
-                let r = document.querySelector(`input[name="l${i}"]:checked`);
-                if(r && r.value === keys['l'+i]) score++;
-            }
-            for(let i=41; i<=60; i++) {
-                let r = document.querySelector(`input[name="r${i}"]:checked`);
-                if(r && r.value === keys['r'+i]) score++;
-            }
-            for(let i=61; i<=80; i++) {
-                if(document.getElementById('r'+i).value.trim().toLowerCase() === keys['r'+i]) score++;
-            }
+        // Proteksi Ketidaksengajaan: Tombol Refresh / Tutup Tab Browser
+        window.addEventListener('beforeunload', (e) => {
+            if (document.getElementById('resultOverlay').style.display === 'flex' || localStorage.getItem('cbt_blocked_until')) return;
+            e.preventDefault();
+            e.returnValue = 'Peringatan: Menyegarkan halaman (refresh) akan membatalkan seluruh progres ujian Anda yang sedang berjalan!';
+        });
 
-            let band = "IELTS Band 4.5";
-            if (score >= 75) band = "IELTS Band 9.0 (Expert User)";
-            else if (score >= 68) band = "IELTS Band 8.5 (Very Good User)";
-            else if (score >= 60) band = "IELTS Band 8.0 (Very Good User)";
-            else if (score >= 52) band = "IELTS Band 7.5 (Good User)";
-            else if (score >= 45) band = "IELTS Band 7.0 (Good User)";
-            else if (score >= 38) band = "IELTS Band 6.5 (Competent User)";
-            else if (score >= 30) band = "IELTS Band 6.0 (Competent User)";
-            else if (score >= 22) band = "IELTS Band 5.5 (Modest User)";
+        // Proteksi Kesengajaan: Pindah Tab / Meminimalkan Browser (3x Toleransi)
+        function handleViolation() {
+            if (document.getElementById('resultOverlay').style.display === 'flex' || localStorage.getItem('cbt_blocked_until')) return;
 
-            document.getElementById('scoreDisplay').textContent = `${score} / 80`;
-            document.getElementById('bandDisplay').textContent = band;
-            document.getElementById('resultOverlay').style.display = 'flex';
+            violationCount++;
+            triggerAlertBeep();
+
+            if (violationCount >= MAX_VIOLATIONS) {
+                // Berikan hukuman blokir otomatis selama 24 jam penuh
+                const blockUntil = new Date().getTime() + (24 * 60 * 60 * 1000); 
+                localStorage.setItem('cbt_blocked_until', blockUntil);
+
+                lockExamScreen(`
+                    <h2 style="color:var(--alert-red); font-family:'Poppins'; margin-bottom:15px;"><i class="fa-solid fa-ban"></i> UJIAN DIHENTIKAN OTOMATIS</h2>
+                    <p style="font-size:14px; color:#cbd5e1;">
+                        Anda terdeteksi keluar dari layar CBT sebanyak <strong>${violationCount} kali</strong>.<br>
+                        Sistem mendeteksi tindakan ini sebagai indikasi kecurangan akademik terstruktur.
+                    </p>
+                    <p style="font-size:13px; color:var(--exam-gold); margin-top:10px;">Akses akun Anda dibekukan dari modul ujian ini selama 24 jam ke depan.</p>
+                    <button onclick="window.location.href='dashboard.html'" style="background:var(--alert-red); color:white; border:none; padding:12px 30px; border-radius:50px; font-weight:bold; margin-top:20px; cursor:pointer;">
+                        Keluar Ke Dashboard
+                    </button>
+                `);
+            } else {
+                alert(`[PERINGATAN KEAMANAN ${violationCount}/${MAX_VIOLATIONS}]\n\nSana, Anda terdeteksi meninggalkan layar ujian CBT (Pindah tab/buka aplikasi lain).\nMohon fokus pada layar kuis! Jika Anda keluar sebanyak ${MAX_VIOLATIONS} kali, sistem akan langsung mengunci ujian dan memblokir Anda hingga besok hari.`);
+            }
         }
 
+        // Jalankan pelacak perpindahan fokus layar browser
+        document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') handleViolation(); });
+        window.addEventListener('blur', () => { handleViolation(); });
+
+        // Fungsi bantu mengunci total layar halaman ujian
+        function lockExamScreen(htmlContent) {
+            let lockLayer = document.getElementById('securityLockOverlay');
+            if (!lockLayer) {
+                lockLayer = document.createElement('div');
+                lockLayer.id = 'securityLockOverlay';
+                lockLayer.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:#00152b; z-index:99999; display:flex; justify-content:center; align-items:center; text-align:center;";
+                document.body.appendChild(lockLayer);
+            }
+            lockLayer.innerHTML = `<div style="background:linear-gradient(135deg, #001f3f 0%, #000c18 100%); border:2px solid var(--alert-red); padding:40px; border-radius:16px; max-width:500px; width:90%; box-shadow:0 20px 50px rgba(0,0,0,0.7);">${htmlContent}</div>`;
+            lockLayer.style.display = 'flex';
+        }
+
+        // Alarm bip pendek penanda pelanggaran
+        function triggerAlertBeep() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sawtooth'; osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+                gain.gain.setValueAtTime(0.1, ctx.currentTime);
+                osc.connect(gain); gain.connect(ctx.destination);
+                osc.start(); osc.stop(ctx.currentTime + 0.4);
+            } catch(e) { console.log("Audio node blocked."); }
+        }
+
+        // ==========================================================
+        // 2. INTEGRASI ADVANCED AUTOMATIC BAND SCORE PREDICTOR (GRAFIK)
+        // ==========================================================
+        function showResults() {
+            clearInterval(countdownInterval);
+            let score = 0;
+            
+            // Hitung total jawaban benar dari Section 1 & 2 (Q1 - Q80)
+            for (let i = 1; i <= 80; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === "correct") {
+                    score++;
+                }
+            }
+
+            // Aturan Konversi Resmi Skor Mentah ke Skala IELTS Band Score (1.0 - 9.0)
+            let band = "1.0"; let status = "Non User"; let barColor = "var(--alert-red)";
+
+            if (score >= 78) { band = "9.0"; status = "Expert User"; barColor = "var(--soft-green)"; }
+            else if (score >= 74) { band = "8.5"; status = "Very Good User"; barColor = "var(--soft-green)"; }
+            else if (score >= 70) { band = "8.0"; status = "Very Good User"; barColor = "var(--soft-green)"; }
+            else if (score >= 64) { band = "7.5"; status = "Good User"; barColor = "var(--accent)"; }
+            else if (score >= 60) { band = "7.0"; status = "Good User"; barColor = "var(--accent)"; }
+            else if (score >= 52) { band = "6.5"; status = "Competent User"; barColor = "var(--exam-gold)"; }
+            else if (score >= 46) { band = "6.0"; status = "Competent User"; barColor = "var(--exam-gold)"; }
+            else if (score >= 38) { band = "5.5"; status = "Modest User"; barColor = "#f59e0b"; }
+            else if (score >= 30) { band = "5.0"; status = "Modest User"; barColor = "#f59e0b"; }
+            else if (score >= 20) { band = "4.0"; status = "Limited User"; barColor = "var(--alert-red)"; }
+            else { band = "3.0"; status = "Extremely Limited"; barColor = "var(--alert-red)"; }
+
+            let percentage = Math.round((score / 80) * 100);
+            const resultBox = document.getElementById('resultOverlay');
+            
+            // Tampilkan Overlay Pop-up Mewah Beserta Grafik Batang Penguasaan (Progress Bar)
+            resultBox.innerHTML = `
+                <div style="background: linear-gradient(135deg, #001f3f 0%, #000c18 100%); border: 3px solid var(--exam-gold); padding: 40px; border-radius: 20px; text-align: center; max-width: 550px; width: 90%; color: white; box-shadow: 0 20px 50px rgba(0,0,0,0.6);">
+                    <h2 style="font-family: 'Poppins', sans-serif; color: var(--exam-gold); margin-bottom: 20px; font-size: 22px;"><i class="fa-solid fa-trophy"></i> SIMULATION COMPLETION REPORT</h2>
+                    
+                    <div style="width: 130px; height: 130px; border: 4px solid var(--accent); border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto 20px; background: rgba(255,255,255,0.05); box-shadow: 0 0 25px rgba(0, 212, 255, 0.3);">
+                        <span style="font-family: 'Poppins', sans-serif; font-size: 44px; font-weight: bold; color: var(--accent); line-height: 1;">${band}</span>
+                        <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #cbd5e1; margin-top: 2px;">BAND SCORE</span>
+                    </div>
+
+                    <p style="font-size: 14px; color: #e2e8f0; margin-bottom: 5px;">Raw Score: <strong style="color: var(--accent); font-size: 16px;">${score} / 80</strong> Correct Answers</p>
+                    <p style="font-size: 15px; font-weight: bold; color: ${barColor}; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 0.5px;">Status: ${status}</p>
+                    
+                    <div style="text-align: left; margin-bottom: 30px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);">
+                        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 6px; color: #cbd5e1;">
+                            <span><i class="fa-solid fa-chart-line"></i> Overall Mastery Progress</span>
+                            <span>${percentage}%</span>
+                        </div>
+                        <div style="background: #1e293b; height: 14px; border-radius: 50px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                            <div style="width: ${percentage}%; height: 100%; background: ${barColor}; border-radius: 50px; transition: width 1s ease;"></div>
+                        </div>
+                    </div>
+
+                    <button onclick="window.location.href='dashboard.html'" style="background: var(--exam-gold); color: var(--primary); border: none; padding: 12px 35px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-weight: bold; font-size: 13px; cursor: pointer; transition: 0.2s; box-shadow: 0 10px 20px rgba(255,177,0,0.2);">
+                        <i class="fa-solid fa-house"></i> Return to Workspace Dashboard
+                    </button>
+                </div>
+            `;
+            resultBox.style.display = 'flex';
+        }
+
+        // ==========================================
         // SPEAKING VOICE RECORDING LOGIC
+        // ==========================================
         let rec; let chunks = []; let isRec = false;
         function toggleRecord(btnId, audId) {
             const btn = document.getElementById(btnId);
