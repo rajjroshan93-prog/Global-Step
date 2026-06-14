@@ -273,17 +273,17 @@
     </div>
 
     <div class="module-nav">
-        <button class="nav-tab active" id="tabListening" onclick="switchModule('LISTENING')"><i class="fa-solid fa-headphones"></i> Listening (40 Soal)</button>
-        <button class="nav-tab" id="tabReading" onclick="switchModule('READING')"><i class="fa-solid fa-book-open"></i> Reading (40 Soal)</button>
-        <button class="nav-tab" id="tabWriting" onclick="switchModule('WRITING')"><i class="fa-solid fa-pen-fancy"></i> Writing (2 Tasks)</button>
-        <button class="nav-tab" id="tabSpeaking" onclick="switchModule('SPEAKING')"><i class="fa-solid fa-comment-dots"></i> Speaking (3 Parts)</button>
+        <button class="nav-tab active" id="tabLISTENING" onclick="switchModule('LISTENING')"><i class="fa-solid fa-headphones"></i> Listening (40 Soal)</button>
+        <button class="nav-tab" id="tabREADING" onclick="switchModule('READING')"><i class="fa-solid fa-book-open"></i> Reading (40 Soal)</button>
+        <button class="nav-tab" id="tabWRITING" onclick="switchModule('WRITING')"><i class="fa-solid fa-pen-fancy"></i> Writing (2 Tasks)</button>
+        <button class="nav-tab" id="tabSPEAKING" onclick="switchModule('SPEAKING')"><i class="fa-solid fa-comment-dots"></i> Speaking (3 Parts)</button>
     </div>
 
     <div class="exam-workspace">
         
         <div class="panel panel-left">
             
-            <div id="leftListening" class="exam-section active-section">
+            <div id="leftLISTENING" class="exam-section active-section">
                 <h2 class="passage-title">Cambridge Lecture: Technological Disruption in Renewable Energy</h2>
                 <div class="audio-player-container">
                     <p><i class="fa-solid fa-robot"></i> EMULATOR AUDIO TEXT-TO-SPEECH (ANTI BISU & ANTI ERROR)</p>
@@ -297,7 +297,7 @@
                 </div>
             </div>
 
-            <div id="leftReading" class="exam-section">
+            <div id="leftREADING" class="exam-section">
                 <h2 class="passage-title">The Socio-Economic Impact of Quantum Computing</h2>
                 <div class="passage-text">
                     <p><strong>[Paragraph A]</strong> Quantum computing represents a monumental paradigm shift away from classical binary computation architectures. By utilizing qubits that exist simultaneously in states of superposition and entanglement, these systems execute computational calculations exponentially faster than silicon-based supercomputers.</p>
@@ -306,7 +306,7 @@
                 </div>
             </div>
 
-            <div id="leftWriting" class="exam-section">
+            <div id="leftWRITING" class="exam-section">
                 <h2 class="passage-title">IELTS Academic Writing Module</h2>
                 <div class="passage-text">
                     <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--primary);">
@@ -320,7 +320,7 @@
                 </div>
             </div>
 
-            <div id="leftSpeaking" class="exam-section">
+            <div id="leftSPEAKING" class="exam-section">
                 <h2 class="passage-title">Speaking Interview Framework</h2>
                 <div class="passage-text">
                     <p>Sesi wawancara terbagi menjadi 3 bagian standar Cambridge dan Oxford:</p>
@@ -334,85 +334,35 @@
 
         <div class="panel panel-right">
             
-            <div id="rightListening" class="exam-section active-section">
+            <div id="rightLISTENING" class="exam-section active-section">
                 <div class="instruction-box"><strong>QUESTIONS 1 - 20:</strong> Fill in the blanks with <strong>NO MORE THAN TWO WORDS AND/OR A NUMBER</strong>.</div>
                 <div class="question-group">
                     <div class="group-header">Section 1 & 2: Data & Notes Completion</div>
-                    <script>
-                        const placeholders = [
-                            "Target reduction percentage", "Structural element modified", "Main financial backer", "Type of infrastructure lacking", "Major consequence to avoid",
-                            "Initial implementation year", "Primary geographic region", "Minimum operating temperature", "Material used for turbine blades", "Secondary power source",
-                            "Name of lead researcher", "Data collection tool", "Frequency of calibration", "Statistical margin of error", "Main environmental barrier",
-                            "Proposed legislative solution", "Expected public adoption rate", "Capital investment amount", "Key stakeholder group", "Final project deadline year"
-                        ];
-                        for(let i = 1; i <= 20; i++) {
-                            document.write(`
-                                <div class="question-item">
-                                    <label class="question-label">${i}. [Question ${i}] Insert keyword matching the lecture (${placeholders[i-1]}):</label>
-                                    <input type="text" class="input-text" id="l${i}" placeholder="Type answer here...">
-                                </div>
-                            `);
-                        }
-                    </script>
+                    <div id="listeningInputsContainer"></div>
                 </div>
 
                 <div class="instruction-box"><strong>QUESTIONS 21 - 40:</strong> Select the correct option <strong>A, B, or C</strong>.</div>
                 <div class="question-group">
                     <div class="group-header">Section 3 & 4: Multiple Choice Academic Analysis</div>
-                    <script>
-                        for(let i = 21; i <= 40; i++) {
-                            document.write(`
-                                <div class="question-item">
-                                    <label class="question-label">${i}. Critical argument regarding academic point ${i} discussed by speakers?</label>
-                                    <ul class="options-list">
-                                        <li><input type="radio" name="l${i}" value="A"> A. It overestimates the structural cost projection</li>
-                                        <li><input type="radio" name="l${i}" value="B"> B. It demonstrates a high correlation with global climate shifts</li>
-                                        <li><input type="radio" name="l${i}" value="C"> C. It demands a direct policy intervention</li>
-                                    </ul>
-                                </div>
-                            `);
-                        }
-                    </script>
+                    <div id="listeningRadioContainer"></div>
                 </div>
             </div>
 
-            <div id="rightReading" class="exam-section">
+            <div id="rightREADING" class="exam-section">
                 <div class="instruction-box"><strong>QUESTIONS 41 - 60:</strong> Choose <strong>TRUE</strong>, <strong>FALSE</strong>, or <strong>NOT GIVEN</strong> based on the passage text.</div>
                 <div class="question-group">
                     <div class="group-header">Section 1: Identification of Information</div>
-                    <script>
-                        for(let i = 41; i <= 60; i++) {
-                            document.write(`
-                                <div class="question-item">
-                                    <label class="question-label">${i}. The analytical statement number ${i} corresponds exactly to paragraph claims?</label>
-                                    <ul class="options-list">
-                                        <li><input type="radio" name="r${i}" value="TRUE"> TRUE</li>
-                                        <li><input type="radio" name="r${i}" value="FALSE"> FALSE</li>
-                                        <li><input type="radio" name="r${i}" value="NOT GIVEN"> NOT GIVEN</li>
-                                    </ul>
-                                </div>
-                            `);
-                        }
-                    </script>
+                    <div id="readingRadioContainer"></div>
                 </div>
 
                 <div class="instruction-box"><strong>QUESTIONS 61 - 80:</strong> Fill in the blanks with <strong>ONE WORD ONLY</strong> extracted directly from the passage text.</div>
                 <div class="question-group">
                     <div class="group-header">Section 2 & 3: Summary Completion</div>
-                    <script>
-                        for(let i = 61; i <= 80; i++) {
-                            document.write(`
-                                <div class="question-item">
-                                    <label class="question-label">${i}. Enter exact lexical unit for slot ${i}:</label>
-                                    <input type="text" class="input-text" id="r${i}" placeholder="Type one word...">
-                                </div>
-                            `);
-                        }
-                    </script>
+                    <div id="readingInputsContainer"></div>
                 </div>
             </div>
 
-            <div id="rightWriting" class="exam-section">
+            <div id="rightWRITING" class="exam-section">
                 <div class="question-group">
                     <div class="group-header">Question 81: Writing Task 1 Workspace</div>
                     <textarea class="textarea-writing" id="w1Input" oninput="countWords('w1Input', 'w1Counter')" placeholder="Start drafting Task 1 response..."></textarea>
@@ -425,13 +375,13 @@
                 </div>
             </div>
 
-            <div id="rightSpeaking" class="exam-section">
+            <div id="rightSPEAKING" class="exam-section">
                 <div class="question-group">
                     <div class="group-header">Part 1: General Interview Question</div>
                     <p style="margin-bottom:10px; font-weight:bold;">"How has modern communication infrastructure changed educational habits in your hometown?"</p>
                     <div class="recorder-container">
                         <button class="btn-record" id="s1Btn" onclick="toggleRecord('s1Btn', 's1Audio')"><i class="fa-solid fa-microphone"></i> Start Record Part 1</button>
-                        <div style="margin-top:10px;"><audio id="s1Audio" controls style="display:none; height:30px;"></audio></div>
+                        <div style="margin-top:10px;"><audio id="s1Audio" controls style="display:none; height:30px; margin:0 auto;"></audio></div>
                     </div>
                 </div>
                 <div class="question-group">
@@ -439,7 +389,7 @@
                     <p style="margin-bottom:10px; font-weight:bold;">"Describe an instance where technological implementation significantly expedited public workflows."</p>
                     <div class="recorder-container">
                         <button class="btn-record" id="s2Btn" onclick="toggleRecord('s2Btn', 's2Audio')"><i class="fa-solid fa-microphone"></i> Start Record Part 2</button>
-                        <div style="margin-top:10px;"><audio id="s2Audio" controls style="display:none; height:30px;"></audio></div>
+                        <div style="margin-top:10px;"><audio id="s2Audio" controls style="display:none; height:30px; margin:0 auto;"></audio></div>
                     </div>
                 </div>
                 <div class="question-group">
@@ -447,7 +397,7 @@
                     <p style="margin-bottom:10px; font-weight:bold;">"To what extent should governments regulate corporate monopolization over advanced artificial intelligence frameworks?"</p>
                     <div class="recorder-container">
                         <button class="btn-record" id="s3Btn" onclick="toggleRecord('s3Btn', 's3Audio')"><i class="fa-solid fa-microphone"></i> Start Record Part 3</button>
-                        <div style="margin-top:10px;"><audio id="s3Audio" controls style="display:none; height:30px;"></audio></div>
+                        <div style="margin-top:10px;"><audio id="s3Audio" controls style="display:none; height:30px; margin:0 auto;"></audio></div>
                     </div>
                 </div>
             </div>
@@ -473,7 +423,65 @@
     </div>
 
     <script>
-        // 1. TEXT TO SPEECH PLAYER AUDIO EMULATOR (ANTI-LAG)
+        // GENERATE ELEMEN INPUT LISTENING SECARA AMAN VIA DOM (ANTI-LAG)
+        const placeholders = [
+            "Target reduction percentage", "Structural element modified", "Main financial backer", "Type of infrastructure lacking", "Major consequence to avoid",
+            "Initial implementation year", "Primary geographic region", "Minimum operating temperature", "Material used for turbine blades", "Secondary power source",
+            "Name of lead researcher", "Data collection tool", "Frequency of calibration", "Statistical margin of error", "Main environmental barrier",
+            "Proposed legislative solution", "Expected public adoption rate", "Capital investment amount", "Key stakeholder group", "Final project deadline year"
+        ];
+        
+        let listeningInputsHtml = "";
+        for(let i = 1; i <= 20; i++) {
+            listeningInputsHtml += `
+                <div class="question-item">
+                    <label class="question-label">${i}. [Question ${i}] Insert keyword matching the lecture (${placeholders[i-1]}):</label>
+                    <input type="text" class="input-text" id="l${i}" placeholder="Type answer here...">
+                </div>`;
+        }
+        document.getElementById('listeningInputsContainer').innerHTML = listeningInputsHtml;
+
+        let listeningRadioHtml = "";
+        for(let i = 21; i <= 40; i++) {
+            listeningRadioHtml += `
+                <div class="question-item">
+                    <label class="question-label">${i}. Critical argument regarding academic point ${i} discussed by speakers?</label>
+                    <ul class="options-list">
+                        <li><input type="radio" name="l${i}" value="A"> A. It overestimates the structural cost projection</li>
+                        <li><input type="radio" name="l${i}" value="B"> B. It demonstrates a high correlation with global climate shifts</li>
+                        <li><input type="radio" name="l${i}" value="C"> C. It demands a direct policy intervention</li>
+                    </ul>
+                </div>`;
+        }
+        document.getElementById('listeningRadioContainer').innerHTML = listeningRadioHtml;
+
+        // GENERATE ELEMEN READING SECARA AMAN VIA DOM
+        let readingRadioHtml = "";
+        for(let i = 41; i <= 60; i++) {
+            readingRadioHtml += `
+                <div class="question-item">
+                    <label class="question-label">${i}. The analytical statement number ${i} corresponds exactly to paragraph claims?</label>
+                    <ul class="options-list">
+                        <li><input type="radio" name="r${i}" value="TRUE"> TRUE</li>
+                        <li><input type="radio" name="r${i}" value="FALSE"> FALSE</li>
+                        <li><input type="radio" name="r${i}" value="NOT GIVEN"> NOT GIVEN</li>
+                    </ul>
+                </div>`;
+        }
+        document.getElementById('readingRadioContainer').innerHTML = readingRadioHtml;
+
+        let readingInputsHtml = "";
+        for(let i = 61; i <= 80; i++) {
+            readingInputsHtml += `
+                <div class="question-item">
+                    <label class="question-label">${i}. Enter exact lexical unit for slot ${i}:</label>
+                    <input type="text" class="input-text" id="r${i}" placeholder="Type one word...">
+                </div>`;
+        }
+        document.getElementById('readingInputsContainer').innerHTML = readingInputsHtml;
+
+
+        // TEXT TO SPEECH PLAYER AUDIO EMULATOR LISTENING (TIDAK BERUBAH)
         function speakListeningLecture() {
             if (window.speechSynthesis.speaking) {
                 window.speechSynthesis.cancel();
@@ -498,31 +506,32 @@
                                  "The final construction blueprint deadline is scheduled for twenty-thirty. This completes the academic transcript statement.";
 
             const utterance = new SpeechSynthesisUtterance(masterScript);
-            utterance.lang = 'en-GB'; // Menggunakan Aksen British Resmi
-            utterance.rate = 0.85;    // Kecepatan disesuaikan dengan ujian listening asli
+            utterance.lang = 'en-GB'; 
+            utterance.rate = 0.85;    
 
             utterance.onstart = () => { document.getElementById('audioAiBtn').innerHTML = `<i class="fa-solid fa-stop"></i> Stop Simulation Audio`; };
             utterance.onend = () => { document.getElementById('audioAiBtn').innerHTML = `<i class="fa-solid fa-volume-high"></i> Click to Play Simulation Audio`; };
             window.speechSynthesis.speak(utterance);
         }
 
-        // 2. SWITCH TAB SYSTEM
+        // TABS NAVIGATION SWITCHER
         function switchModule(mod) {
             document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.exam-section').forEach(s => s.classList.remove('active-section'));
+            
             document.getElementById('tab' + mod).classList.add('active');
             document.getElementById('left' + mod).classList.add('active-section');
             document.getElementById('right' + mod).classList.add('active-section');
         }
 
-        // 3. LIVE WORD COUNT
+        // LIVE WORD COUNT
         function countWords(id, target) {
             const txt = document.getElementById(id).value.trim();
             const words = txt === "" ? 0 : txt.split(/\s+/).length;
             document.getElementById(target).textContent = `Word Count: ${words} words`;
         }
 
-        // 4. TIMER COUNTDOWN
+        // TIMER COUNTDOWN
         let timeRemaining = 165 * 60; 
         const countdown = setInterval(() => {
             let m = Math.floor(timeRemaining / 60);
@@ -532,39 +541,34 @@
             timeRemaining--;
         }, 1000);
 
-        // 5. MASTER ANSWER KEY (80 OBJEKTIF)
+        // KUNCI JAWABAN MATRIKS (80 NOMOR OBJEKTIF)
         const keys = {};
         for(let i=1; i<=20; i++) keys['l'+i] = ["45", "temperature", "municipalities", "flawed", "congestion", "2015", "european", "-10", "polymers", "geothermal", "vance", "satellite", "bi-weekly", "0.5%", "salinity", "tariff", "90%", "12 million", "corporations", "2030"][i-1];
         for(let i=21; i<=40; i++) keys['l'+i] = (i % 3 === 0) ? "A" : (i % 3 === 1 ? "B" : "C");
         for(let i=41; i<=60; i++) keys['r'+i] = (i % 3 === 1) ? "TRUE" : (i % 3 === 2 ? "FALSE" : "NOT GIVEN");
-        for(let i=61; i<=80; i++) keys['r'+i] = "quantum"; // Default standard key filler
+        for(let i=61; i<=80; i++) keys['r'+i] = "quantum";
 
-        // 6. EVALUATION CBT ENGINE
+        // EVALUATION CALCULATOR
         function evaluateCbtEngine() {
             clearInterval(countdown);
             window.speechSynthesis.cancel();
             let score = 0;
 
-            // Cek Isian Listening (1-20)
             for(let i=1; i<=20; i++) {
                 if(document.getElementById('l'+i).value.trim().toLowerCase() === keys['l'+i]) score++;
             }
-            // Cek Pilihan Ganda Listening (21-40)
             for(let i=21; i<=40; i++) {
                 let r = document.querySelector(`input[name="l${i}"]:checked`);
                 if(r && r.value === keys['l'+i]) score++;
             }
-            // Cek True/False Reading (41-60)
             for(let i=41; i<=60; i++) {
                 let r = document.querySelector(`input[name="r${i}"]:checked`);
                 if(r && r.value === keys['r'+i]) score++;
             }
-            // Cek Isian Reading (61-80)
             for(let i=61; i<=80; i++) {
                 if(document.getElementById('r'+i).value.trim().toLowerCase() === keys['r'+i]) score++;
             }
 
-            // Skala Band Score IELTS 9.0 Berdasarkan Akurasi 80 Soal
             let band = "IELTS Band 4.5";
             if (score >= 75) band = "IELTS Band 9.0 (Expert User)";
             else if (score >= 68) band = "IELTS Band 8.5 (Very Good User)";
@@ -580,7 +584,7 @@
             document.getElementById('resultOverlay').style.display = 'flex';
         }
 
-        // 7. MULTI-PART SPEAKING RECORDING ENGINE
+        // SPEAKING VOICE RECORDING LOGIC
         let rec; let chunks = []; let isRec = false;
         function toggleRecord(btnId, audId) {
             const btn = document.getElementById(btnId);
@@ -596,7 +600,7 @@
                     rec.start(); isRec = true;
                     btn.innerHTML = `<i class="fa-solid fa-square"></i> Stop Recording`;
                     btn.classList.add('recording');
-                }).catch(() => alert("Mohon izinkan akses mikrofon browser."));
+                }).catch(() => alert("Mohon izinkan akses mikrofon browser Anda."));
             } else {
                 rec.stop(); isRec = false;
                 btn.innerHTML = `<i class="fa-solid fa-microphone"></i> Start Record`;
