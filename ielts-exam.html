@@ -265,7 +265,7 @@
 
     <div class="exam-top-bar">
         <div class="exam-title">
-            <h1>SAN AETHELGARD SIMULATION ARENA</h1>
+            <h1>SANA AETHELGARD SIMULATION ARENA</h1>
             <p>Official 82 Questions Cambridge Standardized CBT Engine</p>
         </div>
         <div class="exam-timer" id="timerBox">
@@ -281,7 +281,9 @@
     </div>
 
     <div class="exam-workspace">
+        
         <div class="panel panel-left">
+            
             <div id="leftLISTENING" class="exam-section active-section">
                 <h2 class="passage-title">Cambridge Lecture: Technological Disruption in Renewable Energy</h2>
                 <div class="audio-player-container">
@@ -328,9 +330,11 @@
                     <strong>Part 3:</strong> Two-way analytical discussion mengenai topik abstrak terkait Part 2 (4-5 menit).</p>
                 </div>
             </div>
+
         </div>
 
         <div class="panel panel-right">
+            
             <div id="rightLISTENING" class="exam-section active-section">
                 <div class="instruction-box"><strong>QUESTIONS 1 - 20:</strong> Fill in the blanks with <strong>NO MORE THAN TWO WORDS AND/OR A NUMBER</strong>.</div>
                 <div class="question-group">
@@ -398,7 +402,9 @@
                     </div>
                 </div>
             </div>
+
         </div>
+
     </div>
 
     <div class="exam-footer-bar">
@@ -418,60 +424,7 @@
     </div>
 
     <script>
-        // ==========================================================
-        // SYSTEM ANTICHEAT DISKRIMINATIF: SANA KEBAL, UMUM BLOKIR 24 JAM
-        // ==========================================================
-        let violationCount = 0;
-        const MAX_VIOLATIONS = 3;
-
-        // EKSEKUSI PEMBANTU: JIKA AKUN ADALAH SANA, HAPUS BLOKIR SISA SESI SEBELUMNYA SECARA OTOMATIS
-        const currentUser = localStorage.getItem('username') || '';
-        if (currentUser.toLowerCase() === 'san' || currentUser.toLowerCase() === 'sana') {
-            localStorage.removeItem('cbt_blocked_until'); 
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const blockTimestamp = localStorage.getItem('cbt_blocked_until');
-            if (blockTimestamp) {
-                const now = new Date().getTime();
-                if (now < parseInt(blockTimestamp)) {
-                    document.body.innerHTML = `
-                        <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:#00152b; display:flex; justify-content:center; align-items:center; text-align:center; color:white; font-family:'Poppins', sans-serif;">
-                            <div style="border:2px solid #ef4444; padding:40px; border-radius:16px; max-width:500px; width:90%; background:#001f3f;">
-                                <h2 style="color:#ef4444; margin-bottom:15px;"><i class="fa-solid fa-ban"></i> AKSES UJIAN DIBLOKIR</h2>
-                                <p style="font-size:14px; color:#cbd5e1; line-height:1.6;">Anda telah keluar dari halaman CBT sebanyak 3 kali. Akses dibekukan selama 24 jam demi menjaga integritas ujian.</p>
-                                <a href="dashboard.html" style="margin-top:20px; display:inline-block; background:#d4af37; color:#001f3f; padding:10px 25px; border-radius:50px; text-decoration:none; font-weight:bold;">Kembali ke Dashboard</a>
-                            </div>
-                        </div>`;
-                }
-            }
-        });
-
-        function handleViolation() {
-            const user = localStorage.getItem('username') || '';
-            // LOGIKA BYPASS MUTLAK KHUSUS SANA
-            if (user.toLowerCase() === 'san' || user.toLowerCase() === 'sana') {
-                console.log("Akses terdeteksi milik Sana. Pindah tab diizinkan (Bypass Aktif).");
-                return;
-            }
-
-            // ATURAN KETAT UNTUK MAHASISWA LAIN
-            violationCount++;
-            if (violationCount >= MAX_VIOLATIONS) {
-                const blockTime = new Date().getTime() + (24 * 60 * 60 * 1000);
-                localStorage.setItem('cbt_blocked_until', blockTime);
-                window.location.reload();
-            } else {
-                alert(`[PERINGATAN SEKURITAS ${violationCount}/${MAX_VIOLATIONS}]\n\nJangan keluar dari layar ujian! Pindah tab atau meminimalkan browser sebanyak 3 kali akan mengunci akun ujian Anda selama 24 jam.`);
-            }
-        }
-
-        document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') handleViolation(); });
-        window.addEventListener('blur', () => { handleViolation(); });
-
-        // ==========================================================
-        // GENERATE DATA ELEMENT SOAL JAWABAN (DOM)
-        // ==========================================================
+        // GENERATE ELEMEN INPUT LISTENING SECARA AMAN VIA DOM (ANTI-LAG)
         const placeholders = [
             "Target reduction percentage", "Structural element modified", "Main financial backer", "Type of infrastructure lacking", "Major consequence to avoid",
             "Initial implementation year", "Primary geographic region", "Minimum operating temperature", "Material used for turbine blades", "Secondary power source",
@@ -503,6 +456,7 @@
         }
         document.getElementById('listeningRadioContainer').innerHTML = listeningRadioHtml;
 
+        // GENERATE ELEMEN READING SECARA AMAN VIA DOM
         let readingRadioHtml = "";
         for(let i = 41; i <= 60; i++) {
             readingRadioHtml += `
@@ -527,6 +481,8 @@
         }
         document.getElementById('readingInputsContainer').innerHTML = readingInputsHtml;
 
+
+        // TEXT TO SPEECH PLAYER AUDIO EMULATOR LISTENING (TIDAK BERUBAH)
         function speakListeningLecture() {
             if (window.speechSynthesis.speaking) {
                 window.speechSynthesis.cancel();
@@ -534,7 +490,21 @@
                 return;
             }
 
-            const masterScript = "Welcome to the official Cambridge Academic Listening Examination. Today we discuss energy disruption. Our main test parameters show that the city aims to reduce emissions by forty-five percent. The major architectural alteration was implemented directly onto the structural temperature nodes. Local municipalities completely funded the development phase. However, historical zones suffer extensively from flawed installations. To prevent massive traffic congestion, new transit networks must be finalized. The baseline year for this study is recorded as twenty-fifteen, focusing primarily on the European metropolitan zones. The system maintains stable operations down to a minimum operating temperature of minus ten degrees. Engineers deployed advanced composite polymers for turbine blades, utilizing geothermal blocks as the secondary power source. Lead investigator Doctor Alistair Vance used specialized satellite imagery as the primary collection tool. Calibrations occur on a bi-weekly basis, keeping the total margin of error under zero-point-five percent. The primary environmental barrier identified is atmospheric salinity. Legislative frameworks suggest a carbon tariff solution, aiming for a ninety percent public adoption rate. Initial capital investments reached twelve million dollars, backed by corporate technology entities as key stakeholders. The final construction blueprint deadline is scheduled for twenty-thirty. This completes the academic transcript statement.";
+            const masterScript = "Welcome to the official Cambridge Academic Listening Examination. " +
+                                 "Today we discuss energy disruption. Our main test parameters show that the city aims to reduce emissions by forty-five percent. " +
+                                 "The major architectural alteration was implemented directly onto the structural temperature nodes. " +
+                                 "Local municipalities completely funded the development phase. " +
+                                 "However, historical zones suffer extensively from flawed installations. " +
+                                 "To prevent massive traffic congestion, new transit networks must be finalized. " +
+                                 "The baseline year for this study is recorded as twenty-fifteen, focusing primarily on the European metropolitan zones. " +
+                                 "The system maintains stable operations down to a minimum operating temperature of minus ten degrees. " +
+                                 "Engineers deployed advanced composite polymers for turbine blades, utilizing geothermal blocks as the secondary power source. " +
+                                 "Lead investigator Doctor Alistair Vance used specialized satellite imagery as the primary collection tool. " +
+                                 "Calibrations occur on a bi-weekly basis, keeping the total margin of error under zero-point-five percent. " +
+                                 "The primary environmental barrier identified is atmospheric salinity. " +
+                                 "Legislative frameworks suggest a carbon tariff solution, aiming for a ninety percent public adoption rate. " +
+                                 "Initial capital investments reached twelve million dollars, backed by corporate technology entities as key stakeholders. " +
+                                 "The final construction blueprint deadline is scheduled for twenty-thirty. This completes the academic transcript statement.";
 
             const utterance = new SpeechSynthesisUtterance(masterScript);
             utterance.lang = 'en-GB'; 
@@ -545,20 +515,24 @@
             window.speechSynthesis.speak(utterance);
         }
 
+        // TABS NAVIGATION SWITCHER
         function switchModule(mod) {
             document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.exam-section').forEach(s => s.classList.remove('active-section'));
+            
             document.getElementById('tab' + mod).classList.add('active');
             document.getElementById('left' + mod).classList.add('active-section');
             document.getElementById('right' + mod).classList.add('active-section');
         }
 
+        // LIVE WORD COUNT
         function countWords(id, target) {
             const txt = document.getElementById(id).value.trim();
             const words = txt === "" ? 0 : txt.split(/\s+/).length;
             document.getElementById(target).textContent = `Word Count: ${words} words`;
         }
 
+        // TIMER COUNTDOWN
         let timeRemaining = 165 * 60; 
         const countdown = setInterval(() => {
             let m = Math.floor(timeRemaining / 60);
@@ -568,12 +542,14 @@
             timeRemaining--;
         }, 1000);
 
+        // KUNCI JAWABAN MATRIKS (80 NOMOR OBJEKTIF)
         const keys = {};
         for(let i=1; i<=20; i++) keys['l'+i] = ["45", "temperature", "municipalities", "flawed", "congestion", "2015", "european", "-10", "polymers", "geothermal", "vance", "satellite", "bi-weekly", "0.5%", "salinity", "tariff", "90%", "12 million", "corporations", "2030"][i-1];
         for(let i=21; i<=40; i++) keys['l'+i] = (i % 3 === 0) ? "A" : (i % 3 === 1 ? "B" : "C");
         for(let i=41; i<=60; i++) keys['r'+i] = (i % 3 === 1) ? "TRUE" : (i % 3 === 2 ? "FALSE" : "NOT GIVEN");
         for(let i=61; i<=80; i++) keys['r'+i] = "quantum";
 
+        // EVALUATION CALCULATOR
         function evaluateCbtEngine() {
             clearInterval(countdown);
             window.speechSynthesis.cancel();
@@ -609,6 +585,7 @@
             document.getElementById('resultOverlay').style.display = 'flex';
         }
 
+        // SPEAKING VOICE RECORDING LOGIC
         let rec; let chunks = []; let isRec = false;
         function toggleRecord(btnId, audId) {
             const btn = document.getElementById(btnId);
@@ -631,6 +608,103 @@
                 btn.classList.remove('recording');
             }
         }
+
+        // ====================================================================
+        // PENAMBAHAN PERSONAL: PROTEKSI ANTI-CHEAT KETAT & ANTI ACCIDENTAL LEAVE
+        // ====================================================================
+        let violationCount = 0;
+        const MAX_VIOLATIONS = 3;
+        let lastViolationTime = 0;
+
+        // 1. DETEKSI IDENTITAS PERANGKAT KERAS HP SANA (MUTLAK KEBAL)
+        function isSanaDevice() {
+            // Cek data nama cadangan di localStorage
+            const user = localStorage.getItem('username') || '';
+            if (user.toLowerCase() === 'san' || user.toLowerCase() === 'sana') {
+                return true;
+            }
+
+            // Filter Hardware: Mengunci resolusi fisik HP milik Sana (420 x 934)
+            if (window.screen.width === 420 && window.screen.height === 934) {
+                return true; 
+            }
+
+            return false; // Jika resolusi berbeda, maka itu dianggap HP orang lain/mahasiswa
+        }
+
+        // 2. INTERVENTASI POP-UP PERINGATAN KELUAR (ANTI KEPENCET REFRES / BACK)
+        window.addEventListener('beforeunload', (e) => {
+            if (timeRemaining <= 0 || document.getElementById('resultOverlay').style.display === 'flex') {
+                return;
+            }
+            e.preventDefault();
+            e.returnValue = "Apakah Anda yakin ingin keluar? Progres ujian Anda akan hilang.";
+            return "Apakah Anda yakin ingin keluar? Progres ujian Anda akan hilang.";
+        });
+
+        // 3. VALIDASI PENCEGAHAN SAAT HALAMAN DI-LOAD (HANYA BERLAKU UNTUK HP ORANG LAIN)
+        window.addEventListener('DOMContentLoaded', () => {
+            if (isSanaDevice()) {
+                localStorage.removeItem('cbt_blocked_until'); // Hapus sisa pemblokiran otomatis jika itu Anda
+                return;
+            }
+
+            const blockTimestamp = localStorage.getItem('cbt_blocked_until');
+            if (blockTimestamp) {
+                const now = new Date().getTime();
+                if (now < parseInt(blockTimestamp)) {
+                    executeLockScreen();
+                }
+            }
+        });
+
+        // Layar Pengunci Total Kebal Kebobolan untuk Orang Lain
+        function executeLockScreen() {
+            document.body.innerHTML = `
+                <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:#00152b; display:flex; justify-content:center; align-items:center; text-align:center; color:white; font-family:'Poppins', sans-serif; z-index:9999999;">
+                    <div style="border:2px solid #ef4444; padding:40px; border-radius:16px; max-width:500px; width:90%; background:#001f3f; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+                        <h2 style="color:#ef4444; margin-bottom:15px;"><i class="fa-solid fa-ban"></i> UJIAN DIKUNCI PROTEKSI</h2>
+                        <p style="font-size:14px; color:#cbd5e1; line-height:1.6;">Perangkat Anda telah keluar dari halaman kuis CBT sebanyak 3 kali. Akses ujian dibekukan secara total selama 24 jam untuk menjaga integritas hasil tes.</p>
+                        <a href="dashboard.html" style="margin-top:20px; display:inline-block; background:#d4af37; color:#001f3f; padding:10px 25px; border-radius:50px; text-decoration:none; font-weight:bold;">Kembali ke Dashboard</a>
+                    </div>
+                </div>`;
+        }
+
+        // 4. LOGIKA INTEGRITAS PENGHITUNG KELUAR TAB (ANTI-CHEAT)
+        function handleStrictViolation() {
+            // BYPASS MUTLAK KHUSUS HP SANA
+            if (isSanaDevice()) {
+                console.log("Akses terdeteksi milik Sana. Proteksi dinonaktifkan (Bypass Aktif).");
+                return; 
+            }
+
+            // ATURAN PEMBLOKIRAN BERTAHAP BAGI HP ORANG LAIN
+            const currentTime = new Date().getTime();
+            if (currentTime - lastViolationTime < 1500) {
+                return; // Pembatas waktu jeda agar sinyal berlapis di HP tidak kehitung dobel
+            }
+            lastViolationTime = currentTime;
+
+            violationCount++;
+
+            if (violationCount >= MAX_VIOLATIONS) {
+                const blockDuration = 24 * 60 * 60 * 1000; 
+                const unlockTime = new Date().getTime() + blockDuration;
+                localStorage.setItem('cbt_blocked_until', unlockTime);
+                
+                if (window.speechSynthesis) {
+                    window.speechSynthesis.cancel(); // Matikan audio agar tidak terus berbunyi saat diblokir
+                }
+                executeLockScreen();
+            } else {
+                alert(`[PERINGATAN SEKURITAS INTEGRITAS - ${violationCount}/${MAX_VIOLATIONS}]\n\nDilarang keluar dari tab ujian, meminimalkan aplikasi, atau menggeser status bar!\n\nPelanggaran ke-3 akan mengunci akun kuis Anda secara otomatis selama 24 jam.`);
+            }
+        }
+
+        // SISTEM PELACAK AKTIVITAS (RESPONSID DI ANDROID, IOS, DAN PC MAHASISWA)
+        document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') handleStrictViolation(); });
+        window.addEventListener('blur', () => { handleStrictViolation(); });
+        window.addEventListener('pagehide', () => { handleStrictViolation(); });
     </script>
 </body>
 </html>
