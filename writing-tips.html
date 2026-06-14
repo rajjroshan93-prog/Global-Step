@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>International Writing Masterclass - San Aethelgard</title>
+    <title>Writing Core Tips - Sana Aethelgard Academy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&family=Courier+Prime&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -14,134 +14,480 @@
             --accent: #00D4FF;
             --bg-dark: #00152b;
             --card-bg: #ffffff;
-            --text-main: #334155;
+            --text-main: #1e293b;
             --slate-gray: #64748b;
+            --exam-gold: #d4af37;
+            --soft-green: #10b981;
+            --alert-red: #ef4444;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Lato', sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        .materi-container { width: 100%; max-width: 900px; background: var(--card-bg); border-radius: 20px; padding: 50px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
-        
-        .header-materi { text-align: center; margin-bottom: 40px; border-bottom: 2px solid #f1f5f9; padding-bottom: 30px; }
-        .header-materi h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 32px; letter-spacing: -0.5px; }
-        .badge-elite { display: inline-block; background: #e0faff; color: #0369a1; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
 
-        h3 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 22px; margin-top: 40px; margin-bottom: 18px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; }
-        h3 i { color: var(--accent); background: var(--primary); width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
 
-        p { font-size: 15px; line-height: 1.8; color: #475569; margin-bottom: 18px; text-align: justify; }
-        p.lead { font-size: 16px; color: #1e293b; font-weight: 600; text-align: left; }
-        ul, ol { margin-left: 25px; margin-bottom: 20px; color: #475569; font-size: 15px; line-height: 1.8; }
-        li { margin-bottom: 8px; }
+        /* Top Navigation Header */
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 20px 35px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
 
-        .section-box { background: #f8fafc; border-left: 5px solid var(--primary); padding: 25px; margin-bottom: 20px; border-radius: 0 12px 12px 0; }
-        .section-box h4 { font-family: 'Poppins', sans-serif; margin-top: 0; font-size: 18px; margin-bottom: 10px; color: var(--primary); }
+        .header-title h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            color: var(--primary);
+        }
 
-        .table-style { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 14.5px; border-radius: 8px; overflow: hidden; }
-        .table-style th { background: var(--primary); color: #fff; text-align: left; padding: 14px; font-family: 'Poppins', sans-serif; }
-        .table-style td { padding: 14px; border-bottom: 1px solid #e2e8f0; line-height: 1.6; }
-        .table-style tr:nth-child(even) { background-color: #f8fafc; }
+        .header-title p {
+            font-size: 13px;
+            color: var(--slate-gray);
+            font-weight: bold;
+        }
 
-        .pro-tip { background: #f0fdf4; border-left: 5px solid #22c55e; padding: 25px; border-radius: 8px; margin: 35px 0; }
-        .pro-tip h5 { font-family: 'Poppins', sans-serif; color: #166534; font-size: 17px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .btn-back-dash {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            transition: 0.3s;
+            border: 2px solid var(--primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-        .back-btn { display: inline-block; margin-top: 40px; width: 100%; text-align: center; background: var(--primary); color: white; padding: 16px; border-radius: 50px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; transition: 0.3s; border: 2px solid var(--primary); }
-        .back-btn:hover { background: var(--accent); color: var(--primary); border-color: var(--accent); }
-        .footer-credit { font-size: 11px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px; text-transform: uppercase; font-weight: 700; text-align: center; margin-top: 40px; }
-        .footer-credit a { color: var(--accent); text-decoration: none; }
+        .btn-back-dash:hover {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        /* 4 Core Pillars Grid Summary */
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .criteria-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 12px;
+            padding: 20px 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-top: 4px solid var(--accent);
+            text-align: center;
+        }
+
+        .criteria-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13.5px;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .criteria-card p {
+            font-size: 12px;
+            color: var(--slate-gray);
+            line-height: 1.4;
+        }
+
+        /* Interactive Tabs Strategi */
+        .strategy-box {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .tab-bar {
+            display: flex;
+            background: #e2e8f0;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            color: #475569;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            padding: 35px;
+            display: none;
+        }
+
+        .tab-content.active-content {
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+        }
+
+        .tip-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .tip-list li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .tip-list li i {
+            color: var(--soft-green);
+            margin-top: 4px;
+        }
+
+        /* Formula & Distractor Box */
+        .formula-box {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .formula-box h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #b45309;
+            margin-bottom: 8px;
+        }
+
+        .formula-badge {
+            background: #f59e0b;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .example-block {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px dashed #cbd5e1;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-style: italic;
+            font-size: 13.5px;
+        }
+
+        /* INTERACTIVE WIDGET: CONNECTORS SELECTOR */
+        .widget-box {
+            background: linear-gradient(135deg, #001f3f 0%, #000c18 100%);
+            border: 2px solid var(--exam-gold);
+            border-radius: 16px;
+            padding: 30px;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .widget-box h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: var(--exam-gold);
+            margin-bottom: 5px;
+        }
+
+        .widget-box p {
+            font-size: 13px;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .interactive-passage {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 22px;
+            border-radius: 10px;
+            font-size: 14.5px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .select-connector {
+            background: #001f3f;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Lato', sans-serif;
+            font-weight: bold;
+            font-size: 13.5px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px dashed rgba(0, 212, 255, 0.3);
+        }
+
+        .question-statement {
+            font-size: 13.5px;
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .btn-check-ans {
+            background: var(--exam-gold);
+            color: var(--primary);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 12.5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-check-ans:hover {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .feedback-alert {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            display: none;
+            text-align: center;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
-<div class="materi-container">
-    <div class="header-materi">
-        <div class="badge-elite">San Aethelgard Writing Protocol</div>
-        <h2>Advanced Writing Architecture & Criteria</h2>
-        <p style="margin-top: 8px; font-size: 15px; color: var(--slate-gray);">Parameter penilaian esai formal berstandar internasional.</p>
+<div class="container">
+
+    <div class="header-nav">
+        <div class="header-title">
+            <h1>TACTICAL WRITING STRATEGY</h1>
+            <p>Cambridge Academic Essay Architecture (Band 8.5+ Criteria)</p>
+        </div>
+        <a href="dashboard.html" class="btn-back-dash"><i class="fa-solid fa-arrow-left"></i> Dashboard Utama</a>
     </div>
 
-    <p class="lead">Ujian menulis akademik berskala internasional (IELTS British Council, Cambridge Assessment, dan Oxford) tidak menilai keindahan sastra atau puisi. Mereka menilai kapasitas argumen logis, struktur paragraf yang kohesif, dan keakuratan mekanis tata bahasa Anda.</p>
-
-    <h3><i class="fa-solid fa-gavel"></i> Bab I: 4 Pilar Penilaian Utama (Rubrik Penilaian)</h3>
-    <p>Setiap esai yang Anda kumpulkan akan didekonstruksi dan dinilai berdasarkan empat parameter absolut berikut:</p>
-    
-    <div class="section-box">
-        <h4>1. Task Achievement / Task Response (Bobot 25%)</h4>
-        <p>Apakah Anda menjawab seluruh pertanyaan yang diajukan di lembar soal? Esai berskala tinggi wajib menyajikan argumen yang jelas di sepanjang teks, didukung oleh bukti empiris atau contoh konkret, serta mencapai jumlah kata minimal yang disyaratkan (biasanya 250 kata).</p>
+    <div class="criteria-grid">
+        <div class="criteria-card">
+            <h3>Task Achievement</h3>
+            <p>Menjawab seluruh instruksi soal secara penuh, tuntas, serta menyajikan argumen yang relevan.</p>
+        </div>
+        <div class="criteria-card" style="border-top-color: var(--exam-gold);">
+            <h3>Coherence & Cohesion</h3>
+            <p>Kelancaran alur ide antar-paragraf menggunakan kata hubung (linking words) secara alami.</p>
+        </div>
+        <div class="criteria-card" style="border-top-color: var(--soft-green);">
+            <h3>Lexical Resource</h3>
+            <p>Variasi kosa kata tingkat tinggi yang spesifik tanpa melakukan pengulangan kata berlebih.</p>
+        </div>
+        <div class="criteria-card" style="border-top-color: var(--alert-red);">
+            <h3>Grammatical Range</h3>
+            <p>Ketepatan penggunaan struktur kalimat kompleks, tanda baca, serta minim kesalahan ketik.</p>
+        </div>
     </div>
 
-    <div class="section-box">
-        <h4>2. Coherence and Cohesion (Bobot 25%)</h4>
-        <p>Mengukur kelancaran alur informasi Anda. Paragraf harus diatur secara logis dengan satu ide pokok per paragraf. Anda wajib menggunakan kata penghubung (*cohesive devices*) tingkat lanjut seperti <i>"Furthermore", "Consequently", "In stark contrast",</i> atau <i>"Paradoxically"</i> secara natural.</p>
+    <div class="strategy-box">
+        <div class="tab-bar">
+            <button class="tab-btn active" onclick="openTab(event, 'task1Formula')">TASK 1: DATA REPORTING</button>
+            <button class="tab-btn" onclick="openTab(event, 'task2Structure')">TASK 2: ESSAY STRUCTURE</button>
+            <button class="tab-btn" onclick="openTab(event, 'lexicalUpgrades')">LEXICAL RESOURCE UPGRADES</button>
+        </div>
+
+        <div id="task1Formula" class="tab-content active-content">
+            <h3 class="section-title">Struktur Formula Penulisan Academic Task 1</h3>
+            <ul class="tip-list">
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Paragraf 1 - Introduction:</strong> Lakukan parafrase total terhadap soal asli. Ubah struktur kalimat menggunakan sinonim kata penunjuk data (misal: *shows* diganti menjadi *illustrates* atau *depicts*).</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Paragraf 2 - Overview (Kunci Utama):</strong> Tuliskan 2-3 tren makro yang paling mencolok tanpa memasukkan angka statistik spesifik. Esai tanpa Overview otomatis dikunci di maksimal Band 5.0.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Paragraf 3 & 4 - Body Details:</strong> Kelompokkan data secara logis. Masukkan angka statistik konkret, tahun, dan lakukan perbandingan komparatif yang signifikan antar-variabel data.</li>
+            </ul>
+
+            <div class="formula-box">
+                <h4><span class="formula-badge">NO OPINION RULE</span></h4>
+                <p>Jangan pernah memasukkan opini pribadi, asumsi, atau analisis latar belakang alasan terjadinya data di Task 1. Laporkan hanya apa yang tertera secara visual pada grafik!</p>
+            </div>
+        </div>
+
+        <div id="task2Structure" class="tab-content">
+            <h3 class="section-title">Struktur Paragraf Emas Task 2 (Band 8.5+ Architecture)</h3>
+            <ul class="tip-list">
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Introduction (approx. 40 words):</strong> Kalimat 1: Paraphrase background soal. Kalimat 2: *Thesis Statement* (Pernyataan posisi atau pandangan mutlak Anda secara tegas terhadap isu tersebut).</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Body Paragraphs 1 & 2 (PEEL Method):</strong> Gunakan formula **P**oint (Ide utama), **E**xplanation (Penjelasan mendalam), **E**xample (Bukti/Studi kasus konkret), dan **L**ink (Kalimat pengunci kesimpulan paragraf).</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Conclusion (approx. 30 words):</strong> Tulis ulang ringkasan argumen utama Anda dari Body Paragraph menggunakan kosakata baru. Jangan pernah memasukkan ide baru di paragraf penutup.</li>
+            </ul>
+
+            <div class="formula-box">
+                <h4><span class="formula-badge">THE PEEL ARCHITECTURE EXAMPLE</span></h4>
+                <div class="example-block">
+                    <strong>Point:</strong> "Advancements in automation significantly bolster corporate economic efficiency."<br>
+                    <strong>Explanation:</strong> "By integrating robotics into manufacturing lines, businesses can eliminate human limitations such as physical fatigue, ensuring continuous operational flow."<br>
+                    <strong>Example:</strong> "For instance, automotive factories in South Korea reported a 35% surge in monthly production outputs following robotic implementation."
+                </div>
+            </div>
+        </div>
+
+        <div id="lexicalUpgrades" class="tab-content">
+            <h3 class="section-title">Pembaruan Kosakata Akademik (Lexical Upgrade Table)</h3>
+            <p style="font-size:13.5px; color:var(--slate-gray); margin-bottom:15px;">Hentikan penggunaan kata-kata umum (*cliché*) dan gantikan dengan kosakata formal berikut untuk mendongkrak skor kriteria Lexical Resource Anda:</p>
+            
+            <table style="width:100%; border-collapse: collapse; font-size:14px; margin-top:10px; text-align:left;">
+                <thead>
+                    <tr style="background: var(--primary); color: white;">
+                        <th style="padding: 10px; border: 1px solid #cbd5e1;">Kata Umum (Avoid)</th>
+                        <th style="padding: 10px; border: 1px solid #cbd5e1;">Upgrade Akademik (Use)</th>
+                        <th style="padding: 10px; border: 1px solid #cbd5e1;">Konteks Penggunaan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight:bold; color:var(--alert-red);">Big / A lot</td>
+                        <td style="padding: 10px; border: 1px solid #cbd5e1; color:var(--soft-green); font-weight:bold;">Substantial / Monumental</td>
+                        <td style="padding: 10px; border: 1px solid #cbd5e1; font-style:italic;">"A substantial increase in expenditure..."</td>
+                    </tr>
+                    <tr style="background: #f8fafc;">
+                        <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight:bold; color:var(--alert-red);">But</td>
+                        <td style="padding: 10px; border: 1px solid #cbd5e1; color:var(--soft-green); font-weight:bold;">However / Conversely</td>
+                        <td style="padding: 10px; border: 1px solid #cbd5e1; font-style:italic;">"Conversely, opponents argue that..."</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight:bold; color:var(--alert-red);">Good / Helpful</td>
+                        <td style="padding: 10px; border: 1px solid #cbd5e1; color:var(--soft-green); font-weight:bold;">Advantageous / Beneficial</td>
+                        <td style="padding: 10px; border: 1px solid #cbd5e1; font-style:italic;">"This policy is highly advantageous..."</td>
+                    </tr>
+                    <tr style="background: #f8fafc;">
+                        <td style="padding: 10px; border: 1px solid #cbd5e1; font-weight:bold; color:var(--alert-red);">Show</td>
+                        <td style="padding: 10px; border: 1px solid #cbd5e1; color:var(--soft-green); font-weight:bold;">Illustrate / Demonstrate</td>
+                        <td style="padding: 10px; border: 1px solid #cbd5e1; font-style:italic;">"The data demonstrates a clear trend..."</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <div class="section-box">
-        <h4>3. Lexical Resource (Bobot 25%)</h4>
-        <p>Kekayaan kosakata akademik Anda. Hindari pengulangan kata yang sama. Gunakan terminologi spesifik sesuai topik (misal: jangan gunakan kata <i>"bad effect"</i>, gantilah dengan <i>"deleterious repercussion"</i> atau <i>"adverse impacts"</i>).</p>
+    <div class="widget-box">
+        <h2><i class="fa-solid fa-puzzle-piece"></i> Interactive Coherence & Cohesion Connector Simulator</h2>
+        <p>Latih kelancaran alur logika argumen Anda. Pilihlah kata hubung formal (*Linking Words*) yang paling tepat untuk melengkapi bagian rumpang pada paragraf argumentatif di bawah ini!</p>
+        
+        <div class="control-panel">
+            <div class="question-statement">
+                <strong>Tugas Kuis:</strong> Hubungkan kalimat utama yang kontradiktif dan tunjukkan hubungan sebab-akibat secara akademis.
+            </div>
+        </div>
+
+        <br>
+        <div class="interactive-passage">
+            Governments worldwide are accelerating heavy financial investments into green technology initiatives. 
+            <select class="select-connector" id="conn1">
+                <option value="wrong">Therefore</option>
+                <option value="correct">Nonetheless</option>
+                <option value="wrong">Moreover</option>
+            </select> 
+            the transition away from fossil-fuel paradigms remains sluggish due to high manufacturing overhauls. 
+            <select class="select-connector" id="conn2">
+                <option value="correct">Consequently</option>
+                <option value="wrong">In contrast</option>
+                <option value="wrong">On the other hand</option>
+            </select>
+            subsidies must be deployed systematically to incentivize small-scale industrial sectors.
+        </div>
+
+        <div style="text-align: right;">
+            <button class="btn-check-ans" onclick="validateConnectors()"><i class="fa-solid fa-shield-check"></i> Verifikasi Alur Logika</button>
+        </div>
+
+        <div class="feedback-alert" id="feedbackBox"></div>
     </div>
 
-    <div class="section-box">
-        <h4>4. Grammatical Range and Accuracy (Bobot 25%)</h4>
-        <p>Akurasi penggunaan struktur kalimat. Anda harus mengombinasikan kalimat tunggal, kalimat majemuk (*compound sentences*), dan kalimat kompleks (*complex sentences*) secara tepat tanpa eror tanda baca.</p>
-    </div>
-
-    <h3><i class="fa-solid fa-sitemap"></i> Bab II: Arsitektur Paragraf Esai Standar Emas</h3>
-    <p>Untuk esai argumentatif atau diskusi, gunakan struktur struktur makro 4 paragraf berikut:</p>
-    <ul>
-        <li><b>Introduction (Pendahuluan):</b> 
-            <br>Sentence 1: Paraphrase pertanyaan soal (ubah struktur kalimat tanpa mengubah makna asli).
-            <br>Sentence 2: *Thesis Statement* (Nyatakan posisi argumen Anda secara tegas).
-        </li>
-        <li><b>Body Paragraph 1 (Argumen Pertama):</b> Kalimat topik utama, diikuti oleh penjelasan detail sebab-akibat, dan diakhiri dengan contoh kasus nyata yang relevan.</li>
-        <li><b>Body Paragraph 2 (Argumen Kedua):</b> Bahas sudut pandang alternatif atau penguatan argumen kedua dengan format struktural yang sama seperti Body Paragraf 1.</li>
-        <li><b>Conclusion (Kesimpulan):</b> Rangkum kembali poin-poin utama Anda tanpa memasukkan informasi baru, dan tegaskan kembali kesimpulan posisi akhir Anda.</li>
-    </ul>
-
-    <h3><i class="fa-solid fa-arrows-spin"></i> Bab III: Tabel Transformasi Kosakata Akademik</h3>
-    <table class="table-style">
-        <thead>
-            <tr>
-                <th style="width: 30%;">Kata Dasar (Hindari)</th>
-                <th style="width: 40%;">Substitusi Akademik (Gunakan)</th>
-                <th style="width: 30%;">Contoh Konteks Kalimat</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><b>Big / A lot of</b></td>
-                <td>Substantial / Unprecedented</td>
-                <td>"The shift caused a <b>substantial</b> alteration."</td>
-            </tr>
-            <tr>
-                <td><b>Get better</b></td>
-                <td>Ameliorate / Enhance</td>
-                <td>"Efforts to <b>ameliorate</b> urban poverty."</td>
-            </tr>
-            <tr>
-                <td><b>Think</b></td>
-                <td>Assert / Contend / Postulate</td>
-                <td>"Many theorists <b>contend</b> that..."</td>
-            </tr>
-            <tr>
-                <td><b>Change</b></td>
-                <td>Fluctuate / Metamorphose</td>
-                <td>"Market demands <b>fluctuate</b> dramatically."</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="pro-tip">
-        <h5><i class="fa-solid fa-lightbulb"></i> Pro-Tip Prosedur Penulisan:</h5>
-        <p style="margin-bottom: 0; font-size: 14.5px; color: #166534;">Jangan pernah menulis tanpa perencanaan! Gunakan **3 menit pertama** untuk membuat kerangka berpikir (*brainstorming blueprint*). Tentukan apa ide utama Body 1 dan Body 2 kamu sebelum mulai mengetik untuk menjaga skor *Coherence* tetap berada di level tertinggi.</p>
-    </div>
-
-    <a href="dashboard.html" class="back-btn"><i class="fa-solid fa-chevron-left" style="margin-right: 8px; font-size: 13px;"></i> Kembali ke Dashboard</a>
 </div>
 
-<div class="footer-credit">
-    Created by San | <a href="https://www.instagram.com/sanaethelgard?igsh=N29hZWphOTdmbzZy" target="_blank"><i class="fa-brands fa-instagram"></i> @sanaethelgard</a>
-</div>
+<script>
+    // Tab Switching Core Logic
+    function openTab(evt, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active-content'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active-content');
+        evt.currentTarget.classList.add('active');
+    }
+
+    // Validation Cohesion Logic
+    function validateConnectors() {
+        const c1 = document.getElementById('conn1').value;
+        const c2 = document.getElementById('conn2').value;
+        const fb = document.getElementById('feedbackBox');
+        fb.style.display = "block";
+        
+        if (c1 === "correct" && c2 === "correct") {
+            fb.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+            fb.style.color = "var(--soft-green)";
+            fb.style.border = "1px solid var(--soft-green)";
+            fb.innerHTML = "✓ EXCELLENT SCORE! 'Nonetheless' mengekspresikan kontras konsesif secara sempurna, dan 'Consequently' menunjukkan hubungan kausalitas (sebab-akibat) yang sangat kuat. Alur Cohesion Anda berada di level Band 9.0!";
+        } else {
+            fb.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+            fb.style.color = "var(--alert-red)";
+            fb.style.border = "1px solid var(--alert-red)";
+            fb.innerHTML = "✗ Koneksi Argumen Lemah. Ingat, kalimat pertama dan kedua menunjukkan pertentangan (kontras), sedangkan kalimat ketiga adalah dampak langsung dari hambatan tersebut. Tinjau kembali pilihan konjungsi Anda, Sana!";
+        }
+    }
+</script>
 
 </body>
 </html>
