@@ -196,13 +196,47 @@
             color: #64748b;
             font-size: 12px;
             margin-top: 10px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .footer-credit a {
             color: var(--accent);
             text-decoration: none;
         }
+
+        /* STYLING BARU: MODAL POPUP JENDELA ULASAN */
+        .review-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 11, 36, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .review-modal-card {
+            background: #00152b;
+            width: 90%;
+            max-width: 480px;
+            padding: 25px;
+            border-radius: 14px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            position: relative;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: none; border: none;
+            color: #64748b; font-size: 18px;
+            cursor: pointer; transition: 0.2s;
+        }
+
+        .close-modal-btn:hover { color: #ef4444; }
     </style>
 </head>
 <body>
@@ -266,19 +300,39 @@
         Created by San | <a href="https://www.instagram.com/sanaethelgard?igsh=N29hZWphOTdmbzZy" target="_blank"><i class="fa-brands fa-instagram"></i> @sanaethelgard</a>
     </div>
 
-    <div id="user-feedback-section" style="background: #00152b; padding: 25px; border-radius: 14px; border: 1px solid rgba(0, 212, 255, 0.3); box-shadow: 0 10px 25px rgba(0,0,0,0.2); font-family: 'Lato', sans-serif; margin-top: 20px;">
+    <div style="text-align: center; margin-top: 5px; margin-bottom: 20px;">
+        <button onclick="openReviewModal()" style="background: rgba(0, 212, 255, 0.1); border: 1px solid var(--accent); color: var(--accent); padding: 8px 22px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: bold; cursor: pointer; transition: 0.2s;">
+            <i class="fa-solid fa-star"></i> Tulis Ulasan
+        </button>
+    </div>
+
+    <div id="sanaAdminPanel" style="display: none; background: #00152b; padding: 20px; border-radius: 14px; border: 1px dashed rgba(255,177,0,0.4); font-family: 'Lato', sans-serif; max-width: 600px; margin: 25px auto 0 auto;">
+        <h4 style="font-family: 'Poppins', sans-serif; font-size: 13px; color: var(--exam-gold); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+            <span><i class="fa-solid fa-folder-open"></i> Riwayat Ulasan Masuk (Khusus Pandangan Sana)</span>
+            <button onclick="clearAllFeedbacks()" style="background: #ef4444; color: white; border: none; padding: 3px 8px; font-size: 10px; border-radius: 4px; cursor: pointer; font-family: inherit; font-weight: bold;">Hapus Semua</button>
+        </h4>
+        <div id="reviewsContainer" style="max-height: 220px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding-right: 5px;">
+            </div>
+    </div>
+
+</div>
+
+<div class="review-modal-overlay" id="reviewModal">
+    <div class="review-modal-card">
+        <button class="close-modal-btn" onclick="closeReviewModal()"><i class="fa-solid fa-xmark"></i></button>
         
-        <div id="feedbackForm">
-            <h3 style="font-family: 'Poppins', sans-serif; font-size: 16px; color: #00D4FF; margin-bottom: 5px;"><i class="fa-solid fa-comment-medical"></i> Berikan Ulasan Anda</h3>
-            <p style="font-size: 12px; color: #94a3b8; margin-bottom: 15px;">Masukan Anda sangat berharga untuk pengembangan Arena CBT ini.</p>
+        <div id="modalFormBody">
+            <h3 style="font-family: 'Poppins', sans-serif; font-size: 16px; color: var(--accent); margin-bottom: 4px;"><i class="fa-solid fa-pen-to-square"></i> Berikan Ulasan Anda</h3>
+            <p style="font-size: 12px; color: #94a3b8; margin-bottom: 18px;">Bagikan kesan dan saran Anda mengenai Arena CBT ini.</p>
             
             <div style="margin-bottom: 12px;">
-                <input type="text" id="fbName" placeholder="Nama Lengkap Anda..." style="width: 100%; padding: 10px; background: #001f3f; border: 1px solid #cbd5e1; border-radius: 6px; color: white; font-size: 13px; outline: none;">
+                <label style="display:block; font-size:11px; color:#cbd5e1; margin-bottom:4px; font-weight:bold;">Nama Lengkap:</label>
+                <input type="text" id="fbName" placeholder="Ketik nama Anda di sini..." style="width: 100%; padding: 10px; background: #001f3f; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; color: white; font-size: 13px; outline: none;">
             </div>
 
-            <div style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
-                <span style="font-size: 12px; color: #94a3b8;">Rating Bintang:</span>
-                <div style="display: flex; gap: 5px; font-size: 18px; color: #475569; cursor: pointer;">
+            <div style="margin-bottom: 12px;">
+                <label style="display:block; font-size:11px; color:#cbd5e1; margin-bottom:4px; font-weight:bold;">Berikan Rating:</label>
+                <div style="display: flex; gap: 6px; font-size: 20px; color: #475569; cursor: pointer;">
                     <i class="fa-solid fa-star star-btn" onclick="setFeedbackRating(1)"></i>
                     <i class="fa-solid fa-star star-btn" onclick="setFeedbackRating(2)"></i>
                     <i class="fa-solid fa-star star-btn" onclick="setFeedbackRating(3)"></i>
@@ -287,61 +341,78 @@
                 </div>
             </div>
 
-            <div style="margin-bottom: 15px;">
-                <textarea id="fbText" rows="3" placeholder="Tulis masukan, saran, atau impresi Anda mengenai platform ini..." style="width: 100%; padding: 10px; background: #001f3f; border: 1px solid #cbd5e1; border-radius: 6px; color: white; font-size: 13px; font-family: inherit; resize: none; outline: none;"></textarea>
+            <div style="margin-bottom: 18px;">
+                <label style="display:block; font-size:11px; color:#cbd5e1; margin-bottom:4px; font-weight:bold;">Ulasan / Saran:</label>
+                <textarea id="fbText" rows="3" placeholder="Tulis masukan, kelebihan, atau kekurangan sistem kuis di sini..." style="width: 100%; padding: 10px; background: #001f3f; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; color: white; font-size: 13px; font-family: inherit; resize: none; outline: none;"></textarea>
             </div>
 
-            <button onclick="submitFeedbackForm()" style="width: 100%; background: var(--exam-gold); color: #001124; border: none; padding: 10px; border-radius: 6px; font-family: 'Poppins', sans-serif; font-weight: bold; font-size: 13px; cursor: pointer;">
+            <button onclick="submitFeedbackForm()" style="width: 100%; background: var(--exam-gold); color: #001124; border: none; padding: 11px; border-radius: 6px; font-family: 'Poppins', sans-serif; font-weight: bold; font-size: 13px; cursor: pointer; transition: 0.2s;">
                 <i class="fa-solid fa-paper-plane"></i> Kirim Ulasan Resmi
             </button>
         </div>
 
-        <div id="feedbackSuccessMessage" style="display: none; text-align: center; padding: 15px 0;">
-            <i class="fa-solid fa-circle-check" style="font-size: 30px; color: #10b981; margin-bottom: 8px;"></i>
-            <p style="font-size: 14px; font-weight: bold; color: white;">Ulasan Berhasil Terkirim!</p>
-            <p style="font-size: 12px; color: #94a3b8; margin-top: 4px;">Terima kasih telah berpartisipasi dalam pengembangan sistem.</p>
-        </div>
-
-        <div id="sanaAdminPanel" style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed rgba(255,255,255,0.15);">
-            <h4 style="font-family: 'Poppins', sans-serif; font-size: 14px; color: var(--exam-gold); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-                <span><i class="fa-solid fa-folder-open"></i> Peninjau Ulasan Masuk (Khusus Sana)</span>
-                <button onclick="clearAllFeedbacks()" style="background: #ef4444; color: white; border: none; padding: 4px 10px; font-size: 10px; border-radius: 4px; cursor: pointer; font-family: inherit;">Hapus Semua</button>
-            </h4>
-            <div id="reviewsContainer" style="max-height: 200px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding-right: 5px;">
-                </div>
+        <div id="modalSuccessBody" style="display: none; text-align: center; padding: 20px 0;">
+            <i class="fa-solid fa-circle-check" style="font-size: 36px; color: #10b981; margin-bottom: 8px;"></i>
+            <p style="font-size: 14px; font-weight: bold; color: white;">Ulasan Sukses Dikirim!</p>
+            <p style="font-size: 12px; color: #94a3b8; margin-top: 4px; margin-bottom: 15px;">Terima kasih atas kontribusi ulasan yang Anda berikan.</p>
+            <button onclick="closeReviewModal()" style="background: #f1f5f9; color: var(--primary); border: none; padding: 6px 15px; font-size: 11px; font-weight: bold; border-radius: 4px; cursor: pointer;">Tutup Jendela</button>
         </div>
 
     </div>
-
 </div>
 
 <script>
-    // AUTOMATIC SANA IDENTITY REGISTER (TIDAK BERUBAH)
+    // AUTOMATIC SANA IDENTITY REGISTER
     localStorage.setItem('username', 'Sana');
 
-    // SYSTEM JAVASCRIPT UNTUK MANAGEMEN FEEDBACK (BARU)
     let selectedRating = 0;
 
-    // Fungsi klik bintang interaktif
+    // FUNGSI VALIDASI HARDWARE: Menjamin hanya HP Sana (420 x 934) yang bisa memunculkan kotak ulasan masuk
+    function checkSanaAdminAccess() {
+        const isAdminDevice = (window.screen.width === 420 && window.screen.height === 934);
+        const isAdminName = (localStorage.getItem('username') || '').toLowerCase() === 'sana';
+        
+        // JIKA LAYAR HP ADALAH MILIK SANA, AKTIFKAN PANELNYA
+        if (isAdminDevice || isAdminName) {
+            document.getElementById('sanaAdminPanel').style.display = 'block';
+            loadReviewsToAdminPanel();
+        }
+    }
+
+    // Fungsi buka & tutup jendela popup modal
+    function openReviewModal() {
+        document.getElementById('modalFormBody').style.display = 'block';
+        document.getElementById('modalSuccessBody').style.display = 'none';
+        document.getElementById('fbName').value = "";
+        document.getElementById('fbText').value = "";
+        setFeedbackRating(0);
+        document.getElementById('reviewModal').style.display = 'flex';
+    }
+
+    function closeReviewModal() {
+        document.getElementById('reviewModal').style.display = 'none';
+    }
+
+    // Fungsi seleksi bintang di dalam modal
     function setFeedbackRating(rating) {
         selectedRating = rating;
         const stars = document.querySelectorAll('.star-btn');
         stars.forEach((star, index) => {
             if (index < rating) {
-                star.style.color = '#ffb100'; // Kuning Emas
+                star.style.color = '#ffb100';
             } else {
-                star.style.color = '#475569'; // Abu-abu gelap bawaan
+                star.style.color = '#475569';
             }
         });
     }
 
-    // Fungsi kirim data form
+    // Fungsi kirim ulasan
     function submitFeedbackForm() {
         const name = document.getElementById('fbName').value.trim();
         const text = document.getElementById('fbText').value.trim();
 
         if (name === "" || text === "" || selectedRating === 0) {
-            alert("Mohon isi nama, ulasan, dan pilih rating bintang terlebih dahulu!");
+            alert("Mohon ketik nama, isi ulasan, dan pilih ranting bintang sebelum mengirim!");
             return;
         }
 
@@ -352,26 +423,27 @@
             date: new Date().toLocaleDateString('id-ID') + ' ' + new Date().toLocaleTimeString('id-ID', {hour: '2-digit', minute:'2-digit'})
         };
 
-        // Simpan data ulasan ke database lokal browser (localStorage)
         let feedbacks = JSON.parse(localStorage.getItem('cbt_reviews')) || [];
-        feedbacks.unshift(feedbackItem); // Masukkan ulasan terbaru di atas
+        feedbacks.unshift(feedbackItem);
         localStorage.setItem('cbt_reviews', JSON.stringify(feedbacks));
 
-        // Tampilkan layar sukses
-        document.getElementById('feedbackForm').style.display = 'none';
-        document.getElementById('feedbackSuccessMessage').style.display = 'block';
+        // Ubah tampilan modal ke status sukses
+        document.getElementById('modalFormBody').style.display = 'none';
+        document.getElementById('modalSuccessBody').style.display = 'block';
 
-        // Refresh container peninjau ulasan milik Sana
+        // Refresh container data ulasan (jika dibuka di HP Sana, otomatis ter-update)
         loadReviewsToAdminPanel();
     }
 
-    // Fungsi otomatis merender dan menampilkan ulasan ke panel monitoring Sana
+    // Fungsi render database ulasan ke panel peninjau rahasia Sana
     function loadReviewsToAdminPanel() {
         const container = document.getElementById('reviewsContainer');
+        if (!container) return;
+        
         let feedbacks = JSON.parse(localStorage.getItem('cbt_reviews')) || [];
 
         if (feedbacks.length === 0) {
-            container.innerHTML = `<p style="font-size: 12px; color: #64748b; font-style: italic; text-align: center; padding: 15px 0;">Belum ada ulasan yang dikirimkan oleh pengguna.</p>`;
+            container.innerHTML = `<p style="font-size: 11px; color: #64748b; font-style: italic; text-align: center; padding: 15px 0;">Belum ada ulasan yang masuk dari pengguna.</p>`;
             return;
         }
 
@@ -379,32 +451,32 @@
         feedbacks.forEach(item => {
             let starsHtml = "";
             for(let i=1; i<=5; i++) {
-                starsHtml += `<i class="fa-solid fa-star" style="color: ${i <= item.rating ? '#ffb100' : '#475569'}; margin-right: 2px;"></i>`;
+                starsHtml += `<i class="fa-solid fa-star" style="color: ${i <= item.rating ? '#ffb100' : '#475569'}; margin-right: 1px; font-size:10px;"></i>`;
             }
 
             html += `
-                <div style="background: #001f3f; padding: 12px; border-radius: 8px; border-left: 3px solid #00D4FF; font-size: 12px; color: #cbd5e1;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px; font-weight: bold;">
+                <div style="background: #001f3f; padding: 10px; border-radius: 6px; border-left: 3px solid #00D4FF; font-size: 11px; color: #cbd5e1;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 3px; font-weight: bold;">
                         <span style="color: white;"><i class="fa-solid fa-user-circle"></i> ${item.name}</span>
-                        <span style="color: #64748b; font-size: 11px;">${item.date}</span>
+                        <span style="color: #64748b; font-size: 10px;">${item.date}</span>
                     </div>
-                    <div style="font-size: 11px; margin-bottom: 6px;">${starsHtml}</div>
-                    <p style="line-height: 1.5; color: #e2e8f0; font-style: italic;">"${item.text}"</p>
+                    <div style="margin-bottom: 5px;">${starsHtml}</div>
+                    <p style="line-height: 1.4; color: #e2e8f0; font-style: italic;">"${item.text}"</p>
                 </div>`;
         });
         container.innerHTML = html;
     }
 
-    // Fungsi reset/clear data monitoring
+    // Fungsi kosongkan riwayat
     function clearAllFeedbacks() {
-        if(confirm("Apakah Anda yakin ingin menghapus semua daftar riwayat ulasan yang masuk?")) {
+        if(confirm("Apakah Sana yakin ingin menghapus bersih seluruh riwayat ulasan yang masuk?")) {
             localStorage.removeItem('cbt_reviews');
             loadReviewsToAdminPanel();
         }
     }
 
-    // Jalankan render ulasan saat halaman dashboard pertama kali dibuka
-    window.addEventListener('DOMContentLoaded', loadReviewsToAdminPanel);
+    // Eksekusi pemeriksaan hak milik perangkat saat dashboard di-load
+    window.addEventListener('DOMContentLoaded', checkSanaAdminAccess);
 </script>
 
 </body>
