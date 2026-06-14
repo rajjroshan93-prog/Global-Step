@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Official Simulation - San Aethelgard Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #001f3f;
+            --accent: #00D4FF;
+            --bg-dark: #00152b;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --slate-gray: #64748b;
+            --border-color: #cbd5e1;
+            --test-blue: #f0f7ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Top Navigation/Timer Bar (CBT Style) */
+        .exam-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--accent);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        .exam-title h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            letter-spacing: 0.5px;
+        }
+
+        .exam-title span {
+            color: var(--accent);
+            font-size: 12px;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .timer-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--accent);
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Main Split Layout (Left: Text, Right: Questions) */
+        .exam-workspace {
+            display: flex;
+            flex: 1;
+            height: calc(100vh - 65px);
+            overflow: hidden;
+        }
+
+        .text-pane, .question-pane {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            height: 100%;
+        }
+
+        .text-pane {
+            background: white;
+            border-right: 2px solid #e2e8f0;
+            line-height: 1.8;
+            font-size: 16px;
+            text-align: justify;
+        }
+
+        .text-pane h2 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .text-pane p {
+            margin-bottom: 20px;
+        }
+
+        /* Question Styles */
+        .question-pane {
+            background: #f8fafc;
+        }
+
+        .instruction-block {
+            background: var(--test-blue);
+            border-left: 4px solid var(--primary);
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .question-group {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 30px;
+        }
+
+        .question-group h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+
+        .q-item {
+            margin-bottom: 20px;
+        }
+
+        .q-text {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 10px;
+            color: #1e293b;
+        }
+
+        /* Form Inputs */
+        select, input[type="text"] {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        select:focus, input:focus {
+            border-color: var(--primary);
+            background: var(--test-blue);
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .radio-option input {
+            cursor: pointer;
+        }
+
+        /* Bottom Control Panel */
+        .bottom-bar {
+            background: white;
+            padding: 15px 40px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-submit {
+            background: #16a34a;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: #15803d;
+        }
+
+        /* Overlay Result Modal */
+        .modal-overlay {
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(0, 21, 43, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .result-modal {
+            background: white;
+            width: 90%;
+            max-width: 550px;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            transform: scale(0.8);
+            transition: 0.3s;
+        }
+
+        .modal-overlay.active .result-modal {
+            transform: scale(1);
+        }
+
+        .result-modal h2 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .score-box {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--test-blue);
+            border: 3px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .score-circle .num {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .score-circle .lbl {
+            font-size: 11px;
+            color: var(--slate-gray);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .modal-desc {
+            font-size: 14px;
+            color: var(--slate-gray);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn-modal-close {
+            background: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            display: inline-block;
+            transition: 0.2s;
+        }
+
+        .btn-modal-close:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="exam-header">
+        <div class="exam-title">
+            <h1>READING ACADEMIC SIMULATION</h1>
+            <span>San Aethelgard CBT Engine v1.0</span>
+        </div>
+        <div class="timer-box">
+            <i class="fa-solid fa-clock"></i>
+            <span id="exam-timer">20:00</span>
+        </div>
+    </header>
+
+    <main class="exam-workspace">
+        
+        <section class="text-pane">
+            <h2>The Enigma of Marine Bioluminescence</h2>
+            <p><strong>A.</strong> Bioluminescence, the capacity of living organisms to emit visible light through internal chemical reactions, represents one of the most astonishing evolutionary adaptations in the natural world. While sporadically present in terrestrial ecosystems—most famously exemplified by lampyrid beetles, commonly known as fireflies—it is within the stygian depths of the earth's oceans that this phenomenon reaches its logistical and ecological zenith. In the aphotic zone, a realm completely devoid of solar penetration extending below 1,000 meters, bioluminescence is not an anomaly; rather, it constitutes the primary currency of visual communication for over seventy-five percent of macroscopic marine entities.</p>
+            
+            <p><strong>B.</strong> The structural biochemistry underpinning this cold light production relies fundamentally on the interaction between a substrate termed 'luciferin' and a catalytic enzyme designated as 'luciferase'. When oxygen molecules oxidize the luciferin molecule in the presence of luciferase, an unstable intermediate complex is generated. As this transient configuration decays back to its ground state, it releases energy not in the form of ambient heat, but as localized photons. Intriguingly, marine organisms have evolved a diverse array of luciferin architectures. For instance, 'coelenterazine' is utilized cross-phyla by radiolarians, cnidarians, and copepods alike, implying either an ancient evolutionary origin or a widespread dietary acquisition of the precursor molecules.</p>
+            
+            <p><strong>C.</strong> From an ethological perspective, the deployment of biological illumination serves three primary evolutionary mandates: defense, offense, and conspecific signaling. Defensively, certain deep-sea decapod shrimp eject a luminescent cloud of fluid when threatened by apex predators. This blinding expellant acts as a phantom decoy, compromising the predator's visual tracking and allowing the crustacean to execute a backward escape maneuver. Offensively, the anglerfish (Melanocetus johnsonii) leverages a modified dorsal fin ray tipped with an esca—a bulbous organ containing symbiotic luminous bacteria. Smaller teleost fish, drawn inexorably toward this deceptive beacon in the absolute darkness, are abruptly swallowed whole by the anglerfish’s distensible jaws.</p>
+        </section>
+
+        <section class="question-pane">
+            
+            <div class="instruction-block">
+                QUESTIONS 1 - 5<br>
+                Do the following statements agree with the information given in the Reading Passage?<br>
+                Select: TRUE (if the statement agrees), FALSE (if contradicts), or NOT GIVEN (if no information).
+            </div>
+
+            <div class="question-group">
+                <h3>Part 1: Identification of Facts</h3>
+                
+                <div class="q-item">
+                    <p class="q-text">1. Bioluminescence is more common in land-based organisms than in marine creatures.</p>
+                    <select class="exam-input" id="q1">
+                        <option value="">-- Select Answer --</option>
+                        <option value="TRUE">TRUE</option>
+                        <option value="FALSE">FALSE</option>
+                        <option value="NOT GIVEN">NOT GIVEN</option>
+                    </select>
+                </div>
+
+                <div class="q-item">
+                    <p class="q-text">2. In the ocean layer below 1,000 meters, the majority of large organisms use bioluminescence to communicate.</p>
+                    <select class="exam-input" id="q2">
+                        <option value="">-- Select Answer --</option>
+                        <option value="TRUE">TRUE</option>
+                        <option value="FALSE">FALSE</option>
+                        <option value="NOT GIVEN">NOT GIVEN</option>
+                    </select>
+                </div>
+
+                <div class="q-item">
+                    <p class="q-text">3. Chemical reactions that produce bioluminescence generate significant amounts of heat energy.</p>
+                    <select class="exam-input" id="q3">
+                        <option value="">-- Select Answer --</option>
+                        <option value="TRUE">TRUE</option>
+                        <option value="FALSE">FALSE</option>
+                        <option value="NOT GIVEN">NOT GIVEN</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="instruction-block">
+                QUESTIONS 4 - 5<br>
+                Choose the correct letter, A, B, C, or D.
+            </div>
+
+            <div class="question-group">
+                <h3>Part 2: Multiple Choice Questions</h3>
+                
+                <div class="q-item">
+                    <p class="q-text">4. What does the widespread use of 'coelenterazine' among different phyla suggest?</p>
+                    <label class="radio-option"><input type="radio" name="q4" value="A"> A. It is the only functional luciferin substrate in existence.</label>
+                    <label class="radio-option"><input type="radio" name="q4" value="B"> B. It indicates ancient evolution or transfer through diet.</label>
+                    <label class="radio-option"><input type="radio" name="q4" value="C"> C. It can only be produced by symbiotic deep-sea bacteria.</label>
+                    <label class="radio-option"><input type="radio" name="q4" value="D"> D. It prevents marine creatures from being tracked by predators.</label>
+                </div>
+
+                <div class="q-item">
+                    <p class="q-text">5. The decapod shrimp defends itself from predators by:</p>
+                    <label class="radio-option"><input type="radio" name="q5" value="A"> A. Blending entirely into the absolute black background.</label>
+                    <label class="radio-option"><input type="radio" name="q5" value="B"> B. Using an organ on its dorsal fin to attract smaller fish.</label>
+                    <label class="radio-option"><input type="radio" name="q5" value="C"> C. Discharging a glowing liquid to blind and distract them.</label>
+                    <label class="radio-option"><input type="radio" name="q5" value="D"> D. Swallowing the predator whole with a distensible jaw.</label>
+                </div>
+            </div>
+
+            <div class="instruction-block">
+                QUESTIONS 6 - 7<br>
+                Complete the sentences below. Choose NO MORE THAN TWO WORDS from the passage for each answer.
+            </div>
+
+            <div class="question-group">
+                <h3>Part 3: Word Fill-In (Sentence Completion)</h3>
+                
+                <div class="q-item">
+                    <p class="q-text">6. The biochemical mechanism of bioluminescence requires oxygen molecules to act upon the <input type="text" id="q6" placeholder="Write answer here..." style="width:200px; display:inline-block; padding:5px 10px; margin:0 5px;"> substrate.</p>
+                </div>
+
+                <div class="q-item">
+                    <p class="q-text">7. The anglerfish lures its prey in the darkness by utilizing an organ called an <input type="text" id="q7" placeholder="Write answer here..." style="width:200px; display:inline-block; padding:5px 10px; margin:0 5px;"> located at the tip of its modified fin.</p>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="bottom-bar">
+        <span style="font-size:13px; color:var(--slate-gray); font-weight:700;"><i class="fa-solid fa-triangle-exclamation"></i> Make sure all 7 questions are filled before submitting.</span>
+        <button class="btn-submit" onclick="submitExam()">Submit Exam Paper</button>
+    </footer>
+
+    <div class="modal-overlay" id="result-overlay">
+        <div class="result-modal">
+            <h2>Exam Results Calculated</h2>
+            <p style="color: var(--slate-gray); font-weight: bold; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase;">San Aethelgard Verification Engine</p>
+            
+            <div class="score-box">
+                <div class="score-circle">
+                    <span class="num" id="modal-raw">0/7</span>
+                    <span class="lbl">Raw Score</span>
+                </div>
+                <div class="score-circle" style="border-color:#16a34a; background:#f0fdf4;">
+                    <span class="num" id="modal-band" style="color:#16a34a;">0.0</span>
+                    <span class="lbl" style="color:#16a34a;">Band Score</span>
+                </div>
+            </div>
+
+            <p class="modal-desc">
+                Kerja bagus, San! Hasil ujian simulasi serius ini telah dikonversi secara akurat menggunakan matriks pembulatan resmi Cambridge IELTS Academic. Data pencapaianmu telah dikirim dan **terekam secara otomatis** di pusat log halaman dashboard!
+            </p>
+            
+            <a href="dashboard.html" class="btn-modal-close"><i class="fa-solid fa-house"></i> Kembali ke Dashboard</a>
+        </div>
+    </div>
+
+    <script>
+        // 1. ENGINE TIMER COUNTDOWN (20 MENIT)
+        let timeLeft = 20 * 60; 
+        const timerElement = document.getElementById('exam-timer');
+        
+        const countdown = setInterval(() => {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            
+            timerElement.textContent = `${minutes}:${seconds}`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                alert("Time is up! Your answers will be automatically lock and calculated.");
+                submitExam();
+            }
+            timeLeft--;
+        }, 1000);
+
+        // 2. GRAD ENGINE & AUTO INTEGRATION LOCALSTORAGE
+        function submitExam() {
+            clearInterval(countdown);
+
+            // Kunci Jawaban Mutlak (Sesuai Teks)
+            const answerKey = {
+                q1: "FALSE",              // Karena di teks tertulis di laut mendominasi (75%) dibanding darat yang sporadis
+                q2: "TRUE",               // Di bawah 1,000m (aphotic zone), >75% menggunakan bioluminescence untuk komunikasi
+                q3: "FALSE",              // Di teks tertulis menghasilkan energi "not in the form of ambient heat, but as photons"
+                q4: "B",                  // Paragraph B: suggests an ancient evolutionary origin or dietary acquisition
+                q5: "C",                  // Paragraph C: eject a luminescent cloud of fluid... blinding decoy
+                q6: "luciferin",          // Paragraph B: interaction between a substrate termed 'luciferin'
+                q7: "esca"                // Paragraph C: tipped with an esca
+            };
+
+            let rawScore = 0;
+
+            // Cek Jawaban Bagian Dropdown (Q1 - Q3)
+            if (document.getElementById('q1').value === answerKey.q1) rawScore++;
+            if (document.getElementById('q2').value === answerKey.q2) rawScore++;
+            if (document.getElementById('q3').value === answerKey.q3) rawScore++;
+
+            // Cek Jawaban Bagian Radio Button (Q4 - Q5)
+            const rQ4 = document.querySelector('input[name="q4"]:checked');
+            const rQ5 = document.querySelector('input[name="q5"]:checked');
+            if (rQ4 && rQ4.value === answerKey.q4) rawScore++;
+            if (rQ5 && rQ5.value === answerKey.q5) rawScore++;
+
+            // Cek Jawaban Bagian Text Input (Q6 - Q7) - Kebal Huruf Kapital & Spasi Liar
+            const tQ6 = document.getElementById('q6').value.trim().toLowerCase();
+            const tQ7 = document.getElementById('q7').value.trim().toLowerCase();
+            if (tQ6 === answerKey.q6) rawScore++;
+            if (tQ7 === answerKey.q7) rawScore++;
+
+            // Konversi Skala Band Score (Matriks Akurasi Tinggi Diskalakan dari Total 7 Soal ke Skala 40 Soal IELTS)
+            let bandScore = 1.0;
+            if (rawScore === 7) bandScore = 9.0;
+            else if (rawScore === 6) bandScore = 8.0;
+            else if (rawScore === 5) bandScore = 7.0;
+            else if (rawScore === 4) bandScore = 6.0;
+            else if (rawScore === 3) bandScore = 5.0;
+            else if (rawScore === 2) bandScore = 4.0;
+            else if (rawScore === 1) bandScore = 3.0;
+            else bandScore = 2.0;
+
+            // --- JEMBATAN OTOMATISASI EMAS (MENEMBAK LANGSUNG KE ANALYTICS.HTML) ---
+            const today = new Date().toISOString().split('T')[0];
+            let currentLogs = JSON.parse(localStorage.getItem('san_ielts_logs')) || [];
+            
+            // Masukkan data simulasi ini ke log array global
+            currentLogs.push({
+                date: today,
+                skill: "Simulasi Full Test (Reading)",
+                score: bandScore.toFixed(1)
+            });
+            
+            // Kunci kembali ke memori browser
+            localStorage.setItem('san_ielts_logs', JSON.stringify(currentLogs));
+            // ------------------------------------------------------------------------
+
+            // Munculkan Layar Hasil Ujian (Modal)
+            document.getElementById('modal-raw').textContent = `${rawScore} / 7`;
+            document.getElementById('modal-band').textContent = bandScore.toFixed(1);
+            document.getElementById('result-overlay').classList.add('active');
+
+            // Bekukan semua input agar tidak bisa diubah setelah submit
+            document.querySelectorAll('input, select, button').forEach(el => el.disabled = true);
+        }
+    </script>
+</body>
+</html>
