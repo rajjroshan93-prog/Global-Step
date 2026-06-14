@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cambridge Listening Masterclass - San Aethelgard</title>
+    <title>Listening Core Tips - Sana Aethelgard Academy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&family=Courier+Prime&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -14,157 +14,481 @@
             --accent: #00D4FF;
             --bg-dark: #00152b;
             --card-bg: #ffffff;
-            --text-main: #334155;
+            --text-main: #1e293b;
             --slate-gray: #64748b;
+            --exam-gold: #d4af37;
+            --soft-green: #10b981;
+            --alert-red: #ef4444;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Lato', sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        .materi-container { width: 100%; max-width: 850px; background: var(--card-bg); border-radius: 20px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
-        
-        .header-materi { text-align: center; margin-bottom: 35px; border-bottom: 2px solid #f1f5f9; padding-bottom: 25px; }
-        .header-materi h2 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 28px; }
-        .badge-elite { display: inline-block; background: #e0faff; color: #0369a1; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
 
-        h3 { font-family: 'Poppins', sans-serif; color: var(--primary); font-size: 20px; margin-top: 35px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        h3 i { color: var(--accent); background: var(--primary); width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
 
-        p { font-size: 15px; line-height: 1.7; color: #475569; margin-bottom: 15px; text-align: justify; }
-        b { color: var(--primary); }
+        /* Top Navigation Header */
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 20px 35px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
 
-        /* STRATEGY CARD */
-        .strategy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 25px 0; }
-        .strategy-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-align: center; }
-        .strategy-card i { font-size: 24px; color: var(--primary); margin-bottom: 10px; }
-        .strategy-card h4 { font-family: 'Poppins', sans-serif; font-size: 15px; color: var(--primary); margin-bottom: 8px; }
-        .strategy-card p { font-size: 13px; margin-bottom: 0; text-align: center; line-height: 1.5; }
+        .header-title h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            color: var(--primary);
+        }
 
-        /* LISTENING SECTIONS GRID */
-        .section-box { background: #f8fafc; border-left: 4px solid var(--primary); padding: 15px 20px; margin-bottom: 12px; border-radius: 0 8px 8px 0; }
-        .section-box h4 { font-family: 'Poppins', sans-serif; font-size: 16px; color: var(--primary); margin-bottom: 4px; }
-        .section-box p { font-size: 14px; margin-bottom: 0; }
+        .header-title p {
+            font-size: 13px;
+            color: var(--slate-gray);
+            font-weight: bold;
+        }
 
-        /* TABLES */
-        .table-style { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
-        .table-style th { background: var(--primary); color: #fff; text-align: left; padding: 12px; font-family: 'Poppins', sans-serif; font-weight: 600; }
-        .table-style td { padding: 12px; border-bottom: 1px solid #e2e8f0; line-height: 1.6; }
-        .table-style tr:nth-child(even) { background-color: #f8fafc; }
+        .btn-back-dash {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            transition: 0.3s;
+            border: 2px solid var(--primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-        /* PRO TIP BOX */
-        .pro-tip { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 20px; border-radius: 8px; margin: 25px 0; }
-        .pro-tip h5 { font-family: 'Poppins', sans-serif; color: #166534; font-size: 16px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .btn-back-dash:hover {
+            background: transparent;
+            color: var(--primary);
+        }
 
-        .back-btn { display: inline-block; margin-top: 35px; width: 100%; text-align: center; background: var(--primary); color: white; padding: 14px; border-radius: 50px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; transition: 0.3s; border: 2px solid var(--primary); }
-        .back-btn:hover { background: var(--accent); color: var(--primary); border-color: var(--accent); }
+        /* 4 Core Listening Pillars Grid Summary */
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
 
-        @media (max-width: 650px) {
-            .strategy-grid { grid-template-columns: 1fr; }
-            .materi-container { padding: 25px 20px; }
-            .header-materi h2 { font-size: 22px; }
+        .criteria-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 12px;
+            padding: 20px 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-top: 4px solid var(--accent);
+            text-align: center;
+        }
+
+        .criteria-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13.5px;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .criteria-card p {
+            font-size: 12px;
+            color: var(--slate-gray);
+            line-height: 1.4;
+        }
+
+        /* Interactive Tabs Strategi */
+        .strategy-box {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .tab-bar {
+            display: flex;
+            background: #e2e8f0;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            color: #475569;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            padding: 35px;
+            display: none;
+        }
+
+        .tab-content.active-content {
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+        }
+
+        .tip-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .tip-list li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .tip-list li i {
+            color: var(--soft-green);
+            margin-top: 4px;
+        }
+
+        /* Formula & Distractor Box */
+        .formula-box {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .formula-box h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #b45309;
+            margin-bottom: 8px;
+        }
+
+        .formula-badge {
+            background: #f59e0b;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .example-block {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px dashed #cbd5e1;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-style: italic;
+            font-size: 13.5px;
+        }
+
+        /* INTERACTIVE WIDGET: LISTENING SIMULATOR */
+        .widget-box {
+            background: linear-gradient(135deg, #001f3f 0%, #000c18 100%);
+            border: 2px solid var(--exam-gold);
+            border-radius: 16px;
+            padding: 30px;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .widget-box h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: var(--exam-gold);
+            margin-bottom: 5px;
+        }
+
+        .widget-box p {
+            font-size: 13px;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .audio-simulation-control {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .btn-play-sim {
+            background: var(--primary);
+            color: white;
+            border: 2px solid var(--accent);
+            padding: 12px 28px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            font-size: 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+
+        .btn-play-sim:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .quiz-workspace {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px dashed rgba(0, 212, 255, 0.3);
+        }
+
+        .question-item {
+            margin-bottom: 15px;
+        }
+
+        .question-item label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+
+        .input-sim {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary);
+            border: 1px solid var(--accent);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            width: 100%;
+            max-width: 300px;
+            outline: none;
+            font-weight: bold;
+        }
+
+        .btn-check-ans {
+            background: var(--exam-gold);
+            color: var(--primary);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 12.5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-check-ans:hover {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .feedback-alert {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            display: none;
+            text-align: center;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-<div class="materi-container">
-    <div class="header-materi">
-        <div class="badge-elite">San Aethelgard Academy</div>
-        <h2>Cambridge Listening Blueprint</h2>
-        <p style="margin-top: 5px; font-size: 14px; color: var(--slate-gray);">Sistem taktis pemetaan audio, sinkronisasi skrip, dan penulisan lembar jawaban resmi.</p>
+<div class="container">
+
+    <div class="header-nav">
+        <div class="header-title">
+            <h1>TACTICAL LISTENING STRATEGY</h1>
+            <p>Cambridge Standardized Listening Architecture (Expert Level Analysis)</p>
+        </div>
+        <a href="dashboard.html" class="btn-back-dash"><i class="fa-solid fa-arrow-left"></i> Dashboard Utama</a>
     </div>
 
-    <h3><i class="fa-solid fa-layer-group"></i> Anatomi 4 Bagian Tes Cambridge</h3>
-    <p>Ujian mendengarkan dibagi menjadi empat bagian dengan tingkat kompleksitas linguistik yang semakin meningkat secara eksponensial.</p>
-    
-    <div class="section-box">
-        <h4>Section 1: Social Dialogue (2 Pembicara)</h4>
-        <p>Percakapan kasual sehari-hari (misal: memesan kamar hotel atau mendaftar keanggotaan gym). Fokus utama: Pencatatan nama, nomor telepon, tanggal, dan alamat.</p>
-    </div>
-    <div class="section-box">
-        <h4>Section 2: Social Monologue (1 Pembicara)</h4>
-        <p>Satu orang menjelaskan fasilitas umum atau memberikan panduan tur (misal: penjelasan peta taman nasional atau siaran radio komunitas). Fokus utama: Menjawab soal pilihan ganda dan pencocokan peta.</p>
-    </div>
-    <div class="section-box">
-        <h4>Section 3: Educational Context (2 - 4 Pembicara)</h4>
-        <p>Diskusi akademik antara mahasiswa dengan dosen pembimbing mengenai proyek ilmiah. Fokus utama: Mengidentifikasi perubahan opini, persetujuan, dan ketidaksetujuan antar tokoh.</p>
-    </div>
-    <div class="section-box">
-        <h4>Section 4: Academic Lecture (1 Pembicara)</h4>
-        <p>Kuliah universitas murni tanpa jeda istirahat (misal: pembahasan penelitian antropologi atau sejarah arsitektur). Fokus utama: Menangkap kosakata tingkat tinggi (*Advanced Vocabulary*) dan melengkapi rangkuman.</p>
-    </div>
-
-    <h3><i class="fa-solid fa-clock"></i> 3 Pilar Teknik Sinkronisasi</h3>
-    <p>Ingat, rekaman audio **hanya diputar satu kali**. Kegagalan mengantisipasi teks sebelum audio berjalan akan berakibat fatal.</p>
-    
-    <div class="strategy-grid">
-        <div class="strategy-card">
-            <i class="fa-solid fa-pen-to-square"></i>
-            <h4>Predicting Context</h4>
-            <p>Analisis jenis kata sebelum audio mulai. Apakah titik-titik membutuhkan satuan mata uang, nama hari, atau kata sifat (*adjective*)?</p>
+    <div class="criteria-grid">
+        <div class="criteria-card">
+            <h3>Pre-Reading Skill</h3>
+            <p>Membaca kilat soal dalam waktu 30 detik untuk memprediksi tipe data kata benda/angka yang dicari.</p>
         </div>
-        <div class="strategy-card">
-            <i class="fa-solid fa-map-signs"></i>
-            <h4>Signpost Tracking</h4>
-            <p>Ikuti kata penanda transisi materi pembicara seperti <i>"On the other hand"</i> atau <i>"Now, let's turn to..."</i> agar posisi membaca tidak tersesat.</p>
+        <div class="criteria-card" style="border-top-color: var(--exam-gold);">
+            <h3>Distractor Detection</h3>
+            <p>Mendeteksi koreksi mandiri pembicara di audio yang sengaja mengubah jawaban di akhir kalimat.</p>
         </div>
-        <div class="strategy-card">
-            <i class="fa-solid fa-font"></i>
-            <h4>Capitalization Rules</h4>
-            <p>Nama orang, jalan, benua, dan institusi **wajib ditulis dengan huruf kapital di awal** (Contoh: <i>London</i>, bukan <i>london</i>). Jika salah, sistem menganggapnya tidak sah.</p>
+        <div class="criteria-card" style="border-top-color: var(--soft-green);">
+            <h3>Synonym Tracking</h3>
+            <p>Melacak parafrase kata kunci, karena audio jarang menggunakan kata yang sama persis dengan soal kertas.</p>
+        </div>
+        <div class="criteria-card" style="border-top-color: var(--alert-red);">
+            <h3>Spelling Accuracy</h3>
+            <p>Ketepatan penulisan huruf kapital nama jalan, kode pos, serta keselarasan bentuk jamak tunggal (-s/-es).</p>
         </div>
     </div>
 
-    <h3><i class="fa-solid fa-filter"></i> Bedah Jebakan Parafrasa & Koreksi Instan</h3>
-    <p>Cambridge selalu menguji ketelitian mendengarkan Anda dengan memberikan info palsu di awal sebelum meralatnya di akhir kalimat.</p>
-    
-    <table class="table-style">
-        <thead>
-            <tr>
-                <th style="width: 45%;">Transkrip Audio Asli</th>
-                <th style="width: 35%;">Taktik Pengecoh</th>
-                <th style="width: 20%;">Jawaban Mutlak</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>"We will depart at <b>8:30 AM</b>... actually, the bus company just informed us that it's delayed to <b>9:15 AM</b>."</td>
-                <td><i>Self-Correction Trap</i> (Koreksi langsung oleh pembicara).</td>
-                <td><b>9:15 AM</b></td>
-            </tr>
-            <tr>
-                <td>"I used to work as a <b>mechanic</b>, but now I earn my living as a <b>chef</b>."</td>
-                <td><i>Past vs Present Trap</i> (Membandingkan masa lalu dengan kondisi sekarang).</td>
-                <td><b>chef</b></td>
-            </tr>
-            <tr>
-                <td>"The laboratory is located <b>opposite</b> the library, not behind it."</td>
-                <td><i>Prepositional Trap</i> (Jebakan arah posisi lokasi benda pada peta).</td>
-                <td><b>opposite</b></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="strategy-box">
+        <div class="tab-bar">
+            <button class="tab-btn active" onclick="openTab(event, 'sectionTactics')">SECTION 1-4 COMPASS</button>
+            <button class="tab-btn" onclick="openTab(event, 'distractorFilters')">ANTI-JEBAKAN (DISTRACTORS)</button>
+            <button class="tab-btn" onclick="openTab(event, 'spellingRules')">SPELLING & SYNONYM RULES</button>
+        </div>
 
-    <h3><i class="fa-solid fa-ban"></i> Aturan Ketat Batasan Kata (Word Limit)</h3>
-    <p>Jika instruksi tertulis <b>"NO MORE THAN TWO WORDS"</b>, batas maksimal adalah dua kata. Menulis tiga kata otomatis dianggap salah total meskipun substansinya benar.</p>
-    <table class="table-style" style="margin-top: 5px;">
-        <tr>
-            <td style="width: 50%;"><b>Jawaban Sesuai Aturan (Benar):</b></td>
-            <td style="width: 50%; color: #166534;">"leather shoes" (2 kata)</td>
-        </tr>
-        <tr>
-            <td><b>Jawaban Melebihi Batas (Salah Total):</b></td>
-            <td style="color: #991b1b;">"shoes made of leather" (4 kata)</td>
-        </tr>
-    </table>
+        <div id="sectionTactics" class="tab-content active-content">
+            <h3 class="section-title">Navigasi Alur Ujian Section 1 sampai Section 4</h3>
+            <ul class="tip-list">
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Section 1 (Social Survival):</strong> Fokus pada akurasi penulisan nama, angka, nomor telepon, dan ejaan dasar. Jangan terkecoh dengan angka yang dikoreksi ulang!</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Section 2 (General Context):</strong> Umumnya berupa peta (*map*) atau monolog fasilitas umum. Gunakan teknik kompas (North, South, East, West) dan bayangkan arah jarum jam.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Section 3 (Academic Discussion):</strong> Percakapan multipihak antar-mahasiswa dan profesor. Selalu perhatikan perubahan persetujuan (*agreement*) di antara para pembicara.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Section 4 (Academic Lecture):</strong> Monolog kuliah ilmiah tanpa jeda istirahat. Andalkan deteksi transisi kata penunjuk (*Signposting Words*) seperti: *Furthermore, Turning now to, In conclusion*.</li>
+            </ul>
+        </div>
 
-    <div class="pro-tip">
-        <h5><i class="fa-solid fa-graduation-cap"></i> San's Cambridge Core Principle:</h5>
-        <p style="margin-bottom: 0; font-size: 14px; color: #166534;">Awas jebakan **Plural (-s/-es)**! Jika audio menyebutkan <i>"environmental factors"</i> dan Anda hanya menulis <i>"environmental factor"</i> (tanpa huruf S), jawaban langsung dicoret. Dengarkan baik-baik desisan di akhir kata benda!</p>
+        <div id="distractorFilters" class="tab-content">
+            <h3 class="section-title">Metode Pemfilteran Informasi Palsu (*Distractors*)</h3>
+            <ul class="tip-list">
+                <li><i class="fa-solid fa-circle-check"></i> <strong>The Self-Correction Trap:</strong> Pembicara memberikan info pertama, lalu membatalkannya dengan kata konjungsi kontras (*but, actually, wait, sorry, I changed my mind*).</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>The Postponement Trap:</strong> Rencana awal dibatalkan atau digeser ke tanggal/waktu yang lain di kalimat berikutnya.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>The Plan vs Reality Trap:</strong> Pembicara mendiskusikan apa yang mereka *inginkan* vs apa yang *sebenarnya terjadi* secara logistik di lapangan.</li>
+            </ul>
+
+            <div class="formula-box">
+                <h4><span class="formula-badge">DISTRACTOR ANATOMY EXAMPLE</span></h4>
+                <div class="example-block">
+                    <strong>Audio Transkrip:</strong> "We initially locked the laboratory booking for <u>Tuesday the 14th</u>, but Professor Vance updated the schedule to the **following Thursday**."<br>
+                    <strong>Soal Kertas:</strong> "Date of laboratory reservation: ______"<br>
+                    <strong>Analisis:</strong> Jawaban asli adalah hari **Kamis tanggal 16**, bukan Selasa tanggal 14! Selasa hanyalah distractor umpan.
+                </div>
+            </div>
+        </div>
+
+        <div id="spellingRules" class="tab-content">
+            <h3 class="section-title">Regulasi Ketat Penulisan & Pelacakan Sinonim</h3>
+            <ul class="tip-list">
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Singular vs Plural (-s/-es):</strong> Jika audio menyebutkan kata benda jamak (misal: *environments*), penulisan tanpa huruf 's' di akhir otomatis dianggap salah total oleh komputer CBT.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Word-Limit Compliance:</strong> Patuhi instruksi batas kata kuis secara mutlak! Jika tertulis *NO MORE THAN TWO WORDS*, penulisan tiga kata otomatis bernilai nol meskipun artinya benar.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Hyphenated Words:</strong> Kata yang berpenghubung seperti *up-to-date* atau *second-hand* dihitung sebagai **satu kata tunggal**.</li>
+            </ul>
+        </div>
     </div>
 
-    <a href="dashboard.html" class="back-btn"><i class="fa-solid fa-chevron-left" style="margin-right: 8px; font-size: 13px;"></i> Kembali ke Dashboard</a>
+    <div class="widget-box">
+        <h2><i class="fa-solid fa-volume-high"></i> Interactive Keyword & Distractor Audio Simulator</h2>
+        <p>Latih fokus pendengaran Anda secara langsung. Tekan tombol putar audio di bawah ini, dengarkan narasinya secara saksama, lalu tangkap kata kunci asli dan hindari jebakan koreksi mandiri pembicara!</p>
+        
+        <div class="audio-simulation-control">
+            <button class="btn-play-sim" id="playBtn" onclick="playListeningSim()"><i class="fa-solid fa-circle-play"></i> Putar Audio Simulasi</button>
+        </div>
+
+        <div class="quiz-workspace">
+            <div class="question-item">
+                <label for="ans1"><strong>Question 1 (Batas kata: ONE WORD ONLY):</strong><br>The main conference workshop will be hosted on which specific day?</label>
+                <input type="text" class="input-sim" id="ans1" placeholder="Ketik jawaban hari di sini...">
+            </div>
+            <div style="text-align: right; margin-top: 15px;">
+                <button class="btn-check-ans" onclick="validateListeningAns()"><i class="fa-solid fa-shield-halved"></i> Verifikasi Hasil Pendengaran</button>
+            </div>
+        </div>
+
+        <div class="feedback-alert" id="feedbackBox"></div>
+    </div>
+
 </div>
+
+<script>
+    // Tab Switching Core Logic
+    function openTab(evt, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active-content'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active-content');
+        evt.currentTarget.classList.add('active');
+    }
+
+    // Audio Player Text-To-Speech Simulator
+    function playListeningSim() {
+        if (window.speechSynthesis.speaking) {
+            window.speechSynthesis.cancel();
+            document.getElementById('playBtn').innerHTML = `<i class="fa-solid fa-circle-play"></i> Putar Audio Simulasi`;
+            return;
+        }
+
+        const script = "Hello and welcome to the academy coordinator hub. Regarding your question about the upcoming digital training, we originally scheduled the main conference workshop to take place on Monday. However, due to unexpected server enhancements, the board decided it is much better to host it on Wednesday instead. Yes, write that down, it will definitely be on Wednesday. Thank you.";
+        
+        const utterance = new SpeechSynthesisUtterance(script);
+        utterance.lang = 'en-GB';
+        utterance.rate = 0.88;
+
+        utterance.onstart = () => { document.getElementById('playBtn').innerHTML = `<i class="fa-solid fa-circle-stop"></i> Berhentikan Audio`; };
+        utterance.onend = () => { document.getElementById('playBtn').innerHTML = `<i class="fa-solid fa-circle-play"></i> Putar Audio Simulasi`; };
+        
+        window.speechSynthesis.speak(utterance);
+    }
+
+    // Validation Logic
+    function validateListeningAns() {
+        const input = document.getElementById('ans1').value.trim().toLowerCase();
+        const fb = document.getElementById('feedbackBox');
+        fb.style.display = "block";
+
+        if (input === "wednesday") {
+            fb.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+            fb.style.color = "var(--soft-green)";
+            fb.style.border = "1px solid var(--soft-green)";
+            fb.innerHTML = "✓ SKOR SEMPURNA (BAND 9.0)! Pendengaran Anda sangat tajam, Sana. Anda berhasil menyaring informasi jebakan hari 'Monday' dan menangkap koreksi akhir pembicara yaitu 'Wednesday' secara akurat.";
+        } else if (input === "monday") {
+            fb.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+            fb.style.color = "var(--alert-red)";
+            fb.style.border = "1px solid var(--alert-red)";
+            fb.innerHTML = "✗ TERJEBAK DISTRACTOR! Hari 'Monday' adalah jadwal rencana awal yang sudah dibatalkan di tengah audio. Dengarkan kata penunjuk kontras 'However' untuk menangkap perubahan jawabannya!";
+        } else {
+            fb.style.backgroundColor = "rgba(245, 158, 11, 0.2)";
+            fb.style.color = "#b45309";
+            fb.style.border = "1px solid #f59e0b";
+            fb.innerHTML = "• Jawaban tidak terdeteksi atau salah ketik (*Spelling Error*). Pastikan ejaan nama harinya tepat dan diawali huruf kapital jika di lembar ujian asli, Sana!";
+        }
+    }
+</script>
 
 </body>
 </html>
