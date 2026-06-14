@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speaking Core Tips - San Aethelgard Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=600;700&family=Lato:wght=400;700&family=Courier+Prime&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #001f3f;
+            --accent: #00D4FF;
+            --bg-dark: #00152b;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --slate-gray: #64748b;
+            --exam-gold: #d4af37;
+            --soft-green: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Top Navigation Header */
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 20px 35px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .header-title h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            color: var(--primary);
+        }
+
+        .header-title p {
+            font-size: 13px;
+            color: var(--slate-gray);
+            font-weight: bold;
+        }
+
+        .btn-back-dash {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            transition: 0.3s;
+            border: 2px solid var(--primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-back-dash:hover {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        /* 4 Band Descriptors Grid Summary */
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .criteria-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 12px;
+            padding: 20px 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-top: 4px solid var(--accent);
+            text-align: center;
+        }
+
+        .criteria-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13.5px;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .criteria-card p {
+            font-size: 12px;
+            color: var(--slate-gray);
+            line-height: 1.4;
+        }
+
+        /* Interactive Tabs Strategi */
+        .strategy-box {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .tab-bar {
+            display: flex;
+            background: #e2e8f0;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            color: #475569;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            padding: 35px;
+            display: none;
+        }
+
+        .tab-content.active-content {
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+        }
+
+        .tip-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .tip-list li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .tip-list li i {
+            color: var(--soft-green);
+            margin-top: 4px;
+        }
+
+        /* Formula & Template Callout Box */
+        .formula-box {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .formula-box h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #b45309;
+            margin-bottom: 8px;
+        }
+
+        .formula-badge {
+            background: #f59e0b;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .example-block {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px dashed #cbd5e1;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-style: italic;
+            font-size: 13.5px;
+        }
+
+        /* INTERACTIVE WIDGET: PHRASEBANK BUILDER */
+        .widget-box {
+            background: linear-gradient(135deg, #001f3f 0%, #000c18 100%);
+            border: 2px solid var(--exam-gold);
+            border-radius: 16px;
+            padding: 30px;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .widget-box h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: var(--exam-gold);
+            margin-bottom: 5px;
+        }
+
+        .widget-box p {
+            font-size: 13px;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .selector-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .selector-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .selector-group label {
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .custom-select {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid var(--accent);
+            background: #00152b;
+            color: white;
+            font-size: 13.5px;
+            outline: none;
+        }
+
+        .output-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .output-text {
+            font-family: 'Courier Prime', monospace;
+            font-size: 15px;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .highlight-gold {
+            color: var(--exam-gold);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header-nav">
+        <div class="header-title">
+            <h1>SYSTEMATIC SPEAKING STRATEGY</h1>
+            <p>Cambridge & IELTS Academic Assessment Matrix (Band 8.0+ Framework)</p>
+        </div>
+        <a href="dashboard.html" class="btn-back-dash"><i class="fa-solid fa-arrow-left"></i> Dashboard Utama</a>
+    </div>
+
+    <div class="criteria-grid">
+        <div class="criteria-card">
+            <h3>Fluency & Coherence</h3>
+            <p>Berbicara lancar tanpa jeda lama tak wajar. Gunakan penanda wacana (linkers) secara natural.</p>
+        </div>
+        <div class="criteria-card" style="border-top-color: var(--exam-gold);">
+            <h3>Lexical Resource</h3>
+            <p>Variasi kosakata tingkat tinggi (idiomatic vocab) dan hindari pengulangan kata dasar.</p>
+        </div>
+        <div class="criteria-card" style="border-top-color: var(--soft-green);">
+            <h3>Grammatical Range</h3>
+            <p>Gunakan struktur kalimat kompleks (conditional clauses, relative clauses, perfect tenses).</p>
+        </div>
+        <div class="criteria-card" style="border-top-color: #ef4444;">
+            <h3>Pronunciation</h3>
+            <p>Artikulasi kata jelas, penekanan kalimat tepat (*intonation*), dan pengucapan fonem akurat.</p>
+        </div>
+    </div>
+
+    <div class="strategy-box">
+        <div class="tab-bar">
+            <button class="tab-btn active" onclick="openTab(event, 'part1')">PART 1: Introduction & Familiar Topics</button>
+            <button class="tab-btn" onclick="openTab(event, 'part2')">PART 2: Long Turn Cue Card</button>
+            <button class="tab-btn" onclick="openTab(event, 'part3')">PART 3: Abstract Analytical Discussion</button>
+        </div>
+
+        <div id="part1" class="tab-content active-content">
+            <h3 class="section-title">Strategi Penguasaan Part 1 (Durasi: 4-5 Menit)</h3>
+            <ul class="tip-list">
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Jangan Beri Jawaban Terlalu Pendek:</strong> Hindari menjawab hanya "Yes, I do" atau "No, I like it". Berikan ekspansi minimal 2-3 kalimat penuh.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Gunakan Metode Respon Spontan:</strong> Langsung jawab pertanyaan di kalimat pertama, lalu tambahkan alasan konseptual atau contoh personal di kalimat berikutnya.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Paraphrase Pertanyaan:</strong> Jika penguji bertanya "Do you *like* watching movies?", jawab menggunakan sinonim tingkat tinggi seperti "I am absolutely *passionate about* cinematography...".</li>
+            </ul>
+
+            <div class="formula-box">
+                <h4><span class="formula-badge">FORMULA O-R-E</span> (Opinion - Reason - Example)</h4>
+                <p>Gunakan struktur ini untuk menjawab seluruh pertanyaan interaktif kasual di Part 1 agar terstruktur.</p>
+                <div class="example-block">
+                    <strong>Pertanyaan:</strong> "Do you prefer studying in the morning or evening?"<br>
+                    <strong>Respon Band 8.0+:</strong> "Without a doubt, I lean heavily towards morning study sessions <span class="highlight-gold">[Opinion]</span>. This is primarily because my cognitive retention capabilities peak during the early hours <span class="highlight-gold">[Reason]</span>. For instance, I managed to master complex integration algorithms last week simply by reviewing them at 6 AM <span class="highlight-gold">[Example]</span>."
+                </div>
+            </div>
+        </div>
+
+        <div id="part2" class="tab-content">
+            <h3 class="section-title">Strategi Penguasaan Part 2 (Durasi: 3-4 Menit)</h3>
+            <ul class="tip-list">
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Manfaatkan 1 Menit Persiapan:</strong> Jangan menulis kalimat lengkap di kertas corat-coret. Tulis kata kunci (*keywords*) dan struktur penanda waktu saja.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Bicara Hingga Dihentikan Penguji:</strong> Targetkan untuk terus berbicara secara stabil sampai menyentuh batas 2 menit penuh tanpa terbata-bata.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Metode Alur Kronologis:</strong> Bagi cerita Anda ke dalam struktur Masa Lalu (Background), Masa Kini (Current situation), dan Masa Depan (Future impact) jika kehabisan ide cue card.</li>
+            </ul>
+
+            <div class="formula-box">
+                <h4><span class="formula-badge">TEMPLATES: SENSORY START</span></h4>
+                <p>Gunakan kalimat pembuka dramatis dan bernilai leksikal tinggi untuk memikat penguji sejak detik pertama Part 2.</p>
+                <div class="example-block">
+                    <strong>Pilihan Pembuka Premium:</strong> "If memory serves me right, the most spectacular instance I could recollect regarding this topic would be..." atau "An event that stands out vividly in my mind is..."
+                </div>
+            </div>
+        </div>
+
+        <div id="part3" class="tab-content">
+            <h3 class="section-title">Strategi Penguasaan Part 3 (Durasi: 4-5 Menit)</h3>
+            <ul class="tip-list">
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Ubah Perspektif ke Skala Global:</strong> Berhenti memberikan contoh pribadi ("I", "My family"). Gunakan subjek makro seperti "Society", "Governments", "From a macro-economic perspective".</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Teknik Menunda Waktu Jawaban (Buying Time):</strong> Jika mendapatkan soal filsafat abstrak yang sulit, jangan diam (*silence*). Gunakan filler formal untuk berpikir.</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Tunjukkan Kontras Spekulatif:</strong> Bandingkan dampak positif dan negatif, atau bandingkan pandangan generasi muda dengan generasi tua.</li>
+            </ul>
+
+            <div class="formula-box">
+                <h4><span class="formula-badge">FORMULA I-E-C</span> (Identify - Elaborate - Conclude)</h4>
+                <p>Metode menjawab komprehensif layaknya menulis esai pendek secara lisan untuk pertanyaan analisis.</p>
+                <div class="example-block">
+                    <strong>Pertanyaan:</strong> "How will artificial intelligence affect global job security?"<br>
+                    <strong>Respon Band 8.5+:</strong> "Evidently, automation acts as a double-edged sword for employment infrastructure <span class="highlight-gold">[Identify]</span>. On one hand, mundane industrial operations will be completely phased out by algorithms, which downsamples manual labor markets. However, it simultaneously births advanced tech positions <span class="highlight-gold">[Elaborate]</span>. Thus, it doesn't eradicate work entirely but rather forces a global re-skilling revolution <span class="highlight-gold">[Conclude]</span>."
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget-box">
+        <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Interactive Phrasebank Builder</h2>
+        <p>Latih reflek berbicara Anda. Pilih skenario kondisi di bawah ini untuk melihat struktur kalimat akademis otomatis yang wajib Anda ucapkan.</p>
+        
+        <div class="selector-row">
+            <div class="selector-group">
+                <label for="scenSelect">Skenario Kondisi</label>
+                <select id="scenSelect" class="custom-select" onchange="buildPhrase()">
+                    <option value="buyTime">Butuh Waktu Berpikir (Anti Silence)</option>
+                    <option value="disagree">Menyatakan Ketidaksetujuan Formal</option>
+                    <option value="speculate">Berspekulasi Tentang Masa Depan</option>
+                    <option value="generalize">Membuat Generalisasi Fenomena</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="output-box">
+            <p class="output-text" id="phraseOutput">"That's a profoundly intricate question to analyze on the spot, however, if I look at it from a broader perspective..."</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Tab Switching Core Logic
+    function openTab(evt, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active-content'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active-content');
+        evt.currentTarget.classList.add('active');
+    }
+
+    // Phrasebank Generation Database
+    const phrases = {
+        buyTime: "That's a profoundly intricate question to analyze on the spot, however, if I look at it from a broader perspective...",
+        disagree: "I completely appreciate that perspective, however, empirical evidence strongly suggests an entirely different trajectory because...",
+        speculate: "Foreseeing the next decade, it is highly probable that advanced technological frameworks will structurally transform...",
+        generalize: "By and large, within contemporary society, an overwhelming majority of individuals tend to exhibit a preference for..."
+    };
+
+    function buildPhrase() {
+        const val = document.getElementById('scenSelect').value;
+        document.getElementById('phraseOutput').innerHTML = `"${phrases[val]}"`;
+    }
+</script>
+
+</body>
+</html>
