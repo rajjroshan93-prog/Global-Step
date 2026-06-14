@@ -384,7 +384,7 @@
             <p>Official Standardized Cambridge & Oxford CBT System</p>
         </div>
         <div class="exam-timer" id="timerBox">
-            <i class="fa-solid fa-clock"></i> <span id="timeDisplay">60:00</span>
+            <i class="fa-solid fa-clock"></i> <span id="timeDisplay">120:00</span>
         </div>
     </div>
 
@@ -402,9 +402,9 @@
             <div id="leftListening" class="exam-section active-section">
                 <h2 class="passage-title">Cambridge Lecture Simulation: Sustainable Urban Architecture</h2>
                 <div class="audio-player-container">
-                    <p><i class="fa-solid fa-volume-high"></i> TEKAN PLAY UNTUK MEMULAI AUDIO SIMULASI (Aksen British/Oxford)</p>
+                    <p><i class="fa-solid fa-volume-high"></i> TEKAN PLAY UNTUK MENDENGARKAN AUDIO DIKTE & INSTRUKSI ASLI</p>
                     <audio controls id="examAudio">
-                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                        <source src="https://dictation.io/assets/audio/test.mp3" type="audio/mpeg">
                         Browser Anda tidak mendukung elemen audio.
                     </audio>
                 </div>
@@ -417,9 +417,9 @@
             <div id="leftReading" class="exam-section">
                 <h2 class="passage-title">The Enigma of Marine Bioluminescence</h2>
                 <div class="passage-text">
-                    <p>Bioluminescence, the remarkable ability of living organisms to emit light via chemical reactions, is a widespread phenomenon throughout the world's oceans. While surface waters occasionally witness spectacular displays of 'milky seas', it is in the absolute darkness of the aphotic zone—below 1,000 meters—where bioluminescence becomes the primary mode of biological communication.</p>
-                    <p>The chemical mechanism behind this biological light relies on the interaction between a substrate molecule called luciferin and an enzyme catalyst known as luciferase. When luciferin undergoes oxidation in the presence of luciferase, it transitions into an unstable, high-energy state. As it returns to its ground state, it releases energy in the form of cold light, meaning less than 20% of the reaction generates thermal radiation.</p>
-                    <p>In deep-sea ecosystems, organisms exploit this capability for three evolutionary purposes: predation, defense, and mate selection. The Anglerfish (*Melanocetus johnsonii*), for instance, employs a symbiotic relationship with bioluminescent bacteria housed within its esca—a fleshy growth protruding from its head—to lure unsuspecting prey. Conversely, certain species of deep-sea shrimp eject luminous clouds to blind predators, allowing an immediate escape into the darkness.</p>
+                    <p><strong>[Paragraph A]</strong> Bioluminescence, the remarkable ability of living organisms to emit light via chemical reactions, is a widespread phenomenon throughout the world's oceans. While surface waters occasionally witness spectacular displays of 'milky seas', it is in the absolute darkness of the aphotic zone—below 1,000 meters—where bioluminescence becomes the primary mode of biological communication.</p>
+                    <p><strong>[Paragraph B]</strong> The chemical mechanism behind this biological light relies on the interaction between a substrate molecule called luciferin and an enzyme catalyst known as luciferase. When luciferin undergoes oxidation in the presence of luciferase, it transitions into an unstable, high-energy state. As it returns to its ground state, it releases energy in the form of cold light, meaning less than 20% of the reaction generates thermal radiation.</p>
+                    <p><strong>[Paragraph C]</strong> In deep-sea ecosystems, organisms exploit this capability for three evolutionary purposes: predation, defense, and mate selection. The Anglerfish (*Melanocetus johnsonii*), for instance, employs a symbiotic relationship with bioluminescent bacteria housed within its esca—a fleshy growth protruding from its head—to lure unsuspecting prey. Conversely, certain species of deep-sea shrimp eject luminous clouds to blind predators, allowing an immediate escape into the darkness.</p>
                 </div>
             </div>
 
@@ -453,12 +453,12 @@
             
             <div id="rightListening" class="exam-section active-section">
                 <div class="instruction-box">
-                    <strong>DIRECTIONS:</strong> Answer Questions 1-3 by filling in the blanks. Write <strong>NO MORE THAN TWO WORDS AND/OR A NUMBER</strong> for each answer.
+                    <strong>DIRECTIONS:</strong> Answer Questions 1-5 by filling in the blanks. Write <strong>NO MORE THAN TWO WORDS AND/OR A NUMBER</strong> for each answer.
                 </div>
                 <div class="question-group">
-                    <div class="group-header">Questions 1-3: Lecture Note Completion</div>
+                    <div class="group-header">Questions 1-5: Lecture Note Completion</div>
                     <div class="question-item">
-                        <label class="question-label">1. The central project in Copenhagen aims to reduce emissions by <span style="font-family: monospace; color:#ef4444;">[Numerical Value]</span> percent before 2030.</label>
+                        <label class="question-label">1. The central project in Copenhagen aims to reduce emissions by <span style="font-family: monospace; color:#ef4444;">[Numerical]</span> percent before 2030.</label>
                         <input type="text" class="input-text" id="q1" placeholder="Type your answer...">
                     </div>
                     <div class="question-item">
@@ -469,44 +469,135 @@
                         <label class="question-label">3. Funding for the experimental urban park was heavily backed by local <span style="font-family: monospace; color:#ef4444;">[Plural Noun]</span>.</label>
                         <input type="text" class="input-text" id="q3" placeholder="Type your answer...">
                     </div>
+                    <div class="question-item">
+                        <label class="question-label">4. The speaker notes that historical urban zones suffer from a lack of <span style="font-family: monospace; color:#ef4444;">[Adjective]</span> infrastructure.</label>
+                        <input type="text" class="input-text" id="q4" placeholder="Type your answer...">
+                    </div>
+                    <div class="question-item">
+                        <label class="question-label">5. Future city planning must prioritize transit systems to prevent major traffic <span style="font-family: monospace; color:#ef4444;">[Noun]</span>.</label>
+                        <input type="text" class="input-text" id="q5" placeholder="Type your answer...">
+                    </div>
+                </div>
+
+                <div class="instruction-box">
+                    <strong>DIRECTIONS:</strong> For Questions 6-10, choose the correct letter, <strong>A, B, or C</strong> based on the audio lecture.
+                </div>
+                <div class="question-group">
+                    <div class="group-header">Questions 6-10: Multiple Choice Academic Research</div>
+                    <div class="question-item">
+                        <label class="question-label">6. What surprised the researchers about the micro-climate data?</label>
+                        <ul class="options-list">
+                            <li><input type="radio" name="ql6" value="A"> A. The rapidity of temperature decline</li>
+                            <li><input type="radio" name="ql6" value="B"> B. The inconsistency across different streets</li>
+                            <li><input type="radio" name="ql6" value="C"> C. The minimal effect on wind patterns</li>
+                        </ul>
+                    </div>
+                    <div class="question-item">
+                        <label class="question-label">7. According to the professor, the main drawback of vertical gardens is their:</label>
+                        <ul class="options-list">
+                            <li><input type="radio" name="ql7" value="A"> A. Excessive construction time</li>
+                            <li><input type="radio" name="ql7" value="B"> B. Initial installation cost</li>
+                            <li><input type="radio" name="ql7" value="C"> C. High water consumption</li>
+                        </ul>
+                    </div>
+                    <div class="question-item">
+                        <label class="question-label">8. Industry leaders in Berlin initially opposed the new layout due to concerns regarding:</label>
+                        <ul class="options-list">
+                            <li><input type="radio" name="ql8" value="A"> A. Supply chain delays</li>
+                            <li><input type="radio" name="ql8" value="B"> B. Retail revenue drops</li>
+                            <li><input type="radio" name="ql8" value="C"> C. Worker productivity</li>
+                        </ul>
+                    </div>
+                    <div class="question-item">
+                        <label class="question-label">9. What is the current status of the Tokyo Eco-District initiative?</label>
+                        <ul class="options-list">
+                            <li><input type="radio" name="ql9" value="A"> A. Completely operational</li>
+                            <li><input type="radio" name="ql9" value="B"> B. In the early design phase</li>
+                            <li><input type="radio" name="ql9" value="C"> C. Partially suspended</li>
+                        </ul>
+                    </div>
+                    <div class="question-item">
+                        <label class="question-label">10. The professor recommends that students focus their upcoming term paper on:</label>
+                        <ul class="options-list">
+                            <li><input type="radio" name="ql10" value="A"> A. Policy frameworks</li>
+                            <li><input type="radio" name="ql10" value="B"> B. Material sciences</li>
+                            <li><input type="radio" name="ql10" value="C"> C. Local case studies</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <div id="rightReading" class="exam-section">
                 <div class="instruction-box">
-                    <strong>DIRECTIONS:</strong> Answer Questions 4-5 based on the text. Choose <strong>TRUE</strong> if the statement agrees with the information, <strong>FALSE</strong> if it contradicts, or <strong>NOT GIVEN</strong> if there is no info.
+                    <strong>DIRECTIONS:</strong> Answer Questions 1-3 based on the text. Choose <strong>TRUE</strong>, <strong>FALSE</strong>, or <strong>NOT GIVEN</strong>.
                 </div>
                 <div class="question-group">
-                    <div class="group-header">Questions 4-5: True / False / Not Given</div>
+                    <div class="group-header">Questions 1-3: True / False / Not Given</div>
                     <div class="question-item">
-                        <label class="question-label">4. More than 80% of the energy produced during bioluminescence chemical reaction is lost as heat energy.</label>
+                        <label class="question-label">1. More than 80% of the energy produced during bioluminescence chemical reaction is lost as heat energy.</label>
                         <ul class="options-list">
-                            <li><input type="radio" name="q4" value="TRUE"> TRUE</li>
-                            <li><input type="radio" name="q4" value="FALSE"> FALSE</li>
-                            <li><input type="radio" name="q4" value="NOT GIVEN"> NOT GIVEN</li>
+                            <li><input type="radio" name="qr1" value="TRUE"> TRUE</li>
+                            <li><input type="radio" name="qr1" value="FALSE"> FALSE</li>
+                            <li><input type="radio" name="qr1" value="NOT GIVEN"> NOT GIVEN</li>
                         </ul>
                     </div>
                     <div class="question-item">
-                        <label class="question-label">5. The Anglerfish uses its own body cells, rather than external bacteria, to directly manufacture its glowing lure.</label>
+                        <label class="question-label">2. The Anglerfish uses its own body cells, rather than external bacteria, to directly manufacture its glowing lure.</label>
                         <ul class="options-list">
-                            <li><input type="radio" name="q5" value="TRUE"> TRUE</li>
-                            <li><input type="radio" name="q5" value="FALSE"> FALSE</li>
-                            <li><input type="radio" name="q5" value="NOT GIVEN"> NOT GIVEN</li>
+                            <li><input type="radio" name="qr2" value="TRUE"> TRUE</li>
+                            <li><input type="radio" name="qr2" value="FALSE"> FALSE</li>
+                            <li><input type="radio" name="qr2" value="NOT GIVEN"> NOT GIVEN</li>
+                        </ul>
+                    </div>
+                    <div class="question-item">
+                        <label class="question-label">3. Deep-sea shrimp possess a faster swimming velocity than their shallow-water relatives.</label>
+                        <ul class="options-list">
+                            <li><input type="radio" name="qr3" value="TRUE"> TRUE</li>
+                            <li><input type="radio" name="qr3" value="FALSE"> FALSE</li>
+                            <li><input type="radio" name="qr3" value="NOT GIVEN"> NOT GIVEN</li>
                         </ul>
                     </div>
                 </div>
+
                 <div class="instruction-box">
-                    <strong>DIRECTIONS:</strong> For Questions 6-7, complete the sentences below. Choose <strong>NO MORE THAN ONE WORD</strong> from the text.
+                    <strong>DIRECTIONS:</strong> For Questions 4-6, complete the sentences below. Choose <strong>NO MORE THAN ONE WORD</strong> from the text.
                 </div>
                 <div class="question-group">
-                    <div class="group-header">Questions 6-7: Sentence Completion</div>
+                    <div class="group-header">Questions 4-6: Sentence Completion</div>
                     <div class="question-item">
-                        <label class="question-label">6. Below 1,000 meters in the aphotic zone, bioluminescence serves as the dominant mode of biological <span style="font-family: monospace; color:#ef4444;">[Word]</span>.</label>
-                        <input type="text" class="input-text" id="q6" placeholder="Type your answer...">
+                        <label class="question-label">4. Below 1,000 meters in the aphotic zone, bioluminescence serves as the dominant mode of biological <span style="font-family: monospace; color:#ef4444;">[Word]</span>.</label>
+                        <input type="text" class="input-text" id="qr4" placeholder="Type your answer...">
                     </div>
                     <div class="question-item">
-                        <label class="question-label">7. The enzyme that functions as a catalyst during the oxidation process of luciferin is called <span style="font-family: monospace; color:#ef4444;">[Word]</span>.</label>
-                        <input type="text" class="input-text" id="q7" placeholder="Type your answer...">
+                        <label class="question-label">5. The enzyme that functions as a catalyst during the oxidation process of luciferin is called <span style="font-family: monospace; color:#ef4444;">[Word]</span>.</label>
+                        <input type="text" class="input-text" id="qr5" placeholder="Type your answer...">
+                    </div>
+                    <div class="question-item">
+                        <label class="question-label">6. Deep-sea creatures deploy glowing reactions to achieve defense, mate selection, and efficient <span style="font-family: monospace; color:#ef4444;">[Word]</span>.</label>
+                        <input type="text" class="input-text" id="qr6" placeholder="Type your answer...">
+                    </div>
+                </div>
+
+                <div class="instruction-box">
+                    <strong>DIRECTIONS:</strong> Questions 7-10. Match the descriptive statement with the correct Paragraph (A, B, or C) from the text.
+                </div>
+                <div class="question-group">
+                    <div class="group-header">Questions 7-10: Matching Headings / Info Paragraphs</div>
+                    <div class="question-item">
+                        <label class="question-label">7. Explanation of the exact chemical oxidation process involving ground states.</label>
+                        <input type="text" class="input-text" id="qr7" style="max-width:100px;" placeholder="A, B, or C">
+                    </div>
+                    <div class="question-item">
+                        <label class="question-label">8. Detailed examples of real deep-sea marine animals using bioluminescence in action.</label>
+                        <input type="text" class="input-text" id="qr8" style="max-width:100px;" placeholder="A, B, or C">
+                    </div>
+                    <div class="question-item">
+                        <label class="question-label">9. Description of the atmospheric depth level where sunlight completely fails to penetrate.</label>
+                        <input type="text" class="input-text" id="qr9" style="max-width:100px;" placeholder="A, B, or C">
+                    </div>
+                    <div class="question-item">
+                        <label class="question-label">10. Quantifiable ratio measurement of energy conversion deficiency regarding thermal radiation.</label>
+                        <input type="text" class="input-text" id="qr10" style="max-width:100px;" placeholder="A, B, or C">
                     </div>
                 </div>
             </div>
@@ -528,7 +619,6 @@
                 <div class="instruction-box">
                     <strong>DIRECTIONS:</strong> Bacalah pertanyaan di bawah ini secara lisan, tekan tombol rekam, lalu mulailah berbicara secara natural.
                 </div>
-                
                 <div class="question-group">
                     <div class="group-header">Part 1: Interview Question</div>
                     <p style="font-weight: bold; font-size: 14px; margin-bottom: 10px;">"Could you describe the type of technology you use most frequently in your studies?"</p>
@@ -537,7 +627,6 @@
                         <div style="margin-top:10px;"><audio id="audioPlay1" controls style="display:none; height:30px;"></audio></div>
                     </div>
                 </div>
-
                 <div class="question-group">
                     <div class="group-header">Part 2: Long Turn Cue Card</div>
                     <p style="font-weight: bold; font-size: 14px; margin-bottom: 5px;">"Describe an international business or company that you admire."</p>
@@ -564,7 +653,7 @@
         <div class="result-card">
             <h2>Simulasi Selesai!</h2>
             <p style="margin-top: 10px; color: #64748b;">Skor Anda berhasil diproses oleh sistem CBT:</p>
-            <div class="score-big" id="finalScoreDisplay">0 / 7</div>
+            <div class="score-big" id="finalScoreDisplay">0 / 20</div>
             <p id="bandEstimate" style="font-weight: bold; color: var(--primary); font-size: 18px; margin-bottom: 20px;"></p>
             <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Tanggapan Esai (Writing) & Rekaman Suara (Speaking) Anda telah disimpan secara lokal untuk sinkronisasi riwayat progres di San Aethelgard Academy Workspace.</p>
             <a href="dashboard.html" class="btn-back"><i class="fa-solid fa-house"></i> Kembali ke Dashboard</a>
@@ -589,8 +678,8 @@
             document.getElementById('wordCountBadge').textContent = `Word Count: ${words} words`;
         }
 
-        // Timer Hitung Mundur Global (60 Menit untuk 4 Skills)
-        let totalTime = 60 * 60; 
+        // Timer Hitung Mundur Global Ditingkatkan Menjadi 120 Menit (2 Jam Penuh)
+        let totalTime = 120 * 60; 
         const timeDisplay = document.getElementById('timeDisplay');
         
         const countdown = setInterval(() => {
@@ -608,49 +697,70 @@
             totalTime--;
         }, 1000);
 
-        // Kunci Jawaban Resmi Otomatis (Listening & Reading)
+        // Kunci Jawaban Resmi Otomatis Kompatibel 20 Soal (10 Listening, 10 Reading)
         const answerKey = {
-            q1: "45", q2: "temperature", q3: "municipalities",
-            q4: "FALSE", q5: "FALSE", q6: "communication", q7: "luciferase"
+            // Listening Key
+            l1: "45", l2: "temperature", l3: "municipalities", l4: "flawed", l5: "congestion",
+            l6: "A", l7: "C", l8: "B", l9: "B", l10: "C",
+            // Reading Key
+            r1: "FALSE", r2: "FALSE", r3: "NOT GIVEN",
+            r4: "communication", r5: "luciferase", r6: "predation",
+            r7: "B", r8: "C", r9: "A", r10: "B"
         };
 
-        // Fungsi Kalkulasi & Penilaian Akhir
+        // Fungsi Kalkulasi & Penilaian Akhir Akurat Sekala 20 Poin
         function calculateScore() {
             clearInterval(countdown);
             let score = 0;
 
-            const ans1 = document.getElementById('q1').value.trim().toLowerCase();
-            const ans2 = document.getElementById('q2').value.trim().toLowerCase();
-            const ans3 = document.getElementById('q3').value.trim().toLowerCase();
-            const ans6 = document.getElementById('q6').value.trim().toLowerCase();
-            const ans7 = document.getElementById('q7').value.trim().toLowerCase();
+            // Evaluasi Listening Isian (1-5)
+            if(document.getElementById('q1').value.trim().toLowerCase() === answerKey.l1) score++;
+            if(document.getElementById('q2').value.trim().toLowerCase() === answerKey.l2) score++;
+            if(document.getElementById('q3').value.trim().toLowerCase() === answerKey.l3) score++;
+            if(document.getElementById('q4').value.trim().toLowerCase() === answerKey.l4) score++;
+            if(document.getElementById('q5').value.trim().toLowerCase() === answerKey.l5) score++;
 
-            if(ans1 === answerKey.q1) score++;
-            if(ans2 === answerKey.q2) score++;
-            if(ans3 === answerKey.q3) score++;
-            if(ans6 === answerKey.q6) score++;
-            if(ans7 === answerKey.q7) score++;
+            // Evaluasi Listening Pilihan Ganda (6-10)
+            for(let i = 6; i <= 10; i++) {
+                let radio = document.querySelector(`input[name="ql${i}"]:checked`);
+                if(radio && radio.value === answerKey[`l${i}`]) score++;
+            }
 
-            const q4Radio = document.querySelector('input[name="q4"]:checked');
-            const q5Radio = document.querySelector('input[name="q5"]:checked');
-            if(q4Radio && q4Radio.value === answerKey.q4) score++;
-            if(q5Radio && q5Radio.value === answerKey.q5) score++;
+            // Evaluasi Reading TFN (1-3)
+            for(let i = 1; i <= 3; i++) {
+                let radio = document.querySelector(`input[name="qr${i}"]:checked`);
+                if(radio && radio.value === answerKey[`r${i}`]) score++;
+            }
 
+            // Evaluasi Reading Isian & Matching (4-10)
+            if(document.getElementById('qr4').value.trim().toLowerCase() === answerKey.r4) score++;
+            if(document.getElementById('qr5').value.trim().toLowerCase() === answerKey.r5) score++;
+            if(document.getElementById('qr6').value.trim().toLowerCase() === answerKey.r6) score++;
+            if(document.getElementById('qr7').value.trim().toUpperCase() === answerKey.r7) score++;
+            if(document.getElementById('qr8').value.trim().toUpperCase() === answerKey.r8) score++;
+            if(document.getElementById('qr9').value.trim().toUpperCase() === answerKey.r9) score++;
+            if(document.getElementById('qr10').value.trim().toUpperCase() === answerKey.r10) score++;
+
+            // Konversi Band Score Resmi Skala 20 Soal Objektif
             let bandScoreNum = 1.0;
             let bandResult = "IELTS Band 4.0 (Equiv. Beginner)";
-            if(score === 7) { bandScoreNum = 9.0; bandResult = "IELTS Band 9.0 (Expert User)"; }
-            else if(score === 6) { bandScoreNum = 8.0; bandResult = "IELTS Band 8.0 (Very Good User)"; }
-            else if(score === 5) { bandScoreNum = 7.0; bandResult = "IELTS Band 7.0 (Good User)"; }
-            else if(score === 4) { bandScoreNum = 6.0; bandResult = "IELTS Band 6.0 (Competent User)"; }
-            else if(score === 3) { bandScoreNum = 5.0; bandResult = "IELTS Band 5.0 (Modest User)"; }
+            
+            if (score >= 19) { bandScoreNum = 9.0; bandResult = "IELTS Band 9.0 (Expert User)"; }
+            else if (score >= 17) { bandScoreNum = 8.5; bandResult = "IELTS Band 8.5 (Very Good User)"; }
+            else if (score >= 15) { bandScoreNum = 8.0; bandResult = "IELTS Band 8.0 (Very Good User)"; }
+            else if (score >= 13) { bandScoreNum = 7.5; bandResult = "IELTS Band 7.5 (Good User)"; }
+            else if (score >= 11) { bandScoreNum = 7.0; bandResult = "IELTS Band 7.0 (Good User)"; }
+            else if (score >= 9)  { bandScoreNum = 6.5; bandResult = "IELTS Band 6.5 (Competent User)"; }
+            else if (score >= 7)  { bandScoreNum = 6.0; bandResult = "IELTS Band 6.0 (Competent User)"; }
+            else if (score >= 5)  { bandScoreNum = 5.0; bandResult = "IELTS Band 5.0 (Modest User)"; }
 
-            // Sinkronisasi data ke Analytics
+            // Sinkronisasi data ke Analytics Dashboard
             const today = new Date().toISOString().split('T')[0];
             let currentLogs = JSON.parse(localStorage.getItem('san_ielts_logs')) || [];
             currentLogs.push({ date: today, skill: "Full Exam Arena (4-Skills)", score: bandScoreNum.toFixed(1) });
             localStorage.setItem('san_ielts_logs', JSON.stringify(currentLogs));
 
-            document.getElementById('finalScoreDisplay').textContent = `${score} / 7`;
+            document.getElementById('finalScoreDisplay').textContent = `${score} / 20`;
             document.getElementById('bandEstimate').textContent = bandResult;
             document.getElementById('resultOverlay').style.display = 'flex';
         }
