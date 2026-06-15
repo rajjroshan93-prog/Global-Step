@@ -17,7 +17,6 @@
             --exam-gold: #ffb100;
             --c1-tag: #8b5cf6;
             --c2-tag: #ef4444;
-            --success: #10b981;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -26,11 +25,11 @@
             font-family: 'Lato', sans-serif;
             background-color: var(--bg-dark);
             color: #ffffff;
-            padding: 50px 20px;
-            background-image: radial-gradient(circle at 50% 10%, rgba(0, 212, 255, 0.08), transparent 50%);
+            padding: 40px 20px;
+            background-image: radial-gradient(circle at 50% 15%, rgba(0, 212, 255, 0.07), transparent 60%);
         }
 
-        .container { max-width: 1100px; margin: 0 auto; }
+        .container { max-width: 1200px; margin: 0 auto; }
 
         .back-btn {
             display: inline-flex;
@@ -48,11 +47,11 @@
             border-radius: 50px;
             border: 1px solid rgba(0, 212, 255, 0.15);
         }
-        .back-btn:hover { color: #ffffff; background: var(--accent); color: #000b18; transform: translateX(-3px); box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); }
+        .back-btn:hover { background: var(--accent); color: #000b18; transform: translateX(-3px); box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); }
 
         .header-section {
             text-align: center;
-            margin-bottom: 45px;
+            margin-bottom: 35px;
         }
 
         .header-section h1 { 
@@ -66,16 +65,24 @@
             -webkit-text-fill-color: transparent;
         }
         .header-section h1 span { color: var(--exam-gold); -webkit-text-fill-color: initial; }
-        .header-section p { color: #94a3b8; font-size: 14px; margin-top: 8px; font-weight: bold; letter-spacing: 0.5px; }
+        .header-section p { color: #94a3b8; font-size: 14px; margin-top: 6px; font-weight: bold; letter-spacing: 0.5px; }
 
-        /* MENU SEARCH YANG JELAS, BESAR DAN MENCOLOK */
+        /* DETIL DESAIN SEARCH BAR DI TENGAH - MEGA GLOW & MENCOLOK */
+        .search-area-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
         .search-container-box {
+            width: 100%;
+            max-width: 800px;
             background: linear-gradient(135deg, #001f3f 0%, #001124 100%);
             border: 2px solid var(--accent);
             padding: 30px;
             border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(0, 212, 255, 0.15);
-            margin-bottom: 45px;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.25);
+            text-align: center;
             position: relative;
         }
 
@@ -84,100 +91,92 @@
             font-family: 'Poppins', sans-serif;
             font-size: 14px;
             color: var(--exam-gold);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .search-box-wrapper { position: relative; }
 
         .search-box {
             width: 100%; 
-            padding: 16px 16px 16px 55px; 
+            padding: 18px 20px 18px 60px; 
             background: #000b18; 
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            border-radius: 10px; 
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            border-radius: 12px; 
             color: white; 
             font-size: 16px; 
             font-family: 'Poppins', sans-serif;
             outline: none;
             transition: 0.3s;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.8);
         }
 
         .search-box:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3), inset 0 2px 8px rgba(0,0,0,0.5);
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.4), inset 0 2px 10px rgba(0,0,0,0.8);
         }
 
         .search-icon {
-            position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
-            color: var(--accent); font-size: 20px;
+            position: absolute; left: 22px; top: 50%; transform: translateY(-50%);
+            color: var(--accent); font-size: 22px;
         }
 
         .search-stats {
-            margin-top: 10px;
+            margin-top: 15px;
             font-size: 12px;
-            color: #64748b;
-            font-weight: bold;
+            color: #94a3b8;
+            font-weight: 700;
             display: flex;
             justify-content: space-between;
+            padding: 0 5px;
         }
 
-        .category-wrapper { margin-bottom: 45px; }
-
-        .category-title {
-            font-family: 'Poppins', sans-serif; 
-            font-size: 18px; 
-            font-weight: 700;
-            color: #000b18;
-            background: linear-gradient(90deg, var(--accent) 0%, #008fb3 100%);
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .vocab-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 25px; 
         }
-
-        .vocab-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        @media(min-width: 900px) { .vocab-grid { grid-template-columns: 1fr 1fr; } }
         
-        /* DESAIN KARTU INDAH DAN TIDAK BIASA (GLOW EFFECT) */
+        @media(min-width: 900px) { 
+            .vocab-grid { grid-template-columns: 1fr 1fr; } 
+        }
+        
+        /* DESAIN KARTU GLOWING LUXURY */
         .vocab-card { 
             background: var(--card-bg); 
-            border: 1px solid rgba(0, 212, 255, 0.1); 
+            border: 1px solid rgba(0, 212, 255, 0.12); 
             border-radius: 14px; 
             padding: 24px; 
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
+            overflow: hidden;
         }
         .vocab-card::before {
-            content: ''; position: absolute; top:0; left:0; width:4px; height:100%; background: var(--accent); opacity: 0.5;
+            content: ''; position: absolute; top:0; left:0; width:4px; height:100%; background: var(--accent); opacity: 0.4;
         }
+
         .vocab-card:hover { 
             border-color: var(--accent); 
             transform: translateY(-4px); 
-            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.12);
+            box-shadow: 0 12px 25px rgba(0, 212, 255, 0.15);
         }
         
         .vocab-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
         .word-title { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 700; color: white; letter-spacing: 0.5px; }
-        .word-pos { font-size: 13px; color: var(--accent); font-style: italic; margin-left: 6px; font-weight: normal; }
+        .word-pos { font-size: 13px; color: var(--accent); font-style: italic; margin-left: 6px; }
         
-        .level-badge { font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; color: white; font-family: 'Poppins', sans-serif; letter-spacing: 0.5px; }
-        .b-c1 { background: var(--c1-tag); box-shadow: 0 0 10px rgba(139, 92, 246, 0.4); }
-        .b-c2 { background: var(--c2-tag); box-shadow: 0 0 10px rgba(239, 68, 68, 0.4); }
+        .level-badge { font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; color: white; font-family: 'Poppins', sans-serif; }
+        .b-c1 { background: var(--c1-tag); box-shadow: 0 0 10px rgba(139, 92, 246, 0.3); }
+        .b-c2 { background: var(--c2-tag); box-shadow: 0 0 10px rgba(239, 68, 68, 0.3); }
         
-        .phonetic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .phonetic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
         .phonetic { font-family: 'Courier Prime', monospace; font-size: 14px; color: var(--exam-gold); font-weight: bold; }
-        .audio-btn { background: none; border: none; color: #64748b; cursor: pointer; font-size: 13px; transition: 0.2s; }
+        .audio-btn { background: none; border: none; color: #475569; cursor: pointer; font-size: 13px; transition: 0.2s; }
         .audio-btn:hover { color: var(--accent); }
 
         .definition { 
@@ -188,17 +187,16 @@
             padding: 14px; 
             border-radius: 8px; 
             border-left: 3px solid var(--accent); 
-            margin-bottom: 15px; 
+            margin-bottom: 14px; 
         }
         
         .meta-box { display: flex; flex-direction: column; gap: 10px; font-size: 13px; }
-        .meta-item { background: rgba(0, 11, 24, 0.6); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); }
-        .meta-label { font-weight: 800; color: var(--exam-gold); display: block; font-size: 10.5px; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; }
-        .example-text { font-style: italic; color: #cbd5e1; line-height: 1.5; display: block; position: relative; padding-left: 12px; }
-        .example-text::before { content: '"'; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+        .meta-item { background: rgba(0, 11, 24, 0.5); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); }
+        .meta-label { font-weight: 800; color: var(--exam-gold); display: block; font-size: 10.5px; text-transform: uppercase; margin-bottom: 4px; font-family: 'Poppins', sans-serif; letter-spacing: 0.5px; }
+        .example-text { font-style: italic; color: #cbd5e1; line-height: 1.5; display: block; }
         
         .no-results {
-            text-align: center; padding: 40px; background: var(--card-bg); border-radius: 12px; color: #64748b; font-weight: bold; display: none;
+            text-align: center; padding: 50px; background: var(--card-bg); border-radius: 14px; color: #64748b; font-weight: bold; display: none; width: 100%; border: 1px dashed rgba(239, 68, 68, 0.3);
         }
     </style>
 </head>
@@ -212,570 +210,167 @@
         <p>Cambridge Reference Lexicon & Oxford Academic Masterclass for IELTS Band 7.5 - 9.0</p>
     </div>
 
-    <div class="search-container-box">
-        <label for="searchInput"><i class="fa-solid fa-filter"></i> Mesin Pencari Kosakata Akademis</label>
-        <div class="search-box-wrapper">
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="searchInput" onkeyup="filterVocabulary()" placeholder="Cari berdasarkan kosakata, arti kata, golongan kelas (noun/verb), atau tingkat CEFR (C1/C2)...">
-        </div>
-        <div class="search-stats">
-            <span id="matchCount">Menampilkan semua kosakata masterclass</span>
-            <span>Total Komprehensif: 50 Core Words</span>
+    <div class="search-area-wrapper">
+        <div class="search-container-box">
+            <label for="searchInput"><i class="fa-solid fa-wand-magic-sparkles"></i> Live Search Engine - Oxford & Cambridge Corpus</label>
+            <div class="search-box-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" class="search-box" onkeyup="filterVocabulary()" placeholder="Cari kosakata, arti kata, golongan (noun/adj), atau level (C1/C2)...">
+            </div>
+            <div class="search-stats">
+                <span id="matchCount">Menampilkan seluruh isi database lexicon</span>
+                <span>Total: 100 Core Academic Masterwords</span>
+            </div>
         </div>
     </div>
 
     <div id="noResults" class="no-results">
-        <i class="fa-solid fa-ban" style="font-size: 30px; margin-bottom: 10px; display: block;"></i> Kosakata atau kriteria kata tidak ditemukan di dalam database.
+        <i class="fa-solid fa-ban" style="font-size: 32px; margin-bottom: 12px; display: block; color: var(--c2-tag);"></i> Kosakata atau kriteria akademik tidak ditemukan dalam database utama.
     </div>
 
-    <div class="category-wrapper target-cat">
-        <div class="category-title"><i class="fa-solid fa-brain"></i> Kategori 1: Intellectual Analysis & Argumentation (Writing Task 2 Focus)</div>
-        <div class="vocab-grid">
-            
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Anachronistic</span><span class="word-pos">(adj)</span></div>
-                        <span class="level-badge b-c2">C2 / Oxford</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/əˌnæk.rəˈnɪs.tɪk/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Kuno/Anakronis; tidak sesuai dengan kronologi penanggalan waktu sejarah, atau dianggap terlalu usang untuk diterapkan pada sistem modern.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Highly anachronistic, anachronistic views. Syn: Obsolete, Antiquated, Outmoded.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">Relying entirely on traditional rote-learning systems in a globalized tech-driven economy is deemed highly anachronistic.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Equivocal</span><span class="word-pos">(adj)</span></div>
-                        <span class="level-badge b-c1">C1 / Cambridge</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/ɪˈkwɪv.ə.kəl/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Ambigu/Mendua; sengaja dibuat tidak jelas, membingungkan, atau mengandung interpretasi ganda yang berpotensi meragukan dalam temuan data ilmiah.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Equivocal evidence, remain equivocal. Syn: Ambiguous, Vague, Obscure.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">The statistical results concerning the long-term environmental effects of radiation remain highly equivocal.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Pernicious</span><span class="word-pos">(adj)</span></div>
-                        <span class="level-badge b-c2">C2 / British Council</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/pəˈnɪʃ.əs/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Merusak secara halus; memberikan dampak destruktif yang mematikan namun terjadi secara perlahan dan tidak langsung disadari.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Pernicious influence, pernicious trends. Syn: Insidiously harmful, Malevolent.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">The pernicious influence of echo chambers on digital platforms deeply polarizes public political discourse.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Cogent</span><span class="word-pos">(adj)</span></div>
-                        <span class="level-badge b-c1">C1 / Oxford</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/ˈkəʊ.dʒənt/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Logis & Kuat; sebuah argumentasi atau landasan berpikir yang sangat rasional, tajam, dan mudah diterima akal sehat karena diperkuat fakta empiris.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Cogent argument, cogent explanation. Syn: Compelling, Convincing, Persuasive.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">The scholar presented a cogent argument demonstrating the correlation between severe poverty and surging crime rates.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">PerspicACIOUS</span><span class="word-pos">(adj)</span></div>
-                        <span class="level-badge b-c2">C2 / Cambridge</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/ˌpɜː.spɪˈkeɪ.ʃəs/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Berwawasan tajam/Cerdik; memiliki kecerdasan mental tinggi untuk memahami sesuatu atau menilai situasi secara instan dan akurat.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Perspicacious analyst, perspicacious insight. Syn: Astute, Discerning, Shrewd.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">Perspicacious policy makers anticipated the economic recession before the market collapse occurred.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Obfuscate</span><span class="word-pos">(verb)</span></div>
-                        <span class="level-badge b-c1">C1 / Oxford</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/ˈɒb.fʌs.keɪt/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Sengaja Mengaburkan; membuat suatu kebenaran, informasi, atau regulasi menjadi rumit, tidak jelas, dan membingungkan masyarakat.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Intentionally obfuscate, obfuscate issues. Syn: Blur, Complicate, Cloud.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">Corporate entities often use legal jargon to obfuscate the environmental damage caused by their factories.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Specious</span><span class="word-pos">(adj)</span></div>
-                        <span class="level-badge b-c2">C2 / Cambridge</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/ˈspiː.ʃəs/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Tampak benar tapi salah; suatu argumen yang di permukaan terlihat logis, meyakinkan, dan benar, namun sebenarnya keliru dan menyesatkan setelah diuji.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Specious argument, specious claim. Syn: Misleading, Fallacious, Sophistic.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">The assertion that expanding highways completely solves urban traffic jams is fundamentally specious.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Tantamount</span><span class="word-pos">(adj)</span></div>
-                        <span class="level-badge b-c1">C1 / British Council</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/ˈtæn.tə.maʊnt/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Sama dengan/Setara; memiliki efek negatif, bobot nilai, atau keseriusan dampak yang setingkat dengan tindakan buruk lainnya.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Tantamount to rejection, tantamount to admission. Syn: Equivalent to, Synonymous with.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">Ignoring municipal carbon emission thresholds is tantamount to state-sanctioned ecological negligence.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Salient</span><span class="word-pos">(adj)</span></div>
-                        <span class="level-badge b-c1">C1 / Oxford AWL</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/ˈseɪ.li.ənt/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Paling Menonjol; poin data, fakta, atau karakteristik utama yang paling penting, kentara, dan wajib diperhatikan.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Salient feature, salient point. Syn: Conspicuous, Prominent, Principal.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">The most salient feature of the data matrix is the exponential drop in birth rates over the decade.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Juxtapose</span><span class="word-pos">(verb)</span></div>
-                        <span class="level-badge b-c2">C2 / Cambridge</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/ˌdʒʌk.stəˈpəʊz/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Menyandingkan; menempatkan dua ide, konsep, atau data grafik secara berdampingan untuk memperlihatkan kontras perbedaan yang ekstrem.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Juxtaposed with, carefully juxtapose. Syn: Collocate, Contrast, Pair.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">When we juxtapose the lifestyle of megacities with rural settlements, clear economic gaps emerge.</span></div>
-                </div>
-            </div>
-
+    <div class="vocab-grid" id="vocabGridContainer">
         </div>
-    </div>
-
-    <div class="category-wrapper target-cat">
-        <div class="category-title"><i class="fa-solid fa-chart-line"></i> Kategori 2: Socio-Economic Phenomena & Causation (Task 1 & 2 Core)</div>
-        <div class="vocab-grid">
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Exacerbate</span><span class="word-pos">(verb)</span></div>
-                        <span class="level-badge b-c1">C1 / Oxford AWL</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/ɪɡˈzæs.ə.beɪt/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Memperparah/Memperburuk; mengakibatkan suatu kondisi krisis, masalah sosial, atau infeksi penyakit yang sudah buruk menjadi berlipat ganda lebih parah.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Exacerbate the problem, further exacerbated by. Syn: Aggravate, Worsen.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">Rapid industrial modernization without state environmental control will severely exacerbate global carbon emissions.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Ameliorate</span><span class="word-pos">(verb)</span></div>
-                        <span class="level-badge b-c2">C2 / Cambridge</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/əˈmiːl.jə.reɪt/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Memperbaiki/Meringankan; mengambil langkah struktural untuk meningkatkan kualitas atau membuat situasi hidup yang menderita menjadi lebih kondusif.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Ameliorate conditions, steps to ameliorate. Syn: Alleviate, Improve, Mitigate.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">Adequate welfare subventions for marginalized workers could greatly ameliorate the current regional income gap.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Ubiquitous</span><span class="word-pos">(adj)</span></div>
-                        <span class="level-badge b-c1">C1 / Oxford AWL</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/juːˈbɪk.wɪ.təs/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Ada di mana-mana; sangat umum dijumpai di setiap lapisan kehidupan masyarakat modern secara serempak.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Ubiquitous presence, become ubiquitous. Syn: Omnipresent, Pervasive.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">The ubiquitous integration of micro-automation in warehouses has triggered massive white-collar corporate layoffs.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Proclivity</span><span class="word-pos">(noun)</span></div>
-                        <span class="level-badge b-c2">C2 / Cambridge</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/prəˈklɪv.ə.ti/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Kecenderungan kuat; tendensi perilaku atau watak bawaan alami seseorang untuk melakukan sesuatu yang condong mengarah ke hal negatif.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Proclivity for violence, natural proclivity. Syn: Propensity, Inclination, Predilection.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">Immensely young demographics demonstrate a dangerous proclivity for high-risk unbacked financial investments.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Preponderance</span><span class="word-pos">(noun)</span></div>
-                        <span class="level-badge b-c2">C2 / Oxford</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/prɪˈpɒn.dər.əns/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Keunggulan jumlah; kondisi unggul dalam hal bobot, kuasa pengaruh, atau dominasi kuantitas jumlah populasi di sebuah sektor.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Preponderance of evidence, clear preponderance. Syn: Predominance, Majority, Dominance.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">There is a clear preponderance of female graduates entering biochemical careers compared to mechanical sectors.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Catalyst</span><span class="word-pos">(noun)</span></div>
-                        <span class="level-badge b-c1">C1 / Cambridge</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/ˈkæt.əl.ɪst/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Katalis/Pemicu; peristiwa atau agen krusial yang mempercepat laju perubahan revolusioner tanpa ikut terdampak di dalamnya.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Act as a catalyst, major catalyst. Syn: Stimulus, Incitement, Impetus.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">The sudden onset of the global pandemic acted as a major catalyst for corporate adoption of remote workflow infrastructures.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Inexorable</span><span class="word-pos">(adj)</span></div>
-                        <span class="level-badge b-c2">C2 / British Council</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/ɪnˈek.sər.ə.bəl/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Tidak terbendung; perkembangan proses sosial atau waktu yang bergulir konstan, sangat keras, mustahil dicegah atau dihentikan.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Inexorable rise, inexorable march of time. Syn: Relentless, Unstoppable, Unavoidable.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">The inexorable rise of automation poses substantial existential concerns for blue-collar employment across continents.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Profound</span><span class="word-pos">(adj)</span></div>
-                        <span class="level-badge b-c1">C1 / Oxford AWL</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/prəˈfaʊnd/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Sangat Mendalam; dampak, perubahan masif, atau perasaan emosional yang amat kuat, mengakar, dan berdampak jangka panjang bagi kehidupan.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Profound impact, profound effect. Syn: Deep, Far-reaching, Acute.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">Digital isolation during school closures exercised a profound impact on the developmental psychology of toddlers.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Proliferation</span><span class="word-pos">(noun)</span></div>
-                        <span class="level-badge b-c1">C1 / Cambridge</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/prəˌlɪf.ərˈeɪ.ʃən/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Proliferasi/Penyebaran cepat; pertumbuhan pesat, multiplikasi, atau penyebaran masif jumlah suatu barang atau ide dalam rentang waktu singkat.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Rapid proliferation, nuclear proliferation. Syn: Mushrooming, Escalation, Expansion.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">The rapid proliferation of personal smartphones altered global retail frameworks through instant payment modules.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Amorphous</span><span class="word-pos">(adj)</span></div>
-                        <span class="level-badge b-c2">C2 / Oxford</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/əˈmɔː.fəs/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Tidak berbentuk jelas; tidak memiliki struktur formal organisasi, batasan wilayah, atau karakteristik baku yang konkret.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Amorphous shape, amorphous organization. Syn: Formless, Unstructured, Vague.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">The modern gig economy remains an amorphous sector, making standard regulatory labor compliance hard to implement.</span></div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="category-wrapper target-cat">
-        <div class="category-title"><i class="fa-solid fa-square-poll-vertical"></i> Kategori 3: Data Interpretation & Empirical Trends (Academic Task 1 Mastery)</div>
-        <div class="vocab-grid">
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Corroborate</span><span class="word-pos">(verb)</span></div>
-                        <span class="level-badge b-c1">C1 / Cambridge</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/kəˈrɒb.ə.reɪt/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Memperkuat data; menyajikan bukti pendukung baru, kesaksian, atau konfirmasi valid untuk mengesahkan suatu klaim/teori riset.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Evidence to corroborate, corroborate findings. Syn: Substantiate, Validate, Verify.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">The dynamic trend illustrated in the 2024 bar chart fully corroborates previous long-term climate findings.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Anomalous</span><span class="word-pos">(adj)</span></div>
-                        <span class="level-badge b-c2">C2 / Oxford AWL</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/əˈnɒm.ə.ləs/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Janggal/Menyimpang; kondisi atau poin angka data statistik yang ganjil dan melenceng jauh dari pola normal sebuah grafik tren umum.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Anomalous data, anomalous spike. Syn: Aberrant, Deviant, Abnormal.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">The abrupt contraction of agricultural revenue in the third quarter represents an anomalous fluctuation in the chart.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Precipitous</span><span class="word-pos">(adj)</span></div>
-                        <span class="level-badge b-c1">C1 / Oxford AWL</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/prɪˈsɪp.ɪ.təs/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Sangat Curam; pergerakan naik atau runtuhnya angka pada baris grafik data yang berlangsung teramat cepat, drastis, dan tanpa diduga.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Precipitous drop, precipitous decline. Syn: Sharp, Drastic, Abrupt.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">Following the enforcement of the carbon penalty, a precipitous drop in regional factory output was noted.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Fluctuate</span><span class="word-pos">(verb)</span></div>
-                        <span class="level-badge b-c1">C1 / Cambridge AWL</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/ˈflʌk.tʃu.eɪt/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Berfluktuasi; kondisi pergerakan naik-turun yang terjadi secara berkala, tidak menentu, serta menunjukkan ketidakstabilan data di pasar.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Fluctuate wildly, values fluctuate. Syn: Oscillate, Waver, Vacillate.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">The export matrix fluctuated wildly between January and August before achieving steady stability in winter.</span></div>
-                </div>
-            </div>
-
-            <div class="vocab-card search-item">
-                <div>
-                    <div class="vocab-header">
-                        <div><span class="word-title">Plateau</span><span class="word-pos">(verb/noun)</span></div>
-                        <span class="level-badge b-c1">C1 / Oxford</span>
-                    </div>
-                    <div class="phonetic-row">
-                        <span class="phonetic">/ˈplæt.əʊ/</span>
-                        <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
-                    </div>
-                    <div class="definition"><strong>Arti:</strong> Mendatar/Stagnan; periode ketika suatu grafik pertumbuhan atau angka penjualan berhenti naik lalu bertahan di posisi mendatar secara konstan.</div>
-                </div>
-                <div class="meta-box">
-                    <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>Reach a plateau, plateau out. Syn: Level off, Stabilize, Stagnate.</div>
-                    <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">The adoption rate of electric vehicles peaked at 65% and plateaued for the rest of the calendar year.</span></div>
-                </div>
-            </div>
-
-            </div>
-    </div>
 
 </div>
 
 <script>
-    // DATA SEEDING TAMBAHAN UNTUK MEMENUHI 50 KOSAKATA AKADEMIS SUPER LENGKAP SECARA OTOMATIS
-    const extraVocabData = [
-        {w:"Ephemeral", p:"(adj)", l:"C2", ph:"/ɪˈfem.ər.əl/", d:"Bertahan sangat singkat; fana atau berumur pendek, seperti tren media sosial.", c:"Ephemeral nature, ephemeral trend. Syn: Transient, Fleeting.", e:"Online public outrage is often ephemeral, dispersing within hours of the next news cycle."},
-        {w:"Capricious", p:"(adj)", l:"C2", ph:"/kəˈprɪʃ.əs/", d:"Berubah-ubah mendadak; sikap, cuaca, atau harga pasar yang tidak dapat diprediksi secara konsisten.", c:"Capricious behavior, capricious market. Syn: Unpredictable, Volatile.", e:"The stock values are highly capricious, driven entirely by speculative tech announcements."},
-        {w:"Conundrum", p:"(noun)", l:"C1", ph:"/kəˈnʌn.drəm/", d:"Teka-teki sulit; dilema rumit atau masalah membingungkan yang sukar diselesaikan secara tuntas.", c:"Serious conundrum, resolve a conundrum. Syn: Dilemma, Enigma, Paradox.", e:"Balancing fiscal budget cuts with expanding healthcare presents an intricate socio-economic conundrum."},
-        {w:"Diminution", p:"(noun)", l:"C2", ph:"/ˌdɪm.ɪˈnjuː.ʃən/", d:"Pengurangan/Penyusutan; aksi mengecilkan kuantitas jumlah, ukuran, atau nilai prestise objek.", c:"Diminution of value, sharp diminution. Syn: Reduction, Contraction, Decrease.", e:"The ongoing automation wave guarantees a permanent diminution in structural engineering vacancies."},
-        {w:"Efficacy", p:"(noun)", l:"C1", ph:"/ˈef.ɪ.kə.si/", d:"Kemanjuran/Efikasi; kemampuan bawaan suatu objek atau obat untuk membuahkan hasil ideal yang ditargetkan.", c:"Proven efficacy, evaluate the efficacy. Syn: Effectiveness, Potency.", e:"Clinical data demonstrated the high efficacy of carbon taxes in dampening vehicular purchases."},
-        {w:"Fortuitous", p:"(adj)", l:"C2", ph:"/fɔːˈtʃuː.ɪ.təs/", d:"Kebetulan yang menguntungkan; terjadi tanpa rencana namun menghasilkan keuntungan nasib yang luar biasa.", c:"Fortuitous encounter, fortuitous event. Syn: Accidental, Serendipitous, Coincidental.", e:"The discovery of the ancient manuscript was completely fortuitous, occurring during a standard sewer drill."},
-        {w:"Inherent", p:"(adj)", l:"C1", ph:"/ɪnˈhɪə.rənt/", d:"Melekat/Hakiki; sifat atau risiko dasar yang permanen berada di dalam sebuah objek atau situasi.", c:"Inherent risk, inherent flaw. Syn: Intrinsic, Innate, Essential.", e:"Every speculative investment model carries an inherent risk of capital liquidation."},
-        {w:"Mitigate", p:"(verb)", l:"C1", ph:"/ˈmɪt.ɪ.ɡeɪt/", d:"Memitigasi/Meredam; mengambil langkah protektif untuk mengurangi dampak destruktif dari suatu bahaya.", c:"Mitigate effects, mitigate risks. Syn: Alleviate, Reduce, Moderate.", e:"The municipal authority installed extensive dams to mitigate recurrent flash floods during monsoon seasons."},
-        {w:"Ostensible", p:"(adj)", l:"C2", ph:"/ɒsˈten.sə.bəl/", d:"Tampak di permukaan; alasan yang dinyatakan secara terbuka namun sebenarnya menyembunyikan motif asli.", c:"Ostensible reason, ostensible purpose. Syn: Apparent, Seeming, Supposed.", e:"Their ostensible goal was philanthropic, though subsequent audits revealed heavy corporate profit tax evasions."},
-        {w:"Paucity", p:"(noun)", l:"C2", ph:"/ˈpɔː.sə.ti/", d:"Kelangkaan/Defisit; kondisi ketika pasokan kuantitas jumlah barang tidak memadai atau sangat kurang.", c:"Paucity of evidence, paucity of resources. Syn: Scarcity, Dearth, Insufficiency.", e:"A critical paucity of clean water resources hinders development projects across arid sub-continents."},
-        {w:"Rejuvenate", p:"(verb)", l:"C1", ph:"/rɪˈdʒuː.vən.eɪt/", d:"Meremajakan; memulihkan kembali energi, vitalitas, kekuatan, atau keindahan wajah/infrastruktur lama.", c:"Rejuvenate the economy, rejuvenate urban spaces. Syn: Revitalize, Refresh, Restore.", e:"Massive infusions of central treasury funds are required to rejuvenate dilapidated rural train grids."},
-        {w:"Scrutinize", p:"(verb)", l:"C1", ph:"/ˈskruː.tɪ.naɪz/", d:"Memeriksa cermat; meneliti berkas dokumen atau data statistik secara mendalam demi melacak kejanggalan.", c:"Scrutinize data, closely scrutinize. Syn: Inspect, Examine, Analyze.", e:"Regulators will closely scrutinize the bank mergers to ensure antimonopoly laws are not breached."},
-        {w:"Tenacious", p:"(adj)", l:"C2", ph:"/təˈneɪ.ʃəs/", d:"Gigih/Keras kepala; tidak mudah menyerah mempertahankan pendirian, ideologi, atau genggaman tangan.", c:"Tenacious resistance, tenacious grip. Syn: Persistent, Resolute, Dogged.", e:"The advocacy group mounted a tenacious campaign that eventually forced the legal repeal of child factory labor."},
-        {w:"Vindicate", p:"(verb)", l:"C2", ph:"/ˈvɪn.dɪ.keɪt/", d:"Membersihkan nama; membuktikan kebenaran suatu teori atau membebaskan seseorang dari tuduhan buruk.", c:"Vindicated by history, vindicate the claim. Syn: Exonerate, Justify, Absolve.", e:"The recent peer-reviewed space findings completely vindicate Einstein’s century-old gravitational equations."},
-        {w:"Adverse", p:"(adj)", l:"C1", ph:"/ˈæd.vɜːs/", d:"Buruk/Merugikan; efek atau iklim cuaca negatif yang berlawanan dan menghambat kelancaran rencana.", c:"Adverse conditions, adverse effects. Syn: Unfavorable, Hostile, Detrimental.", e:"Sustained exposure to extreme sound volumes produces adverse effects on human mental health."},
-        {w:"Benevolent", p:"(adj)", l:"C1", ph:"/bəˈnev.əl.ənt/", d:"Penuh kebajikan; berniat baik, tulus, dan dermawan menolong kaum yang tertindas.", c:"Benevolent ruler, benevolent organization. Syn: Kind, Altruistic, Philanthropic.", e:"The benevolent trust provided free specialized educational equipment to orphanages worldwide."},
-        {w:"Deleterious", p:"(adj)", l:"C2", ph:"/ˌdel.ɪˈtɪə.ri.əs/", d:"Berbahaya/Merusak; membawa konsekuensi fatal yang mengancam kelestarian ekosistem alam.", c:"Deleterious effect, highly deleterious. Syn: Harmful, Damaging, Injurious.", e:"Dumping chemical waste directly into lakes exerts a highly deleterious impact on local aquaculture."},
-        {w:"Elucidate", p:"(verb)", ph:"/ɪˈluː.sɪ.deɪt/", l:"C1", d:"Menjelaskan/Memperjelas; menguraikan materi rumit agar gampang dicerna dan dipahami audiensi.", c:"Elucidate the problem, fully elucidate. Syn: Clarify, Explain, Expound.", e:"The lead investigator published a comprehensive report to elucidate the underlying structural design flaws."},
-        {w:"Imperative", p:"(adj)", l:"C1", ph:"/ɪmˈper.ə.tɪv/", d:"Sangat mendesak; kewajiban mutlak yang harus segera ditindaklanjuti demi mencegah petaka.", c:"Categorically imperative, critically imperative. Syn: Essential, Crucial, Mandatory.", e:"It is critically imperative that countries enforce rigid limits on maritime chemical pollution immediately."},
-        {w:"Lucrative", p:"(adj)", l:"C1", ph:"/ˈluː.krə.tɪv/", d:"Sangat menguntungkan; bisnis usaha yang menghasilkan pundi-pundi keuntungan finansial melimpah.", c:"Lucrative contract, lucrative business venture. Syn: Profitable, Remunerative.", e:"Developing software applications for advanced healthcare sectors remains an immensely lucrative enterprise."},
-        {w:"Manifest", p:"(verb/adj)", l:"C1", ph:"/ˈmæn.ɪ.fest/", d:"Nyata/Memanifestasikan; memperlihatkan tanda eksistensi secara gamblang agar mudah dipahami indra.", c:"Manifest symptoms, clear manifestation. Syn: Evident, Obvious, Display.", e:"The economic crisis began to manifest through sharp currency devaluations across developing regions."},
-        {w:"Nepotism", p:"(noun)", l:"C2", ph:"/ˈnep.ə.tɪ.zəm/", d:"Nepotisme; tindakan curang memberikan jabatan istimewa kepada kerabat dekat tanpa memedulikan kompetensi.", c:"Rampant nepotism, political nepotism. Syn: Favoritism, Cronyism.", e:"Widespread corporate nepotism erodes employee motivation and stifles legitimate professional meritocracy."},
-        {w:"Paramount", p:"(adj)", l:"C1", ph:"/ˈpær.ə.maʊnt/", d:"Teramat Penting; menduduki posisi otoritas tertinggi atau prioritas utama di atas segala hal lainnya.", c:"Paramount importance, of paramount concern. Syn: Supreme, Foremost, Preeminent.", e:"Ensuring food security for marginalized rural communities is of paramount importance to the regime."},
-        {w:"Sanction", p:"(verb/noun)", l:"C1", ph:"/ˈsæŋk.ʃən/", d:"Sanksi/Persetujuan resmi; hukuman internasional atau pemberian izin legal bagi sebuah tindakan.", c:"Economic sanctions, officially sanctioned. Syn: Penalty / Approve, Authorize.", e:"The central security council voted to execute rigid financial sanctions against the rogue territory."},
-        {w:"Unprecedented", p:"(adj)", l:"C1", ph:"/ʌnˈpres.ɪ.den.tɪd/", d:"Belum pernah terjadi; suatu rekor grafik data atau peristiwa sejarah yang tidak memiliki preseden masa lalu.", c:"Unprecedented growth, unprecedented crisis. Syn: Unparalleled, Novel, Groundbreaking.", e:"The country recorded an unprecedented economic expansion of twelve percent in a single fiscal year."},
-        {w:"Volatile", p:"(adj)", l:"C1", ph:"/ˈvɒl.ə.taɪl/", d:"Sangat tidak stabil; kondisi pasar atau emisi kimia yang mudah menguap dan berganti arah tanpa sinyal.", c:"Volatile market, highly volatile situation. Syn: Unstable, Fluctuating, Capricious.", e:"Speculative digital currencies are far too volatile for inclusion in mainstream public retirement funds."},
-        {w:"Acutely", p:"(adv)", l:"C1", ph:"/əˈkjuːt.li/", d:"Sangat menyadari; merasakan atau memahami bahaya secara tajam, intens, dan mendalam.", c:"Acutely aware, acutely sensitive. Syn: Sharply, Intensely, Keenly.", e:"Sovereign nations are now acutely aware of the systemic threat posed by systemic cross-border cyber warfare."},
-        {w:"Bolster", p:"(verb)", l:"C1", ph:"/ˈbəʊl.stər/", d:"Memperkokoh; memperkuat pondasi ekonomi, posisi argumen, atau moral pasukan lewat bantuan logistik.", c:"Bolster the economy, bolster defenses. Syn: Strengthen, Support, Reinforce.", e:"Lowering corporate interest rates is intended to bolster small-scale commercial investments."},
-        {w:"Conducive", p:"(adj)", l:"C1", ph:"/kənˈdʒuː.sɪv/", d:"Kondusif; menciptakan situasi ideal yang mendukung kelancaran proses belajar atau produktivitas.", c:"Conducive to learning, highly conducive environments. Syn: Favorable, Advantageous, Encouraging.", e:"A quiet, well-ventilated library provides a highly conducive environment for advanced academic concentration."},
-        {w:"Discrepancy", p:"(noun)", l:"C1", ph:"/dɪˈskrep.ən.si/", d:"Ketidaksesuaian; perbedaan mencolok antara dua laporan keuangan atau kesaksian yang semestinya sama.", c:"Wide discrepancy, financial discrepancy. Syn: Inconsistency, Divergence, Disparity.", e:"Auditors uncovered a wide discrepancy between documented company revenue and actual treasury reserves."},
-        {w:"Exemplify", p:"(verb)", l:"C1", ph:"/ɪɡˈzem.plɪ.faɪ/", d:"Mencontohkan; menjadi representasi contoh kasus sempurna bagi sebuah teori atau karakteristik kelas.", c:"Exemplified by, perfectly exemplify. Syn: Illustrate, Embody, Typify.", e:"The architectural design of the new capital perfectly exemplifies sustainable energy engineering frameworks."},
-        {w:"Formidable", p:"(adj)", l:"C2", ph:"/fɔːˈmɪd.ə.bəl/", d:"Sangat tangguh; lawan atau tantangan besar yang memicu rasa segan sekaligus rasa takut karena kekuatannya.", c:"Formidable opponent, formidable challenge. Syn: Intimidating, Impressive, Daunting.", e:"Overcoming deep-rooted generational poverty remains a formidable challenge for developing legislative bodies."},
-        {w:"Inundate", p:"(verb)", l:"C1", ph:"/ˈɪn.ʌn.deɪt/", d:"Membanjiri; meluapakan air ke daratan, atau membanjiri kantor dengan kiriman surel/keluhan yang melimpah.", c:"Inundated with requests, completely inundated. Syn: Overwhelm, Submerge, Flood.", e:"Following the launch of the free online academy, the servers were completely inundated with global registrations."},
-        {w:"Judicious", p:"(adj)", l:"C2", ph:"/dʒuːˈdɪʃ.əs/", d:"Bijaksana; memiliki dan menerapkan pertimbangan nalar yang sehat, hati-hati, dan adil dalam kebijakan.", c:"Judicious use of resources, judicious choice. Syn: Wise, Prudent, Sagacious.", e:"The judicious allocation of emergency sovereign health funds effectively halted the national pathogen spread."},
-        {w:"Lament", p:"(verb)", l:"C2", ph:"/ləˈment/", d:"Menyayangkan/Meratapi; mengekspresikan kesedihan mendalam atau kekecewaan publik terhadap suatu regulasi.", c:"Lament the loss, publicly lament. Syn: Mourn, Deplore, Bemoan.", e:"Many environmental scholars loudly lament the national decision to construct a highway through the reserve."},
+    // DATABASE RAKSASA 100 KOSAKATA MASTERCLASS AKADEMIS (CAMBRIDGE, OXFORD, COBUILD, BRITISH COUNCIL)
+    const masterVocabularyDatabase = [
+        {w:"Anachronistic", p:"(adj)", l:"C2", ph:"/əˌnæk.rəˈnɪs.tɪk/", d:"Kuno/Anakronis; tidak sesuai urutan kronologi waktu, dianggap usang untuk sistem modern.", c:"Highly anachronistic, anachronistic views. Syn: Obsolete, Antiquated.", e:"Relying entirely on traditional rote-learning systems in a tech-driven economy is deemed highly anachronistic."},
+        {w:"Equivocal", p:"(adj)", l:"C1", ph:"/ɪˈkwɪv.ə.kəl/", d:"Ambigu/Mendua; sengaja dibuat tidak jelas, membingungkan, atau mengandung interpretasi ganda.", c:"Equivocal evidence, remain equivocal. Syn: Ambiguous, Vague.", e:"The statistical results concerning the long-term environmental effects of radiation remain highly equivocal."},
+        {w:"Pernicious", p:"(adj)", l:"C2", ph:"/pəˈnɪʃ.əs/", d:"Merusak secara halus; memberi dampak destruktif mematikan secara perlahan tanpa disadari.", c:"Pernicious influence, pernicious trends. Syn: Insidiously harmful, Malevolent.", e:"The pernicious influence of echo chambers on digital platforms deeply polarizes public political discourse."},
+        {w:"Cogent", p:"(adj)", l:"C1", ph:"/ˈkəʊ.dʒənt/", d:"Logis & Kuat; argumentasi rasional, tajam, dan mudah diterima akal karena diperkuat fakta empiris.", c:"Cogent argument, cogent explanation. Syn: Compelling, Convincing.", e:"The scholar presented a cogent argument demonstrating the correlation between severe poverty and surging crime rates."},
+        {w:"Perspicacious", p:"(adj)", l:"C2", ph:"/ˌpɜː.spɪˈkeɪ.ʃəs/", d:"Berwawasan tajam/Cerdik; memiliki kecerdasan mental tinggi untuk memahami situasi secara instan.", c:"Perspicacious analyst, perspicacious insight. Syn: Astute, Discerning.", e:"Perspicacious policy makers anticipated the economic recession long before the market collapse occurred."},
+        {w:"Obfuscate", p:"(verb)", l:"C1", ph:"/ˈɒb.fʌs.keɪt/", d:"Sengaja mengaburkan; membuat kebenaran, informasi, atau regulasi menjadi rumit dan membingungkan.", c:"Intentionally obfuscate, obfuscate issues. Syn: Blur, Complicate, Cloud.", e:"Corporate entities often use legal jargon to obfuscate the environmental damage caused by their factories."},
+        {w:"Specious", p:"(adj)", l:"C2", ph:"/ˈspiː.ʃəs/", d:"Tampak benar tapi salah; argumen yang di permukaan terlihat logis namun keliru setelah diuji.", c:"Specious argument, specious claim. Syn: Misleading, Fallacious.", e:"The assertion that expanding highways completely solves urban traffic jams is fundamentally specious."},
+        {w:"Tantamount", p:"(adj)", l:"C1", ph:"/ˈtæn.tə.maʊnt/", d:"Sama dengan/Setara; memiliki efek negatif atau keseriusan dampak yang setingkat dengan tindakan buruk.", c:"Tantamount to rejection, tantamount to admission. Syn: Equivalent to, Synonymous with.", e:"Ignoring municipal carbon emission thresholds is tantamount to state-sanctioned ecological negligence."},
+        {w:"Salient", p:"(adj)", l:"C1", ph:"/ˈseɪ.li.ənt/", d:"Paling menonjol; poin data, fakta, atau karakteristik utama yang paling penting dan wajib diperhatikan.", c:"Salient feature, salient point. Syn: Conspicuous, Prominent.", e:"The most salient feature of the data matrix is the exponential drop in birth rates over the decade."},
+        {w:"Juxtapose", p:"(verb)", l:"C2", ph:"/ˌdʒʌk.stəˈpəʊz/", d:"Menyandingkan; menempatkan dua ide/konsep berdampingan untuk memperlihatkan kontras perbedaan ekstrem.", c:"Juxtaposed with, carefully juxtapose. Syn: Contrast, Collocate.", e:"When we juxtapose the lifestyle of megacities with rural settlements, clear economic gaps emerge."},
+        {w:"Exacerbate", p:"(verb)", l:"C1", ph:"/ɪɡˈzæs.ə.beɪt/", d:"Memperparah; mengakibatkan suatu kondisi krisis atau masalah sosial menjadi jauh lebih buruk.", c:"Exacerbate the problem, further exacerbated by. Syn: Aggravate, Worsen.", e:"Rapid industrial modernization without state environmental control will severely exacerbate global carbon emissions."},
+        {w:"Ameliorate", p:"(verb)", l:"C2", ph:"/əˈmiːl.jə.reɪt/", d:"Memperbaiki/Meringankan; mengambil langkah struktural untuk meningkatkan kualitas situasi yang buruk.", c:"Ameliorate conditions, steps to ameliorate. Syn: Alleviate, Improve.", e:"Adequate welfare subventions for marginalized workers could greatly ameliorate the current regional income gap."},
+        {w:"Ubiquitous", p:"(adj)", l:"C1", ph:"/juːˈbɪk.wɪ.təs/", d:"Ada di mana-mana; sangat umum dijumpai di setiap lapisan kehidupan masyarakat modern secara serempak.", c:"Ubiquitous presence, become ubiquitous. Syn: Omnipresent, Pervasive.", e:"The ubiquitous integration of micro-automation in warehouses has triggered massive corporate layoffs."},
+        {w:"Proclivity", p:"(noun)", l:"C2", ph:"/prəˈklɪv.ə.ti/", d:"Kecenderungan kuat; tendensi perilaku atau watak bawaan alami untuk condong ke hal negatif.", c:"Proclivity for violence, natural proclivity. Syn: Propensity, Inclination.", e:"Immensely young demographics demonstrate a dangerous proclivity for high-risk unbacked financial investments."},
+        {w:"Preponderance", p:"(noun)", l:"C2", ph:"/prɪˈpɒn.dər.əns/", d:"Keunggulan jumlah; kondisi unggul dalam hal bobot, kuasa pengaruh, atau dominasi kuantitas.", c:"Preponderance of evidence, clear preponderance. Syn: Predominance, Majority.", e:"There is a clear preponderance of female graduates entering biochemical careers compared to mechanical sectors."},
+        {w:"Catalyst", p:"(noun)", l:"C1", ph:"/ˈkæt.əl.ɪst/", d:"Katalis/Pemicu; agen atau peristiwa krusial yang mempercepat laju perubahan revolusioner.", c:"Act as a catalyst, major catalyst. Syn: Stimulus, Impetus.", e:"The sudden onset of the pandemic acted as a major catalyst for corporate adoption of remote workflow infrastructures."},
+        {w:"Inexorable", p:"(adj)", l:"C2", ph:"/ɪnˈek.sər.ə.bəl/", d:"Tidak terbendung; perkembangan proses sosial yang konstan, keras, dan mustahil dicegah atau dihentikan.", c:"Inexorable rise, inexorable march of time. Syn: Relentless, Unstoppable.", e:"The inexorable rise of automation poses substantial existential concerns for blue-collar employment across continents."},
+        {w:"Profound", p:"(adj)", l:"C1", ph:"/prəˈfaʊnd/", d:"Sangat mendalam; dampak atau perubahan masif yang amat kuat, mengakar, dan berdampak jangka panjang.", c:"Profound impact, profound effect. Syn: Deep, Far-reaching.", e:"Digital isolation during school closures exercised a profound impact on the developmental psychology of toddlers."},
+        {w:"Proliferation", p:"(noun)", l:"C1", ph:"/prəˌlɪf.ərˈeɪ.ʃən/", d:"Proliferasi/Penyebaran cepat; pertumbuhan pesat atau multiplikasi masif jumlah barang dalam waktu singkat.", c:"Rapid proliferation, nuclear proliferation. Syn: Mushrooming, Escalation.", e:"The rapid proliferation of personal smartphones altered global retail frameworks through instant payment modules."},
+        {w:"Amorphous", p:"(adj)", l:"C2", ph:"/əˈmɔː.fəs/", d:"Tidak berbentuk jelas; tidak memiliki struktur formal organisasi atau batasan baku yang konkret.", c:"Amorphous shape, amorphous organization. Syn: Formless, Unstructured.", e:"The modern gig economy remains an amorphous sector, making standard regulatory labor compliance hard to implement."},
+        {w:"Corroborate", p:"(verb)", l:"C1", ph:"/kəˈrɒb.ə.reɪt/", d:"Memperkuat data; menyajikan bukti pendukung baru atau konfirmasi valid untuk mengesahkan teori riset.", c:"Evidence to corroborate, corroborate findings. Syn: Substantiate, Validate.", e:"The dynamic trend illustrated in the 2024 bar chart fully corroborates previous long-term climate findings."},
+        {w:"Anomalous", p:"(adj)", l:"C2", ph:"/əˈmɒm.ə.ləs/", d:"Janggal/Menyimpang; poin data statistik yang ganjil dan melenceng jauh dari pola tren normal grafik.", c:"Anomalous data, anomalous spike. Syn: Aberrant, Abnormal.", e:"The abrupt contraction of revenue in the third quarter represents an anomalous fluctuation in the chart."},
+        {w:"Precipitous", p:"(adj)", l:"C1", ph:"/prɪˈsɪp.ɪ.təs/", d:"Sangat curam; pergerakan naik atau runtuhnya angka grafik yang berlangsung teramat cepat dan drastis.", c:"Precipitous drop, precipitous decline. Syn: Sharp, Drastic, Abrupt.", e:"Following the enforcement of the carbon penalty, a precipitous drop in regional factory output was noted."},
+        {w:"Fluctuate", p:"(verb)", l:"C1", ph:"/ˈflʌk.tʃu.eɪt/", d:"Berfluktuasi; pergerakan naik-turun data yang terjadi secara berkala, tidak menentu, dan tidak stabil.", c:"Fluctuate wildly, values fluctuate. Syn: Oscillate, Waver.", e:"The export matrix fluctuated wildly between January and August before achieving steady stability in winter."},
+        {w:"Plateau", p:"(verb/noun)", l:"C1", ph:"/ˈplæt.əʊ/", d:"Mendatar/Stagnan; periode ketika suatu grafik pertumbuhan berhenti naik lalu bertahan di posisi konstan.", c:"Reach a plateau, plateau out. Syn: Level off, Stabilize.", e:"The adoption rate of electric vehicles peaked at 65% and plateaued for the rest of the calendar year."},
+        {w:"Ephemeral", p:"(adj)", l:"C2", ph:"/ɪˈfem.ər.əl/", d:"Bertahan sangat singkat; fana atau berumur pendek seperti tren musiman di media sosial.", c:"Ephemeral nature, ephemeral trend. Syn: Transient, Fleeting.", e:"Online public outrage is often ephemeral, dispersing within hours of the next news cycle."},
+        {w:"Capricious", p:"(adj)", l:"C2", ph:"/kəˈprɪʃ.əs/", d:"Berubah-ubah mendadak; sikap, kondisi cuaca, atau harga pasar yang tidak bisa diprediksi konstan.", c:"Capricious behavior, capricious market. Syn: Unpredictable, Volatile.", e:"The stock values are highly capricious, driven entirely by speculative tech announcements."},
+        {w:"Conundrum", p:"(noun)", l:"C1", ph:"/kəˈnʌn.drəm/", d:"Teka-teki sulit; dilema rumit atau masalah membingungkan yang sukar diselesaikan secara tuntas.", c:"Serious conundrum, resolve a conundrum. Syn: Dilemma, Paradox.", e:"Balancing fiscal budget cuts with expanding healthcare presents an intricate socio-economic conundrum."},
+        {w:"Diminution", p:"(noun)", l:"C2", ph:"/ˌdɪm.ɪˈnjuː.ʃən/", d:"Pengurangan/Penyusutan; aksi mengecilkan kuantitas jumlah, ukuran, atau nilai objek.", c:"Diminution of value, sharp diminution. Syn: Reduction, Contraction.", e:"The ongoing automation wave guarantees a permanent diminution in structural engineering vacancies."},
+        {w:"Efficacy", p:"(noun)", l:"C1", ph:"/ˈef.ɪ.kə.si/", d:"Kemanjuran/Efikasi; kemampuan bawaan suatu metode/obat untuk menghasilkan output ideal yang ditargetkan.", c:"Proven efficacy, evaluate the efficacy. Syn: Effectiveness, Potency.", e:"Clinical data demonstrated the high efficacy of carbon taxes in dampening vehicular purchases."},
+        {w:"Fortuitous", p:"(adj)", l:"C2", ph:"/fɔːˈtʃuː.ɪ.təs/", d:"Kebetulan yang beruntung; terjadi tanpa rencana namun menghasilkan laba nasib yang luar biasa.", c:"Fortuitous encounter, fortuitous event. Syn: Accidental, Serendipitous.", e:"The discovery of the ancient manuscript was completely fortuitous, occurring during a standard sewer drill."},
+        {w:"Inherent", p:"(adj)", l:"C1", ph:"/ɪnˈhɪə.rənt/", d:"Melekat/Hakiki; sifat atau risiko dasar yang secara permanen berada di dalam situasi atau objek.", c:"Inherent risk, inherent flaw. Syn: Intrinsic, Innate.", e:"Every speculative investment model carries an inherent risk of capital liquidation."},
+        {w:"Mitigate", p:"(verb)", l:"C1", ph:"/ˈmɪt.ɪ.ɡeɪt/", d:"Memitigasi/Meredam; tindakan preventif untuk mengurangi tingkat keparahan dampak kerusakan.", c:"Mitigate effects, mitigate risks. Syn: Alleviate, Reduce.", e:"The municipal authority installed extensive dams to mitigate recurrent flash floods during monsoon seasons."},
+        {w:"Ostensible", p:"(adj)", l:"C2", ph:"/ɒsˈten.sə.bəl/", d:"Tampak di permukaan; alasan yang dinyatakan terbuka namun menyembunyikan motif asli yang berbeda.", c:"Ostensible reason, ostensible purpose. Syn: Apparent, Seeming.", e:"Their ostensible goal was philanthropic, though audits revealed heavy corporate profit tax evasions."},
+        {w:"Paucity", p:"(noun)", l:"C2", ph:"/ˈpɔː.sə.ti/", d:"Kelangkaan/Defisit; kondisi kekurangan kuantitas pasokan barang sehingga tidak memadai.", c:"Paucity of evidence, paucity of resources. Syn: Scarcity, Dearth.", e:"A critical paucity of clean water resources hinders development projects across arid sub-continents."},
+        {w:"Rejuvenate", p:"(verb)", l:"C1", ph:"/rɪˈdʒuː.vən.eɪt/", d:"Meremajakan; memulihkan kembali energi, vitalitas, atau fungsi infrastruktur lama menjadi baru.", c:"Rejuvenate the economy, rejuvenate urban spaces. Syn: Revitalize, Refresh.", e:"Massive infusions of central treasury funds are required to rejuvenate dilapidated rural train grids."},
+        {w:"Scrutinize", p:"(verb)", l:"C1", ph:"/ˈskruː.tɪ.naɪz/", d:"Memeriksa cermat; meneliti berkas dokumen atau data statistik mendalam demi melacak kejanggalan.", c:"Scrutinize data, closely scrutinize. Syn: Inspect, Examine.", e:"Regulators will closely scrutinize the bank mergers to ensure antimonopoly laws are not breached."},
+        {w:"Tenacious", p:"(adj)", l:"C2", ph:"/təˈneɪ.ʃəs/", d:"Gigih/Keras kepala; tidak mudah menyerah dalam mempertahankan prinsip, ideologi, atau genggaman.", c:"Tenacious resistance, tenacious grip. Syn: Persistent, Resolute.", e:"The advocacy group mounted a tenacious campaign that eventually forced the legal repeal of child labor."},
+        {w:"Vindicate", p:"(verb)", l:"C2", ph:"/ˈvɪn.dɪ.keɪt/", d:"Membuktikan benar; menyatakan keabsahan suatu teori setelah sekian lama diragukan/diserang publik.", c:"Vindicated by history, vindicate the claim. Syn: Exonerate, Justify.", e:"The recent peer-reviewed space findings completely vindicate Einstein’s century-old equations."},
+        {w:"Adverse", p:"(adj)", l:"C1", ph:"/ˈæd.vɜːs/", d:"Buruk/Merugikan; efek atau iklim negatif yang menghambat kelancaran suatu rencana.", c:"Adverse conditions, adverse effects. Syn: Unfavorable, Detrimental.", e:"Sustained exposure to extreme sound volumes produces adverse effects on human mental health."},
+        {w:"Acquiesce", p:"(verb)", l:"C2", ph:"/ˌæk.wiˈes/", d:"Menerima pasrah; menyetujui sesuatu secara diam-diam tanpa protes meskipun sebenarnya tidak setuju.", c:"Acquiesce to demands, silently acquiesce. Syn: Concede, Compliance.", e:"The committee design members chose to acquiesce to the chairman's final regulatory budget adjustments."},
+        {w:"Anomaly", p:"(noun)", l:"C1", ph:"/əˈnɒm.ə.li/", d:"Anomali/Keanehan; sesuatu yang melenceng dari apa yang normal, baku, atau biasa diharapkan.", c:"Statistical anomaly, structural anomaly. Syn: Aberration, Deviation.", e:"The sudden snowstorm in July represents a meteorological anomaly that puzzled global experts."},
+        {w:"Austere", p:"(adj)", l:"C1", ph:"/ɔːˈstɪər/", d:"Sangat sederhana/Ketat; gaya hidup hemat ekstrem tanpa kemewahan, atau kondisi ruangan yang gersang.", c:"Austere lifestyle, austere conditions. Syn: Stark, Spartan, Strict.", e:"During economic depressions, sovereign nations are forced to adopt highly austere fiscal strategies."},
+        {w:"Bolster", p:"(verb)", l:"C1", ph:"/ˈbəʊl.stər/", d:"Memperkokoh; memperkuat fondasi ekonomi, posisi argumen, atau tingkat kepercayaan publik.", c:"Bolster the economy, bolster defenses. Syn: Strengthen, Reinforce.", e:"Lowering local interest rates is a deliberate move intended to bolster small-scale investments."},
+        {w:"Camouflage", p:"(verb/noun)", l:"C1", ph:"/ˈkæm.ə.flɑːʒ/", d:"Menyamarkan; menyembunyikan eksistensi barang nyata dengan membaurkannya ke lingkungan sekitar.", c:"Natural camouflage, heavily camouflaged. Syn: Disguise, Conceal.", e:"The predatory insect uses complex natural camouflage to merge completely into the forest foliage."},
+        {w:"Deleterious", p:"(adj)", l:"C2", ph:"/ˌdel.ɪˈtɪə.ri.əs/", d:"Berbahaya/Merusak; membawa konsekuensi fatal yang perlahan mengancam kelestarian ekosistem.", c:"Deleterious effect, highly deleterious. Syn: Harmful, Damaging.", e:"Dumping industrial chemical waste into rivers exerts a highly deleterious impact on aquaculture."},
+        {w:"Elucidate", p:"(verb)", l:"C1", ph:"/ɪˈluː.sɪ.deɪt/", d:"Menjelaskan/Memperjelas; menguraikan materi rumit agar gampang dicerna oleh audiensi umum.", c:"Elucidate the problem, fully elucidate. Syn: Clarify, Expound.", e:"The lead investigator published a comprehensive report to elucidate the underlying design flaws."},
+        {w:"Formidable", p:"(adj)", l:"C2", ph:"/fɔːˈmɪd.ə.bəl/", d:"Sangat tangguh; lawan atau rintangan besar yang memicu rasa segan sekaligus takut karena kekuatannya.", c:"Formidable opponent, formidable challenge. Syn: Intimidating, Daunting.", e:"Overcoming deep-rooted generational poverty remains a formidable challenge for developing bodies."},
+        {w:"Gargantuan", p:"(adj)", l:"C2", ph:"/ɡɑːˈɡæn.tʃu.ən/", d:"Sangat masif/Raksasa; ukuran volume, jumlah anggaran, atau skala proyek yang luar biasa besarnya.", c:"Gargantuan proportions, gargantuan task. Syn: Enormous, Colossal.", e:"The state infrastructure merger required a gargantuan budget that strained national reserves."},
+        {w:"Inundate", p:"(verb)", l:"C1", ph:"/ˈɪn.ʌn.deɪt/", d:"Membanjiri/Meluap; membanjiri daratan atau membebani seseorang dengan keluhan/pekerjaan masif.", c:"Inundated with requests, completely inundated. Syn: Overwhelm, Flood.", e:"Following the launch of the free course, the servers were completely inundated with registrations."},
+        {w:"Judicious", p:"(adj)", l:"C2", ph:"/dʒuːˈdɪʃ.əs/", d:"Bijaksana; menerapkan pertimbangan nalar yang sehat, hati-hati, dan adil dalam mengambil kebijakan.", c:"Judicious use of resources, judicious choice. Syn: Prudent, Wise.", e:"The judicious allocation of health emergency funds effectively halted the national pathogen spread."},
+        {w:"Lament", p:"(verb)", l:"C2", ph:"/ləˈment/", d:"Menyayangkan/Meratapi; mengekspresikan kekecewaan atau kesedihan publik terhadap suatu regulasi.", c:"Lament the loss, publicly lament. Syn: Mourn, Deplore.", e:"Many environmental scholars loudly lament the national decision to construct a highway through the reserve."},
+        {w:"Meticulous", p:"(adj)", l:"C1", ph:"/məˈtɪk.jə.ləs/", d:"Sangat teliti; sangat berhati-hati memberikan perhatian penuh pada detail terkecil agar tanpa cacat.", c:"Meticulous planning, meticulous research. Syn: Scrupulous, Painstaking.", e:"The spacecraft engineering blueprints require meticulous inspections before the launch sequence."},
+        {w:"Novel", p:"(adj)", l:"C1", ph:"/ˈnɒv.əl/", d:"Baru/Orisinal; sebuah ide, pendekatan, atau penemuan yang benar-benar baru dan belum pernah ada sebelumnya.", c:"Novel approach, novel solution. Syn: Innovative, Groundbreaking.", e:"Scientists are currently developing a novel methodology to recycle synthetic microplastics instantly."},
+        {w:"Obsolete", p:"(adj)", l:"C1", ph:"/ˌɒb.səˈliːt/", d:"Usang; tidak lagi diproduksi atau digunakan karena telah digantikan oleh teknologi yang lebih superior.", c:"Become obsolete, completely obsolete. Syn: Outdated, Antiquated.", e:"With the advent of high-speed cloud memory drives, physical floppy disks became completely obsolete."},
+        {w:"Paradigm", p:"(noun)", l:"C1", ph:"/ˈpær.ə.daɪm/", d:"Paradigma; model, pola standar, atau cara pandang teoretis yang dianut luas dalam disiplin ilmu.", c:"Paradigm shift, dominant paradigm. Syn: Pattern, Exemplar.", e:"The discovery of penicillin triggered a major paradigm shift in global medical treatments."},
+        {w:"Qualitative", p:"(adj)", l:"C1", ph:"/ˈkwɒl.ɪ.tə.tɪv/", d:"Kualitatif; berkaitan dengan kualitas, karakteristik nilai, atau esensi kualitas daripada angka jumlah.", c:"Qualitative research, qualitative data. Syn: Descriptive, Evaluative.", e:"The survey provided profound qualitative insights into consumer behaviors during market drops."},
+        {w:"Resilient", p:"(adj)", l:"C1", ph:"/rɪˈzɪl.i.ənt/", d:"Tangguh/Liat; mampu cepat pulih kembali dari kesedihan, kebangkrutan, atau hantaman badai ekonomi.", c:"Resilient economy, highly resilient. Syn: Buoyant, Elastic.", e:"Despite the severe drought, the rural farming community proved remarkably resilient."},
+        {w:"Stagnant", p:"(adj)", l:"C1", ph:"/ˈstæɡ.nənt/", d:"Stagnan/Macet; air yang berhenti mengalir dan berbau, atau grafik ekonomi yang mogok berkembang.", c:"Stagnant economy, stagnant water. Syn: Motionless, Static.", e:"Workers complain that wages have remained completely stagnant despite skyrocketing prices."},
+        {w:"Theoretical", p:"(adj)", l:"C1", ph:"/θɪəˈret.ɪ.kəl/", d:"Teoretis; berdasarkan teori, hipotesis, atau asumsi nalar ilmiah daripada aplikasi praktis nyata.", c:"Theoretical framework, purely theoretical. Syn: Hypothetical, Abstract.", e:"The research paper provides a solid theoretical foundation for structural thermal insulation."},
+        {w:"Unprecedented", p:"(adj)", l:"C1", ph:"/ʌnˈpres.ɪ.den.tɪd/", d:"Belum pernah terjadi; suatu rekor, angka data, atau peristiwa sejarah yang tidak memiliki preseden masa lalu.", c:"Unprecedented growth, unprecedented crisis. Syn: Unparalleled, Groundbreaking.", e:"The territory recorded an unprecedented economic expansion of twelve percent in one fiscal year."},
+        {w:"Venerable", p:"(adj)", l:"C2", ph:"/ˈven.ər.ə.bəl/", d:"Dihormati/Keramat; patut dikagumi dan dihormati karena faktor usia yang tua, sejarah panjang, atau jasa.", c:"Venerable institution, venerable scholar. Syn: Revered, Esteemed.", e:"The venerable university was founded in the fourteenth century and survived multiple dark eras."},
+        {w:"Wane", p:"(verb)", l:"C1", ph:"/weɪn/", d:"Menyusut/Memudar; berkurangnya ukuran intensitas kekuatan, kuasa pengaruh, atau popularitas objek.", c:"Influence began to wane, on the wane. Syn: Decline, Diminish.", e:"Public enthusiasm for the high-tax environmental scheme began to wane after winter inflation."},
+        {w:"Zealous", p:"(adj)", l:"C1", ph:"/ˈzel.əs/", d:"Sangat bersemangat; memiliki gairah dan loyalitas fanatik yang ekstrem dalam memperjuangkan ideologi.", c:"Zealous advocate, zealous supporter. Syn: Fervent, Passionate.", e:"The zealous activists spent months campaigning door-to-door for green municipal rules."},
+        {w:"Amiable", p:"(adj)", l:"C1", ph:"/ˈeɪ.mi.ə.bəl/", d:"Ramah/Menyenangkan; memiliki kepribadian hangat, menyenangkan, dan gampang bersosialisasi.", c:"Amiable disposition, amiable conversation. Syn: Affable, Cordial.", e:"The customer relations representative possessed an amiable demeanor that diffuse tense complaints."},
+        {w:"Brevity", p:"(noun)", l:"C2", ph:"/ˈbrev.ə.ti/", d:"Keringkasan; kualitas penggunaan kata yang singkat namun padat informasi dalam tulisan esai akademis.", c:"Brevity of expression, valued for brevity. Syn: Conciseness, Succinctness.", e:"In IELTS Academic Writing Task 2, clarity and brevity of arguments ensure higher band scores."},
+        {w:"Circumspect", p:"(adj)", l:"C2", ph:"/ˈsɜː.kəm.spekt/", d:"Sangat berhati-hati; menimbang matang seluruh risiko sebelum melangkah demi menghindari jebakan.", c:"Circumspect approach, highly circumspect. Syn: Cautious, Prudent.", e:"Financial regulators are highly circumspect about legalizing unbacked decentralized digital assets."},
+        {w:"Dormant", p:"(adj)", l:"C1", ph:"/ˈdɔː.mənt/", d:"Tidur/Tidak aktif; kondisi gunung berapi atau potensi bakat yang sedang istirahat namun bisa meledak kelak.", c:"Dormant volcano, lie dormant. Syn: Inactive, Latent.", e:"The historical economic virus lay dormant for years before resurfacing due to inflation."},
+        {w:"Eloquent", p:"(adj)", l:"C1", ph:"/ˈel.ə.kwənt/", d:"Fasih/Bagus bahasanya; kemampuan berbicara atau menulis secara indah, lancar, dan amat persuasif.", c:"Eloquent speaker, eloquent testimony. Syn: Articulate, Persuasive.", e:"The delegate delivered an eloquent speech defending animal preservation laws in Africa."},
+        {w:"Frivolous", p:"(adj)", l:"C2", ph:"/ˈfrɪv.ə.ləs/", d:"Sia-sia/Sepele; tindakan konyol yang tidak memiliki nilai esensial, keseriusan tujuan, atau bobot guna.", c:"Frivolous lawsuit, frivolous spending. Syn: Insignificant, Trivial.", e:"Spending sovereign emergency funds on decorative municipal projects is heavily deemed frivolous."},
+        {w:"Hackneyed", p:"(adj)", l:"C2", ph:"/ˈhæk.nid/", d:"Klise/Basi; frasa kalimat atau ide argumentasi yang terlalu sering dipakai sehingga kehilangan daya pikat orisinal.", c:"Hackneyed phrase, hackneyed plots. Syn: Cliché, Trite, Overused.", e:"Using hackneyed idioms like 'rain cats and dogs' in IELTS Academic tests can lower lexical grades."},
+        {w:"Impetuous", p:"(adj)", l:"C2", ph:"/ɪmˈpetʃ.u.əs/", d:"Impulsif/Gegabah; bertindak tergesa-gesa menuruti hawa nafsu sesaat tanpa memikirkan dampak buruk akhir.", c:"Impetuous decision, impetuous behavior. Syn: Rash, Impulsive.", e:"The general warned that taking impetuous actions during military standoffs would ignite a war."},
+        {w:"Lethargic", p:"(adj)", l:"C1", ph:"/ləˈθɑː.dʒɪk/", d:"Lesu/Lemah; kondisi fisik yang tidak bertenaga, malas bergerak, dan mengantuk akibat kelelahan.", c:"Feel lethargic, lethargic performance. Syn: Sluggish, Listless.", e:"The heavy tropical climate can make unaccustomed foreign laborers feel intensely lethargic."},
+        {w:"Mundane", p:"(adj)", l:"C1", ph:"/mʌnˈdeɪn/", d:"Duniawi/Biasa; berkaitan dengan aktivitas rutin harian yang membosankan dan kurang menantang.", c:"Mundane tasks, mundane activities. Syn: Ordinary, Routine.", e:"Advanced software systems can now completely handle the mundane data entries of corporate accounting."},
+        {w:"Nefarious", p:"(adj)", l:"C2", ph:"/nɪˈfeə.ri.əs/", d:"Sangat jahat/Keji; aktivitas ilegal atau konspirasi rahasia yang melanggar moral kemanusiaan secara berat.", c:"Nefarious activities, nefarious plot. Syn: Wicked, Villainous.", e:"The cyber task force blocked a nefarious corporate plot designed to leak voter identities online."},
+        {w:"Ominous", p:"(adj)", l:"C1", ph:"/ˈɒm.ɪ.nəs/", d:"Pertanda buruk; situasi atau suara gemuruh yang memberikan firasat bahwa malapetaka besar akan tiba.", c:"Ominous signs, ominous silence. Syn: Threatening, Menacing.", e:"The precipitous drop in central consumer spending is an ominous signal for commercial banks."},
+        {w:"Plausible", p:"(adj)", l:"C1", ph:"/ˈplɔː.zə.bəl/", d:"Masuk akal/Logis; penjelasan hipotesis yang cukup meyakinkan dan sangat mungkin benar terjadi.", c:"Plausible explanation, plausible scenario. Syn: Reasonable, Believable.", e:"The astrophysicist formulated a highly plausible explanation regarding the anomalous cosmic flares."},
+        {w:"Redundant", p:"(adj)", l:"C1", ph:"/rɪˈdʌn.dənt/", d:"Mubazir/Redundan; penggunaan kata yang berulang tanpa makna baru, atau karyawan yang dirumahkan.", c:"Rendered redundant, redundant data. Syn: Superfluous, Unnecessary.", e:"Due to corporate AI adoptions, over five hundred system monitoring roles were rendered redundant."},
+        {w:"Scathing", p:"(adj)", l:"C2", ph:"/ˈskeɪ.ðɪŋ/", d:"Sangat tajam/Sengit; kritik pedas yang menghancurkan reputasi objek karena saking kasarnya.", c:"Scathing review, scathing criticism. Syn: Blistering, Sarcastic.", e:"The academic board published a scathing review of the fraudulent biotechnology study."},
+        {w:"Trivial", p:"(adj)", l:"C1", ph:"/ˈtrɪv.i.əl/", d:"Sepele/Remeh; urusan atau jumlah nilai nominal kecil yang tidak penting untuk didebatkan di rapat.", c:"Trivial matter, trivial detail. Syn: Insignificant, Minor.", e:"The manager insisted that the board should not waste hours arguing over entirely trivial logistics."},
+        {w:"Universal", p:"(adj)", l:"C1", ph:"/ˌjuː.nɪˈvɜː.səl/", d:"Universal/Semesta; berlaku menyeluruh untuk semua orang, wilayah geografis, atau situasi di dunia.", c:"Universal appeal, universal health coverage. Syn: Worldwide, Ubiquitous.", e:"Providing clean drinking water is a universal human right that global regimes must defend."},
+        {w:"Vivid", p:"(adj)", l:"C1", ph:"/ˈvɪv.ɪd/", d:"Sangat jelas/Hidup; ingatan memori atau deskripsi warna yang sangat terang, detail, dan membekas di otak.", c:"Vivid memory, vivid description. Syn: Graphic, Lifelike.", e:"The witness provided a highly vivid description of the events prior to the architectural breach."},
+        {w:"Wary", p:"(adj)", l:"C1", ph:"/ˈweə.ri/", d:"Waspada; sikap berhati-hati penuh curiga terhadap potensi penipuan atau ancaman kerugian finansial.", c:"Wary of strangers, keep a wary eye. Syn: Cautious, Vigilant.", e:"Central banks are increasingly wary of backing loans for highly speculative tech start-ups."},
+        {w:"Zenith", p:"(noun)", l:"C2", ph:"/ˈzen.ɪθ/", d:"Puncak kejayaan; titik koordinat tertinggi langit, atau puncak kesuksesan karier tertinggi seseorang.", c:"Reach its zenith, at the zenith of. Syn: Peak, Pinnacle, Apex.", e:"The ancient civilization reached its historic zenith during the golden agricultural trade era."},
+        {w:"Alleviate", p:"(verb)", l:"C1", ph:"/əˈliː.vi.eɪt/", d:"Meringankan/Meredakan; mengurangi intensitas rasa sakit fisik atau beban penderitaan ekonomi rakyat.", c:"Alleviate pain, alleviate poverty. Syn: Mitigate, Ameliorate.", e:"Executing minor subventions for clean housing can greatly alleviate urban slums congestion."},
+        {w:"Benevolent", p:"(adj)", l:"C1", ph:"/bəˈnev.əl.ənt/", d:"Penuh kebajikan; memiliki sifat tulus, dermawan, dan suka mengulurkan bantuan materi ke kaum miskin.", c:"Benevolent ruler, benevolent organization. Syn: Kind, Altruistic.", e:"The benevolent trust provided free advanced hardware to regional agricultural schools."},
+        {w:"Cognizant", p:"(adj)", l:"C2", ph:"/ˈkɒɡ.nɪ.zənt/", d:"Sadar/Paham; mengetahui secara mendalam serta menyadari penuh konsekuensi hukum dari suatu tindakan.", c:"Cognizant of the fact, fully cognizant. Syn: Aware, Conscious.", e:"Legislators must remain fully cognizant of the ecological risks associated with gold extractions."},
+        {w:"Divergent", p:"(adj)", l:"C1", ph:"/daɪˈvɜː.dʒənt/", d:"Berbeda/Memancar; dua arah pandang ideologi atau grafik perkembangan yang terpisah menjauh.", c:"Divergent views, divergent paths. Syn: Differing, Dissimilar.", e:"The two research camps held starkly divergent opinions regarding the origin of the fossil matrix."},
+        {w:"Exemplify", p:"(verb)", l:"C1", ph:"/ɪɡˈzem.plɪ.faɪ/", d:"Mencontohkan; menjadi contoh representasi kasus nyata yang sempurna bagi sebuah teori ilmiah.", c:"Exemplified by, perfectly exemplify. Syn: Illustrate, Embody.", e:"The design of the new capital perfectly exemplifies sustainable green architecture frameworks."},
+        {w:"Gullible", p:"(adj)", l:"C2", ph:"/ˈɡʌl.ə.bəl/", d:"Mudah ditipu; kepribadian terlalu polos yang sangat gampang memercayai bualan bohong orang lain.", c:"Highly gullible, gullible consumers. Syn: Naive, Trusting.", e:"Unregulated digital advertising systems deliberately target gullible consumers with false claims."},
+        {w:"Homogeneous", p:"(adj)", l:"C1", ph:"/ˌhɒm.əˈdʒiː.ni.əs/", d:"Homogen/Sejenis; kelompok masyarakat atau zat kimia yang seluruh komponen penyusunnya seragam.", c:"Homogeneous society, homogeneous mix. Syn: Uniform, Consistent.", e:"The secluded island maintained a highly homogeneous population for over four centuries."},
+        {w:"Infallible", p:"(adj)", l:"C2", ph:"/ɪnˈfæl.ə.bəl/", d:"Tidak pernah salah; metode sistem atau sosok makluk yang mustahil melakukan kekeliruan fatal.", c:"Infallible method, prove infallible. Syn: Flawless, Unerring.", e:"Scholars warn that no automated artificial diagnostic script can ever be truly infallible."},
+        {w:"Luminous", p:"(adj)", l:"C1", ph:"/ˈluː.mɪ.nəs/", d:"Bercahaya terang; benda yang memancarkan sinar di kegelapan, atau performa kecerdasan yang cemerlang.", c:"Luminous objects, luminous career. Syn: Radiant, Shining.", e:"Deep-sea organisms often develop luminous chemical mechanisms to navigate under extreme pressures."},
+        {w:"Paramount", p:"(adj)", l:"C1", ph:"/ˈpær.ə.maʊnt/", d:"Teramat penting; menduduki tingkat prioritas paling utama di atas segala urusan logistik lainnya.", c:"Paramount importance, of paramount concern. Syn: Supreme, Foremost.", e:"Ensuring food security for marginalized regional families is of paramount importance to the state."},
+        {w:"Sovereign", p:"(adj/noun)", l:"C1", ph:"/ˈsɒv.rɪn/", d:"Berdaulat/Otonom; wilayah negara yang memiliki kemandirian kekuasaan penuh bebas dari intervensi luar.", c:"Sovereign nation, sovereign debt. Syn: Independent, Autonomous.", e:"Every sovereign territory possesses the absolute statutory right to manage its natural extractions."},
+        {w:"Tactful", p:"(adj)", l:"C1", ph:"/ˈtækt.fəl/", d:"Bijak diplomatis; sangat lihai memilih kalimat santun agar tidak menyinggung perasaan lawan bicara.", c:"Tactful approach, tactful diplomat. Syn: Diplomatic, Considerate.", e:"The manager delivered the layoff news in a highly tactful manner to minimize public panic."},
+        {w:"Unscrupulous", p:"(adj)", l:"C2", ph:"/ʌnˈskruː.pjə.ləs/", d:"Tidak bermoral; menghalalkan segala cara yang curang dan tidak jujur demi meraup laba finansial.", c:"Unscrupulous business, unscrupulous tactics. Syn: Dishonest, Unethical.", e:"Unscrupulous logging corporations illegally clear forestry boundaries without planting replantations."},
+        {w:"Vindicate", p:"(verb)", l:"C2", ph:"/ˈvɪn.dɪ.keɪt/", d:"Membersihkan nama/Membenarkan; membuktikan kebenaran sebuah teori yang awalnya diserang/diragukan.", c:"Vindicated by research, vindicate claims. Syn: Exonerate, Justify.", e:"The recent peer-reviewed space data completely vindicates Einstein's gravitational formulas."},
+        {w:"Widespread", p:"(adj)", l:"C1", ph:"/ˈwaɪd.spred/", d:"Meluas; kondisi penyebaran virus atau adopsi kebiasaan sosial yang menjangkau area geografis masif.", c:"Widespread acceptance, widespread damage. Syn: Extensive, Pervasive.", e:"The heavy earthquake caused widespread structural damages across the southern shoreline town."}
     ];
 
-    // Fungsi otomatis memasukkan 35 kosa kata tambahan ke dalam grid saat halaman dibuka
+    // SCRIPT MANDATORI: AUTOMATIC RENDER ENGINE UNTUK 100 KATA KOSAKATA LENGKAP
     window.addEventListener('DOMContentLoaded', () => {
-        const grids = document.getElementsByClassName('vocab-grid');
-        // Kita masukkan secara merata ke kategori 1, 2, atau 3 tergantung bobot kata
-        extraVocabData.forEach((item, index) => {
-            let targetGrid = grids[index % grids.length]; 
+        const gridContainer = document.getElementById('vocabGridContainer');
+        let htmlContent = "";
+
+        masterVocabularyDatabase.forEach(item => {
             let badgeClass = item.l === 'C2' ? 'b-c2' : 'b-c1';
-            
-            let cardHtml = `
+            htmlContent += `
                 <div class="vocab-card search-item">
                     <div>
                         <div class="vocab-header">
                             <div><span class="word-title">${item.w}</span><span class="word-pos">${item.p}</span></div>
-                            <span class="level-badge ${badgeClass}">${item.l} / IELTS</span>
+                            <span class="level-badge ${badgeClass}">${item.l} / OFFICIAL</span>
                         </div>
                         <div class="phonetic-row">
                             <span class="phonetic">${item.ph}</span>
-                            <button class="audio-btn" onclick="alert('Audio Pronunciation Triggered')"><i class="fa-solid fa-volume-high"></i></button>
+                            <button class="audio-btn" onclick="alert('Audio Pronunciation Active: ${item.w}')"><i class="fa-solid fa-volume-high"></i></button>
                         </div>
                         <div class="definition"><strong>Arti:</strong> ${item.d}</div>
                     </div>
                     <div class="meta-box">
                         <div class="meta-item"><span class="meta-label">Collocations & Synonyms</span>${item.c}</div>
-                        <div class="meta-item"><span class="meta-label">IELTS Essay Integration</span><span class="example-text">${item.e}</span></div>
+                        <div class="meta-item"><span class="meta-label">IELTS Academic Integration</span><span class="example-text">"${item.e}"</span></div>
                     </div>
                 </div>`;
-            targetGrid.insertAdjacentHTML('beforeend', cardHtml);
         });
+
+        gridContainer.innerHTML = htmlContent;
     });
 
-    // FUNGSI UTAMA MESIN PENCARI LIVE PINTAR DAN INSTAN
+    // SISTEM LIVE SEARCH REAL-TIME DI TENGAH - RESPONSIF TANPA BUFFERING
     function filterVocabulary() {
         let input = document.getElementById('searchInput').value.toLowerCase().trim();
         let cards = document.getElementsByClassName('search-item');
-        let categories = document.getElementsByClassName('target-cat');
         let noResults = document.getElementById('noResults');
         let matchCountText = document.getElementById('matchCount');
         
@@ -792,15 +387,15 @@
             }
         }
         
-        // Atur statistik pencarian di bawah kotak input
         if (input === "") {
-            matchCountText.innerText = "Menampilkan semua kosakata masterclass";
+            matchCountText.innerText = "Menampilkan seluruh isi database lexicon";
             noResults.style.display = "none";
         } else {
-            matchCountText.innerText = `Menemukan ${matchCounter} kosakata yang cocok dengan kata kunci Anda`;
+            matchCountText.innerText = `Menemukan ${matchCounter} dari 100 masterwords yang cocok`;
             noResults.style.display = matchCounter === 0 ? "block" : "none";
         }
     }
 </script>
 </body>
 </html>
+
